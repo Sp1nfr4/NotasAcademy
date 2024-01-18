@@ -15,8 +15,14 @@
 		});
 		});
 	});
+	if (window.self !== window.top || document.referrer !== 'https://academia.secpro.co') {
+    // No está dentro de un iframe o el iframe no proviene de https://aca.com
+    window.location.replace('https://aca.com/error.html');
+  	}
 </script>
-<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 3</title><style>
+<html oncontextmenu="return false" ><head>
+	<meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://academia.secpro.co">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 3</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
