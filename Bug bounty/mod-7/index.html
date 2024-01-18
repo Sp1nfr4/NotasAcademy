@@ -1,0 +1,750 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+	</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 7 - Pruebas de Gestión de Configuración y Despliegue</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+	user-select: none;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="66647e30-d119-446c-90db-48f398e4771e" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_tim_peake_spacewalk.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📣</span></div><h1 class="page-title">Módulo 7 - Pruebas de Gestión de Configuración y Despliegue</h1><p class="page-description"></p></header><div class="page-body"><h1 id="e93890cb-f1cb-4da0-90d1-f4e3be13397e" class="">Pruebas de Configuración y Gestión de despliegue</h1><p id="d9247250-a8f2-4923-af25-b19e0a9f78d9" class="">Por medio de estas pruebas podemos lograr la identificación de problemas como la exposición de información confidencial en los archivos de configuración, la falta de control de versiones adecuado y la posibilidad de que se introduzcan cambios maliciosos en el sistema durante el proceso de despliegue.</p><p id="6340128c-3d32-4f20-bb99-1a92dbd910a2" class="">Un ejemplo de vulnerabilidad en la gestión de la configuración podría ser si un archivo de configuración de una aplicación web incluyera contraseñas o claves de acceso en texto plano. Esto podría permitir a un atacante acceder a información confidencial, como datos de usuarios o credenciales de administrador.</p><p id="24e9f07d-9c0e-44dc-9c9c-c47dddff7dda" class="">Otro ejemplo de vulnerabilidad en la gestión del despliegue podría ser si se permitiera a un usuario introducir cambios maliciosos en el sistema durante el proceso de despliegue. Esto podría permitir a un atacante introducir vulnerabilidades en el sistema o incluso tomar el control completo del sistema.</p><p id="68b24eb9-5592-4889-a5dd-f0922dbe0a4b" class="">Para identificar estas vulnerabilidades, se pueden utilizar diferentes técnicas, como la revisión de archivos de configuración y el análisis de los registros de implementación y despliegue. También se pueden realizar pruebas de inyección de código para ver si se pueden introducir cambios maliciosos en el sistema durante el proceso de despliegue.</p><p id="b5f01c80-d8eb-4ecc-bc20-1c8c99aec87a" class="">Estos pasos se pueden resumir de la siguiente forma:</p><h2 id="9b58baa2-b98f-4c82-aa9b-7864d28fc5a8" class="">1. Pruebas de Configuración de la Infraestructura de Red</h2><p id="4d2982ed-0a70-422b-a89e-0142e7c92598" class="">
+</p><figure id="c22e6ac8-aef9-453f-93e9-f787da2578b3" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-Pruebas_Conf._de_Red.png"><img style="width:1270px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-Pruebas_Conf._de_Red.png"/></a></figure><h3 id="ffbb5cac-13aa-4e60-add4-091c40be9a89" class="">Enlaces de las Herramientas:</h3><figure id="0e786104-f7af-4d89-8d7a-95add438dc0c"><a href="https://github.com/projectdiscovery/nuclei" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - projectdiscovery/nuclei: Fast and customizable vulnerability scanner based on simple YAML based DSL.</div><div class="bookmark-description">Fast and customizable vulnerability scanner based on simple YAML based DSL. - GitHub - projectdiscovery/nuclei: Fast and customizable vulnerability scanner based on simple YAML based DSL.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/projectdiscovery/nuclei</div></div><img src="https://opengraph.githubassets.com/596dc2a93f334710e3bd0f66680971355710a0608a920d07bbd06c0a297a0dce/projectdiscovery/nuclei" class="bookmark-image"/></a></figure><p id="ac68a74d-6021-4faa-93a6-965a94d28c5f" class=""><strong>Creación de Templates de Nucleai con Inteligencia Artificial:</strong></p><figure id="09e87d0b-f92f-4c43-8ea9-1d0629528792"><a href="https://templates.nuclei.sh/?iss=https%3A%2F%2Fidentity.nuclei.sh%2F" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Nuclei - AI-Powered Template Generation and Scanning</div><div class="bookmark-description">Create, edit, generate, and scan templates using AI in one seamless experience with Nuclei.</div></div><div class="bookmark-href"><img src="https://templates.nuclei.sh/nuclei-logo.svg" class="icon bookmark-icon"/>https://templates.nuclei.sh/?iss=https%3A%2F%2Fidentity.nuclei.sh%2F</div></div><img src="https://mintlify.s3-us-west-1.amazonaws.com/nuclei/images/editor.jpg" class="bookmark-image"/></a></figure><hr id="7cd1e5e1-38d6-40b7-b531-cae9112c86b8"/><p id="471226e3-c4da-4d8a-84e6-8382d03f1f32" class="">
+</p><figure id="d824d109-f165-489b-85c0-54027e41fb45"><a href="https://github.com/j3ssie/osmedeus" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - j3ssie/osmedeus: A Workflow Engine for Offensive Security</div><div class="bookmark-description">A Workflow Engine for Offensive Security. Contribute to j3ssie/osmedeus development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/j3ssie/osmedeus</div></div><img src="https://repository-images.githubusercontent.com/156946744/5f22d118-1be9-432d-8d4b-bb377c80a281" class="bookmark-image"/></a></figure><figure id="a129255b-3229-44cd-9594-98ea4d4623cb"><a href="https://github.com/jaeles-project/jaeles" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - jaeles-project/jaeles: The Swiss Army knife for automated Web Application Testing</div><div class="bookmark-description">The Swiss Army knife for automated Web Application Testing - GitHub - jaeles-project/jaeles: The Swiss Army knife for automated Web Application Testing</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/jaeles-project/jaeles</div></div><img src="https://repository-images.githubusercontent.com/221847055/c17ee9eb-9810-498d-96c9-bddd30a81181" class="bookmark-image"/></a></figure><hr id="1f76abbe-46cd-4ced-813d-48d512ababef"/><figure id="60bb4b8b-9fe2-4158-a99a-9c57e9464c03"><a href="https://www.tenable.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Tenable® - The Exposure Management Company</div><div class="bookmark-description">Tenable enables security teams to focus on the vulnerabilities and assets that matter most. From Cloud to OT, gain full visibility of the modern attack surface.</div></div><div class="bookmark-href"><img src="https://www.tenable.com/themes/custom/tenable/img/favicons/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.tenable.com/</div></div><img src="https://www.tenable.com/themes/custom/tenable/img/social/tenable-generic.png" class="bookmark-image"/></a></figure><p id="8b8f66c3-6373-48d3-8f74-0776e7c8e348" class="">Debes descargar la version de Nessus Essentials que vayas a usar desde este enlace:</p><figure id="42ec1b68-20c9-45d6-bc1f-ab332bc460f8"><a href="https://www.tenable.com/downloads/nessus?loginAttempted=true" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Download Tenable Nessus</div><div class="bookmark-description">Download Nessus and Nessus Manager</div></div><div class="bookmark-href"><img src="https://www.tenable.com/themes/custom/tenable/img/favicons/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.tenable.com/downloads/nessus?loginAttempted=true</div></div></a></figure><p id="e3956e53-9e82-46a2-9119-d82bc7a5eed6" class="">Luego de descargarlo,  si lo vas a instalar en Kali linux, abres una terminal y ejecutas el script de instalación:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="94b4ec75-209f-44be-9b37-4725f1192f34" class="code"><code class="language-Shell">sudo dpkg -i Nessus-10.6.0-debian10_amd64.deb</code></pre><p id="c2f73e19-48eb-4da6-b583-18c96ffc3ce3" class="">Para iniciar el Nessus:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="32353e88-63bc-42ed-a6e1-e385b391a4aa" class="code"><code class="language-Shell">sudo systemctl start nessusd.service</code></pre><hr id="3947ff57-d60a-4003-a181-0d9f03a508a9"/><p id="01f62158-eb3a-49cc-a62e-f1d0b1d87916" class=""><strong>Otras herramientas:</strong></p><figure id="14f63d39-44e5-47de-a808-d0035c21807c"><a href="https://www.openvas.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OpenVAS - Open Vulnerability Assessment Scanner</div></div><div class="bookmark-href"><img src="https://www.openvas.org/favicon.ico" class="icon bookmark-icon"/>https://www.openvas.org/</div></div></a></figure><figure id="02893fc7-c8e6-4494-a309-f6eb033b0ee2"><a href="https://github.com/sullo/nikto" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - sullo/nikto: Nikto web server scanner</div><div class="bookmark-description">Nikto web server scanner. Contribute to sullo/nikto development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/sullo/nikto</div></div><img src="https://opengraph.githubassets.com/78261bbfeaa994128f5071a2026f6bea1d7ea76f9ae39408b2db2608c2886d61/sullo/nikto" class="bookmark-image"/></a></figure><figure id="774677de-7e26-4826-b31b-aac78499b463"><a href="https://wpscan.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">WPScan: WordPress Security Scanner</div><div class="bookmark-description">A WordPress vulnerability database for WordPress core security vulnerabilities, plugin vulnerabilities and theme vulnerabilities.</div></div><div class="bookmark-href"><img src="https://wpscan.com/android-icon-192x192.png" class="icon bookmark-icon"/>https://wpscan.com/</div></div><img src="https://wpscan.com/wpscan_logo.png" class="bookmark-image"/></a></figure><figure id="e732794a-3001-4376-928f-41ff021c73a9"><a href="https://github.com/Arachni/arachni" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - Arachni/arachni: Web Application Security Scanner Framework</div><div class="bookmark-description">Web Application Security Scanner Framework. Contribute to Arachni/arachni development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/Arachni/arachni</div></div><img src="https://opengraph.githubassets.com/2e038c4517293486e7ab798574a6a623c67a472c46b7233c11ecb6944eec0e26/Arachni/arachni" class="bookmark-image"/></a></figure><figure id="27dbbbf9-0a40-46e9-89e8-933a66666012"><a href="https://nmap.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Nmap: the Network Mapper - Free Security Scanner</div><div class="bookmark-description">Nmap Free Security Scanner, Port Scanner, &amp; Network Exploration Tool. Download open source software for Linux, Windows, UNIX, FreeBSD, etc.</div></div><div class="bookmark-href"><img src="https://nmap.org/shared/images/tiny-eyeicon.png" class="icon bookmark-icon"/>https://nmap.org/</div></div></a></figure><h2 id="5d4d47f4-33c9-48cd-b1df-bd3619dcedd1" class="">2. Pruebas de Configuración en la Plataforma de la Aplicación</h2><p id="ed3255d5-9984-45b4-9bf3-b7ab4c54567c" class="">
+</p><figure id="19747a00-b1b1-4d84-a0b1-44303e52b624" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-2-Pruebas_Conf._de_Plataforma_de_Aplicaciones.png"><img style="width:1270px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-2-Pruebas_Conf._de_Plataforma_de_Aplicaciones.png"/></a></figure><h3 id="f63c393f-d200-4ea8-9f41-7d68762cb121" class="">Enlaces de las Herramientas:</h3><figure id="a64267e7-5ee7-49b4-9da1-da17852b1de8"><a href="https://www.exploit-db.com/google-hacking-database" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OffSec’s Exploit Database Archive</div><div class="bookmark-description">The GHDB is an index of search queries (we call them dorks) used to find publicly available information, intended for pentesters and security researchers.</div></div><div class="bookmark-href"><img src="https://www.exploit-db.com/favicon.ico" class="icon bookmark-icon"/>https://www.exploit-db.com/google-hacking-database</div></div></a></figure><figure id="1c41c7f1-ec64-41bf-8ba3-f2b17a98937c"><a href="https://learn.cisecurity.org/cis-cat-lite" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">CIS-CAT Lite</div><div class="bookmark-description">CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies.</div></div><div class="bookmark-href"><img src="https://learn.cisecurity.org/l/799323/2022-01-26/p54vf/799323/1643219921nKf5f7lL/CIS_favicon_500x500.png" class="icon bookmark-icon"/>https://learn.cisecurity.org/cis-cat-lite</div></div></a></figure><figure id="8aa76902-9752-49d6-8119-8610c461c7ca"><a href="https://ncp.nist.gov/repository" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">NCP - National Checklist Program Checklist Repository</div></div><div class="bookmark-href"><img src="https://ncp.nist.gov/site-media/images/ncp/favicons/apple-touch-icon.png" class="icon bookmark-icon"/>https://ncp.nist.gov/repository</div></div></a></figure><figure id="acf8e329-e336-42a8-a61a-dfd5173b7eb0"><a href="https://learn.cisecurity.org/benchmarks" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">CIS Benchmarks</div><div class="bookmark-description">Center for Internet Security Benchmarks Download Form</div></div><div class="bookmark-href"><img src="https://learn.cisecurity.org/l/799323/2022-01-26/p54vf/799323/1643219921nKf5f7lL/CIS_favicon_500x500.png" class="icon bookmark-icon"/>https://learn.cisecurity.org/benchmarks</div></div><img src="https://learn.cisecurity.org/l/799323/2020-03-30/jw9z/799323/22985/CIS_Benchmarks.png_width_250_name_CIS_Benchmarks.png" class="bookmark-image"/></a></figure><h2 id="eb118266-7be9-4948-abaa-babe8ac8cc44" class="">3. Pruebas a Extensiones de Archivo</h2><figure id="e4e04fb4-570e-4366-986d-e4ce3b0bf465" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-3-_Pruebas_gest._ext._archivo_conteniendo_info_sensible_(1).png"><img style="width:1270px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-3-_Pruebas_gest._ext._archivo_conteniendo_info_sensible_(1).png"/></a></figure><p id="2d631990-1b4a-42d3-a719-e04ddb026e80" class="">Algunas de las extensiones de archivo que NO deberian estar siendo publicadas en un servidor web, las cuales debemos buscar son:</p><ul id="09782cc7-9ad0-41b2-a864-166b08671617" class="bulleted-list"><li style="list-style-type:disc">.asa</li></ul><ul id="cbf8574d-6ce4-4b27-8d5b-72b430ed6fb1" class="bulleted-list"><li style="list-style-type:disc">.inc</li></ul><ul id="02f03de1-cc58-42f8-a294-855d438c34f0" class="bulleted-list"><li style="list-style-type:disc">.config</li></ul><figure id="b352177a-e70b-4225-ae5e-85c0264da8c1"><a href="https://fileinfo.com/filetypes/web" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Web File Formats</div><div class="bookmark-description">Web file extensions and their associated file formats.</div></div><div class="bookmark-href"><img src="https://fileinfo.com/svg/favicon.svg" class="icon bookmark-icon"/>https://fileinfo.com/filetypes/web</div></div></a></figure><p id="20658849-213d-4f0f-813f-f2415f26bbab" class="">Algunas de las extensiones que debemos buscar por que contienen información que podria sernos útil:</p><ul id="ec93ca3c-42a7-4d3c-9af8-4dae7478eedf" class="bulleted-list"><li style="list-style-type:disc">Archivos comprimidos:  .zip, .tar, .gz, .tgz, .rar, .gzip, .rte, .7z, etc. </li></ul><figure id="f23c904a-9246-4d23-a479-17f423f08e76"><a href="https://fileinfo.com/filetypes/compressed" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Compressed File Formats</div><div class="bookmark-description">Compressed file extensions and their associated file formats.</div></div><div class="bookmark-href"><img src="https://fileinfo.com/svg/favicon.svg" class="icon bookmark-icon"/>https://fileinfo.com/filetypes/compressed</div></div></a></figure><p id="d80691d1-943b-4bbe-b22e-6f545ea52776" class="">Otras Extensiones que podemos buscar son:</p><ul id="396d86b4-8798-441d-aff5-5a751d5c6f20" class="bulleted-list"><li style="list-style-type:disc">Archivos de Texto: .txt, .rtf</li></ul><ul id="8c901ad5-1edf-490b-80d3-cc5b62ff0d4c" class="bulleted-list"><li style="list-style-type:disc">Documentos PDF:  .pdf</li></ul><ul id="0fe398a9-4e07-426e-b5a9-609778bbe9f8" class="bulleted-list"><li style="list-style-type:disc">Documentos de Office (OLE - Object Linked and Embedded): .doc, .xls, .ppt</li></ul><ul id="2b291835-d09e-4ede-806c-5bd57a1fa0f5" class="bulleted-list"><li style="list-style-type:disc">Archivos de Copia de Seguridad o sus Indicativos: .bak, .old, .copy </li></ul><ul id="cee53477-9fcc-4c5a-91d7-013ea34d2f5a" class="bulleted-list"><li style="list-style-type:disc">Archivos de Código fuente de Java: .java</li></ul><p id="85afeec7-6ad4-44a7-929a-d9d9d4b4fd46" class="">Para conocer mas extensiones de archivos, OWASP recomienda este sitio web:</p><figure id="a9ebf966-af68-4a0e-8367-aadb1a9d437e"><a href="https://filext.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">FILExt - The File Extension Source</div><div class="bookmark-description">FILExt.com is the file extension source. Here you&#x27;ll find a collection of file extensions; many linked to the programs that created the files. FILExt helps you identify, open, view or convert unknown files.</div></div><div class="bookmark-href"><img src="https://filext.com/apple-touch-icon.png" class="icon bookmark-icon"/>https://filext.com/</div></div></a></figure><p id="a5402752-6281-4203-9b96-311465747b73" class=""><strong>Diccionarios de Contenidos WEB:</strong></p><figure id="76ebadb8-439e-4338-b8db-bb35bdb63016"><a href="https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content</div></div></a></figure><h3 id="6c5339cc-275b-4fdf-9cec-0c33670b9e22" class="">Enlaces de las Herramientas:\</h3><figure id="c457aeba-a7c6-4314-89af-6aecd04f2170"><a href="https://github.com/ffuf/ffuf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - ffuf/ffuf: Fast web fuzzer written in Go</div><div class="bookmark-description">Fast web fuzzer written in Go. Contribute to ffuf/ffuf development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/ffuf/ffuf</div></div><img src="https://opengraph.githubassets.com/ef043bdd82b601d45b9b0309e0e43c08c2533d96ae3398315f1d51ffd8c53dde/ffuf/ffuf" class="bookmark-image"/></a></figure><figure id="0ebcd4b4-74fb-49fe-ae0a-86af857196c7"><a href="https://www.gnu.org/software/wget/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Wget - GNU Project - Free Software Foundation</div></div><div class="bookmark-href"><img src="https://www.gnu.org/graphics/gnu-head-mini.png" class="icon bookmark-icon"/>https://www.gnu.org/software/wget/</div></div></a></figure><figure id="1001261e-33f8-42f4-abec-e16bf8a88000"><a href="https://curl.se/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">curl</div></div><div class="bookmark-href"><img src="https://curl.se/logo/curl-symbol.svg" class="icon bookmark-icon"/>https://curl.se/</div></div></a></figure><h2 id="69c13682-8010-4120-9704-c79fd887ef09" class="">4. Pruebas a las Copias de Seguridad </h2><p id="0634a1e9-1b61-4088-88ab-a817acc11a4c" class="">
+</p><figure id="9197774f-f5f6-43a7-b7d2-9293ecdb0b94" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-4-Pruebas_en_copias_de_seguridad_antiguas_(1).png"><img style="width:1289px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-4-Pruebas_en_copias_de_seguridad_antiguas_(1).png"/></a></figure><h3 id="24f22c95-359e-4003-9176-584a0134913e" class="">Enlaces de las Herramientas:</h3><figure id="62513a15-656c-4e5e-a914-6eba3db3489b"><a href="https://www.tenable.com/products/nessus" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Download Tenable Nessus Vulnerability Assessment</div><div class="bookmark-description">Nessus - The global gold standard in vulnerability assessment and built for the modern attack surface.  Trusted by tens of thousands of organizations worldwide.</div></div><div class="bookmark-href"><img src="https://www.tenable.com/themes/custom/tenable/img/favicons/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.tenable.com/products/nessus</div></div></a></figure><figure id="cf7253f2-838e-440e-b2f9-da691c739d2c"><a href="https://cirt.net/Nikto2" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Nikto2 | CIRT.net</div></div><div class="bookmark-href"><img src="https://cirt.net/files/alienlogo_vectorized.ico" class="icon bookmark-icon"/>https://cirt.net/Nikto2</div></div></a></figure><figure id="b31544c0-0dd5-4c21-a4eb-23aa2958fa70"><a href="https://www.screamingfrog.co.uk/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Screaming Frog | SEO, Search Engine Marketing Agency</div><div class="bookmark-description">We run remarkably successful search engine optimisation (SEO) and paid search (PPC) campaigns using a unique blend of data, technology &amp; creativity.</div></div><div class="bookmark-href"><img src="https://www.screamingfrog.co.uk/wp-content/themes/screamingfrog/public/images/apple-touch-icon-144x144.png" class="icon bookmark-icon"/>https://www.screamingfrog.co.uk/</div></div><img src="https://www.screamingfrog.co.uk/wp-content/uploads/2021/09/screaming-frog-social.png" class="bookmark-image"/></a></figure><figure id="c2c92d06-08f9-414c-9f40-86a07ebbcee7"><a href="https://www.brokenlinkcheck.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Free Broken Link Checker - Online Tool</div><div class="bookmark-description">Check websites for broken links online using this free tool. Find 404 errors to improve your SEO rankings.</div></div><div class="bookmark-href"><img src="https://brokenlinkcheck.com/favicon.ico" class="icon bookmark-icon"/>https://www.brokenlinkcheck.com/</div></div><img src="https://www.brokenlinkcheck.com/images/link-checking-tool.png" class="bookmark-image"/></a></figure><h2 id="a45703fb-9087-4020-b065-cc463005a060" class="">5. Pruebas a las Interfaces de Administración de Infraestructuras y Aplicaciones </h2><p id="cd590d48-8dce-4e74-9dcf-c9d657f6816b" class="">
+</p><figure id="251d059e-7c91-4b46-a15b-8f9da219cfaf" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-5-Pruebas_en_la_interface_de_administracion_de_infraestructura_(1).png"><img style="width:1264px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-5-Pruebas_en_la_interface_de_administracion_de_infraestructura_(1).png"/></a></figure><p id="97f1a36e-e8cf-4816-a257-34c0b3187c86" class="">Dependiendo de las tecnologias y los frameworks utilizados, podemos encontrar distintas rutas interesantes: (Información tomada de: OWASP):</p><figure id="50148000-8dd0-4993-8b45-9d0c6da4e94d"><a href="https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/05-Enumerate_Infrastructure_and_Application_Admin_Interfaces" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">WSTG - Stable | OWASP Foundation</div><div class="bookmark-description">WSTG - Stable on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/05-Enumerate_Infrastructure_and_Application_Admin_Interfaces</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><p id="1a428ed4-1894-4c06-b03f-4f426b6cad9c" class=""><strong>WebSphere:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b5c355a-19d4-48ef-b61f-4e8a8e10dd68" class="code"><code class="language-Shell">/admin
+/admin-authz.xml
+/admin.conf
+/admin.passwd
+/admin/*
+/admin/logon.jsp
+/admin/secure/logon.jsp</code></pre><p id="f2ee42f4-1266-4f4d-b458-f8a9b99c7608" class=""><strong>PHP:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5feee2c3-a07f-4c49-9deb-6f91a274878d" class="code"><code class="language-Shell">/phpinfo
+/phpmyadmin/
+/phpMyAdmin/
+/mysqladmin/
+/MySQLadmin
+/MySQLAdmin
+/login.php
+/logon.php
+/xmlrpc.php
+/dbadmin</code></pre><p id="c2e608cf-a1b6-49b8-9a00-71ded27766d2" class="">FrontPage:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="da772508-3a15-4004-b330-04622a708699" class="code"><code class="language-Shell">/admin.dll
+/admin.exe
+/administrators.pwd
+/author.dll
+/author.exe
+/author.log
+/authors.pwd
+/cgi-bin</code></pre><p id="92bc5f6c-8b79-4ca8-9322-4b9f5aa5b83f" class="">WebLogic:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="713c1a5a-1e7c-45e1-8a0e-bf10458aef15" class="code"><code class="language-Shell">/AdminCaptureRootCA
+/AdminClients
+/AdminConnections
+/AdminEvents
+/AdminJDBC
+/AdminLicense
+/AdminMain
+/AdminProps
+/AdminRealm
+/AdminThreads</code></pre><p id="ea7c9758-8f7a-4208-b60e-0867c1f665a4" class="">WordPress:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df1e6def-9add-434b-b989-10760e11d6af" class="code"><code class="language-Shell">wp-admin/
+wp-admin/about.php
+wp-admin/admin-ajax.php
+wp-admin/admin-db.php
+wp-admin/admin-footer.php
+wp-admin/admin-functions.php
+wp-admin/admin-header.php</code></pre><h3 id="949a46b1-6099-4798-b8ff-acbe9ebb619e" class="">Enlaces de las Herramientas:</h3><p id="5c4498fe-aa6f-44f8-b79a-d563c88ccb97" class="">
+</p><figure id="f3b778e0-08e0-4017-9b22-6620998c4d36"><a href="https://github.com/urbanadventurer/WhatWeb" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - urbanadventurer/WhatWeb: Next generation web scanner</div><div class="bookmark-description">Next generation web scanner. Contribute to urbanadventurer/WhatWeb development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/urbanadventurer/WhatWeb</div></div><img src="https://opengraph.githubassets.com/5e295fb80acac4fa34284374649a2d1cc7c99fd6d261efb03b0476336070f1aa/urbanadventurer/WhatWeb" class="bookmark-image"/></a></figure><figure id="ae0c8cec-d127-4af1-b8e0-e56c41b450ef"><a href="https://www.zaproxy.org/docs/desktop/addons/forced-browse/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OWASP ZAP – Forced Browse</div><div class="bookmark-description">The world’s most widely used web app scanner. Free and open source. Actively maintained by a dedicated international team of volunteers. A GitHub Top 1000 project.</div></div><div class="bookmark-href"><img src="https://www.zaproxy.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.zaproxy.org/docs/desktop/addons/forced-browse/</div></div></a></figure><figure id="6f6c1979-1bfc-4207-857f-75259acc5412"><a href="https://github.com/vanhauser-thc/thc-hydra" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - vanhauser-thc/thc-hydra: hydra</div><div class="bookmark-description">hydra. Contribute to vanhauser-thc/thc-hydra development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/vanhauser-thc/thc-hydra</div></div><img src="https://opengraph.githubassets.com/1cd1889d3c9699b9223638f075e62ad041e77369da406c41bc6b5609bde6b3f2/vanhauser-thc/thc-hydra" class="bookmark-image"/></a></figure><h2 id="33694fb7-953d-4d0e-a1ec-ea570c1c4383" class="">6. Pruebas a los Métodos HTTP</h2><figure id="409967ca-dac4-4370-a168-2f8cec63d9fd" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-7-Pruebas_en_los_metodos_HTTP.png"><img style="width:1175px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-7-Pruebas_en_los_metodos_HTTP.png"/></a></figure><p id="ead98753-c8cf-4477-a61b-5e1e55188660" class="">
+</p><h3 id="7134b3c7-d6e2-4055-b9fb-ea73a35f749a" class="">Enlaces de las Herramientas:</h3><figure id="5deec791-3d86-49d8-8b93-cbbc311a0ea8"><a href="https://nmap.org/ncat/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Ncat - Netcat for the 21st Century</div><div class="bookmark-description">Ncat is a free, open-source Netcat replacement for Linux, Windows, OS X and more. TLS/SSL encryption, proxy support, IPv6, Lua scripting.</div></div><div class="bookmark-href"><img src="https://nmap.org/shared/images/tiny-eyeicon.png" class="icon bookmark-icon"/>https://nmap.org/ncat/</div></div></a></figure><figure id="14f83cf5-abe4-4549-83b2-df87021b25ca"><a href="https://curl.se/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">curl</div></div><div class="bookmark-href"><img src="https://curl.se/logo/curl-symbol.svg" class="icon bookmark-icon"/>https://curl.se/</div></div></a></figure><figure id="ae8281f2-8a7f-4dee-a757-f7338b100d78"><a href="https://w3af.org/plugins/audit/htaccess_methods" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">htaccess_methods | w3af - Open Source Web Application Security Scanner</div></div><div class="bookmark-href"><img src="https://w3af.org/wp-content/uploads/favicon.ico" class="icon bookmark-icon"/>https://w3af.org/plugins/audit/htaccess_methods</div></div></a></figure><figure id="14270b7d-d361-45e2-b17f-82d1ebab0f5d"><a href="https://nmap.org/nsedoc/scripts/http-methods.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">http-methods NSE script — Nmap Scripting Engine documentation</div><div class="bookmark-description">How to use the http-methods NSE script: examples, script-args, and references.</div></div><div class="bookmark-href"><img src="https://nmap.org/shared/images/tiny-eyeicon.png" class="icon bookmark-icon"/>https://nmap.org/nsedoc/scripts/http-methods.html</div></div></a></figure><p id="59967128-f303-4214-94fb-46d69f964b0b" class="">
+</p><h2 id="68c5f2fc-838a-470e-95ca-4b5ecfbcedc8" class="">7. Pruebas a la seguridad estricta del transporte HTTP</h2><figure id="f19e17f4-5c93-424c-af5f-2342331eb29b" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-6-Pruebas_en_la_seguridad_estricta_del_transporte_HTTP.png"><img style="width:1270px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-6-Pruebas_en_la_seguridad_estricta_del_transporte_HTTP.png"/></a></figure><p id="3053ee7d-d242-40e1-8efb-40d9847ef6f3" class="">
+</p><h2 id="c30992be-9923-4904-b111-a2111e0f4764" class="">8. Pruebas en los Permisos de Archivos</h2><p id="1696728c-28cc-427d-9476-12e91732d80b" class="">
+</p><figure id="af901a1e-f454-4bb1-a787-91b5041ec954" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-8-Pruebas_en_los_permisos_de_archivo_(1).png"><img style="width:1223px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-8-Pruebas_en_los_permisos_de_archivo_(1).png"/></a></figure><h3 id="b322a091-e027-4f38-9509-01d3ff2cb3da" class="">Enlaces de las Herramientas:</h3><figure id="b96294c4-ebb9-4c60-a0de-636abf614a28"><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accessenum" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">AccessEnum - Sysinternals</div><div class="bookmark-description">This simple yet powerful security tool shows you who has what access to directories, files and Registry keys on your systems.</div></div><div class="bookmark-href"><img src="https://learn.microsoft.com/favicon.ico" class="icon bookmark-icon"/>https://learn.microsoft.com/en-us/sysinternals/downloads/accessenum</div></div><img src="https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png" class="bookmark-image"/></a></figure><figure id="35b62200-df35-404e-a895-2baa8b721009"><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">AccessChk - Sysinternals</div><div class="bookmark-description">AccessChk is a command-line tool for viewing the effective permissions on files, registry keys, services, processes, kernel objects, and more.</div></div><div class="bookmark-href"><img src="https://learn.microsoft.com/favicon.ico" class="icon bookmark-icon"/>https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk</div></div><img src="https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png" class="bookmark-image"/></a></figure><figure id="2ec1cea7-b817-468d-935a-ab13adb787ac"><a href="https://linux.die.net/man/1/namei" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">namei(1) - Linux man page</div><div class="bookmark-description">Namei uses its arguments as pathnames to any type of Unix file (symlinks, files, directories, and so forth). Namei then follows each pathname until a ...</div></div><div class="bookmark-href"><img src="https://linux.die.net/favicon.ico" class="icon bookmark-icon"/>https://linux.die.net/man/1/namei</div></div></a></figure><p id="f3ab673a-e885-4d66-84d9-db16eb1929a3" class="">
+</p><h2 id="3a27ca1c-cf8b-446e-adc3-eaf1192cd7ac" class="">9. Pruebas en la Adquisición de Subdominios</h2><figure id="8be0cade-dfda-4400-aac6-95864d2ac0d0" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-9-Pruebas_en_la_adquisicion_de_dominios.png"><img style="width:1191px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-9-Pruebas_en_la_adquisicion_de_dominios.png"/></a></figure><h3 id="4c49accc-8aed-49dc-aec2-fd6b02376974" class="">Enlaces de las Herramientas:</h3><figure id="0583bd68-5ac3-4d99-ac21-cc2a63488b17"><a href="https://linux.die.net/man/1/dig" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">dig(1): DNS lookup utility - Linux man page</div><div class="bookmark-description">dig (domain information groper) is a flexible tool for interrogating DNS name servers. It performs DNS lookups and displays the answers that are returned ...</div></div><div class="bookmark-href"><img src="https://linux.die.net/favicon.ico" class="icon bookmark-icon"/>https://linux.die.net/man/1/dig</div></div></a></figure><figure id="46171f74-a693-4463-807d-289fcfac3726"><a href="https://github.com/lanmaster53/recon-ng" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - lanmaster53/recon-ng: Open Source Intelligence gathering tool aimed at reducing the time spent harvesting information from open sources.</div><div class="bookmark-description">Open Source Intelligence gathering tool aimed at reducing the time spent harvesting information from open sources. - GitHub - lanmaster53/recon-ng: Open Source Intelligence gathering tool aimed at ...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/lanmaster53/recon-ng</div></div><img src="https://opengraph.githubassets.com/58713bb29f0a1e75a0b9275cd047cc20b1bfa8221583c0d5cde7b3fbeeb7e21c/lanmaster53/recon-ng" class="bookmark-image"/></a></figure><figure id="9da3501f-a6b0-4832-9091-6bd8d88d8acd"><a href="https://github.com/laramies/theHarvester" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - laramies/theHarvester: E-mails, subdomains and names Harvester - OSINT</div><div class="bookmark-description">E-mails, subdomains and names Harvester - OSINT . Contribute to laramies/theHarvester development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/laramies/theHarvester</div></div><img src="https://repository-images.githubusercontent.com/1212922/0933ae00-d41e-11e9-85da-8c22b674c731" class="bookmark-image"/></a></figure><figure id="b5a64c82-3849-47ff-8c30-4801c9a9d411"><a href="https://github.com/aboul3la/Sublist3r" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - aboul3la/Sublist3r: Fast subdomains enumeration tool for penetration testers</div><div class="bookmark-description">Fast subdomains enumeration tool for penetration testers - GitHub - aboul3la/Sublist3r: Fast subdomains enumeration tool for penetration testers</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/aboul3la/Sublist3r</div></div><img src="https://opengraph.githubassets.com/ae8dbcd8748449ef1fa9d1c1b1271b3c68aeab332be15b380f39b1d58c15332f/aboul3la/Sublist3r" class="bookmark-image"/></a></figure><figure id="ce8136a7-605a-4376-a876-8d1d132c5f23"><a href="https://github.com/darkoperator/dnsrecon" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - darkoperator/dnsrecon: DNS Enumeration Script</div><div class="bookmark-description">DNS Enumeration Script. Contribute to darkoperator/dnsrecon development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/darkoperator/dnsrecon</div></div><img src="https://opengraph.githubassets.com/c85902e98fca0d48aadf8771641cfc19aa5d85d515cbc0a5384775264989ccc6/darkoperator/dnsrecon" class="bookmark-image"/></a></figure><figure id="561b19b8-5e17-42db-b919-33e4adee1e31"><a href="https://github.com/owasp-amass/amass" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - owasp-amass/amass: In-depth attack surface mapping and asset discovery</div><div class="bookmark-description">In-depth attack surface mapping and asset discovery - GitHub - owasp-amass/amass: In-depth attack surface mapping and asset discovery</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/owasp-amass/amass</div></div><img src="https://repository-images.githubusercontent.com/140457254/1a5a3880-df66-11ea-9bd6-1ff72d6702d4" class="bookmark-image"/></a></figure><h2 id="a9e36ed7-9cc0-4b1c-ae4d-2f491d18f28e" class="">10. Pruebas en el Almacenamiento en la nube</h2><figure id="a6a870d2-2a7f-41d8-9bb5-7c318220350d" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-10-Pruebas_en_el_almacenamiento_en_la_nube.png"><img style="width:1121px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-10-Pruebas_en_el_almacenamiento_en_la_nube.png"/></a></figure><h3 id="2509ffdf-e35e-468b-9ea6-81e2628cb1c5" class="">Enlaces de las Herramientas:</h3><figure id="3b81ac68-c573-43f7-911b-08967619aaee"><a href="https://aws.amazon.com/cli/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Command Line Interface - AWS CLI - AWS</div></div><div class="bookmark-href"><img src="https://a0.awsstatic.com/libra-css/images/site/touch-icon-ipad-144-smile.png" class="icon bookmark-icon"/>https://aws.amazon.com/cli/</div></div><img src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" class="bookmark-image"/></a></figure><p id="ea10491c-aa33-4cdb-8ed7-eb86731d724e" class="">
+</p><h2 id="de1aded4-2737-499a-b0fe-25cdac40dfd1" class="">11. Pruebas en la Política de seguridad de contenidos</h2><figure id="67f16f74-bb87-4bbc-a1a7-9682de8949d6" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-11-Pruebas_en_la_politica_de_seguridad_de_contenidos.png"><img style="width:1162px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-11-Pruebas_en_la_politica_de_seguridad_de_contenidos.png"/></a></figure><p id="6d416307-2563-4941-bdcc-3df268a9430c" class="">
+</p><h2 id="a5aa8e24-6ed3-441e-944c-e514112b9561" class="">12. Pruebas del Path Confusion </h2><figure id="e4b4a3b8-43eb-4b22-972b-28d67664e52e" class="image"><a href="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-12-Pruebas_del_Path_Confusion.png"><img style="width:1117px" src="Mo%CC%81dulo%207%20-%20Pruebas%20de%20Gestio%CC%81n%20de%20Configuracio%CC%81n%20%2066647e30d119446c90db48f398e4771e/M7-12-Pruebas_del_Path_Confusion.png"/></a></figure><h2 id="4b50a22b-c178-40ed-883e-dad86154c16e" class="">Enlaces de referencia:</h2><figure id="594258dd-9eff-4e7f-aa8f-7aa504947d0b"><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/01-Test_Network_Infrastructure_Configuration" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">WSTG - v4.2 | OWASP Foundation</div><div class="bookmark-description">WSTG - v4.2 on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/01-Test_Network_Infrastructure_Configuration</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><p id="d95dca69-695e-4bd8-8e21-c6815bc40454" class="">
+</p><p id="a06a614d-5946-449b-9ee0-b09575262e21" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

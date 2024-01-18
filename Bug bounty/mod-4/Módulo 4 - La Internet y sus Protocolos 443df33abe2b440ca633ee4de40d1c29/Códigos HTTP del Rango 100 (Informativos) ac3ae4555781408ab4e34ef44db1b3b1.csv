@@ -1,0 +1,5 @@
+﻿Código,Nombre en Inglés,Nombre en Español,Definición
+" Código 100",Continue,Continuar,El servidor ha recibido la solicitud inicial y todavía está procesando la solicitud.
+Código 101,Switching Protocols,Cambio de protocolo,El servidor acepta el cambio propuesto por el cliente en el protocolo de comunicación.
+Código 102,Processing,Procesando,"El servidor está procesando la solicitud del cliente, pero aún no ha completado la solicitud. Este código se utiliza a menudo en aplicaciones web que requieren un tiempo de procesamiento prolongado."
+Código 103,Early Hints,Indicaciones preliminares,Este código se utiliza para enviar una respuesta preliminar al cliente antes de que se complete la solicitud. Esto permite al cliente comenzar a procesar la respuesta antes de que se complete la solicitud.jemplos de cada uno de los códigos HTTP del rango 100:

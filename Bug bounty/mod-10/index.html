@@ -1,0 +1,762 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 10 - Subdomain Takeover </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none; 
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+	user-select: none; 
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all; 
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8b4e21f3-07f9-492d-a6d4-09b415a724e8" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1586281380426-f644f2dc6ada?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🥡</span></div><h1 class="page-title">Módulo 10 - Subdomain Takeover </h1><p class="page-description"></p></header><div class="page-body"><p id="9e0c2fbf-74d1-4a50-aec2-445d739a80da" class="">La técnica de subdomain takeover  o toma de Subdominio, se refiere a una vulnerabilidad que puede ser explotada para tomar el control de un subdominio que ya no está en uso o que ha sido abandonado por el propietario original. Esto puede suceder cuando el propietario de un dominio olvida renovar su registro, o simplemente decide no usar más un subdominio en particular.</p><p id="d8f0c7ad-a976-42a8-bfd8-ca7ab3489f60" class="">En algunos casos, los propietarios de dominios pueden crear subdominios en servicios de terceros, como Amazon S3 o GitHub Pages, pero después de dejar de usar estos servicios, pueden olvidar eliminar el registro DNS correspondiente. Si alguien más registra una cuenta en el servicio y crea un archivo en el subdominio abandonado, puede obtener el control del subdominio y redirigir el tráfico a su propio sitio web o servidor.</p><p id="bcfd891e-43b1-4f82-9c73-01848a40384f" class="">
+</p><p id="98a83120-6b1b-4646-95e6-45ae658e832a" class="">Por ejemplo, si el propietario de un dominio utiliza Amazon S3 para alojar un sitio web, y crea un subdominio llamado &quot;blog&quot; que apunta a un bucket de S3, pero después de un tiempo decide no utilizar más ese subdominio, olvida eliminar el registro DNS correspondiente; si alguien más registra una cuenta en Amazon S3 y crea un bucket con el mismo nombre &quot;blog&quot;, pdría obtener el control del subdominio y redirigir el tráfico a su propio sitio web o servidor.</p><h1 id="9c0bb605-7a04-4053-a857-29eebf361fc9" class="">¿Qué es un registro CNAME?</h1><p id="f67b105d-7c83-4169-831e-98a7fd86ec27" class="">Un registro CNAME es un tipo de registro DNS que se utiliza para establecer una conexión entre un subdominio y otro dominio. Básicamente, un registro CNAME especifica que el subdominio en cuestión es un alias de otro dominio.</p><p id="65e9c8de-6f53-4b1d-8bcf-46ebba70f296" class="">Por ejemplo, si el propietario de un dominio tiene un subdominio llamado &quot;blog&quot; que está alojado en un servidor diferente con una dirección IP diferente, puede crear un registro CNAME que apunte a ese servidor. Esto significa que, en lugar de tener que recordar la dirección IP del servidor, los usuarios pueden simplemente escribir &quot;<a href="http://blog.midominio.com/">blog.midominio.com</a>&quot; en su navegador y el registro CNAME se encargará de redirigir el tráfico al servidor correcto.</p><p id="5d9793f9-b2f5-4121-895f-2e38ef8c5efc" class="">En el contexto de un ataque de subdomain takeover, un registro CNAME puede ser utilizado para establecer una conexión entre un subdominio abandonado y un servidor controlado por el atacante. Por ejemplo, si el propietario de un dominio tiene un subdominio llamado &quot;test&quot; que apunta a un servidor de pruebas, pero después de un tiempo decide no utilizar más ese subdominio, olvida eliminar el registro CNAME correspondiente. Si alguien más registra una cuenta en un servicio como Amazon S3 y crea un bucket con el mismo nombre &quot;test&quot;, puede crear un registro CNAME que apunte al bucket y obtener el control del subdominio. De esta manera, el tráfico que debería ir al subdominio abandonado será redirigido a su propio servidor.</p><h2 id="a93ba996-a5bb-4ac2-9a4c-a4122ed6a0fe" class="">Funcionamiento de los registros CNAME:</h2><figure id="edd4515c-5d3b-453c-a461-c14d6fbe0124" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Funcion_registro_CNAME.png"><img style="width:528px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Funcion_registro_CNAME.png"/></a><figcaption>Imagen: Cómo funciona un registro CNAME</figcaption></figure><p id="a90d0410-ebe6-4c37-873c-033040980c1e" class="">
+</p><h2 id="b6ee0b05-891f-424c-a34e-a371144e55d6" class="">Mecánica del Ataque</h2><p id="58ca3cbe-5af4-4208-862f-e5398cd55c63" class="">Este ataque es efectivo en muchos casos contra infraestructura Cloud, dada la temporalidad que se aplica en algunos casos a la implementación de estas infraestructuras y adicionalmente el dominio principal siempre le va a pertenecer al proveedor de la Nube, ya sea Amazon, Microsoft, etc,; Los proveedores de nube normalmente utilizan subdominios para cada nuevo servicio en un formato similar a este:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e88f5f1e-a71c-4e9d-8e82-8207e6bf7f75" class="code"><code class="language-HTML">nombre_del_cliente.proveedordenube.com</code></pre><p id="e22ec1e7-2651-4d54-a0fa-94a3051603eb" class="">Las empresas que usan Cloud, tienen 2 alternativas para dirigir a los visitantes de los servicios que se encuentren disponibles al público en internet:</p><ol type="1" id="431188be-171b-4aee-a43b-f53be451714a" class="numbered-list" start="1"><li>Usar un redireccionamiento HTTP 301/302 redirect hace que el navegador web se encargue del redireccionamiento hacia la URL del Cloud; por ejemplo:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="94bd5b97-f4d0-4e17-8d87-40054b48c73a" class="code"><code class="language-HTML">tienda.ejemplo.com --redirecciona a --&gt; ejemplo.proveedor_de_pasarela_de_pago.com</code></pre><ol type="1" id="4e9e2fd2-c23f-4580-995e-1217011f7edb" class="numbered-list" start="2"><li>El uso de registros CNAME, que ya mencionamos se resuelve directamente por medio de los servidores DNS; de esta forma la URL en el navegador del usuario, permanece igual.</li></ol><p id="8e84c14b-abb5-4d5f-a148-4e2cdb5a6862" class="">
+</p><p id="42d6fc33-dc59-407d-8768-0457c1d15d53" class="">Los pasos recomendados para reproducir el ataque de Subdomain Takeover, son:</p><p id="14003ecf-c1cb-466e-a5de-cb11ab763247" class="">
+</p><figure id="a41bbb16-cb4a-4364-a7b3-0930764bc2ab" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Subdomain_Take_Over.png"><img style="width:864px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Subdomain_Take_Over.png"/></a><figcaption>Imagen: Ataque Subdomain Take Over</figcaption></figure><h2 id="4b0092fb-a94b-4edd-8625-a3336b71856c" class="">Toma de Subdominio de Segundo Orden (Second - Order Subdomain Takeover)</h2><p id="28a28a2f-8d38-4fa5-b37d-b750f32618b5" class="">Un subdomain takeover de segundo orden es una variante de la técnica de subdomain takeover que se basa en la explotación de subdominios que están siendo utilizados por servicios de terceros. Esto puede suceder cuando un propietario de dominio crea un subdominio que apunta a un servicio de terceros, por ejemplo un servicio de tickets electrónicos o de mensajeria, o chatbot, o similar, pero luego abandona el subdominio sin eliminar el registro DNS correspondiente.</p><p id="22b9ce23-d771-406f-96ae-8c78261dc38e" class="">Por ejemplo, supongamos que un propietario de dominio crea un subdominio llamado &quot;app&quot; que apunta a un servicio de alojamiento como Heroku o GitHub Pages. Si el propietario decide no utilizar más ese subdominio y olvida eliminar el registro DNS correspondiente, el subdominio queda abierto para su explotación.</p><p id="6067d045-ad6a-4f03-a02d-b0146b458749" class="">En este punto, un atacante puede registrar una cuenta en el mismo servicio de alojamiento y crear una aplicación con el mismo nombre &quot;app&quot;. Si el atacante puede convencer al servicio de alojamiento de que la aplicación es legítima, el subdominio abandonado será redirigido automáticamente a la aplicación del atacante.</p><p id="04176caf-9e89-4ddd-8a56-dd3ec05f5a35" class="">Para detectar este tipo de vulnerabilidades debemos revisar en detalle el código fuente de cada página web que evaluemos.</p><p id="8b25c59e-3fd2-453c-9776-4d837f6b643a" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3808a433-1c62-4d0c-8391-eddd0d690b87" class="code code-wrap"><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mi sitio web&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;¡Bienvenido a mi sitio web!&lt;/h1&gt;
+    &lt;a href=&quot;&lt;https://app.midominio.com/app.js&gt;&quot;&gt;Haz clic aquí para ir a la aplicación&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="564087cd-3e72-430c-90a4-a3ea341ab1f5" class="">
+</p><p id="f08ec664-c51d-4dff-a8ae-8f8319f8bc1a" class="">Caso de estudio de un Subdomain Takeover de Starbucks:</p><figure id="c6132f3c-b1e0-4b09-9574-a9bb287db16d"><a href="https://hackerone.com/reports/661751" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Starbucks disclosed on HackerOne: Subdomain takeover of...</div><div class="bookmark-description">**Summary:**  I was able to claim the subdomain: d02-1-ag.productioncontroller.starbucks.com using Azure Cloud Service  **Platform(s) Affected:** Subdomain Azure Cloud Service  ## Steps To...</div></div><div class="bookmark-href"><img src="https://hackerone.com/favicon.ico" class="icon bookmark-icon"/>https://hackerone.com/reports/661751</div></div><img src="https://profile-photos.hackerone-user-content.com/variants/000/001/989/c9aa38cf3b1a91daa085d31e23d23f34cd1874df_original./9a0cacbdce74da84ecdd8dde37f744fb0704305f149b00f5849b36cec4abc55a" class="bookmark-image"/></a></figure><h2 id="2463c3f7-f5e7-41e0-92f7-6e00ef490ba7" class="">Herramientas y Automatización para detectar Subdominios </h2><p id="904443cc-4083-4ac7-8d74-66ca5658f19b" class=""><mark class="highlight-purple"><strong>Paso 1: Enumerar Subdominios existentes</strong></mark></p><p id="d5d6735b-4ec8-4aba-b3ee-2569326b9c6d" class="">Existen muchas herramientas que permiten hacer enumeración de subdominios; muchas de ellas las vimos en el módulo de <a href="https://www.notion.so/M-dulo-6-Reconocimiento-60132198ef6e40cc8a558cc01a643593?pvs=21">Reconocimiento</a>; el cual puedes consultar <a href="https://www.notion.so/M-dulo-6-Reconocimiento-60132198ef6e40cc8a558cc01a643593?pvs=21">aqui</a>.</p><p id="adcc8c92-5a16-4df4-abd7-2aedd8dbdf56" class="">Es importante tener en cuenta que en algunos casos los Dominios son “Wildcard enabled” es decir que no importa la combinación de letras o números tomados como subdominios, van a dar una respuesta; por ejemplo:</p><figure id="3de357e7-0187-4880-aa65-ceeb4f5b9273" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled.png"><img style="width:720px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled.png"/></a></figure><h3 id="3839f169-1ae9-49ae-8185-ad6473a579bc" class="">AMASS</h3><p id="a94e5c9c-cc22-40aa-9765-be6cd79594ed" class="">Amass es una herramienta de enumeración de subdominios que se utiliza para recopilar una lista de subdominios pertenecientes a un dominio específico. Esta herramienta utiliza diversas fuentes, como motores de búsqueda, bases de datos públicas y registros de certificados SSL, para recopilar información sobre los subdominios de un dominio. Amass es una de las herramientas más populares y ampliamente utilizadas para la enumeración de subdominios y puede ser una herramienta muy útil en la detección de vulnerabilidades de subdomain takeover.</p><figure id="05dfa8d0-456d-4343-8ae7-d8fee7eae4b7"><a href="https://github.com/owasp-amass/amass" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - owasp-amass/amass: In-depth Attack Surface Mapping and Asset Discovery</div><div class="bookmark-description">In-depth Attack Surface Mapping and Asset Discovery - GitHub - owasp-amass/amass: In-depth Attack Surface Mapping and Asset Discovery</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/owasp-amass/amass</div></div><img src="https://repository-images.githubusercontent.com/140457254/1a5a3880-df66-11ea-9bd6-1ff72d6702d4" class="bookmark-image"/></a></figure><p id="37961d6b-411c-4db3-9a26-da95ea38d3ce" class="">Este es un ejemplo de cómo usar Amass para detectar subdominios</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e86f3986-7c16-4125-8460-9fabb1558bdd" class="code"><code class="language-Bash">amass enum  -active -brute -o hosts.txt -d ejemplo.com</code></pre><p id="894a2795-53c4-4947-9d22-07374fd069f5" class="">
+</p><p id="636c35a2-12b0-4cfd-8184-9ada4b6066a4" class=""><mark class="highlight-purple"><strong>Paso 2: Verificar cuales de los Subdominos están activos</strong></mark></p><p id="f5fccd75-d461-450e-ad5f-5c00d4e5a38e" class="">Una vez tengamos la lista de subdominios recabada, podemos verificar la respuesta de cada uno de los subdominios detectados para determinar si están conectados a un sitio web o servicio determinado o no. </p><p id="58e3b037-1d50-43ff-8d43-10697cae09f1" class="">Hay muchas  formas de lograr este objetivo; una de ellas es hacer un simple script en python para automatizar esta prueba de esta forma:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6def5389-84cd-4983-8983-2ff62c0469e4" class="code code-wrap"><code class="language-Python">import socket
+
+# Especificar el archivo de entrada y el archivo de salida
+input_file = &#x27;dominios.txt&#x27;
+output_file = &#x27;resultados.txt&#x27;
+
+# Abrir el archivo de entrada y leer la lista de dominios
+with open(input_file, &#x27;r&#x27;) as f:
+    dominios = [line.strip() for line in f]
+
+# Verificar si cada dominio está activo o no
+with open(output_file, &#x27;w&#x27;) as f:
+    for dominio in dominios:
+        try:
+            socket.gethostbyname(dominio)
+            f.write(f&#x27;{dominio}\n&#x27;)
+        except:
+            print (dominio, &quot;Inactivo&quot;)</code></pre><p id="0a4a0e39-30be-4fbd-89ac-1690ad96315e" class="">Este es un script en Python que utiliza la librería <code>socket</code> para verificar si un dominio está activo o no. El script lee una lista de dominios desde un archivo de texto y escribe los resultados en otro archivo de texto.</p><p id="dccf1d4b-8272-4173-bf3b-292520950b91" class="">Para utilizar este script, guarda la lista de dominios en un archivo de texto llamado <code>dominios.txt</code>, en el mismo directorio que el script. Luego, ejecuta el script y los resultados se guardarán en un archivo de texto llamado <code>resultados.txt</code>.</p><p id="ef78878f-5b17-4eca-8d2a-b29474d32a22" class=""><mark class="highlight-purple"><strong>Paso 3: Evaluar la respuesta de los Subdominios activos</strong></mark></p><p id="74ff50aa-0999-4cfd-bde5-f3e4864a2a8e" class="">Podemos utilizar distintas herramientas para evaluar el estado de cada Subdominio; esto normalmente requiere que extraigamos la respuesta del subdominio; un ejemplo es la herramienta Eyewitness  para capturar el encabezado (Header) y un screenshot de cada subdominio:</p><h3 id="b79d506b-7099-419e-a7c8-54041c362e97" class="">Eyewitness</h3><p id="3ff3d343-1e5d-4dc6-9616-864d06aa4c23" class="">Eyewitness es una herramienta de enumeración de subdominios que permite recopilar capturas de pantalla de los sitios web alojados en cada subdominio encontrado. La herramienta se puede descargar desde GitHub y se ejecuta en Python, pero existe en el repositorio de Kali, así que con un simple comando como este podremos instalarlo:</p><figure id="87e35fd1-0c13-4865-9398-0b71b7bc6cf2"><a href="https://github.com/FortyNorthSecurity/EyeWitness" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - FortyNorthSecurity/EyeWitness: EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible.</div><div class="bookmark-description">EyeWitness is designed to take screenshots of websites, provide some server header info, and identify default credentials if possible. - GitHub - FortyNorthSecurity/EyeWitness: EyeWitness is design...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/FortyNorthSecurity/EyeWitness</div></div><img src="https://opengraph.githubassets.com/49b2f8c29b31bce5481c3f94235bc727c8f1c4ae3e215e0017307cd038f30c45/FortyNorthSecurity/EyeWitness" class="bookmark-image"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f824de9c-6bb2-4120-a9ab-85ae8c91075d" class="code"><code class="language-Bash">$ sudo apt install eyewitness</code></pre><p id="5751acfd-b3b5-4e90-8e03-e77da34693d8" class="">Para usar Eyewitness, el primer paso es generar una lista de subdominios. Esto se puede hacer manualmente o utilizando una herramienta de enumeración de subdominios como subfinder o Amass. Una vez que se tiene la lista de subdominios, se puede ejecutar Eyewitness con la siguiente sintaxis:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6521defa-92a3-469c-ab74-073f064168e2" class="code code-wrap"><code class="language-Bash">$ eyewitness -f &lt;Lista_Subdominios&gt; -d &lt;directorio_destino_de_resultados&gt; --proxy-ip 127.0.0.1 --proxy-port 8080 --prepend-https
+(El proxy que usamos es el BurpSuite, que debemos haber ejecutado previamente)</code></pre><p id="a8262ccc-5732-4557-8fde-e2c00efa1035" class="">Esto puede ser útil para identificar sitios web vulnerables que pueden ser explotados en un ataque de subdomain takeover. Por ejemplo, si un subdominio apunta a un servicio de terceros como Heroku o GitHub Pages, es posible que la captura de pantalla muestre la página de inicio de sesión del servicio. Si el propietario del dominio abandonó el subdominio sin eliminar el registro DNS correspondiente, un atacante podría registrar una cuenta en el servicio y tomar el control del subdominio.</p><p id="7be6b5d3-cdc1-41dd-af0e-eb60b9afe9f3" class="">
+</p><p id="bdac9621-26e1-42bd-98fc-4fd3d00c6939" class=""><mark class="highlight-purple"><strong>Alternativa: Script para Evaluar la respuesta de los Subdominios activos</strong></mark></p><p id="62303f1a-681d-425b-a0fb-fbb8071c24f1" class="">Si en la lista de Subdominios que vamos a pasarle a nuestro script no tenemos http:// o https:// como prefijo, es decir la lista sería algo como:</p><blockquote id="613c6f21-2784-4a5a-88d1-a154acb4dde3" class="">www.secpro.co<p id="ad9c90a3-a711-4784-900e-ce7facb72c1a" class="">chat.secpro.co</p><p id="2f95259f-e4ee-4eab-8003-9aea172f5809" class="">dc-c50cc915a60e.secpro.co</p><p id="6150e255-71f0-4b35-a54c-232d3d0eba10" class="">elearning.secpro.co</p><p id="2a8b1581-6ffd-44e1-93d5-20e2ea3c578e" class="">secpro.co</p><p id="f45265da-d490-4423-9a9e-1b67e11c536f" class="">123.secpro.co</p></blockquote><p id="1e258297-b74b-4c93-90c8-917e38113dce" class="">Vamos a recibir un error, así que podemos agregar esa cadena de texto de diversas formas; una muy simple es usando la herramienta  “awk”:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4a66aaa7-fcbc-4fac-ace4-4c3611aae9ee" class="code"><code class="language-Bash">$ awk  &#x27;{print &quot;http://&quot; $1}&#x27; hosts &gt; lista.txt
+$ awk  &#x27;{print &quot;https://&quot; $1}&#x27; hosts &gt;&gt; lista.txt
+
+Debes notar que en el segundo comando usamos &quot;&gt;&gt;&quot; lo cual indica al Bash que debe agregar los nuevos resultados a la lista existente,
+no sobre escribir el contenido</code></pre><figure id="1be5517f-21ed-4821-8fb6-6a4858221d4e" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%201.png"><img style="width:768px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%201.png"/></a></figure><p id="3b10a040-9c18-46f1-922c-c8eab10649dc" class="">El resultado sería algo como:</p><blockquote id="11c59755-c7f1-4dbe-925b-dc032892c9c1" class="">https://www.secpro.co</blockquote><blockquote id="eb90d01f-7f77-414f-97dc-8a2983141188" class="">https://chat.secpro.co</blockquote><blockquote id="727752ba-8754-43a7-adb3-678abe13bc27" class="">https://dc-c50cc915a60e.secpro.co</blockquote><blockquote id="e209ddf2-726f-4fd5-a761-16ccfec8f72d" class="">https://elearning.secpro.co</blockquote><blockquote id="1680bc48-6ed1-438e-b72b-6b09923c56d1" class="">https://secpro.co</blockquote><p id="4bdea8f6-6747-4c9a-af8e-1e1e6106f154" class="">El script que podemos usar y modificar a nuestro gusto es:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="127d5b12-b894-44c8-b10f-f4293703d1be" class="code code-wrap"><code class="language-Python">import requests
+
+# Leer la lista de subdominios desde un archivo de texto
+with open(&#x27;lista.txt&#x27;, &#x27;r&#x27;) as archivo:
+    subdominios = archivo.readlines()
+
+# Eliminar los saltos de línea de cada subdominio
+subdominios = [subdominio.strip() for subdominio in subdominios]
+
+# Verificar si cada subdominio responde con un código 200 o 404
+with open(&#x27;resultados.txt&#x27;, &#x27;w&#x27;) as archivo:
+    for subdominio in subdominios:
+        try:
+            respuesta = requests.get(f&#x27;{subdominio}&#x27;)
+            if respuesta.status_code == 200:
+                archivo.write(f&#x27;{subdominio} - 200 OK\n&#x27;)
+            elif respuesta.status_code == 404:
+                archivo.write(f&#x27;{subdominio} - 404 Not Found\n&#x27;)
+        except:
+            archivo.write(f&#x27;{subdominio} - Error de conexión\n&#x27;)</code></pre><p id="f1e781eb-910b-4a62-a80e-3b6b94d77929" class="">Este script de Python lee una lista de subdominios desde un archivo de texto llamado <code>subdominios.txt</code>. Luego, para cada subdominio en la lista, realiza una petición HTTP GET para ver si el subdominio responde con un código de estado 200 o 404.</p><p id="0fa441ed-928b-44ad-a266-4ba2c1c6b6a9" class="">El archivo <code>resultados.txt</code> se guardará en el mismo directorio que el script.</p><p id="9c43b50b-e7ed-44b9-a057-60a059715657" class="">
+</p><figure id="c85fb99a-5014-4340-bc64-0aa98ec8acd5" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%202.png"><img style="width:624px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%202.png"/></a><figcaption>Imagen: Lectura del Archivo resultados.txt</figcaption></figure><p id="771d8cfc-ecde-4320-986f-2a5fddd96878" class="">
+</p><p id="c724554e-0c61-4fbe-869e-051d2086de4b" class=""><mark class="highlight-purple"><strong>Paso 4: Verificar si el Subdomain Takeover es Viable</strong></mark></p><p id="87944554-89d8-45e1-804b-491763dcc1a8" class="">Debemos validar los registros CNAME del subdominio a evaluar; para este efecto podemos usar el comando DIG:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c0a74cd-5198-469b-b1c8-68016d878b44" class="code"><code class="language-Bash">dig CNAME subdominio.ejemplo.com</code></pre><figure id="4bf1c89d-7186-47cd-bde4-8f917b6d5477" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%203.png"><img style="width:624px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%203.png"/></a><figcaption>Imagen: Resultado del Comando Dig</figcaption></figure><p id="d1796dcd-ff1f-4b18-b556-4b2720bbdc74" class="">En la imagen vemos que el servicio está realmente alojado en un servidor de la Nube de Microsoft;  luego, podríamos verificar si a través del servicio AZURE el subdominio <a href="http://gtpa-frontface-prod.azurefd.net/">gtpa-frontface-prod.azurefd.net</a> está activo o no; si por alguna circunstancia respondiera con un 404 not found, es posible que el Subdomain Take Over pudiera ser viable.</p><figure id="d0eab7f9-5ba5-4eb1-8f98-4b5b3f948437" class="image"><a href="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%204.png"><img style="width:657px" src="Mo%CC%81dulo%2010%20-%20Subdomain%20Takeover%208b4e21f307f9492da6d409b415a724e8/Untitled%204.png"/></a></figure><p id="eb391c2d-c8c9-47fd-b398-ce20ddf25471" class="">Cada Servicio es diferente; dependiendo de donde esté alojado el subdominio, se pueden seguir varios procedimientos. en el siguiente enlace se listan de forma muy útil muchos de los servicios más comunes, su nivel de vulnerabilidad y en algunos casos documentación adicional, junto con el fingerprint correspondiente.</p><p id="75430256-b41f-4591-9c5f-3a8fcc7cf652" class="">
+</p><figure id="0ae56c9b-8264-4b56-ac7e-07c0c9790a08"><a href="https://github.com/EdOverflow/can-i-take-over-xyz" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - EdOverflow/can-i-take-over-xyz: &quot;Can I take over XYZ?&quot; — a list of services and how to claim (sub)domains with dangling DNS records.</div><div class="bookmark-description">&amp;amp;quot;Can I take over XYZ?&amp;amp;quot; — a list of services and how to claim (sub)domains with dangling DNS records. - GitHub - EdOverflow/can-i-take-over-xyz: &amp;amp;quot;Can I take over XYZ?&amp;amp;...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/EdOverflow/can-i-take-over-xyz</div></div><img src="https://repository-images.githubusercontent.com/125757777/cc14cc00-73e9-11e9-9b08-123e39da078d" class="bookmark-image"/></a></figure><blockquote id="633c0137-af17-457a-88e4-e2f7a4d3dd22" class=""><strong><mark class="highlight-red">NOTA: ES INDISPENSABLE CONTAR CON AUTORIZACION DEL DUEÑO DE LA INFRAESTRUCTURA PARA HACER PRUEBAS EN ELLA; DE LO CONTRARIO PUEDES ENTRAR EN EL TERRENO DE LO ILEGAL COMETIENDO UN DELITO INCLUSO DE FORMA INVOLUNTARIA, PERO ESTO NO TE EXIME DE CULPA; DEBES CONSULTAR LA LEY DE TU PAIS Y DEL PAIS EN DONDE SE ENCUENTRE LA INFRAESTRUCTURA, PARA DETERMINAR HASTA QUE PUNTO PUEDES HACER EVALUACIONES Y EN LO POSIBLE SOLO INVOLUCRARTE CON ENTIDADES QUE TENGAN PROCESOS DE BUG BOUNTY O VDP. LO DEMOSTRADO EN LAS IMÁGENES ES ALCANZABLE DE FORMA PUBLICA SIN NINGUN TIPO DE ATAQUE NI ACCESO NO AUTORIZADO; EL PASO SIGUIENTE SI PODRIA CAER EN LA CATEGORÍA DE DELITO, POR LO TANTO NO LO VOY A DEMOSTRAR CON EL MISMO OBJETIVO.</mark></strong></blockquote><p id="23d58820-4ba1-4958-bad8-6444e7059287" class="">
+</p><h2 id="a918d85f-d50b-4b4f-971c-ece2f01cac7b" class=""> Enlaces de Referencia:</h2><figure id="e7d5034b-0025-4071-92d7-fb30d1b4a753"><a href="https://www.slideshare.net/fransrosen/dns-hijacking-using-cloud-providers-no-verification-needed-76812183" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">DNS hijacking using cloud providers – No verification needed</div><div class="bookmark-description">detectify DNS hijacking using cloud providers – no verification needed detectify Frans Rosén Security Advisor @detectify ( twitter: @fransrosen ) HackerOne #5...</div></div><div class="bookmark-href"><img src="https://public.slidesharecdn.com/_next/static/media/favicon.7bc3d920.ico" class="icon bookmark-icon"/>https://www.slideshare.net/fransrosen/dns-hijacking-using-cloud-providers-no-verification-needed-76812183</div></div><img src="https://cdn.slidesharecdn.com/ss_thumbnails/securityfest2017-170609223028-thumbnail.jpg?width=640&amp;height=640&amp;fit=bounds" class="bookmark-image"/></a></figure><p id="42c1b0c2-809a-48f3-97fb-9c92517f841a" class="">
+</p><h3 id="026ea3ae-b784-4b14-a356-91a1a3eae0fd" class=""> Siguiente: <a href="https://www.notion.so/M-dulo-11-Broken-Access-Control-bba79cf414264f528b2564bb1869e007?pvs=21"><span class="icon">🚪</span>Módulo 11 - Broken Access Control</a> </h3><p id="57bf0e58-1760-4c11-af02-7749d51c4368" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Resolved inline comments</summary><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Por ejemplo, si el propietario de un dominio utiliza Amazon S3 para alojar un sitio web, y crea un subdominio llamado &quot;blog&quot; que apunta a un bucket de S3, pero después de un tiempo decide no utilizar más ese subdominio, olvida eliminar el registro DNS correspondiente. Si alguien</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:16 PM</time></span></span></div><div style="padding:0.2em">Usar un conector  para asociar con la siguiente oración. Con el signo de puntuación “.” se corta la idea, podria ser un punto y coma y luego la letra “y”</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">¿Qué es un registro CNAME?</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:33 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en título 1</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Funcionamiento de los registros CNAME:</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:37 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en título 2. Incluir una pequeña introducción a la imagen.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:29 PM</time></span></span></div><div style="padding:0.2em">Darle nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:44 PM</time></span></span></div><div style="padding:0.2em">Darle nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><mark class="highlight-purple"><strong>Paso 1: Enumerar Subdominios existentes</strong></mark></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:54 PM</time></span></span></div><div style="padding:0.2em">Si usas este color debes usarlo en los anteriores módulos para que se vean homogéneos. <strong>Pensamiento</strong>: Me gusta mucho el color… Podría inspirar.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Amass es una herramienta de enumeración de subdominios que se utiliza para recopilar una lista de subdominios pertenecientes a un dominio específico. Esta herramienta utiliza diversas fuentes, como motores de búsqueda, bases de datos públicas y registros de certificados SSL, para recopilar información sobre los subdominios de un dominio. Amass es una de las herramientas más populares y ampliamente utilizadas para la enumeración de subdominios y puede ser una herramienta muy útil en la detección de vulnerabilidades de subdomain takeover.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 12:56 PM</time></span></span></div><div style="padding:0.2em">Primero va el texto, luego el enlace, es el concepto que se ha estado manejando.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Eyewitness es una herramienta de enumeración de subdominios que permite recopilar capturas de pantalla de los sitios web alojados en cada subdominio encontrado</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 1:07 PM</time></span></span></div><div style="padding:0.2em">Primero va el texto, luego el enlace, es el concepto que se ha estado manejando.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Enlaces de Referencia:</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 1:46 PM</time></span></span></div><div style="padding:0.2em">Va en título 1. No olvidar hacer: 1. Video explicativo del módulo y 2. Un video taller explicativo.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 7, 2023, 1:46 PM</time></span></span></div><div style="padding:0.2em">Incluir enlace al siguiente módulo</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>

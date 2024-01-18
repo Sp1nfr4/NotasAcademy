@@ -1,0 +1,1065 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+	});
+	</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 4 - La Internet y sus Protocolos</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+	user-select: all;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="443df33a-be2b-440c-a633-ee4de40d1c29" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🌐</span></div><h1 class="page-title">Módulo 4 - La Internet y sus Protocolos</h1><p class="page-description"></p></header><div class="page-body"><h1 id="45954a06-1175-4dcf-b7bc-241909558ba8" class="">¿Qué es la Internet?</h1><p id="d9b8642c-8fda-42c6-9225-05a1c76e5fb5" class="">La internet es una red global de computadoras interconectadas que utilizan un conjunto común de reglas y protocolos para intercambiar información, estas reglas y protocolos se conocen colectivamente como TCP/IP. </p><figure id="dfb0641d-e931-425b-9cdd-d396c5062075" class="image"><a href="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"/></a></figure><p id="1dd60ac7-aa54-420b-9f65-887e401bd35c" class="">La internet permite que millones de redes separadas se conecten y formen una red lógica global, lo que proporciona el intercambio de información entre computadoras en todo el mundo.</p><hr id="192711e6-7275-474d-83cf-74f2e8417642"/><figure id="746b9660-6e92-4049-b608-d8cb84bbd8d8"><div class="source"><iframe src="https://player.vimeo.com/video/836933002?h=77e979c396" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="8dfe6602-5a48-4148-a2cb-065768f1d416" class="">El Modelo Cliente - Servidor</h2><p id="f2315bcc-f944-4bc9-a9a1-4ee5bf2aee38" class="">El modelo cliente-servidor es un modelo de arquitectura de red en el que los recursos y servicios de la red son proporcionados por servidores a los clientes que los solicitan. En este modelo, los clientes realizan solicitudes a los servidores para obtener información o servicios, y los servidores responden a esas solicitudes proporcionando la información o servicios solicitados.</p><p id="ebd68fb5-38fd-4b3d-a4b5-57cdc6fcbb6b" class="">En una red cliente-servidor típica, los servidores proporcionan servicios como almacenamiento de archivos, bases de datos, correo electrónico y servidores web. Los clientes pueden ser computadoras personales, dispositivos móviles u otros servidores que requieren acceso a los servicios de la red.</p><p id="b112d322-7d23-482c-82a6-46d81f6e7f3d" class="">El modelo cliente-servidor se utiliza en muchas aplicaciones y servicios de la internet, como el correo electrónico, la World Wide Web (WWW) y las aplicaciones empresariales. En este modelo, los servidores actúan como centros de datos y proporcionan servicios a múltiples clientes en la red. Los clientes pueden acceder a los servicios de la red desde cualquier lugar del mundo, siempre y cuando tengan una conexión a internet.</p><p id="cc14c244-1369-45b5-91cb-b5d9bd6ed15a" class="">
+</p><figure id="a97d6b6a-2ec9-4b79-8448-d1b6f59581d9" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Cliente_Servidor.png"><img style="width:478px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Cliente_Servidor.png"/></a><figcaption>Imagen: Modelo Cliente Servidor</figcaption></figure><h2 id="a18b0406-ee0a-40cd-9ed6-822910ffda19" class="">Modelos de Comunicación</h2><h3 id="b9fa02e1-069e-4b73-bf6f-a6bcc839596c" class="">Modelo OSI</h3><p id="901c1ab7-c522-4c84-b5e0-2dc0c1ed404f" class="">El modelo OSI (Open Systems Interconnection) es un modelo de referencia para redes de computadoras. Proporciona una estructura para la comunicación de la red, dividiendo la red en siete capas. Cada capa realiza una función específica en la comunicación de la red.</p><table id="1cfc6300-53da-41d6-acfc-e19a37fab1ea" class="simple-table"><thead class="simple-table-header"><tr id="14b56814-8119-4873-8c35-d7930bd8b55e"><th id="gD\\" class="block-color-orange_background simple-table-header">Capa</th><th id="@DI&lt;" class="block-color-orange_background simple-table-header">Nombre</th><th id="K&gt;GS" class="block-color-orange_background simple-table-header" style="width:605.9999847412109px">Función</th></tr></thead><tbody><tr id="ba0b2c26-4aa1-40fc-b3ff-b5ae85f493b0"><td id="gD\\" class="">1</td><td id="@DI&lt;" class="">Capa Física</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Transmisión física de los datos a través de la red, incluyendo la conexión física entre las computadoras, los cables, los conectores y los adaptadores de red.</td></tr><tr id="2781fc5c-c99f-4545-987a-351d3099b803"><td id="gD\\" class="">2</td><td id="@DI&lt;" class="">Capa de Enlace de Datos</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Transferencia de datos entre dispositivos en la misma red local, incluyendo la detección y corrección de errores en la transmisión de datos y la asignación de direcciones MAC a cada dispositivo en la red.</td></tr><tr id="647f4603-7c59-4590-b00b-800067d411d3"><td id="gD\\" class="">3</td><td id="@DI&lt;" class="">Capa de Red</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Transferencia de datos entre redes, incluyendo la asignación de direcciones IP a cada dispositivo en la red y el enrutamiento de los datos a través de la red.</td></tr><tr id="c1a92004-8cb5-49c0-94d3-050c0f715285"><td id="gD\\" class="">4</td><td id="@DI&lt;" class="">Capa de Transporte</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Transferencia de datos entre aplicaciones que se ejecutan en diferentes dispositivos, incluyendo la segmentación y reensamblaje de los datos y la gestión de la fiabilidad de la transmisión de los datos.</td></tr><tr id="94d59ffc-e9d1-4f1a-94c8-22282322f7f6"><td id="gD\\" class="">5</td><td id="@DI&lt;" class="">Capa de Sesión</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Establecimiento, administración y finalización de las sesiones entre las aplicaciones que se ejecutan en diferentes dispositivos, incluyendo la autenticación y el control de acceso a la red.</td></tr><tr id="c0a41be5-e7a9-4d1f-9d54-041f710b70c3"><td id="gD\\" class="">6</td><td id="@DI&lt;" class="">Capa de Presentación</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Presentación y formato de los datos transmitidos, incluyendo la codificación y decodificación de los datos, así como la compresión y descompresión de los datos.</td></tr><tr id="91d14ffe-09a4-4406-b319-c09d39f8c195"><td id="gD\\" class="">7</td><td id="@DI&lt;" class="">Capa de Aplicación</td><td id="K&gt;GS" class="" style="width:605.9999847412109px">Interacción entre las aplicaciones y los usuarios finales, incluyendo los protocolos de comunicación específicos de la aplicación, como HTTP (Hypertext Transfer Protocol) para la World Wide Web y SMTP (Simple Mail Transfer Protocol) para el correo electrónico.</td></tr></tbody></table><p id="bff4448c-e3f5-454f-bfd3-5aef9031c247" class="">Cada capa del modelo OSI se comunica con las capas adyacentes para proporcionar servicios a las capas superiores. Por ejemplo, la capa de aplicación se comunica con la capa de transporte para transferir datos entre aplicaciones, y la capa de transporte se comunica con la capa de red para enrutar los datos a través de la red.</p><h2 id="7cdb59b5-63dd-47a5-9496-24916778a500" class="">El Modelo TCP/IP</h2><p id="787d0a56-d3b2-4711-80e2-225245572e2b" class="">El modelo TCP/IP es un conjunto de reglas y protocolos que permiten que los dispositivos se comuniquen entre sí en la internet. Se compone de dos protocolos principales: el protocolo de control de transmisión (TCP) y el protocolo de internet (IP).</p><p id="689a745d-7caf-4b5c-872b-82ba5d8878dc" class="">El protocolo TCP (Transmission Control Protocol) es responsable de dividir los datos en paquetes y asegurarse de que cada paquete llegue correctamente a su destino. Cuando un dispositivo envía información a través de la internet, TCP divide los datos en paquetes más pequeños que son más fáciles de transmitir. Cada paquete incluye información sobre su origen y destino, así como una secuencia de números que permite al receptor reconstruir los datos en el orden correcto. Además, TCP establece una conexión entre el dispositivo emisor y receptor antes de enviar los paquetes, lo que garantiza que los datos se transmitan de manera confiable y sin errores.</p><p id="2caa1339-59d1-4207-9691-0e0b0a29dfdd" class="">Por otro lado, el protocolo IP se encarga de dirigir los paquetes a través de la internet, utilizando direcciones IP únicas para identificar los dispositivos y redes que están transmitiendo y recibiendo los datos. Cada dispositivo conectado a la internet tiene una dirección IP única, que se utiliza para dirigir los paquetes de datos a su destino. </p><p id="fa22094c-48f2-4704-a3bb-1e3136a1106e" class="">El protocolo IP se encarga de enrutar los paquetes a través de la internet, asegurándose de que la información llegue correctamente a su destino, incluso si los paquetes viajan por diferentes redes y enrutadores.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0f98c4fe-4886-47b2-8f68-83385ebb9ac3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Para entender mejor cómo funciona TCP/IP, puedes pensar en los datos que se envían a través de la internet como paquetes de correo. TCP es como un empleado de correo que divide los datos en paquetes más pequeños y los coloca en sobres, mientras que IP es como un mensajero que lleva los sobres al destinatario correcto. Juntos, TCP e IP aseguran que los sobres lleguen al destinatario correcto de manera confiable y eficiente.</div></figure><p id="9247fd38-b71b-49c1-a2af-c1fe01eb7d87" class=""> </p><figure id="c34b7dbc-8b46-45f9-96f9-4dd8ed6a02dd"><div class="source"><iframe src="https://player.vimeo.com/video/838087407?h=fc5edd7038" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><figure id="46dc74c4-8ccc-40b2-935f-a9a43ab01d15" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Comparacion_Modelos.jpg"><img style="width:1920px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Comparacion_Modelos.jpg"/></a><figcaption>Imagen: Modelos de Comunicación de Redes</figcaption></figure><figure id="990e48b3-99a5-499c-ae1d-b26548915eb8" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Encapsulamiento.jpg"><img style="width:1920px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Encapsulamiento.jpg"/></a><figcaption>Imagen: Encapsulamiento y Desencapsulamiento de Datos en la red</figcaption></figure><p id="5287ec11-c5e2-475d-88a8-4478627e29d5" class="">
+</p><figure id="d7445760-b051-4570-abdc-744659b8d8b6" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Proceso_Modelo_TCP-ip.png"><img style="width:781px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Proceso_Modelo_TCP-ip.png"/></a><figcaption>Imagen: Proceso del Modelo TCP/IP </figcaption></figure><p id="9ca8d859-3f26-4020-9afa-b06786edfa13" class="">
+</p><figure id="b994cf49-b050-4b5f-a2ad-b383a603d280" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Capas_modelo_TCP.jpg"><img style="width:1920px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Capas_modelo_TCP.jpg"/></a><figcaption>Imagen: Funciones de las Capas del Modelo TCP/IP</figcaption></figure><h2 id="cb2d4c30-2ca1-4640-be8b-caccd99985cd" class="">Banderas o Flags en el Protocolo TCP / IP</h2><p id="945bbe87-a4a3-4869-a65b-8617cda05324" class="">Las banderas de TCP/IP son señales que se utilizan para controlar la transmisión de datos a través de la red. A continuación, se describen las seis banderas de TCP/IP más comunes:</p><table id="a3328efe-5cfb-4928-ac70-ea85f92f4e9c" class="simple-table"><thead class="simple-table-header"><tr id="1cc2eee7-bdb0-48ea-ade8-32cb3930fa44"><th id="EuLa" class="block-color-teal_background simple-table-header" style="width:81px">Bandera</th><th id="|wd:" class="block-color-teal_background simple-table-header">Significado</th><th id="c|ij" class="block-color-teal_background simple-table-header" style="width:1072px">Descripción</th></tr></thead><tbody><tr id="ce484f80-1777-4f86-97a5-f2d45beaab68"><td id="EuLa" class="" style="width:81px"><strong>SYN</strong></td><td id="|wd:" class=""><strong>Synchronize</strong></td><td id="c|ij" class="" style="width:1072px">Se utiliza para iniciar una conexión TCP. El dispositivo que desea establecer la conexión envía un paquete SYN al dispositivo remoto.</td></tr><tr id="7c4cffd6-e745-46f6-872f-c99798b0ccae"><td id="EuLa" class="" style="width:81px"><strong>ACK</strong></td><td id="|wd:" class=""><strong>Acknowledgment</strong></td><td id="c|ij" class="" style="width:1072px">Se utiliza para confirmar la recepción de un paquete. Cuando un dispositivo recibe un paquete, envía un paquete ACK de vuelta al dispositivo emisor para confirmar que el paquete ha sido recibido correctamente.</td></tr><tr id="ee906443-9536-44b7-8bee-45e2598f300b"><td id="EuLa" class="" style="width:81px"><strong>PSH</strong></td><td id="|wd:" class=""><strong>Push</strong></td><td id="c|ij" class="" style="width:1072px">Indica que los datos deben entregarse al destino de inmediato sin esperar a que se reciban más datos.</td></tr><tr id="3b449016-999f-400a-b5ad-fcc357fc0a8e"><td id="EuLa" class="" style="width:81px"><strong>FIN</strong></td><td id="|wd:" class=""><strong>Finish</strong></td><td id="c|ij" class="" style="width:1072px">Se utiliza para cerrar una conexión TCP. El dispositivo que desea cerrar la conexión envía un paquete FIN al dispositivo remoto.</td></tr><tr id="0efe22fd-7e53-4d7c-82b6-abb6e57af06c"><td id="EuLa" class="" style="width:81px"><strong>RST</strong></td><td id="|wd:" class=""><strong>Reset</strong></td><td id="c|ij" class="" style="width:1072px">Se utiliza para restablecer una conexión TCP. Cuando un dispositivo recibe un paquete que no se puede procesar, envía un paquete RST de vuelta al dispositivo emisor para restablecer la conexión.</td></tr><tr id="d6e2114f-405b-4a2d-b08c-60a3520b0d9f"><td id="EuLa" class="" style="width:81px"><strong>URG</strong></td><td id="|wd:" class=""><strong>Urgent</strong></td><td id="c|ij" class="" style="width:1072px">Se utiliza para indicar que los datos en el paquete son urgentes y deben procesarse de inmediato.</td></tr></tbody></table><figure id="b926e851-267a-4c58-a8a2-98a3d62537de"><div class="source"><iframe src="https://player.vimeo.com/video/838087698?h=394603a3cd" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="9969e842-9cfe-42c6-bb0d-046e7af6bdb2" class="">3 Way Handshake - Protocolo de Saludo de 3 Vias</h2><p id="2692c4b0-c06b-4ae2-9fe8-0f16d4723029" class="">El 3 Way Handshake es un protocolo utilizado para establecer una conexión entre dos dispositivos en una red. Este protocolo es utilizado por el protocolo TCP/IP para garantizar que los datos se transmitan de manera confiable y segura a través de la red.</p><p id="9aab0d24-da62-4f7c-acaa-fb8c091432e3" class="">El proceso de 3 Way Handshake implica tres pasos.</p><ul id="a2aa525f-d389-47d5-8279-8d4c453d2598" class="bulleted-list"><li style="list-style-type:disc">Paso 1:  El dispositivo que desea establecer la conexión envía un paquete de sincronización (SYN) al dispositivo remoto.</li></ul><ul id="47542bf4-8ebc-4729-8a39-b6ebf56d3cb5" class="bulleted-list"><li style="list-style-type:disc">Paso 2: El dispositivo remoto responde con un paquete de sincronización y confirmación (SYN-ACK), confirmando que está listo para establecer la conexión.</li></ul><ul id="1ef3aaf6-50da-4313-8eb1-a9393f50c570" class="bulleted-list"><li style="list-style-type:disc">Paso 3: El dispositivo que inició la conexión envía un paquete de confirmación (ACK) al dispositivo remoto, confirmando que la conexión ha sido establecida con éxito.</li></ul><p id="4a232c39-7041-40d4-995f-0180c46014f8" class="">El 3 Way Handshake es importante porque ayuda a garantizar que los datos se transmitan de manera confiable y segura a través de la red. Al establecer una conexión de esta manera, los dispositivos pueden confirmar que están listos para intercambiar datos y asegurarse de que los datos se transmitan sin errores o interrupciones.</p><h3 id="f80b996d-0d76-4188-8354-972dd9a0c5b0" class=""> Gráfica del 3 Way Handshake:</h3><p id="3e077793-2996-4233-9ecc-8f07479c55f4" class="">
+</p><figure id="1ae04511-1553-4720-a853-3d67a586e268" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/3_Way_Handshake.png"><img style="width:792px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/3_Way_Handshake.png"/></a><figcaption>Imagen: 3 Way Handshake</figcaption></figure><figure id="8f9d59ba-40a6-4551-8ec2-d9078be11d5b"><div class="source"><iframe src="https://player.vimeo.com/video/838299090?h=ac66653600" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="4d346126-895c-4310-9ac2-742d013e011c" class="">Los Puertos en el Protocolo TCP/IP</h2><p id="9789e07c-2ca4-4c13-afaa-1e1647a16b57" class="">Los puertos en el protocolo TCP son como puertas en un edificio grande con muchas habitaciones. Cada habitación tiene una puerta diferente con un número que la identifica. Los puertos TCP hacen lo mismo con los datos que se envían a través de la internet. Cada tipo de información tiene un puerto diferente que la identifica. Cuando los datos llegan a su destino, los puertos les indican a los dispositivos qué tipo de información es y qué hacer con ella. Por ejemplo, si envías un correo electrónico, los datos se envían a través de un puerto de correo electrónico, y si estás viendo un video en línea, los datos se envían a través de un puerto de video. Los puertos TCP aseguran que los datos lleguen a su destino correcto y se procesen de manera adecuada.</p><p id="6f6e4251-2da1-4994-b4be-3df4c8a08445" class="">En TCP/IP tenemos 65.535 Puertos, el equivalente del resultado de 2^16; en esta lista tenemos algunos de los puertos más importantes:</p><table id="39029d02-dbfb-4d44-b8ee-2a0928680862" class="simple-table"><thead class="simple-table-header"><tr id="0c9cf74e-04cd-4a90-9426-ccc55169d7f6"><th id="DkS~" class="simple-table-header-color simple-table-header">Puerto</th><th id="yKKt" class="simple-table-header-color simple-table-header" style="width:506px">Descripción</th><th id="u@}y" class="simple-table-header-color simple-table-header" style="width:602px">Ejemplo</th></tr></thead><tbody><tr id="90a95197-0cee-4b54-a94c-3c48fc5d19fe"><td id="DkS~" class="">20</td><td id="yKKt" class="" style="width:506px">FTP (File Transfer Protocol) - Transferencia de archivos</td><td id="u@}y" class="" style="width:602px">Se utiliza para transferir archivos desde y hacia un servidor FTP.</td></tr><tr id="8a0e663a-4bfa-4cff-8e49-cd6bc66c18c9"><td id="DkS~" class="">22</td><td id="yKKt" class="" style="width:506px">SSH (Secure Shell) - Acceso remoto seguro</td><td id="u@}y" class="" style="width:602px">Se utiliza para conectarse a un servidor de forma segura y administrar el sistema.</td></tr><tr id="aeb77f69-bb0e-4dc9-aaa5-0512074cb1ec"><td id="DkS~" class="">25</td><td id="yKKt" class="" style="width:506px">SMTP (Simple Mail Transfer Protocol) - Envío de correo electrónico</td><td id="u@}y" class="" style="width:602px">Se utiliza para enviar correo electrónico a través de un servidor SMTP.</td></tr><tr id="2c46ab79-4f9a-4ed7-aed8-af4a4c98cb70"><td id="DkS~" class="">53</td><td id="yKKt" class="" style="width:506px">DNS (Domain Name System) - Resolución de nombres de dominio</td><td id="u@}y" class="" style="width:602px">Se utiliza para traducir nombres de dominio en direcciones IP.</td></tr><tr id="5c70aee8-f2ac-4531-bb65-c3ae20cf57a4"><td id="DkS~" class="">80</td><td id="yKKt" class="" style="width:506px">HTTP (Hypertext Transfer Protocol) - Transferencia de páginas web</td><td id="u@}y" class="" style="width:602px">Se utiliza para enviar y recibir páginas web.</td></tr><tr id="4259f0da-8650-4e19-b030-39292c6ec104"><td id="DkS~" class="">110</td><td id="yKKt" class="" style="width:506px">POP3 (Post Office Protocol version 3) - Recepción de correo electrónico</td><td id="u@}y" class="" style="width:602px">Se utiliza para descargar correo electrónico desde un servidor POP3.</td></tr><tr id="bdf9c5c5-e912-49dc-bd18-518bf77f22fd"><td id="DkS~" class="">143</td><td id="yKKt" class="" style="width:506px">IMAP (Internet Message Access Protocol) - Recepción de correo electrónico</td><td id="u@}y" class="" style="width:602px">Se utiliza para descargar correo electrónico desde un servidor IMAP.</td></tr><tr id="9b3eff8c-cf14-4f9d-87d5-93c2e6efbf7f"><td id="DkS~" class="">443</td><td id="yKKt" class="" style="width:506px">HTTPS (Hypertext Transfer Protocol Secure) - Transferencia segura de páginas web</td><td id="u@}y" class="" style="width:602px">Se utiliza para enviar y recibir páginas web de forma segura.</td></tr><tr id="ff87a8f8-e5fb-487a-8915-22732ba92870"><td id="DkS~" class="">465</td><td id="yKKt" class="" style="width:506px">SMTPS (Simple Mail Transfer Protocol Secure) - Envío de correo electrónico seguro</td><td id="u@}y" class="" style="width:602px">Se utiliza para enviar correo electrónico de forma segura a través de un servidor SMTP.</td></tr><tr id="c7e9700f-275f-4e1f-a43d-98cc503009b2"><td id="DkS~" class="">993</td><td id="yKKt" class="" style="width:506px">IMAPS (Internet Message Access Protocol Secure) - Recepción de correo electrónico seguro</td><td id="u@}y" class="" style="width:602px">Se utiliza para descargar correo electrónico de forma segura desde un servidor IMAP.</td></tr><tr id="58ab5c76-9a76-4124-850e-beb9519c183a"><td id="DkS~" class=""></td><td id="yKKt" class="" style="width:506px"></td><td id="u@}y" class="" style="width:602px"></td></tr></tbody></table><p id="c7652b89-a025-4145-93a3-9c91946c91a0" class="">Esta es una graciosa representación de algunos de los servicios:</p><p id="bed1ffe5-594d-4308-96cb-40d6cbfe6e2b" class="">
+</p><figure id="3ed4cea5-e396-44b7-bc41-a647309d7579" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/3A743C53-0A46-4D95-9F6E-07FE185BBAEF.jpeg"><img style="width:384px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/3A743C53-0A46-4D95-9F6E-07FE185BBAEF.jpeg"/></a><figcaption>Img. Tomada de: <a href="https://preview.redd.it/e88xy3qpv0w41.jpg?auto=webp&amp;v=enabled&amp;s=dfac54476e4a2a834834183a02165af6c45f865b">Reddit</a>;</figcaption></figure><hr id="416afb84-3d68-45d8-bacb-a1a44d0e705b"/><figure id="4cc4a511-cf00-4008-a446-254dc3f3f0a4"><div class="source"><iframe src="https://player.vimeo.com/video/838341454?h=5e5b57c55c" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h1 id="54bec7d2-8004-4a73-87a7-52c09bffb48d" class="">¿Qué es una URL?</h1><p id="ec2e1d54-4bc5-41a5-b9a1-7e15cbdddcad" class="">Una dirección URL (Uniform Resource Locator) es un identificador único para un recurso web a través del cual se puede acceder a ese recurso. El formato de la mayoría de las URL es el siguiente:</p><pre id="03bf58a2-f93b-4962-b682-cf503000a8bd" class="code"><code>protocolo://nombre_de_host[:puerto]/[ruta/]archivo[?parámetro=valor]</code></pre><p id="4f9ccd88-c438-4340-afa0-461ffdd7e967" class="">Varios componentes en este esquema son opcionales. El número de puerto generalmente se incluye solo si difiere del valor predeterminado utilizado por el protocolo correspondiente. La URL utilizada para generar la solicitud HTTP que se muestra anteriormente es la siguiente:</p><pre id="ca309ea6-31b2-4e2c-8837-124b9cbec197" class="code"><code>https://www.secpro.co/auth/info/users?uid=354.</code></pre><h1 id="be4de317-db53-45f3-86bb-7f0f737de1f3" class="">Los Servicios en TCP/IP</h1><h2 id="bfcd5bd7-03d4-418a-82b7-e61a3d3d77e5" class="">Qué es un servidor DNS</h2><p id="543a9147-b211-47a0-b170-4d099701af6b" class="">Un servidor DNS, abreviatura de Domain Name System, es un sistema esencial en la infraestructura de la internet que se encarga de traducir los nombres de dominio de los sitios web a direcciones IP que los dispositivos pueden entender. Cuando un usuario escribe un nombre de dominio en su navegador, el servidor DNS busca la dirección IP correspondiente y la devuelve al dispositivo para que pueda conectarse al sitio web.</p><p id="d2a02b6f-7351-4616-b2a9-b02512b453c9" class="">Los nombres de dominio son más fáciles de recordar para los usuarios que las direcciones IP numéricas largas y complicadas de cada sitio web. Los nombres de dominio consisten en palabras o frases que describen el sitio web, mientras que las direcciones IP son una serie de números separados por puntos. Los servidores DNS son esenciales para la navegación en la internet, ya que permiten que los usuarios accedan a los sitios web utilizando nombres de dominio en lugar de tener que recordar las direcciones IP numéricas.</p><p id="d521b4d1-75a3-4b25-b134-c348101a72e1" class="">Los servidores DNS juegan un papel importante en la seguridad de la internet, ya que ayudan a prevenir ataques de phishing y otros tipos de ciberataques. Los servidores DNS pueden bloquear el acceso a sitios web maliciosos y redirigir a los usuarios a sitios web legítimos.</p><figure id="eb792642-5e05-419f-90af-6403dd65d4b6"><div class="source"><iframe src="https://player.vimeo.com/video/838373731?h=f2ccd15937" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="b248c4fb-4979-4733-8c1e-19ae0da4d3e6" class="">Así funciona la resolución DNS:</h3><p id="7d9ab4a8-4874-470b-89d9-713fef99cf2e" class="">
+</p><figure id="2326d0ec-ad6a-469a-96b0-2804c52e9c2d" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Resolucion_DNS.png"><img style="width:671px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Resolucion_DNS.png"/></a><figcaption>Imagen: Funcionamiento de la Resolución de DNS</figcaption></figure><figure id="f0b23010-5596-4383-858e-37788bc6025e"><div class="source"><iframe src="https://player.vimeo.com/video/838374010?h=ccff8a0c28" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="9c1f5a84-098c-450e-b631-700174b1eec8" class="">El Protocolo HTTP</h2><p id="57e32cf8-8e3a-440c-a607-66cec8c61d7c" class="">HTTP, abreviatura de Hypertext Transfer Protocol, es un protocolo de comunicación utilizado en la internet para transferir información entre servidores y clientes. El protocolo HTTP se utiliza principalmente para la transferencia de páginas web, pero también se utiliza para transferir otro tipo de datos, como imágenes y videos.</p><p id="eced4729-ad3a-41d3-b72a-e1c956a1ccf8" class="">Cuando un usuario accede a una página web, su navegador envía una solicitud al servidor web que aloja la página. La solicitud del navegador se realiza utilizando el protocolo HTTP. La solicitud incluye información sobre el tipo de archivo que se solicita y cualquier otro parámetro que el servidor pueda necesitar para enviar la información correcta al navegador.</p><p id="9acb393c-c609-4f8e-8ca0-b8d683c3758b" class="">El servidor web recibe la solicitud del navegador y envía la información solicitada de vuelta al navegador utilizando el protocolo HTTP. La información se envía en formato HTML, que es el lenguaje utilizado para crear páginas web. El navegador recibe la información y la muestra al usuario como una página web.</p><p id="50ba0b09-45e6-425b-a00f-f7903a934aa0" class="">El protocolo HTTP es un protocolo sin estado, lo que significa que cada solicitud que se realiza es independiente de las solicitudes anteriores. Esto significa que el servidor web no mantiene ningún registro de las solicitudes anteriores y trata cada solicitud como si fuera nueva. Esto hace que el protocolo HTTP sea muy eficiente y fácil de implementar, ya que no requiere que el servidor web mantenga un registro de las solicitudes anteriores.</p><p id="5c57182e-70dc-4384-bedf-52a137de1350" class="">El protocolo HTTP también es un protocolo sin conexión, lo que significa que cada solicitud y respuesta se realiza de manera independiente. Esto significa que el servidor web no mantiene una conexión constante con el navegador del usuario, sino que se conecta y desconecta cada vez que se realiza una solicitud.</p><p id="f185a4fc-3e71-4607-83dd-18391ed3001e" class="">
+</p><figure id="45cf49b3-0cf3-4214-8eeb-c510632cc0d6" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTP_Funcionamiento.png"><img style="width:570px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTP_Funcionamiento.png"/></a><figcaption>Imagen: HTTP Request y HTTP Response</figcaption></figure><figure id="8aea921f-2dc8-49f0-8937-7273e24071c4"><div class="source"><iframe src="https://player.vimeo.com/video/842501346?h=3ec3e30865" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="2ea4e4dd-3f14-496b-ba89-7489732b5642" class="">HTTP Request</h2><p id="4ca44fce-8a04-455f-abea-e8e1969b966a" class="">Una solicitud HTTP es una petición que un cliente (como un navegador web) envía a un servidor web para solicitar información o recursos. Esta solicitud se realiza en un formato específico, que sigue un conjunto de reglas y convenciones conocido como protocolo HTTP (Hypertext Transfer Protocol).</p><p id="6115bdb3-cbe3-4d80-84ed-08b163635ef2" class="">Una forma de entender el concepto de una solicitud HTTP es comparándolo con hacer un pedido en un restaurante. Cuando un cliente hace un pedido en un restaurante, le dice al servidor qué quiere, cómo lo quiere y cuál es su dirección. De manera similar, una solicitud HTTP incluye información sobre qué tipo de recurso se está solicitando (como una página web o una imagen), cualquier información adicional que el servidor necesite para proporcionar la información solicitada (como la ubicación de un archivo) y cómo se debe presentar la información (como en formato HTML o como un archivo descargable).</p><p id="81630b7b-02a6-42c2-9af8-0ee5fb22c48c" class="">Una vez que el servidor web recibe la solicitud HTTP, procesa la solicitud y envía una respuesta HTTP al cliente. Esta respuesta incluye información como el tipo de recurso solicitado (como una página web o una imagen), el código de estado <strong>HTTP (como 200 si la solicitud fue exitosa o 404 si el recurso no pudo ser encontrado) </strong>y cualquier información adicional que el cliente necesite para procesar la respuesta (como el contenido de la página web o el archivo descargable).</p><p id="2282a6c5-f1d3-4c05-a4a2-ef8f75e9a5bc" class="">
+</p><pre id="3ee656c0-1b74-4b3c-90fc-af982e24a6f5" class="code code-wrap"><code>GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1</code></pre><h2 id="3729826a-32e5-4c81-a838-a90bc55e2f65" class="">HTTP Response</h2><p id="4ac6f113-e85c-4908-9aa1-f73dc2d8df8b" class="">Una respuesta HTTP es una parte esencial de la comunicación entre un cliente y un servidor web en la internet. Cuando un cliente (por ejemplo, un navegador web) envía una solicitud HTTP a un servidor, este último procesa la solicitud y envía una respuesta HTTP de vuelta al cliente.</p><p id="e2988528-771f-4d44-8055-6797d8e6e2ff" class="">La respuesta HTTP incluye información detallada sobre el recurso solicitado, como una página web o una imagen, y puede contener información adicional que el cliente necesita para procesar la respuesta. Esta información adicional puede incluir detalles sobre el estado de la solicitud, como si fue exitosa o no, y cualquier otro mensaje relevante que el servidor desee enviar al cliente.</p><p id="e80423dc-2f83-4d88-acce-8fd712a6ff09" class="">Para entender mejor el concepto de respuesta HTTP, se puede usar la analogía de hacer un pedido en un restaurante. Cuando un cliente hace un pedido en un restaurante, el camarero lleva la solicitud a la cocina y espera a que el chef prepare la comida. Una vez que la comida está lista, el camarero la lleva de vuelta al cliente. De manera similar, cuando un cliente envía una solicitud HTTP a un servidor web, el servidor procesa la solicitud y envía la respuesta HTTP de vuelta al cliente.</p><p id="bf656003-102e-43fe-b82d-202995e188d5" class="">La respuesta HTTP también incluye un código de estado que indica el resultado de la solicitud. Estos códigos de estado se dividen en diferentes categorías, como &quot;éxito&quot;, &quot;redirección&quot;, &quot;error del cliente&quot; y &quot;error del servidor&quot;. Un ejemplo de un código de estado común es el &quot;200 OK&quot;, que indica que la solicitud fue exitosa y que el servidor ha enviado el recurso solicitado.</p><p id="ccbb5b4b-e3e4-4f03-9564-6e7323b588ea" class="">En resumen, una respuesta HTTP es la información que un servidor web envía de vuelta a un cliente después de recibir una solicitud HTTP. Contiene información detallada sobre el recurso solicitado, así como cualquier información adicional que el servidor desee enviar al cliente. Los códigos de estado también se incluyen en la respuesta HTTP para indicar el resultado de la solicitud.</p><p id="f9699193-7e78-45fa-9661-64cc7429fb1a" class="">Un ejemplo de cómo se ve un HTTP Response en HTML es el siguiente:</p><pre id="209ab81f-dba2-4c76-aa52-376fc49c36fe" class="code code-wrap"><code>HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 1274
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo de página web&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Bienvenido a mi página web&lt;/h1&gt;
+	&lt;p&gt;Esta es una página de ejemplo para ilustrar cómo funciona el protocolo HTTP.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="604abb22-6b77-4940-af17-ebfc6af5006f" class="">Este ejemplo muestra una respuesta HTTP con un código de estado &quot;200 OK&quot;, lo que indica que la solicitud fue exitosa. También incluye información adicional, como el tipo de contenido (en este caso, &quot;text/html&quot;) y la longitud del contenido (en este caso, 1274 bytes). El cuerpo de la respuesta contiene el código HTML que se mostrará en el navegador web del cliente.</p><p id="800bf129-d1fa-41dd-9a19-1e71711aa679" class="">
+</p><figure id="a818f628-ef0c-4666-ae92-018cd291827c" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTP_Funcionamiento_Detallado.png"><img style="width:570px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTP_Funcionamiento_Detallado.png"/></a><figcaption>Imagen: Dinámica de HTTP Request y HTTP Response</figcaption></figure><figure id="116f8cb6-ca32-4783-82af-16adce39b56e"><div class="source"><iframe src="https://player.vimeo.com/video/842501516?h=9224b87554" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="f91465e8-33e6-4377-b215-d3b047dfbe9d" class="">El método GET y el método POST</h2><p id="2080f5e3-9779-4154-a57c-744b8b98c4e4" class="">El método GET y el método POST son dos de los métodos más comunes utilizados en el protocolo HTTP para enviar información entre clientes y servidores.</p><h3 id="5c45b5b9-7a8d-4017-9d65-37d64e11257a" class="">El Método GET</h3><p id="426516a1-e19d-47de-82f6-bdf314cfe124" class="">El método GET se utiliza para solicitar información de un servidor. Cuando un cliente envía una solicitud GET, el servidor responde con la información solicitada. Por ejemplo, si un usuario hace clic en un enlace en un sitio web, el navegador del usuario envía una solicitud GET al servidor para obtener la página web correspondiente. Como analogía, se puede pensar en el método GET como pedir una pizza de un restaurante. El cliente envía una solicitud para una pizza específica, y el restaurante responde proporcionando la pizza solicitada.</p><p id="4dffc00e-28fe-40ac-b1a9-a55ea228b248" class="">El método POST se utiliza para enviar información a un servidor. Cuando un cliente envía una solicitud POST, el servidor recibe la información y la procesa. Por ejemplo, si un usuario completa un formulario en un sitio web y hace clic en &quot;Enviar&quot;, el navegador del usuario envía una solicitud POST al servidor con la información del formulario. Como analogía, se puede pensar en el método POST como enviar un correo con una carta a una dirección específica. El cliente escribe la carta y la envía a la dirección especificada, y el destinatario recibe la carta y la procesa.</p><p id="40911a66-3af9-4790-8ce9-611a73bf992c" class="">En resumen, el método GET se utiliza para solicitar información de un servidor, mientras que el método POST se utiliza para enviar información a un servidor. Ambos métodos son esenciales en el protocolo HTTP y se utilizan en muchas aplicaciones y servicios de la internet, como la World Wide Web y las aplicaciones empresariales.</p><p id="a2f7e9b4-ef31-4623-b995-a5ef413bbd77" class="">Un ejemplo de una solicitud GET en HTML es el siguiente:</p><pre id="002bfbf0-f83c-4bc1-8b91-6c65642661ad" class="code code-wrap"><code>&lt;form action=&quot;pagina.html&quot; method=&quot;get&quot;&gt;
+  &lt;label for=&quot;nombre&quot;&gt;Nombre:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;nombre&quot; name=&quot;nombre&quot;&gt;
+
+
+  &lt;label for=&quot;apellido&quot;&gt;Apellido:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;apellido&quot; name=&quot;apellido&quot;&gt;
+
+
+  &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt;
+&lt;/form&gt;</code></pre><p id="fc4373ea-9808-4a40-8018-d4fb683f04a5" class="">En este ejemplo, el formulario tiene un atributo <code>action</code> que especifica la página que se va a solicitar, y un atributo <code>method</code> que especifica el método GET. Los campos de entrada del formulario tienen un atributo <code>name</code> que se utiliza para identificar el valor enviado en la solicitud GET. Cuando el usuario hace clic en el botón &quot;Enviar&quot;, se envía una solicitud GET al servidor con los valores de los campos de entrada del formulario.</p><p id="0dce2dc3-9043-41e1-afb0-e6070372cd3d" class="">La solicitud GET se vería así:</p><pre id="7a4013e2-3543-4257-bee9-dd82ac2781f2" class="code code-wrap"><code>GET /pagina.html?nombre=Juan&amp;apellido=Pérez HTTP/1.1
+Host: www.ejemplo.com</code></pre><p id="eed3ab63-c032-4f8e-8131-469060bf34a7" class="">En esta solicitud, se utiliza la página <code>pagina.html</code> y se envían los valores <code>nombre</code> y <code>apellido</code> a través de la URL en la solicitud GET. El servidor responde con la página solicitada y los valores enviados en la URL.</p><h3 id="3da7c1cd-5464-4ba2-a26d-2ee3e80b623a" class="">El Método POST</h3><p id="b77292b3-2321-4438-af45-3d55c48d817c" class="">El método POST se utiliza para enviar información a un servidor. Cuando un cliente envía una solicitud POST, el servidor recibe la información y la procesa.</p><p id="95fa1b68-24bd-4ad3-9ac5-52483a770de9" class="">Un ejemplo de una solicitud POST en HTML es el siguiente:</p><pre id="a41bb401-041d-4b99-bf9d-032fd5fe6e2e" class="code code-wrap"><code>&lt;form action=&quot;procesar.php&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;nombre&quot;&gt;Nombre:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;nombre&quot; name=&quot;nombre&quot;&gt;
+
+  &lt;label for=&quot;apellido&quot;&gt;Apellido:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;apellido&quot; name=&quot;apellido&quot;&gt;
+
+  &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt;
+&lt;/form&gt;</code></pre><p id="24eae812-b2c5-48b7-b227-3675d1270817" class="">En este ejemplo, el formulario tiene un atributo <code>action</code> que especifica la página que se va a solicitar, y un atributo <code>method</code> que especifica el método POST. Los campos de entrada del formulario tienen un atributo <code>name</code> que se utiliza para identificar el valor enviado en la solicitud POST. Cuando el usuario hace clic en el botón &quot;Enviar&quot;, se envía una solicitud POST al servidor con los valores de los campos de entrada del formulario.</p><p id="ec1bb494-4180-4807-878e-7b1885ee1fd8" class="">La solicitud POST se vería así:</p><pre id="3a633501-ea6b-4ad1-807d-6b5fcd444ac3" class="code code-wrap"><code>POST /procesar.php HTTP/1.1
+Host: www.ejemplo.com
+
+nombre=Juan&amp;apellido=Pérez</code></pre><p id="876ffd7c-c780-40d4-a3ae-06fa82041338" class="">En esta solicitud, se utiliza la página <code>procesar.php</code> y se envían los valores <code>nombre</code> y <code>apellido</code> en el cuerpo de la solicitud POST. El servidor procesa los datos enviados en el cuerpo de la solicitud POST y puede responder con una página web o realizar cualquier otro tipo de acción necesaria.</p><h3 id="89a97d32-4fc0-4d47-be87-55c569e82064" class="">Lista de métodos HTTP:</h3><table id="3c47ba0d-f796-4373-9f2b-d02422709b64" class="simple-table"><thead class="simple-table-header"><tr id="0fcb7d00-a72d-48ab-9cea-7a97f108bb72"><th id="nMxp" class="block-color-orange_background simple-table-header">Método</th><th id="glK|" class="block-color-orange_background simple-table-header">Definición</th><th id="~uw{" class="block-color-orange_background simple-table-header" style="width:418px">Ejemplo</th></tr></thead><tbody><tr id="2f2ef3bc-db63-4494-b631-8f662f260521"><td id="nMxp" class="">GET</td><td id="glK|" class="">Se utiliza para solicitar información de un servidor.</td><td id="~uw{" class="" style="width:418px">Cuando un usuario hace clic en un enlace en un sitio web, el navegador del usuario envía una solicitud GET al servidor para obtener la página web correspondiente.</td></tr><tr id="2187fc60-1f71-4f1f-ad1e-855948e05c73"><td id="nMxp" class="">POST</td><td id="glK|" class="">Se utiliza para enviar información a un servidor.</td><td id="~uw{" class="" style="width:418px">Si un usuario completa un formulario en un sitio web y hace clic en &quot;Enviar&quot;, el navegador del usuario envía una solicitud POST al servidor con la información del formulario.</td></tr><tr id="15e85eaf-e2e5-4b42-b842-da1078ebe82a"><td id="nMxp" class="">PUT</td><td id="glK|" class="">Se utiliza para actualizar o reemplazar un recurso existente en el servidor.</td><td id="~uw{" class="" style="width:418px">Si un usuario desea actualizar un perfil en un sitio web, el navegador del usuario puede enviar una solicitud PUT al servidor con la información actualizada del perfil.</td></tr><tr id="527a00dd-5ac4-4525-880b-b287fd9649b5"><td id="nMxp" class="">DELETE</td><td id="glK|" class="">Se utiliza para eliminar un recurso existente en el servidor.</td><td id="~uw{" class="" style="width:418px">Si un usuario desea eliminar un correo electrónico en un servicio de correo electrónico en línea, el navegador del usuario puede enviar una solicitud DELETE al servidor con la ID del correo electrónico que desea eliminar.</td></tr><tr id="b1369c94-bd2d-4a2d-b4b3-8569a9967fbc"><td id="nMxp" class="">HEAD</td><td id="glK|" class="">Se utiliza para solicitar información sobre un recurso sin obtener el recurso en sí.</td><td id="~uw{" class="" style="width:418px">Un navegador web puede enviar una solicitud HEAD al servidor para obtener información sobre una página web sin descargar el contenido completo de la página.</td></tr><tr id="05445552-f72f-4505-ac53-f25766b2c9ad"><td id="nMxp" class="">OPTIONS</td><td id="glK|" class="">Se utiliza para obtener información sobre las opciones de comunicación disponibles para un recurso.</td><td id="~uw{" class="" style="width:418px">Un navegador web puede enviar una solicitud OPTIONS al servidor para obtener información sobre los métodos HTTP soportados por el recurso.</td></tr><tr id="b7b96db1-f6dd-4a0a-b37f-c9a9be87dcba"><td id="nMxp" class="">CONNECT</td><td id="glK|" class="">Se utiliza para establecer una conexión de red con un recurso en un servidor.</td><td id="~uw{" class="" style="width:418px">Un navegador web puede enviar una solicitud CONNECT al servidor para establecer una conexión SSL/TLS con un servidor proxy.</td></tr><tr id="099df133-bc3e-4a6f-99f3-120bbd396ba3"><td id="nMxp" class="">TRACE</td><td id="glK|" class="">Se utiliza para obtener una copia de un mensaje de solicitud tal y como se ve después de haber pasado por todos los intermediarios.</td><td id="~uw{" class="" style="width:418px">Un navegador web puede enviar una solicitud TRACE al servidor para obtener información sobre el camino que ha seguido una solicitud a través de la red.</td></tr></tbody></table><h1 id="553d94d4-43e3-442d-b950-f8af3624ef4e" class="">Códigos HTTP</h1><p id="495ca5cd-d13f-46c7-b640-696ed3c156e9" class="">Los códigos HTTP son números que se utilizan para indicar el resultado de una solicitud HTTP. Cuando un cliente hace una solicitud HTTP a un servidor (por ejemplo, al hacer clic en un enlace en un sitio web), el servidor responde con un código de estado HTTP que indica el resultado de la solicitud. Estos códigos de estado se dividen en diferentes categorías, como &quot;éxito&quot;, &quot;redirección&quot;, &quot;error del cliente&quot; y &quot;error del servidor&quot;.</p><p id="4fcaa6ed-c17e-45a3-bc44-674ffa2a0fc2" class="">Por ejemplo, el código de estado &quot;200 OK&quot; indica que la solicitud fue exitosa y que el servidor ha enviado el recurso solicitado. Otro ejemplo es el código de estado &quot;404 Not Found&quot;, que indica que el servidor no pudo encontrar el recurso solicitado.</p><p id="ed23ce93-4ec8-46bc-a74f-cb357b01a301" class="">Los códigos HTTP son esenciales para la comunicación entre clientes y servidores en la internet, ya que permiten que los clientes sepan si su solicitud fue exitosa o no. Los desarrolladores de aplicaciones y sitios web utilizan los códigos HTTP para solucionar problemas y mejorar la experiencia del usuario.</p><p id="f93e4d9e-8058-408c-8135-a8b8a1b54508" class=""> </p><figure id="8a9dad3c-484c-4e87-9433-e90b48422919"><div class="source"><iframe src="https://player.vimeo.com/video/842501931?h=6c36e5c33b" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><div id="ac3ae455-5781-408a-b4e3-4ef44db1b3b1" class="collection-content"><h4 class="collection-title">Códigos HTTP del Rango 100 (Informativos)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Código</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Inglés</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Español</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Definición</th></tr></thead><tbody><tr id="24804805-d35a-4728-90e0-18c3e141564d"><td class="cell-title"><a href="https://www.notion.so/C-digo-100-24804805d35a472890e018c3e141564d?pvs=21"> Código 100</a></td><td class="cell-vQMS">Continue</td><td class="cell-G:Nr">Continuar</td><td class="cell-koiC">El servidor ha recibido la solicitud inicial y todavía está procesando la solicitud.</td></tr><tr id="c691e5f9-e725-47b7-9a11-81382c2b2efd"><td class="cell-title"><a href="https://www.notion.so/C-digo-101-c691e5f9e72547b79a1181382c2b2efd?pvs=21">Código 101</a></td><td class="cell-vQMS">Switching Protocols</td><td class="cell-G:Nr">Cambio de protocolo</td><td class="cell-koiC">El servidor acepta el cambio propuesto por el cliente en el protocolo de comunicación.</td></tr><tr id="3c17075a-d4fb-484c-8ee1-d00272dbf51f"><td class="cell-title"><a href="https://www.notion.so/C-digo-102-3c17075ad4fb484c8ee1d00272dbf51f?pvs=21">Código 102</a></td><td class="cell-vQMS">Processing</td><td class="cell-G:Nr">Procesando</td><td class="cell-koiC">El servidor está procesando la solicitud del cliente, pero aún no ha completado la solicitud. Este código se utiliza a menudo en aplicaciones web que requieren un tiempo de procesamiento prolongado.</td></tr><tr id="6685368f-8e3a-4346-baa7-5d9ebe27c35f"><td class="cell-title"><a href="https://www.notion.so/C-digo-103-6685368f8e3a4346baa75d9ebe27c35f?pvs=21">Código 103</a></td><td class="cell-vQMS">Early Hints</td><td class="cell-G:Nr">Indicaciones preliminares</td><td class="cell-koiC">Este código se utiliza para enviar una respuesta preliminar al cliente antes de que se complete la solicitud. Esto permite al cliente comenzar a procesar la respuesta antes de que se complete la solicitud.jemplos de cada uno de los códigos HTTP del rango 100:</td></tr></tbody></table><br/><br/></div><div id="29ec4e9a-4092-4bb3-aca9-2ee0538e20ef" class="collection-content"><h4 class="collection-title">Códigos del Rango 200 (Respuestas Exitosas)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Inglés</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Español</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Definición</th></tr></thead><tbody><tr id="ba1915e8-3a34-45d5-9840-68a0d547413a"><td class="cell-title"><a href="https://www.notion.so/C-digo-200-ba1915e83a3445d5984068a0d547413a?pvs=21">Código 200</a></td><td class="cell-YDm`">OK</td><td class="cell-nE~O">Correcto</td><td class="cell-bPu&lt;">La solicitud se ha completado correctamente y el servidor ha enviado una respuesta.</td></tr><tr id="dd2b0de0-6118-4b28-bc7a-b4e609fe212a"><td class="cell-title"><a href="https://www.notion.so/C-digo-201-dd2b0de061184b28bc7ab4e609fe212a?pvs=21">Código 201</a></td><td class="cell-YDm`">Created</td><td class="cell-nE~O">Creado</td><td class="cell-bPu&lt;">El recurso se ha creado correctamente en el servidor.</td></tr><tr id="5e55351c-e06d-4993-9356-0b2c94042ce2"><td class="cell-title"><a href="https://www.notion.so/C-digo-202-5e55351ce06d499393560b2c94042ce2?pvs=21">Código 202</a></td><td class="cell-YDm`">Accepted</td><td class="cell-nE~O">Aceptado</td><td class="cell-bPu&lt;">El servidor ha aceptado la solicitud, pero aún no la ha procesado por completo.</td></tr><tr id="be704752-c622-48a8-b029-22f55c7a879c"><td class="cell-title"><a href="https://www.notion.so/C-digo-203-be704752c62248a8b02922f55c7a879c?pvs=21">Código 203</a></td><td class="cell-YDm`">Non-Authoritative Information</td><td class="cell-nE~O">Información no autorizada</td><td class="cell-bPu&lt;">La respuesta del servidor no es la fuente de autoridad para el recurso solicitado.</td></tr><tr id="a78b2573-db84-4a20-ad42-9bc3d4a25b0e"><td class="cell-title"><a href="https://www.notion.so/C-digo-204-a78b2573db844a20ad429bc3d4a25b0e?pvs=21">Código 204</a></td><td class="cell-YDm`">No Content</td><td class="cell-nE~O">Sin contenido</td><td class="cell-bPu&lt;">El servidor ha completado con éxito la solicitud, pero no hay contenido para enviar en la respuesta.</td></tr><tr id="aba2b8e9-fb34-431f-9ae8-623202c90404"><td class="cell-title"><a href="https://www.notion.so/C-digo-205-aba2b8e9fb34431f9ae8623202c90404?pvs=21">Código 205</a></td><td class="cell-YDm`">Reset Content</td><td class="cell-nE~O">Contenido restablecido</td><td class="cell-bPu&lt;">El servidor ha completado con éxito la solicitud y el cliente debe restablecer su vista.</td></tr><tr id="31b5c5d1-92e8-4773-a5e0-9983c65526c7"><td class="cell-title"><a href="https://www.notion.so/C-digo-206-31b5c5d192e84773a5e09983c65526c7?pvs=21">Código 206</a></td><td class="cell-YDm`">Partial Content</td><td class="cell-nE~O">Contenido parcial</td><td class="cell-bPu&lt;">El servidor ha cumplido parcialmente la solicitud GET del cliente.</td></tr><tr id="9c1b1287-270e-496f-85e5-f481d0b61b15"><td class="cell-title"><a href="https://www.notion.so/C-digo-207-9c1b1287270e496f85e5f481d0b61b15?pvs=21">Código 207</a></td><td class="cell-YDm`">Multi-Status</td><td class="cell-nE~O">Estado múltiple</td><td class="cell-bPu&lt;">La respuesta del servidor es una respuesta XML que contiene información sobre varios recursos o estados HTTP.</td></tr><tr id="a35cbc32-9fdb-4014-9241-1915d1b9766f"><td class="cell-title"><a href="https://www.notion.so/C-digo-208-a35cbc329fdb401492411915d1b9766f?pvs=21">Código 208</a></td><td class="cell-YDm`">Already Reported</td><td class="cell-nE~O">Ya reportado</td><td class="cell-bPu&lt;">La respuesta del servidor ya fue reportada en una respuesta anterior y no se enviará de nuevo.</td></tr><tr id="df02677a-b482-4430-ae5d-59cdedc6f067"><td class="cell-title"><a href="https://www.notion.so/C-digo-226-df02677ab4824430ae5d59cdedc6f067?pvs=21">Código 226</a></td><td class="cell-YDm`">IM Used</td><td class="cell-nE~O">IM utilizado</td><td class="cell-bPu&lt;">El servidor ha completado con éxito la solicitud y la respuesta es una representación de los recursos resultantes.</td></tr></tbody></table><br/><br/></div><div id="5412005d-b497-48a9-956e-d342ec99b078" class="collection-content"><h4 class="collection-title">Códigos del Rango 300 (Mensajes de Redirección)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Inglés </th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Español </th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Definición </th></tr></thead><tbody><tr id="667f0ab7-6651-43e2-840e-7730d0ec8498"><td class="cell-title"><a href="https://www.notion.so/C-digo-300-667f0ab7665143e2840e7730d0ec8498?pvs=21">Código 300</a></td><td class="cell-|M__">Multiple Choices</td><td class="cell-LoMO">Múltiples opciones</td><td class="cell-nmpR">El servidor tiene varias opciones para el recurso solicitado, cada una con su propio URI y quizás diferentes respuestas.</td></tr><tr id="174f495d-f52b-4f8a-b23f-cddf6ef80ad9"><td class="cell-title"><a href="https://www.notion.so/C-digo-301-174f495df52b4f8ab23fcddf6ef80ad9?pvs=21">Código 301</a></td><td class="cell-|M__">Moved Permanently</td><td class="cell-LoMO">Movido permanentemente</td><td class="cell-nmpR">El recurso solicitado ha sido movido permanentemente a una nueva ubicación.</td></tr><tr id="2ad7e2ce-2127-4849-88aa-3df4ec59c236"><td class="cell-title"><a href="https://www.notion.so/C-digo-302-2ad7e2ce2127484988aa3df4ec59c236?pvs=21">Código 302</a></td><td class="cell-|M__">Found</td><td class="cell-LoMO">Encontrado</td><td class="cell-nmpR">El recurso solicitado ha sido encontrado temporalmente en una nueva ubicación.</td></tr><tr id="3f7c4d73-72b0-4b7b-9273-3297a843d9c8"><td class="cell-title"><a href="https://www.notion.so/C-digo-303-3f7c4d7372b04b7b92733297a843d9c8?pvs=21">Código 303</a></td><td class="cell-|M__">See Other</td><td class="cell-LoMO">Ver otro</td><td class="cell-nmpR">El servidor ha recibido la solicitud y se requiere que el cliente realice otra solicitud a una nueva ubicación.</td></tr><tr id="d775f689-e4e6-4c60-b4eb-e4037258f857"><td class="cell-title"><a href="https://www.notion.so/C-digo-304-d775f689e4e64c60b4ebe4037258f857?pvs=21">Código 304</a></td><td class="cell-|M__">Not Modified</td><td class="cell-LoMO">No modificado</td><td class="cell-nmpR">El recurso solicitado no ha sido modificado desde la última vez que el cliente lo solicitó.</td></tr><tr id="091ec83e-80f6-4637-9145-12c3df6da6b1"><td class="cell-title"><a href="https://www.notion.so/C-digo-305-091ec83e80f64637914512c3df6da6b1?pvs=21">Código 305</a></td><td class="cell-|M__">Use Proxy</td><td class="cell-LoMO">Usar proxy</td><td class="cell-nmpR">El recurso solicitado solo está disponible a través de un proxy, y el cliente debe usar el proxy especificado.</td></tr><tr id="7834e1f1-f287-42f3-b9ba-55f6c685f24c"><td class="cell-title"><a href="https://www.notion.so/C-digo-306-7834e1f1f28742f3b9ba55f6c685f24c?pvs=21">Código 306</a></td><td class="cell-|M__">Unused</td><td class="cell-LoMO">Sin usar</td><td class="cell-nmpR">Este código se solía utilizar en versiones anteriores del protocolo HTTP, pero ya no se utiliza.</td></tr><tr id="eb78c527-2c28-451c-bc29-5b0cffb98ea9"><td class="cell-title"><a href="https://www.notion.so/C-digo-307-eb78c5272c28451cbc295b0cffb98ea9?pvs=21">Código 307</a></td><td class="cell-|M__">Temporary Redirect</td><td class="cell-LoMO">Redirección temporal</td><td class="cell-nmpR">El recurso solicitado ha sido encontrado temporalmente en una nueva ubicación, pero el cliente debe continuar utilizando la ubicación original en futuras solicitudes.</td></tr><tr id="fa2e1794-6129-4db9-9d01-ebd34c23f031"><td class="cell-title"><a href="https://www.notion.so/C-digo-308-fa2e179461294db99d01ebd34c23f031?pvs=21">Código 308</a></td><td class="cell-|M__">Permanent Redirect</td><td class="cell-LoMO">Redirección permanente</td><td class="cell-nmpR">El recurso solicitado ha sido movido permanentemente a una nueva ubicación, y todas las solicitudes futuras deben utilizar la nueva ubicación.</td></tr></tbody></table><br/><br/></div><div id="330b88ae-6312-432b-994a-8f2af84324cb" class="collection-content"><h4 class="collection-title">Códigos del rango 400 (Respuestas de Error del lado del Cliente)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Inglés</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Español</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Definición</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Ejemplo</th></tr></thead><tbody><tr id="c2155194-b378-4431-a07f-96b1c6135c04"><td class="cell-title"><a href="https://www.notion.so/C-digo-400-c2155194b3784431a07f96b1c6135c04?pvs=21">Código 400</a></td><td class="cell-L~Ie">Bad Request</td><td class="cell-FFik">Solicitud incorrecta</td><td class="cell-]Duy">La solicitud del cliente no se pudo comprender debido a una sintaxis incorrecta.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com</code></td></tr><tr id="f794c21c-25ca-41d0-9ef1-0d733159a60f"><td class="cell-title"><a href="https://www.notion.so/C-digo-401-f794c21c25ca41d09ef10d733159a60f?pvs=21">Código 401</a></td><td class="cell-L~Ie">Unauthorized</td><td class="cell-FFik">No autorizado</td><td class="cell-]Duy">El cliente no está autorizado para acceder al recurso solicitado.</td><td class="cell-&lt;tOz"><code>GET /secure-page.html HTTP/1.1 Host: example.com</code></td></tr><tr id="3af8aaf2-b21b-476a-b3d8-edc0c961f317"><td class="cell-title"><a href="https://www.notion.so/C-digo-402-3af8aaf2b21b476ab3d8edc0c961f317?pvs=21">Código 402</a></td><td class="cell-L~Ie">Payment Required</td><td class="cell-FFik">Requiere pago</td><td class="cell-]Duy">Este código se solía utilizar para indicar que el cliente debía realizar un pago para acceder al recurso solicitado, pero ya no se utiliza.</td><td class="cell-&lt;tOz">N/A</td></tr><tr id="155b7183-5191-42cb-9218-fdaa9af02e0d"><td class="cell-title"><a href="https://www.notion.so/C-digo-403-155b7183519142cb9218fdaa9af02e0d?pvs=21">Código 403</a></td><td class="cell-L~Ie">Forbidden</td><td class="cell-FFik">Prohibido</td><td class="cell-]Duy">El cliente está autenticado, pero no tiene permiso para acceder al recurso solicitado.</td><td class="cell-&lt;tOz"><code>GET /admin-page.html HTTP/1.1 Host: example.com</code></td></tr><tr id="b4246227-bc2f-4e38-a503-e2c9b1c4cc64"><td class="cell-title"><a href="https://www.notion.so/C-digo-404-b4246227bc2f4e38a503e2c9b1c4cc64?pvs=21">Código 404</a></td><td class="cell-L~Ie">Not Found</td><td class="cell-FFik">No encontrado</td><td class="cell-]Duy">El servidor no pudo encontrar el recurso solicitado.</td><td class="cell-&lt;tOz"><code>GET /non-existent-page.html HTTP/1.1 Host: example.com</code></td></tr><tr id="3f813e2a-c60d-47bd-be2b-f635dcbae520"><td class="cell-title"><a href="https://www.notion.so/C-digo-405-3f813e2ac60d47bdbe2bf635dcbae520?pvs=21">Código 405</a></td><td class="cell-L~Ie">Method Not Allowed</td><td class="cell-FFik">Método no permitido</td><td class="cell-]Duy">El método de solicitud utilizado no está permitido en el recurso solicitado.</td><td class="cell-&lt;tOz"><code>DELETE /index.html HTTP/1.1 Host: example.com</code></td></tr><tr id="94f5ae4f-dec9-480e-9500-a15a1ea8101a"><td class="cell-title"><a href="https://www.notion.so/C-digo-406-94f5ae4fdec9480e9500a15a1ea8101a?pvs=21">Código 406</a></td><td class="cell-L~Ie">Not Acceptable</td><td class="cell-FFik">No aceptable</td><td class="cell-]Duy">El servidor no puede producir una respuesta que sea aceptable según los encabezados Accept enviados en la solicitud del cliente.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com Accept: application/json</code></td></tr><tr id="7a7dd595-5694-4380-bb35-bf9941882d2c"><td class="cell-title"><a href="https://www.notion.so/C-digo-407-7a7dd59556944380bb35bf9941882d2c?pvs=21">Código 407</a></td><td class="cell-L~Ie">Proxy Authentication Required</td><td class="cell-FFik">Se requiere autenticación de proxy</td><td class="cell-]Duy">El cliente debe autenticarse con el proxy antes de poder acceder al recurso solicitado.</td><td class="cell-&lt;tOz"><code>GET /secure-page.html HTTP/1.1 Host: example.com Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></td></tr><tr id="a021c5dc-9d22-45a0-8500-f5d93f175614"><td class="cell-title"><a href="https://www.notion.so/C-digo-408-a021c5dc9d2245a08500f5d93f175614?pvs=21">Código 408</a></td><td class="cell-L~Ie">Request Timeout</td><td class="cell-FFik">Tiempo de espera de la solicitud</td><td class="cell-]Duy">El servidor ha esperado demasiado tiempo para recibir la solicitud del cliente.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com</code></td></tr><tr id="3f9ffb69-8aeb-41c7-9219-f1afb4d54124"><td class="cell-title"><a href="https://www.notion.so/C-digo-409-3f9ffb698aeb41c79219f1afb4d54124?pvs=21">Código 409</a></td><td class="cell-L~Ie">Conflict</td><td class="cell-FFik">Conflicto</td><td class="cell-]Duy">La solicitud del cliente entró en conflicto con el estado actual del recurso.</td><td class="cell-&lt;tOz"><code>PUT /resource HTTP/1.1 Host: example.com If-Match: &quot;abc123&quot; Content-Type: application/json Content-Length: 100 {&quot;name&quot;: &quot;Resource Name&quot;}</code></td></tr><tr id="2bebf3e0-231a-46e1-b5b6-486e5ea5ba02"><td class="cell-title"><a href="https://www.notion.so/C-digo-410-2bebf3e0231a46e1b5b6486e5ea5ba02?pvs=21">Código 410</a></td><td class="cell-L~Ie">Gone</td><td class="cell-FFik">Desaparecido</td><td class="cell-]Duy">El recurso solicitado ya no está disponible y no se sabe si volverá a estar disponible en el futuro.</td><td class="cell-&lt;tOz"><code>GET /old-page.html HTTP/1.1 Host: example.com</code></td></tr><tr id="0d168dbe-5c43-454b-be99-9b936c7e8535"><td class="cell-title"><a href="https://www.notion.so/C-digo-411-0d168dbe5c43454bbe999b936c7e8535?pvs=21">Código 411</a></td><td class="cell-L~Ie">Length Required</td><td class="cell-FFik">Longitud requerida</td><td class="cell-]Duy">El servidor requiere que el cliente incluya un encabezado Content-Length en la solicitud.</td><td class="cell-&lt;tOz"><code>POST /submit-form HTTP/1.1 Host: example.com Content-Type: application/x-www-form-urlencoded Content-Length: 100</code></td></tr><tr id="09389be3-73cf-4523-9a8f-f1f5df402a96"><td class="cell-title"><a href="https://www.notion.so/C-digo-412-09389be373cf45239a8ff1f5df402a96?pvs=21">Código 412</a></td><td class="cell-L~Ie">Precondition Failed</td><td class="cell-FFik">Falló la condición previa</td><td class="cell-]Duy">La condición previa establecida en la solicitud del cliente no se cumplió.</td><td class="cell-&lt;tOz"><code>PUT /resource HTTP/1.1 Host: example.com If-Match: &quot;abc123&quot; Content-Type: application/json Content-Length: 100 {&quot;name&quot;: &quot;Resource Name&quot;}</code></td></tr><tr id="6082dfde-86e8-4093-acda-3aaecb533598"><td class="cell-title"><a href="https://www.notion.so/C-digo-413-6082dfde86e84093acda3aaecb533598?pvs=21">Código 413</a></td><td class="cell-L~Ie">Request Entity Too Large</td><td class="cell-FFik">Entidad de solicitud demasiado grande</td><td class="cell-]Duy">La entidad de la solicitud del cliente es demasiado grande para que el servidor la maneje.</td><td class="cell-&lt;tOz"><code>POST /upload-file HTTP/1.1 Host: example.com Content-Type: multipart/form-data Content-Length: 10000000</code></td></tr><tr id="b9801fcb-543d-456d-b87c-1fd9b4379e55"><td class="cell-title"><a href="https://www.notion.so/C-digo-414-b9801fcb543d456db87c1fd9b4379e55?pvs=21">Código 414</a></td><td class="cell-L~Ie">Request-URI Too Long</td><td class="cell-FFik">URI de solicitud demasiado larga</td><td class="cell-]Duy">El URI de la solicitud del cliente es demasiado largo para que el servidor lo maneje.</td><td class="cell-&lt;tOz"><code>GET /very/long/path/to/resource HTTP/1.1 Host: example.com</code></td></tr><tr id="b5a2e95d-6f70-41f8-a04a-ab5a3b1f9bac"><td class="cell-title"><a href="https://www.notion.so/C-digo-415-b5a2e95d6f7041f8a04aab5a3b1f9bac?pvs=21">Código 415</a></td><td class="cell-L~Ie">Unsupported Media Type</td><td class="cell-FFik">Tipo de medio no soportado</td><td class="cell-]Duy">El servidor no puede manejar el tipo de medio incluido en la solicitud del cliente.</td><td class="cell-&lt;tOz"><code>POST /submit-form HTTP/1.1 Host: example.com Content-Type: application/xml Content-Length: 100</code></td></tr><tr id="110efb60-2389-4e54-826c-fa52507a1089"><td class="cell-title"><a href="https://www.notion.so/C-digo-416-110efb6023894e54826cfa52507a1089?pvs=21">Código 416</a></td><td class="cell-L~Ie">Requested Range Not Satisfiable</td><td class="cell-FFik">Rango solicitado no satisfactorio</td><td class="cell-]Duy">La solicitud del cliente incluyó un encabezado Range, y el servidor no puede satisfacer ese rango.</td><td class="cell-&lt;tOz"><code>GET /large-file.mp4 HTTP/1.1 Host: example.com Range: bytes=1000000-2000000</code></td></tr><tr id="b2304486-65e8-4b99-ad75-eeafddcbecd8"><td class="cell-title"><a href="https://www.notion.so/C-digo-417-b230448665e84b99ad75eeafddcbecd8?pvs=21">Código 417</a></td><td class="cell-L~Ie">Expectation Failed</td><td class="cell-FFik">Falló la expectativa</td><td class="cell-]Duy">El servidor no puede cumplir con los requisitos en el encabezado Expect enviado en la solicitud del cliente.</td><td class="cell-&lt;tOz"><code>POST /submit-form HTTP/1.1 Host: example.com Expect: 100-continue Content-Type: application/json Content-Length: 100 {&quot;username&quot;: &quot;johndoe&quot;, &quot;password&quot;: &quot;password123&quot;}</code></td></tr><tr id="3444c926-8fe8-4f8f-9615-f414f7aa7bb7"><td class="cell-title"><a href="https://www.notion.so/C-digo-418-3444c9268fe84f8f9615f414f7aa7bb7?pvs=21">Código 418</a></td><td class="cell-L~Ie">I&#x27;m a teapot</td><td class="cell-FFik">Soy una tetera</td><td class="cell-]Duy">Este código se utiliza en ocasiones como una broma o un huevo de Pascua, y no tiene un uso real en el protocolo HTTP.</td><td class="cell-&lt;tOz"><code>GET /teapot HTTP/1.1 Host: example.com</code></td></tr><tr id="c4827171-1af8-46f7-8ea9-519a5ef42945"><td class="cell-title"><a href="https://www.notion.so/C-digo-421-c48271711af846f78ea9519a5ef42945?pvs=21">Código 421</a></td><td class="cell-L~Ie">Misdirected Request</td><td class="cell-FFik">Solicitud mal dirigida</td><td class="cell-]Duy">La solicitud del cliente se dirigió a un servidor que no puede producir una respuesta.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com</code></td></tr><tr id="4c7ce4cc-d002-4c02-8115-6b2cf6819a67"><td class="cell-title"><a href="https://www.notion.so/C-digo-422-4c7ce4ccd0024c0281156b2cf6819a67?pvs=21">Código 422</a></td><td class="cell-L~Ie">Unprocessable Entity</td><td class="cell-FFik">Entidad no procesable</td><td class="cell-]Duy">La solicitud del cliente está bien formada, pero no se puede seguir debido a errores semánticos.</td><td class="cell-&lt;tOz"><code>POST /submit-form HTTP/1.1 Host: example.com Content-Type: application/json Content-Length: 100 {&quot;username&quot;: &quot;&quot;, &quot;password&quot;: &quot;password123&quot;}</code></td></tr><tr id="6e42165f-9970-43ca-bd28-a2fa2ac6178a"><td class="cell-title"><a href="https://www.notion.so/C-digo-423-6e42165f997043cabd28a2fa2ac6178a?pvs=21">Código 423</a></td><td class="cell-L~Ie">Locked</td><td class="cell-FFik">Bloqueado</td><td class="cell-]Duy">El recurso solicitado está bloqueado y solo disponible para acceso de lectura.</td><td class="cell-&lt;tOz"><code>GET /locked-resource HTTP/1.1 Host: example.com</code></td></tr><tr id="44e7a414-c0ea-4388-99fb-212cccb1cd08"><td class="cell-title"><a href="https://www.notion.so/C-digo-424-44e7a414c0ea438899fb212cccb1cd08?pvs=21">Código 424</a></td><td class="cell-L~Ie">Failed Dependency</td><td class="cell-FFik">Dependencia fallida</td><td class="cell-]Duy">La solicitud falló debido a una falla en la solicitud previa.</td><td class="cell-&lt;tOz"><code>PUT /resource HTTP/1.1 Host: example.com If-Match: &quot;abc123&quot; Content-Type: application/json Content-Length: 100 {&quot;name&quot;: &quot;Resource Name&quot;}</code></td></tr><tr id="bb669c54-237a-4c14-b8ec-ee58470028f0"><td class="cell-title"><a href="https://www.notion.so/C-digo-426-bb669c54237a4c14b8ecee58470028f0?pvs=21">Código 426</a></td><td class="cell-L~Ie">Upgrade Required</td><td class="cell-FFik">Requiere actualización</td><td class="cell-]Duy">El cliente debe actualizar a otra versión del protocolo.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.0 Host: example.com Upgrade: HTTP/2.0</code></td></tr><tr id="6bb86c93-5e5e-4671-94db-5253767c29de"><td class="cell-title"><a href="https://www.notion.so/C-digo-428-6bb86c935e5e467194db5253767c29de?pvs=21">Código 428</a></td><td class="cell-L~Ie">Precondition Required</td><td class="cell-FFik">Se requiere condición previa</td><td class="cell-]Duy">El servidor requiere que la solicitud del cliente incluya una condición previa.</td><td class="cell-&lt;tOz"><code>PUT /resource HTTP/1.1 Host: example.com Content-Type: application/json Content-Length: 100 {&quot;name&quot;: &quot;Resource Name&quot;}</code></td></tr><tr id="95de0b0d-e615-4a43-ae3d-e7f517fb3d57"><td class="cell-title"><a href="https://www.notion.so/C-digo-429-95de0b0de6154a43ae3de7f517fb3d57?pvs=21">Código 429</a></td><td class="cell-L~Ie">Too Many Requests</td><td class="cell-FFik">Demasiadas solicitudes</td><td class="cell-]Duy">El cliente ha realizado demasiadas solicitudes en un período de tiempo determinado.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com</code></td></tr><tr id="4b5c4b56-00f9-4b8d-a204-10e6b15b1d32"><td class="cell-title"><a href="https://www.notion.so/C-digo-431-4b5c4b5600f94b8da20410e6b15b1d32?pvs=21">Código 431</a></td><td class="cell-L~Ie">Request Header Fields Too Large</td><td class="cell-FFik">Campos de encabezado de solicitud demasiado grandes</td><td class="cell-]Duy">Los encabezados de la solicitud del cliente son demasiado grandes para que el servidor los procese.</td><td class="cell-&lt;tOz"><code>GET /index.html HTTP/1.1 Host: example.com Cookie: ...</code></td></tr><tr id="baf60380-8bc6-4fc5-9c72-cedf9d953409"><td class="cell-title"><a href="https://www.notion.so/C-digo-451-baf603808bc64fc59c72cedf9d953409?pvs=21">Código 451</a></td><td class="cell-L~Ie">Unavailable For Legal Reasons</td><td class="cell-FFik">No disponible por razones legales</td><td class="cell-]Duy">El servidor se niega a responder a la solicitud por razones legales.</td><td class="cell-&lt;tOz"><code>GET /censored-resource HTTP/1.1 Host: example.com</code></td></tr></tbody></table><br/><br/></div><div id="37c7aeb2-d438-49ba-b206-04d983fe764d" class="collection-content"><h4 class="collection-title">Códigos del rango 500 (Respuestas de Error del lado del Servidor)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Inglés</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Nombre en Español</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Definición</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Ejemplo</th></tr></thead><tbody><tr id="2cb067d3-16fb-4e61-bffc-5c114ed45185"><td class="cell-title"><a href="https://www.notion.so/C-digo-500-2cb067d316fb4e61bffc5c114ed45185?pvs=21">Código 500</a></td><td class="cell-{J;:">Internal Server Error</td><td class="cell-N:?l">Error interno del servidor</td><td class="cell-v[Cq">El servidor encontró un error interno o una excepción que lo impidió de procesar la solicitud del cliente.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="3ca23ba7-4c4c-462d-b230-348773e2d6a7"><td class="cell-title"><a href="https://www.notion.so/C-digo-501-3ca23ba74c4c462db230348773e2d6a7?pvs=21">Código 501</a></td><td class="cell-{J;:">Not Implemented</td><td class="cell-N:?l">No implementado</td><td class="cell-v[Cq">El servidor no es capaz de manejar la solicitud del cliente, ya que el método de solicitud no está soportado o el servidor no tiene la capacidad necesaria para manejarlo.</td><td class="cell-uQpK">PUT /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="490d08b1-4460-4838-a453-206a62e6bb58"><td class="cell-title"><a href="https://www.notion.so/C-digo-502-490d08b144604838a453206a62e6bb58?pvs=21">Código 502</a></td><td class="cell-{J;:">Bad Gateway</td><td class="cell-N:?l">Puerta de enlace incorrecta</td><td class="cell-v[Cq">El servidor actuó como una puerta de enlace o proxy y recibió una respuesta inválida del servidor ascendente.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="943790ef-1534-4bd9-b17a-33de3835d84a"><td class="cell-title"><a href="https://www.notion.so/C-digo-503-943790ef15344bd9b17a33de3835d84a?pvs=21">Código 503</a></td><td class="cell-{J;:">Service Unavailable</td><td class="cell-N:?l">Servicio no disponible</td><td class="cell-v[Cq">El servidor no está disponible temporalmente debido a mantenimiento o sobrecarga.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="25de69a2-65ea-48cc-b097-ae9c817cb643"><td class="cell-title"><a href="https://www.notion.so/C-digo-504-25de69a265ea48ccb097ae9c817cb643?pvs=21">Código 504</a></td><td class="cell-{J;:">Gateway Timeout</td><td class="cell-N:?l">Tiempo de espera de la puerta de enlace</td><td class="cell-v[Cq">El servidor actuó como puerta de enlace o proxy y no recibió una respuesta oportuna del servidor ascendente.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="6555e299-ddef-4c9e-9fc2-7479f8c99251"><td class="cell-title"><a href="https://www.notion.so/C-digo-505-6555e299ddef4c9e9fc27479f8c99251?pvs=21">Código 505</a></td><td class="cell-{J;:">HTTP Version Not Supported</td><td class="cell-N:?l">Versión HTTP no soportada</td><td class="cell-v[Cq">El servidor no admite la versión HTTP utilizada en la solicitud del cliente.</td><td class="cell-uQpK">GET /index.html HTTP/2.0 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="257fda83-4d70-4990-90bd-e3aa5b8222bc"><td class="cell-title"><a href="https://www.notion.so/C-digo-506-257fda834d70499090bde3aa5b8222bc?pvs=21">Código 506</a></td><td class="cell-{J;:">Variant Also Negotiates</td><td class="cell-N:?l">Variante también negocia</td><td class="cell-v[Cq">El servidor ha detectado una referencia circular en la lista de variantes negociables para el recurso solicitado.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a></td></tr><tr id="b5e1819d-2da8-43e5-9da6-573263da8661"><td class="cell-title"><a href="https://www.notion.so/C-digo-507-b5e1819d2da843e59da6573263da8661?pvs=21">Código 507</a></td><td class="cell-{J;:">Insufficient Storage</td><td class="cell-N:?l">Espacio de almacenamiento insuficiente</td><td class="cell-v[Cq">El servidor no puede crear o modificar el recurso solicitado porque no hay suficiente espacio de almacenamiento libre.</td><td class="cell-uQpK">PUT /large-file.mp4 HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a> Content-Type: video/mp4 Content-Length: 1000000000</td></tr><tr id="1a6ad5a6-a791-4ff0-9ebe-8277aba1ded4"><td class="cell-title"><a href="https://www.notion.so/C-digo-508-1a6ad5a6a7914ff09ebe8277aba1ded4?pvs=21">Código 508</a></td><td class="cell-{J;:">Loop Detected</td><td class="cell-N:?l">Bucle detectado</td><td class="cell-v[Cq">El servidor ha detectado una referencia circular en la solicitud del cliente.</td><td class="cell-uQpK">GET /resource1 HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a> If-None-Match: &quot;123&quot; If-Match: &quot;456&quot;</td></tr><tr id="d2dcf4e4-0d3f-48cb-abbe-df0885bd5108"><td class="cell-title"><a href="https://www.notion.so/C-digo-510-d2dcf4e40d3f48cbabbedf0885bd5108?pvs=21">Código 510</a></td><td class="cell-{J;:">Not Extended</td><td class="cell-N:?l">No extendido</td><td class="cell-v[Cq">La solicitud del cliente incluyó una extensión que el servidor no soporta.</td><td class="cell-uQpK">GET /index.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a> X-Custom-Header: value</td></tr><tr id="753efb2e-e59f-44a4-a8f9-596c48484483"><td class="cell-title"><a href="https://www.notion.so/C-digo-511-753efb2ee59f44a4a8f9596c48484483?pvs=21">Código 511</a></td><td class="cell-{J;:">Network Authentication Required</td><td class="cell-N:?l">Se requiere autenticación de red</td><td class="cell-v[Cq">El cliente debe autenticarse con la red antes de poder acceder al recurso solicitado.</td><td class="cell-uQpK">GET /secure-page.html HTTP/1.1 Host: <a href="http://example.com/">http://example.com/</a> Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</td></tr></tbody></table><br/><br/></div><h1 id="17e9e480-813d-4fcb-9dee-290b127ab32d" class="">HTTP (Hypertext Transfer Protocol) vs. HTTPS (HTTPS Seguro) - Hypertext Transfer Protocol Secure</h1><p id="50d6c7fd-5adb-4a63-b6ee-43f6880b4f0c" class="">HTTP y HTTPS son dos protocolos diferentes que se utilizan para transferir información entre servidores y clientes en la internet. La principal diferencia entre HTTP y HTTPS es que HTTPS utiliza una capa adicional de seguridad llamada SSL/TLS para proteger la información que se transfiere entre el servidor y el cliente.</p><p id="acedfc7e-31cf-4b46-b302-f54ac14e9312" class="">Cuando un usuario accede a un sitio web con HTTP, la información que se transfiere entre el servidor y el cliente se envía en texto plano. Esto significa que cualquier persona que intercepte la información puede leerla. Por ejemplo, si un usuario está comprando un producto en un sitio web con HTTP, cualquier persona que intercepte la comunicación puede leer la información y capturar los datos de la tarjeta de crédito y utilizarla para cometer fraudes.</p><p id="7c8fac0e-4b3b-4361-8873-0c63ee252eb1" class="">HTTPS, por otro lado, utiliza una capa adicional de seguridad llamada SSL/TLS para proteger la información que se transfiere entre el servidor y el cliente. SSL/TLS utiliza un proceso de cifrado para convertir la información en un código que solo puede ser leído por el servidor y el cliente que se están comunicando. Esto significa que si un atacante intercepta la información, no podrá entenderla.</p><p id="76db76e7-d6a9-4425-9a88-eb07529eab3d" class="">
+</p><figure id="f4097117-9d88-4dee-837d-580f579139a1" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTPs.png"><img style="width:572px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/HTTPs.png"/></a><figcaption>Imagen: Comparación entre HTTP y HTTPS</figcaption></figure><figure id="1f758538-e433-4751-9ed3-c4b0b11f9b08"><div class="source"><iframe src="https://player.vimeo.com/video/844027153?h=89facd5ca9" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="f3147daa-c08b-4e84-914c-83fff481febf" class="">TLS</h2><p id="f0593737-bb66-4188-9f39-eb9da109c9af" class="">TLS (Transport Layer Security) es un protocolo de seguridad que se utiliza para proteger la información que se transfiere entre servidores y clientes en la internet. TLS utiliza un proceso de cifrado para convertir la información en un código que solo puede ser leído por el servidor y el cliente que se están comunicando. Esto significa que si un atacante intercepta la información, no podrá entenderla.</p><p id="6be6452e-3794-46ae-beba-9a2b2b5f36bd" class="">Un ejemplo de cómo se utiliza TLS es cuando un usuario accede a un sitio web con HTTPS. Cuando el usuario accede al sitio web, el servidor y el cliente intercambian certificados digitales para establecer una conexión segura. Estos certificados digitales garantizan que el servidor es quien dice ser y que la información que se transfiere está protegida por TLS.</p><p id="92ac99ae-193d-4d2f-80e9-37bd9c5afce5" class="">TLS también se utiliza para proteger otro tipo de comunicaciones, como el correo electrónico y las conexiones VPN. En general, TLS es una parte importante de la seguridad en la internet y se utiliza ampliamente para proteger la información confidencial de los usuarios.</p><p id="8121e73e-3941-4f79-9e47-a38e3d1bea11" class="">
+</p><figure id="cfa01853-98dc-430a-bf3a-003755d22a4a" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/TLS.png"><img style="width:779px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/TLS.png"/></a><figcaption>Imagen: TLS Handshake</figcaption></figure><figure id="eb081de8-67ab-468b-a8ab-18eb73eaee97"><div class="source"><iframe src="https://player.vimeo.com/video/844027566?h=28793fc719" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><p id="109583ec-7032-47cb-a6ff-effdd9c8e112" class=""><strong>Tabla de Versiones de TLS</strong></p><table id="2f8b3e1f-09ee-4be0-83b9-72332df37ece" class="simple-table"><thead class="simple-table-header"><tr id="10d588fb-b086-40ab-b7e4-8feb676ff853"><th id="bmh:" class="block-color-orange_background simple-table-header">Versión</th><th id="stjF" class="block-color-orange_background simple-table-header" style="width:514.9942932128906px">Características</th><th id="HzRF" class="block-color-orange_background simple-table-header" style="width:432.99998474121094px">Vulnerabilidades conocidas</th></tr></thead><tbody><tr id="fea45938-6ee1-4b2f-a643-008e959b0bd3"><td id="bmh:" class="">TLS 1.0</td><td id="stjF" class="" style="width:514.9942932128906px">Soporta cifrado simétrico y asimétrico.</td><td id="HzRF" class="" style="width:432.99998474121094px">Vulnerable a ataques BEAST y POODLE.</td></tr><tr id="ca7180ae-8844-4186-8324-c732ded9e3b5"><td id="bmh:" class="">TLS 1.1</td><td id="stjF" class="" style="width:514.9942932128906px">Soporta cifrado simétrico y asimétrico. Mejora la seguridad de TLS 1.0.</td><td id="HzRF" class="" style="width:432.99998474121094px">Vulnerable a ataques Lucky13 y RC4.</td></tr><tr id="0a845f15-313d-44ae-a6db-a063e8353a6a"><td id="bmh:" class="">TLS 1.2</td><td id="stjF" class="" style="width:514.9942932128906px">Soporta cifrado simétrico y asimétrico. Mejora la seguridad de TLS 1.1.</td><td id="HzRF" class="" style="width:432.99998474121094px">Vulnerable a ataques DROWN y Logjam.</td></tr><tr id="0a6cac85-2c18-4021-a068-c4ea73568f91"><td id="bmh:" class="">TLS 1.3</td><td id="stjF" class="" style="width:514.9942932128906px">Soporta cifrado simétrico y asimétrico. Mejora la seguridad de TLS 1.2.</td><td id="HzRF" class="" style="width:432.99998474121094px">No se conocen vulnerabilidades hasta el momento.</td></tr></tbody></table><p id="b22254e8-05ed-4ea4-9950-46a0a76d3b49" class="">Para probar que tipo de Cifrados soporta un sitio WEB podemos usar un Script de Nmap:</p><figure id="2a406124-b49c-45e2-b3c0-ab57e3bcd94c"><a href="https://nmap.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Nmap: the Network Mapper - Free Security Scanner</div><div class="bookmark-description">Nmap Free Security Scanner, Port Scanner, &amp; Network Exploration Tool. Download open source software for Linux, Windows, UNIX, FreeBSD, etc.</div></div><div class="bookmark-href"><img src="https://nmap.org/shared/images/tiny-eyeicon.png" class="icon bookmark-icon"/>https://nmap.org/</div></div></a></figure><p id="2e639ff7-9e16-44f4-8b8b-b358c089b39d" class="">Si quieres aprender sobre Nmap estos videos en mi canal te van a ayudar:</p><figure id="3591f4c0-ebbf-421e-885b-c16662bc9308"><a href="https://youtu.be/n6r9ioTj5AI" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Módulo 2 - 3 NMAP</div><div class="bookmark-description">Hola a tod@s! El día de hoy hemos decidido en pro de la educación y de ustedes, dejar en línea y de forma gratuita nuestro curso Pentesting con Herramientas Open Source. Este es un curso que hace parte de nuestra plataforma de educación en línea, pero por motivo de actualización del pensum, contenido y vídeos del mismo, hemos dejado la versión previa a su disposición. Es una versión que no es la más actual pero les puede ayudar a complementar sus conocimientos y es contenido que aún en el presente está vigente.
+
+Esperamos que les sea de utilidad! ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/0e9d1cf9/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/n6r9ioTj5AI</div></div><img src="https://i.ytimg.com/vi/n6r9ioTj5AI/hqdefault.jpg" class="bookmark-image"/></a></figure><figure id="7cbc39d8-d120-4b6f-aa86-9a3ea54a7166"><a href="https://youtu.be/qfiVigFaLR0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Detectar puertos abiertos en una máquina con el Firewall activado con Nmap</div><div class="bookmark-description">Nmap para detectar puertos abiertos aún con el firewall activo. ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/0e9d1cf9/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/qfiVigFaLR0</div></div><img src="https://i.ytimg.com/vi/qfiVigFaLR0/maxresdefault.jpg" class="bookmark-image"/></a></figure><p id="6ea3a736-6b3b-4e71-8fd8-57e14bd24833" class="">El comando de Nmap usando un Script para detectar el cifrado SSL de un sitio web es:</p><pre id="8a2dbda3-7433-4ace-abd5-28b839763a33" class="code"><code>nmap -sV --script ssl-enum-ciphers -p 443 &lt;host&gt;</code></pre><p id="5d46b596-d01e-4bbd-9e64-d4eaec105311" class="">O podemos usar la herramienta Sslscan:</p><figure id="b78afa89-c7c6-457c-803c-23c76b123178"><a href="https://www.kali.org/tools/sslscan/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">sslscan | Kali Linux Tools</div></div><div class="bookmark-href"><img src="https://www.kali.org/images/favicon.png" class="icon bookmark-icon"/>https://www.kali.org/tools/sslscan/</div></div><img src="https://www.kali.org/images/kali-logo.svg" class="bookmark-image"/></a></figure><p id="bf85c2a7-5e98-4615-91b5-26e949911cbc" class="">El uso del comando es el siguiente:</p><pre id="ad272ac3-b907-412c-b763-fed43c850989" class="code"><code>sslscan https://host:puerto</code></pre><p id="17b11d4b-378a-4e3d-a724-40bdb6c670ee" class="">
+</p><h2 id="1ad06e70-ae4d-4b8c-9836-8d47e5050779" class="">Manejo de Información de Tracking de Sesiones</h2><h3 id="2968495f-95c9-42d3-af1c-2d0a09c56c30" class="">Cookies</h3><p id="75c0e2f2-85be-4166-8ffd-bad785d57ceb" class="">En HTTP, las sesiones se manejan mediante el uso de cookies. Una cookie es un pequeño archivo de texto que un servidor web envía a un navegador y que se almacena en el disco duro del usuario. La cookie contiene información que el servidor web puede utilizar para identificar al usuario en futuras solicitudes.</p><p id="25ef9d76-85c1-4639-8d01-09429a3678f0" class="">Cuando un usuario inicia sesión en un sitio web, el servidor web puede enviar una cookie al navegador del usuario que contiene una identificación única para esa sesión. El navegador almacena la cookie y la envía de vuelta al servidor web en cada solicitud subsiguiente. De esta manera, el servidor web puede identificar al usuario y mantener la sesión activa durante todo el tiempo que el usuario esté interactuando con el sitio.</p><p id="da83cb65-2a77-4130-8d31-651a347a6980" class="">Por ejemplo, digamos que un usuario inicia sesión en un sitio de redes sociales. El servidor web podría enviar una cookie al navegador del usuario que contiene una identificación única para esa sesión. Luego, cuando el usuario hace clic en un enlace para ver su perfil, el navegador incluirá automáticamente la cookie en la solicitud. El servidor web puede usar la cookie para identificar al usuario y mostrar su perfil.</p><p id="ed69e68a-2474-42d6-8e6d-c7c78d36119e" class="">Es importante tener en cuenta que las cookies pueden ser vulnerables a ataques, como la suplantación de identidad o el secuestro de sesión. Por esta razón, es importante que los sitios web implementen medidas de seguridad adecuadas, como el cifrado de cookies y la validación de las solicitudes.</p><p id="df5c602f-eb94-4e66-95e0-48cbabc97de1" class="">Imaginemos que tienes una tienda en línea y deseas que tus clientes inicien sesión para acceder a su historial de compras y preferencias de productos. Cuando un cliente ingresa sus credenciales de inicio de sesión y se autentica correctamente, el servidor crea una cookie que contiene un identificador único y la envía al navegador del cliente.</p><p id="038c8b41-1e5f-4233-877d-6bf8acc11424" class="">Cada vez que el cliente realiza una nueva solicitud al servidor, su navegador envía automáticamente la cookie al servidor junto con la solicitud. El servidor utiliza el identificador único de la cookie para identificar al cliente y mantener su sesión activa. De esta manera, el servidor sabe qué información mostrar al cliente y qué acciones puede realizar en la tienda en línea.</p><p id="8b5a59a3-bc7a-40a6-b695-f770909ddaab" class="">Por ejemplo, cuando el cliente agrega un producto al carrito de compras y luego cierra el navegador, la cookie se almacena en el navegador del cliente. Cuando el cliente vuelve a abrir el navegador y visita la tienda en línea nuevamente, la cookie se envía automáticamente al servidor junto con la solicitud y el servidor puede identificar al cliente y restaurar su sesión anterior. Esto significa que el producto que el cliente agregó anteriormente seguirá estando en su carrito de compras y podrá continuar comprando sin tener que comenzar de nuevo.</p><p id="6088584d-dedc-40dd-aa40-60697201de6c" class="">La duración de la sesión también se puede especificar en la cookie. Por ejemplo, si el cliente no realiza ninguna acción en la tienda en línea durante un período de tiempo específico, la sesión puede expirar y el cliente deberá volver a iniciar sesión para continuar navegando.</p><p id="12441302-b0c3-4dea-8850-1bde14405ea3" class="">En resumen, las cookies se utilizan comúnmente para manejar sesiones en HTTP, lo que permite a los servidores identificar a los clientes y mantener sus sesiones activas. Esto es especialmente útil en aplicaciones web donde el usuario necesita permanecer autenticado para acceder a información personalizada o realizar acciones específicas.</p><p id="4e6ead32-6892-4cf6-9a1d-055df83e120b" class="">Un ejemplo de una cookie podría ser: </p><pre id="33da7376-72f4-4350-ac68-10dfc484bdb9" class="code"><code>Cookie: session_token=abc123def456xyz789</code></pre><p id="688d261a-84cb-47a8-8cad-6439b743aaf5" class="">En este caso, <code>abc123def456xyz789</code> es la cadena de caracteres que identifica la sesión del usuario en el servidor. La cookie se envía automáticamente en cada solicitud subsiguiente para mantener la sesión activa.</p><figure id="4d3dddc9-34ab-4078-81c2-f08f6ecd0eaf" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Cookie_1.png"><img style="width:572px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Cookie_1.png"/></a><figcaption>Imagen: Login usando Cookies</figcaption></figure><figure id="5b86780d-38e7-47fb-b85d-4d9abb242f82"><div class="source"><iframe src="https://player.vimeo.com/video/844028296?h=2d66412777" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="c5619ac5-b1be-417c-87af-8d235332c97e" class="">Tokens</h3><p id="515b5dc1-50d4-4018-ba57-81f4f0ee7485" class="">La autenticación de token o (token auth), funciona generando una cadena aleatoria (un token) para el usuario cuando se autentica. El token se incluye en el encabezado de autenticación HTTP en cada solicitud subsiguiente, y luego se valida verificando la base de datos en cada solicitud.</p><p id="45f382e5-dceb-4a7a-a9f9-85b987cc3189" class="">La ventaja de la autenticación de token es que es la forma más simple de autenticación que mantiene seguras las credenciales del usuario (porque el token se envía con cada solicitud en lugar de un nombre de usuario y contraseña). De esta manera, las credenciales del usuario (nombre de usuario / contraseña) se envían al servidor solo una vez y nunca se almacenan en caché para futuras solicitudes, lo que mantiene seguros sus detalles.</p><p id="c4d7da30-e3c0-416f-ac01-4de665f09361" class="">Los tokens también se pueden revocar si se desea forzar a los usuarios a volver a autenticarse.</p><p id="452f5de8-ad58-414f-bee3-fafd95814a06" class="">
+</p><figure id="1a54738c-4c4c-4059-bf90-a871f95c4fab" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Token.png"><img style="width:572px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/Token.png"/></a><figcaption>Imagen: Login usando Tokens</figcaption></figure><p id="8d97e342-5f6b-4cb3-b146-07a7a1e67342" class="">
+</p><p id="f9ed9dc8-4dba-44ca-932a-16d3e511e15f" class="">Por ejemplo, imaginemos que tienes una aplicación web de chat en línea. Cuando un usuario se registra o inicia sesión, el servidor genera un token único para esa sesión y lo envía al cliente. El cliente almacena el token en el almacenamiento local del navegador y lo envía en cada solicitud subsiguiente al servidor.</p><p id="cc78dee2-b291-490d-af83-bfe6115771a0" class="">Cuando un usuario envía un mensaje en el chat, el cliente incluye el token en la solicitud para identificarse ante el servidor. El servidor utiliza el token para identificar al usuario y agregar el mensaje al hilo de conversación correspondiente.</p><p id="abaebfc2-216a-4091-94a0-164bf24efe9c" class="">Un ejemplo de un token puede ser: </p><pre id="2bd60673-fc42-4e47-adf4-5e72569353e2" class="code"><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></pre><p id="10009e4f-7aa2-4f7b-a4d7-eaaad0134f51" class="">Esta es una cadena de caracteres generada por un servidor que se utiliza como identificación única de una sesión. El token consta de tres partes separadas por puntos y cada parte está codificada en base64. La primera parte es el encabezado que contiene información sobre el algoritmo de cifrado utilizado para generar el token, la segunda parte es el payload que contiene información sobre el usuario, y la tercera parte es la firma que se utiliza para verificar la autenticidad del token.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="096562aa-ab6a-4e56-9b0c-158b199f7291"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un ejemplo de una sesión con token capturada por un proxy de interceptación como Burp Suite podría verse así:</div></figure><ol type="1" id="4c2b893c-cb4a-4ad2-bda2-33648c3b230b" class="numbered-list" start="1"><li>El usuario abre su navegador y visita el sitio web protegido.</li></ol><ol type="1" id="5e9409dd-1798-495b-b6d8-ca9010b6994e" class="numbered-list" start="2"><li>El servidor web envía una cookie de sesión al navegador del usuario que contiene un token de sesión.</li></ol><ol type="1" id="0924483f-80a2-476c-a994-17381b222950" class="numbered-list" start="3"><li>El usuario inicia sesión en el sitio web y el servidor web valida las credenciales del usuario.</li></ol><ol type="1" id="b47af5ad-72d6-4f7b-95e6-10c2e467197f" class="numbered-list" start="4"><li>El servidor web crea una nueva entrada en la base de datos de sesiones para el usuario y emite una nueva cookie de sesión que contiene el token de sesión.</li></ol><ol type="1" id="1a0c6385-d910-44f0-8094-b99dac80827e" class="numbered-list" start="5"><li>El navegador del usuario envía una solicitud al servidor web para acceder a una página protegida.</li></ol><ol type="1" id="a6dfa6a4-56df-4bee-99c1-8da05dbcc032" class="numbered-list" start="6"><li>El servidor web valida la cookie de sesión y utiliza el token de sesión para identificar al usuario y mostrar la página solicitada.</li></ol><ol type="1" id="4f49edcc-916b-4ea4-b463-ea15b9554676" class="numbered-list" start="7"><li>El proxy de interceptación captura la solicitud y la muestra en su interfaz.</li></ol><ol type="1" id="b350a620-47c2-46a4-aa9e-07478062e5ef" class="numbered-list" start="8"><li>El atacante examina la solicitud y ve que contiene la cookie de sesión con el token de sesión.</li></ol><ol type="1" id="7edd243a-b064-45f9-9ca8-8cf795e1c907" class="numbered-list" start="9"><li>El atacante copia la cookie de sesión con el token de sesión y la utiliza para acceder a la página protegida sin necesidad de autenticarse nuevamente.</li></ol><p id="0b0dbb06-ea96-4fa3-9bff-d27372db8045" class="">Para protegerse contra este tipo de ataque, los sitios web deben implementar medidas de seguridad adecuadas, como el cifrado de cookies y la validación de solicitudes, para evitar que los tokens de sesión sean interceptados y utilizados por atacantes malintencionados.</p><figure id="d3297174-b609-4255-9ab0-1a57c92b9412"><div class="source"><iframe src="https://player.vimeo.com/video/844028602?h=6063ed957a" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="42157f99-120e-4fc5-ab82-7dcc0b566dea" class="">Tokens JSON (JSON Web Tokens)</h3><p id="5fc5576e-2db5-47a3-9243-ff91690ff5a7" class="">Un JWT es un token seguro que se utiliza para autenticar y autorizar solicitudes entre diferentes sistemas. </p><p id="5bafb75a-e05f-40a0-a4a5-67d4a5cfa266" class="">Un JWT está compuesto de tres partes separadas por puntos:</p><ul id="ae09f68d-6037-4880-a78c-d9ef5461a9c4" class="bulleted-list"><li style="list-style-type:disc"><strong>Header</strong>: El header contiene información sobre el tipo de token y el algoritmo de firma utilizado para firmar el token. Por ejemplo, el header podría ser <code>{&quot;alg&quot;: &quot;HS256&quot;, &quot;typ&quot;: &quot;JWT&quot;}</code>.</li></ul><ul id="c67a3169-be79-4ff6-b2cb-2345f84b3545" class="bulleted-list"><li style="list-style-type:disc"><strong>Payload</strong>: El payload contiene información sobre el usuario autenticado y cualquier otra información que se desee incluir en el token. Por ejemplo, el payload podría ser <code>{&quot;sub&quot;: &quot;1234567890&quot;, &quot;name&quot;: &quot;John Doe&quot;, &quot;iat&quot;: 1516239022}</code>.</li></ul><ul id="2fface9e-8510-4773-86f1-92d8e562f7b5" class="bulleted-list"><li style="list-style-type:disc"><strong>Signature</strong>: La firma es una cadena de caracteres que se utiliza para verificar la autenticidad del token. La firma se crea utilizando el header, el payload y una clave secreta conocida sólo por el servidor que emitió el token; esta firma garantiza que el token no ha sido alterado desde que se emitió. Por ejemplo, la firma podría ser <code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)</code> </li></ul><p id="dc6070be-3e02-47a1-809b-93c0f1ef80a0" class="">Un ejemplo de JWT sería el siguiente:</p><p id="a91ba334-43f5-4546-a37e-128da12ee441" class=""><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p><p id="22e4e002-883e-4589-a381-9423d8663591" class="">En este ejemplo, el header indica que se utiliza el algoritmo de firma HMACSHA256 (<strong>Hash-based Message Authentication Code)</strong> y el tipo de token es JWT. El payload contiene información sobre el usuario autenticado, incluyendo su identificador, su nombre y la fecha y hora en que se emitió el token. La firma se crea a partir del header, el payload y una clave secreta conocida sólo por el servidor que emitió el token.</p><p id="c5de01f6-16b8-4f97-8f5f-f1efe645c974" class="">
+</p><figure id="6d6795c8-7c97-4133-930c-7630134d33a8" class="image"><a href="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/JWT_Token.png"><img style="width:572px" src="Mo%CC%81dulo%204%20-%20La%20Internet%20y%20sus%20Protocolos%20443df33abe2b440ca633ee4de40d1c29/JWT_Token.png"/></a><figcaption>Imagen: Uso de Tokens JSON</figcaption></figure><hr id="e68c3985-58f0-4781-aca6-f558f7be6d2d"/><p id="5bdee305-a185-4963-a8aa-30785056b998" class="">
+</p><h1 id="908c2d96-6d9c-4fcb-9f09-e5e98e9d07c5" class="">Que es el Encoding</h1><p id="93143b18-34e9-462d-8ade-615d16621ad8" class="">El encoding en HTTP se refiere a la forma en que se codifica la información que se envía entre el cliente y el servidor. El encoding es importante porque asegura que los datos se transmitan de forma segura y se interpreten correctamente en ambas partes.</p><p id="4f8523eb-3ce7-49d9-9d55-e01c231f007f" class="">Hay varios tipos de encoding en HTTP; entre otros, tenemos:</p><ul id="01a84ca6-63e1-4a29-9529-8d0f423f6c1a" class="bulleted-list"><li style="list-style-type:disc"><strong>ASCII</strong>: El encoding ASCII es el más básico y se utiliza para representar caracteres en inglés y otros caracteres comunes, como números y signos de puntuación.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2a1dd68d-b1d5-4519-8f13-d4467486f7fc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">El encoding ASCII se utiliza para representar caracteres en inglés y otros caracteres comunes, como números y signos de puntuación. Un ejemplo de encoding ASCII sería la letra &quot;A&quot;, que se representa como el número 65 en ASCII.</div></figure><ul id="bbb7b017-61ec-4433-abf0-cc8d68262220" class="bulleted-list"><li style="list-style-type:disc"><strong>BASE 64</strong>: Cuando se utiliza Base64, los datos se convierten en una cadena de caracteres que sólo contiene caracteres alfanuméricos y algunos símbolos especiales. Por ejemplo, si queremos enviar una imagen a través de la web, primero debemos convertirla al formato Base64. La solicitud HTTP puede contener la información Base64 en el cuerpo de la solicitud o en un encabezado especial. El servidor web que recibe la solicitud puede decodificar la información Base64 para mostrar la imagen en un navegador web o para guardarla en una base de datos. Por ejemplo, supongamos que queremos enviar una imagen de un gato a través de la web. Primero, debemos convertir la imagen al formato Base64. Una vez que tenemos la información Base64, podemos enviarla a través de una solicitud HTTP. La solicitud podría verse así:</li></ul><pre id="09ea2274-783f-43cb-bba1-e9caf0bc4a31" class="code code-wrap"><code>POST /gatos HTTP/1.1
+Host: www.ejemplo.com
+Content-Type: application/base64
+
+data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwACAQEBAQECAQEBAgICAgIEAwICAgIFBAQDBAYFBgYGBQYGBgcJCAYHCQcGBggLCAkKCgoKCgYICwwLCgwJCgoK/9sAQwECAgICAgIFAwMFCgcGBwoKCQwKDAwLCgsLDQ4SEA...</code></pre><p id="ee18c8d1-d03b-44fc-907c-e2dba322943b" class="">
+</p><ul id="0631769e-bb91-4f57-9234-15ada51310ab" class="bulleted-list"><li style="list-style-type:disc"><strong>ISO-8859</strong>: El encoding ISO-8859 es un conjunto de encodings que se utilizan para representar caracteres en varios idiomas europeos, como alemán, francés, español e italiano.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="37296d4d-1a46-4574-a6e3-be75b0f56900"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un ejemplo de encoding ISO-8859 es el carácter &quot;ñ&quot; en español, que se representa con el valor &quot;0xF1&quot; en el encoding ISO-8859-1. Otro ejemplo es el carácter &quot;é&quot;, que se representa con el valor &quot;0xE9&quot; en el encoding ISO-8859-1.</div></figure><p id="faa9fd5c-c6a0-468e-9f94-59245cae12e1" class="">
+</p><ul id="364d3895-22fb-45b5-a785-4584d0366613" class="bulleted-list"><li style="list-style-type:disc"><strong>UTF-8</strong>: El encoding UTF-8 es el más utilizado en la web y se utiliza para representar caracteres en todos los idiomas, incluidos los que utilizan caracteres no latinos, como el chino, el japonés y el árabe. UTF-8 es compatible con ASCII, lo que significa que los caracteres ASCII se pueden representar utilizando UTF-8.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6ed03e33-971a-4249-be1a-3eb46b03e87e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un ejemplo de encoding UTF-8 es el carácter &quot;ñ&quot; en español, que se representa con el valor &quot;0xC3 0xB1&quot; en UTF-8. Otro ejemplo es el carácter &quot;é&quot;, que se representa con el valor &quot;0xC3 0xA9&quot; en UTF-8.</div></figure><p id="b19841ee-2eb3-4edd-aef4-527e9d122495" class="">
+</p><ul id="01b33e1c-e248-4493-afba-85023eb37581" class="bulleted-list"><li style="list-style-type:disc"><strong>UTF-16</strong>: El encoding UTF-16 se utiliza para representar caracteres en todos los idiomas, pero utiliza más espacio de almacenamiento que UTF-8. UTF-16 se utiliza a menudo en aplicaciones de Windows.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0680482e-3b4c-4ce1-afbf-45274a8b32f1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un ejemplo de encoding UTF-16 sería el carácter &quot;ñ&quot; en español, que se representa con el valor &quot;0x00F1&quot; en UTF-16. Otro ejemplo es el carácter &quot;é&quot;, que se representa con el valor &quot;0x00E9&quot; en UTF-16.</div></figure><p id="e581a6a1-486b-41d5-99fe-fff7357cd63b" class="">
+</p><p id="46d5589a-2ce2-4f89-9657-4448a38dcc38" class="">Por ejemplo, si un usuario envía un formulario con su nombre en japonés a un servidor, el servidor debe utilizar un encoding que sea capaz de representar caracteres japoneses para que el nombre del usuario se guarde correctamente en la base de datos del servidor. Si el servidor utiliza un encoding que no es compatible con caracteres japoneses, como ASCII, el nombre del usuario se guardaría de forma incorrecta y se perdería información importante.</p><p id="2e4a4af8-604e-4f1d-8bc2-03a0a431a00f" class="">En resumen, el encoding en HTTP se refiere a la forma en que se codifica la información que se envía entre el cliente y el servidor. Hay varios tipos de encoding, cada uno diseñado para representar caracteres en diferentes idiomas. Es importante utilizar el encoding correcto para asegurar que los datos se transmitan de forma segura y se interpreten correctamente.</p><figure id="40e33ec3-56e2-40e8-8bd6-9a095b9fbc91"><div class="source"><iframe src="https://player.vimeo.com/video/844028785?h=861262e546" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="4d7e2196-f119-4a06-8267-0d559d51b6d9" class="">URL Encoding</h2><p id="2cb7a001-93d7-4a10-8e46-fd05c4361459" class="">El URL Encoding es una técnica utilizada en HTTP para convertir caracteres especiales y otros caracteres no permitidos en una URL en una secuencia de caracteres seguros y legibles por la máquina. Esto se hace para asegurarse de que la URL se pueda transmitir de forma segura y sin errores a través de la red.</p><p id="10925151-1e1f-44a5-b7a1-b03b631c3de6" class="">Por ejemplo, si una URL contiene un espacio en blanco o un carácter especial como &quot;&amp;&quot; o &quot;$&quot;, el servidor no podrá interpretar la URL correctamente y devolverá un error. Para evitar esto, se utiliza el URL Encoding para convertir estos caracteres en una secuencia de caracteres seguros.</p><p id="780e620d-aac8-48b9-8082-0e41b891a4b9" class="">Los caracteres se codifican utilizando un signo de porcentaje (&quot;%&quot;) seguido de dos dígitos hexadecimales que representan el valor ASCII del carácter. Por ejemplo, el espacio en blanco se codifica como &quot;%20&quot; y el símbolo &quot;&amp;&quot; se codifica como &quot;%26&quot;.</p><p id="e78584ac-205e-40d6-b41c-374b45d20871" class="">Hay varios tipos de URL Encoding, cada uno diseñado para codificar diferentes tipos de caracteres. Algunos ejemplos incluyen:</p><ul id="1f0188db-e487-48d4-80d8-90196e4f46f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Percent Encoding / Hex Encoding</strong>: El Percent Encoding es el tipo de URL Encoding más común y se utiliza para codificar caracteres no permitidos en una URL, como espacios en blanco, caracteres especiales y otros caracteres no ASCII. Supongamos que queremos incluir el símbolo &quot;&amp;&quot; en una URL, debemos codificarlo utilizando el Percent Encoding. Por ejemplo, si queremos buscar información sobre &quot;bug&amp;bounty&quot;, la URL se vería así:<p id="dc54a75d-9a5b-414f-9775-dfe06036bd42" class=""><code>https://www.ejemplo.com/buscar?query=bug&amp;bounty</code></p><p id="8ef295cf-d635-4e83-a120-a621d3305267" class="">El problema aquí es que el &quot;&amp;&quot; se utiliza como separador de parámetros en una URL, lo que significa que el servidor interpretaría la URL como dos parámetros separados: &quot;query=perros&quot; y &quot;gatos&quot;. Para evitar este problema, debemos codificar el &quot;&amp;&quot; utilizando el Percent Encoding. La URL codificada se vería así:</p><p id="af54bbec-1455-45df-9843-783c7f0144bd" class=""><code>https://www.ejemplo.com/buscar?query=bug%26bounty</code></p><p id="7fefaf44-f249-4391-8d5c-6d0c3047acbe" class="">
+</p><p id="3638825f-7f4c-41f8-a4c9-1450f1be42cf" class="">En esta tabla vemos los caracteres reservados después de haber sido codificados:</p><table id="350d5f41-305b-445b-9ba1-f18664580ba3" class="simple-table"><thead class="simple-table-header"><tr id="29856ab2-ede2-46d0-8bdd-c815b93c52eb"><th id="{K=^" class="simple-table-header-color simple-table-header">Carácter</th><th id="nGmT" class="simple-table-header-color simple-table-header">Codificación</th><th id="gLkD" class="simple-table-header-color simple-table-header">Carácter</th><th id="FhiL" class="simple-table-header-color simple-table-header">Codificación</th></tr></thead><tbody><tr id="8dbce446-dd7d-4b6e-a9f1-d17aa23d56e7"><td id="{K=^" class=""><code></code> (espacio)</td><td id="nGmT" class=""><code>%20</code></td><td id="gLkD" class=""><code>+</code> (signo más)</td><td id="FhiL" class=""><code>%2B</code></td></tr><tr id="484b94ee-603d-4932-9922-c5d5b1242db6"><td id="{K=^" class=""><code>&quot; </code> (comillas dobles)</td><td id="nGmT" class=""><code>%22</code></td><td id="gLkD" class=""><code>,</code> (coma)</td><td id="FhiL" class=""><code>%2C</code></td></tr><tr id="efd86e39-d029-4c2e-a4ef-090b5342661f"><td id="{K=^" class=""><code>#</code> (almohadilla)</td><td id="nGmT" class=""><code>%23</code></td><td id="gLkD" class=""><code>-</code> (guión)</td><td id="FhiL" class=""><code>%2D</code></td></tr><tr id="d34661e8-b261-4d61-ac15-4728b5c8f271"><td id="{K=^" class=""><code>%</code> (porcentaje)</td><td id="nGmT" class=""><code>%25</code></td><td id="gLkD" class=""><code>.</code> (punto)</td><td id="FhiL" class=""><code>%2E</code></td></tr><tr id="7c6cea62-3d42-4dde-a41b-f3f5d7ab9fd9"><td id="{K=^" class=""><code>&amp;</code> (ampersand)</td><td id="nGmT" class=""><code>%26</code></td><td id="gLkD" class=""><code>/</code> (barra diagonal)</td><td id="FhiL" class=""><code>%2F</code></td></tr><tr id="ed1a7ddd-6e78-44fd-ba34-2f5be838d2ff"><td id="{K=^" class=""><code>&#x27;</code> (comillas simples)</td><td id="nGmT" class=""><code>%27</code></td><td id="gLkD" class=""><code>:</code> (dos puntos)</td><td id="FhiL" class=""><code>%3A</code></td></tr><tr id="7b0e655e-294f-480f-95b5-c9554020b369"><td id="{K=^" class=""><code>&lt;</code> (menor que)</td><td id="nGmT" class=""><code>%3C</code></td><td id="gLkD" class=""><code>;</code> (punto y coma)</td><td id="FhiL" class=""><code>%3B</code></td></tr><tr id="f763991a-cc35-4c5b-ad7e-9a5cc85e4baf"><td id="{K=^" class=""><code>=</code> (igual)</td><td id="nGmT" class=""><code>%3D</code></td><td id="gLkD" class=""><code>&gt;</code> (mayor que)</td><td id="FhiL" class=""><code>%3E</code></td></tr><tr id="dd6ec1dd-d4ba-45b3-9c66-d5aaecaee377"><td id="{K=^" class=""><code>?</code> (interrogación)</td><td id="nGmT" class=""><code>%3F</code></td><td id="gLkD" class=""><code>@</code> (arroba)</td><td id="FhiL" class=""><code>%40</code></td></tr><tr id="541a1c2e-dd8b-4897-be34-133d5454dac5"><td id="{K=^" class=""><code>[</code> (corchete izquierdo)</td><td id="nGmT" class=""><code>%5B</code></td><td id="gLkD" class=""><code>\\</code> (barra inversa)</td><td id="FhiL" class=""><code>%5C</code></td></tr><tr id="91aa0925-5376-4b8c-b569-0b1786d5230e"><td id="{K=^" class=""><code>]</code> (corchete derecho)</td><td id="nGmT" class=""><code>%5D</code></td><td id="gLkD" class=""><code>^</code> (circunflejo)</td><td id="FhiL" class=""><code>%5E</code></td></tr><tr id="fdf428e4-a8b7-41d1-ae7f-350de59c3bc4"><td id="{K=^" class=""><code>_</code> (guión bajo)</td><td id="nGmT" class=""><code>%5F</code></td><td id="gLkD" class=""><code>`</code> (acento grave)</td><td id="FhiL" class=""><code>%60</code></td></tr><tr id="4307dabd-5a06-448e-9f0b-49a67ab28f70"><td id="{K=^" class=""><code>{</code> (llave izquierda)</td><td id="nGmT" class=""><code>%7B</code></td><td id="gLkD" class=""><code>~</code> (tilde)</td><td id="FhiL" class=""><code>%7E</code></td></tr><tr id="48ea1767-8e36-48b8-b439-6a906075ca09"><td id="{K=^" class=""><code>}</code> (llave derecha)</td><td id="nGmT" class=""><code>%7D</code></td><td id="gLkD" class=""></td><td id="FhiL" class=""></td></tr></tbody></table></li></ul><ul id="c830fd00-bcfb-43ec-bf16-ee5f38e58841" class="bulleted-list"><li style="list-style-type:disc">Un ejemplo de codificación URL en hexadecimal sería la siguiente URL: <a href="https://www.ejemplo.com/buscar?query=%E3%82%A2%E3%83%9E%E3%83%AA%E3%83%BC%E3%82%AB"><code>https://www.ejemplo.com/buscar?query=%E3%82%A2%E3%83%9E%E3%83%AA%E3%83%BC%E3%82%AB</code></a> En este ejemplo, <code>%E3%82%A2%E3%83%9E%E3%83%AA%E3%83%BC%E3%82%AB</code> representa una cadena de caracteres en japonés que ha sido codificada en hexadecimal para que se pueda transmitir de forma segura a través de la red. La cadena de caracteres original es &quot;アマリーカ&quot;, que significa &quot;América&quot; en japonés.</li></ul><ul id="6066a6ef-7300-4de8-9620-0311aa219cb8" class="bulleted-list"><li style="list-style-type:disc"><strong>Base64 Encoding</strong>: El Base64 Encoding es un tipo de codificación que se utiliza para convertir datos binarios en una cadena de caracteres ASCII. Se utiliza a menudo en la transmisión de datos binarios, como imágenes y archivos, a través de la red. Por ejemplo, la URL &quot;<a href="https://example.com/image.png">https://example.com/image.png</a>&quot; se podría codificar en Base64 como: &quot;aHR0cHM6Ly9leGFtcGxlLmNvbS9pbWFnZS5wbmc=&quot;.</li></ul><ul id="566d787b-b075-46d7-a21c-00d0eb805f63" class="bulleted-list"><li style="list-style-type:disc"><strong>Punycode Encoding</strong>: El Punycode Encoding se utiliza para codificar nombres de dominio que contienen caracteres no ASCII, como caracteres rusos, japoneses o chinos. El Punycode convierte los caracteres no ASCII en una secuencia de caracteres ASCII seguros y legibles por la máquina. Por ejemplo, el nombre de dominio &quot;<a href="http://xn--wgv71a119e.example.com/">日本語.example.com</a>&quot; se codificaría como &quot;<a href="http://xn--wgv71a.example.com/">日本.example.com</a>&quot; o el nombre de dominio &quot;<a href="http://xn--e1afmkfd.xn--p1ai/">пример.рф</a>&quot; se codificaría en Punycode como &quot;xn--p1ai&quot; para su uso en una URL. </li></ul><h2 id="efcebf61-065c-4883-9666-d3252bdfaf9c" class="">Iframe</h2><p id="afb239c4-2707-4569-a7dd-14a27c8e30ef" class="">Un iframe es un elemento HTML que se utiliza para insertar contenido de otro sitio web dentro de una página web. Esto permite que el contenido de otro sitio web se muestre dentro de la página actual, lo que puede ser útil para mostrar contenido de terceros, como publicidad o contenido incrustado, sin que los usuarios tengan que salir del sitio web actual.</p><p id="8cd91bf9-3a48-49ea-b8ae-b14e3c235c0f" class="">Por ejemplo, supongamos que un sitio web de noticias quiere mostrar un video de YouTube en una de sus páginas. En lugar de enviar a los usuarios a YouTube para ver el video, el sitio web de noticias puede utilizar un iframe para mostrar el video dentro de su propia página.</p><pre id="34707aac-22e7-417f-b746-9a6debf9d261" class="code code-wrap"><code>&lt;iframe src=&quot;&lt;https://www.youtube.com/embed/VIDEO_ID&gt;&quot;&gt;&lt;/iframe&gt;</code></pre><p id="e81ee298-f70e-408a-8252-05e60bd8236b" class="">En este ejemplo, el atributo <code>src</code> del iframe se establece en la URL del video de YouTube. Cuando se carga la página, el navegador descarga el contenido del video de YouTube y lo muestra dentro del iframe.</p><p id="efb2215c-5f6d-4534-a198-1d3b5e07a574" class="">Otro Ejemplo:</p><pre id="6f09e3d0-e248-4476-973b-3741687689cb" class="code"><code>&lt;iframe src=&quot;https://secpro.co&quot; title=&quot;SecPro Security Professionals&quot; height=&quot;500&quot; width=&quot;500&quot; &gt;&lt;/iframe&gt;</code></pre><figure id="fe017823-db3c-4130-ac6b-9b0ed50daf89"><div class="source"><iframe src="https://player.vimeo.com/video/844029201?h=abf8a19fda" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="cc8e1d7e-5878-4e4f-9842-eaaad05000e7" class="">Enlaces de Referencia</h2><figure id="cf5ea107-a58f-43d2-96ea-b06914c77cce"><a href="https://youtu.be/BjI4phufGMs" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Módulo 2 - 1 Detección de Puertos con Nmap  y Enumeracíón de Usuarios y Servicios</div><div class="bookmark-description">Hola a tod@s! El día de hoy hemos decidido en pro de la educación y de ustedes, dejar en línea y de forma gratuita nuestro curso Pentesting con Herramientas Open Source. Este es un curso que hace parte de nuestra plataforma de educación en línea, pero por motivo de actualización del pensum, contenido y vídeos del mismo, hemos dejado la versión previa a su disposición. Es una versión que no es la más actual pero les puede ayudar a complementar sus conocimientos y es contenido que aún en el presente está vigente.
+
+Esperamos que les sea de utilidad! ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/0e9d1cf9/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/BjI4phufGMs</div></div><img src="https://i.ytimg.com/vi/BjI4phufGMs/sddefault.jpg" class="bookmark-image"/></a></figure><figure id="cd7a1948-fbeb-4594-aad0-f8d2651cc611"><a href="https://youtube.com/playlist?list=PL1Kv5m-HTbQwoaP40qTXfKryQMld1qP5A" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Curso de Ethical Hacking</div><div class="bookmark-description">Hola a tod@s! El día de hoy hemos decidido en pro de la educación y de ustedes, dejar en línea y de forma gratuita nuestro curso Pentesting con Herramientas ...</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/64b0d6dd/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtube.com/playlist?list=PL1Kv5m-HTbQwoaP40qTXfKryQMld1qP5A</div></div><img src="https://i.ytimg.com/vi/nX6ftgneAI0/hqdefault.jpg" class="bookmark-image"/></a></figure><figure id="4e1eb213-7efd-4375-a3b3-07a19178a251"><a href="https://developers.google.com/maps/url-encoding?hl=es-419" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Codificación de URLs      |  Google Maps Platform  |  Google for Developers</div></div><div class="bookmark-href"><img src="https://www.gstatic.com/devrel-devsite/prod/vd261db5395fbcde659314ae58be50b2e56876271e1a672f069cc1e37ad6c3a79/developers/images/touchicon-180-new.png" class="icon bookmark-icon"/>https://developers.google.com/maps/url-encoding?hl=es-419</div></div><img src="https://developers.google.com/static/maps/images/google-maps-platform-1200x675.png?hl=es-419" class="bookmark-image"/></a></figure><figure id="6a60d02b-a82d-4e7f-9674-68ac837c935b"><a href="https://www.w3schools.com/tags/ref_urlencode.ASP" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">HTML URL Encoding Reference</div><div class="bookmark-description">W3Schools offers free online tutorials, references and exercises in all the major languages of the web. Covering popular subjects like HTML, CSS, JavaScript, Python, SQL, Java, and many, many more.</div></div><div class="bookmark-href"><img src="https://www.w3schools.com/favicon.ico" class="icon bookmark-icon"/>https://www.w3schools.com/tags/ref_urlencode.ASP</div></div><img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" class="bookmark-image"/></a></figure><p id="2ea1d63b-457c-4816-8310-cb75c98c586b" class="">
+</p><p id="93b867ed-f720-4e69-8145-a26baac9206b" class="">
+</p></div></article></body></html>

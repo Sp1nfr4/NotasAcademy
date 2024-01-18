@@ -1,0 +1,741 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 11 - Broken Access Control</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+	user-select: none;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all; 
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bba79cf4-1426-4f52-8b25-64bb1869e007" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1599595344070-c456bea6ee98?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🚪</span></div><h1 class="page-title">Módulo 11 - Broken Access Control</h1><p class="page-description"></p></header><div class="page-body"><h1 id="0b2db911-e5d4-4d30-9a5a-4df8e40dd104" class="">¿Qué es Access Control? (Control de Acceso)</h1><p id="671695c2-6fc0-44f9-bd77-299dc123322c" class="">El control de acceso en sitios web es una medida de seguridad que se utiliza para proteger la información confidencial y garantizar que los usuarios solo tengan acceso a los recursos que les corresponden. En términos simples, se trata de establecer quién tiene acceso a qué información y qué acciones pueden realizar.</p><p id="e2390f6b-3129-4b1f-a4c7-904791ea13a6" class="">Un ejemplo común de control de acceso en una aplicación web es la autenticación de usuarios. Cuando un usuario ingresa a una aplicación web, se le solicita que proporcione credenciales, como un nombre de usuario y una contraseña. La aplicación web luego verifica estas credenciales y, si son válidas, permite al usuario ingresar a la aplicación.</p><p id="c2bb322e-fbbc-415e-b2f4-79d7843d663a" class="">A continuación se presenta un diagrama que explica el proceso de autenticación en un sitio web:</p><p id="93cf77fb-e227-4e4a-8e26-77b9605f9486" class="">
+</p><figure id="af31a32d-94d2-4dde-9885-2157ee633ea1" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Diagrama_de_authentication.png"><img style="width:744px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Diagrama_de_authentication.png"/></a><figcaption>Imagen: Proceso de Autenticación</figcaption></figure><p id="350359b1-2963-445a-b4b2-f26fc9a6f5d4" class="">En resumen, el proceso de autenticación en un sitio web implica la verificación de las credenciales del usuario y la generación de un token de sesión que se utiliza para autenticar al usuario en solicitudes posteriores.</p><p id="8fb5e006-8978-48e3-8d6c-a1917f24b8d2" class="">Otra forma en que se puede implementar el control de acceso en una aplicación web es a través de roles de usuario. Por ejemplo, en una aplicación de ventas en línea, puede haber diferentes roles de usuario, como cliente y administrador. Los clientes solo tendrían acceso a su propia información, como su historial de pedidos, mientras que los administradores tendrían acceso a información adicional, como las ventas totales de la empresa.</p><p id="d82534c2-8572-4cea-987c-eaf40c349ccd" class="">Aquí hay algunos ejemplos de control de acceso en sitios web:</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e5a51ad1-9953-4437-b79f-f3aaaff7b513"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario debe ingresar credenciales válidas para acceder a su cuenta en un sitio de banca en línea como &quot;https://www.examplebank.com/login&quot;.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cdd87494-200f-4da8-97ce-7a5806eab75f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario solo puede ver su propio historial de pedidos en un sitio de ventas en línea como &quot;https://www.examplestore.com/orders&quot;.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="19a95128-ed0b-4b5a-8bdd-92927d2dcf4d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario debe tener permisos de administrador para acceder a la sección de administración de una aplicación web como &quot;https://www.exampleapp.com/admin&quot;.</div></figure><h2 id="49e9a0fd-4703-473a-a70d-05403bf37f46" class=""><strong>Broken Access Control:</strong></h2><p id="5c0a441c-f472-46a5-a2a3-7e7e04acfdac" class="">Se refiere a sobrepasar un control de acceso a la información por parte de un usuario sin permisos o atribuciones para ello.</p><p id="bf8b6600-f3b2-4ff0-915b-269f68ab639a" class="">La vulnerabilidad de &quot;Broken Access Control&quot; o ruptura en el control de acceso<strong>, </strong>es una de las más comunes en aplicaciones web. Esta vulnerabilidad se refiere a la falta de restricciones adecuadas en el acceso a recursos protegidos, lo que permite a los usuarios no autorizados acceder a información confidencial o realizar acciones maliciosas en la aplicación.</p><p id="9f6f6fcf-6e9d-4dee-a166-988dc795e59c" class="">
+</p><figure id="9bd4f99a-4676-4c62-9a61-de91a7a70a09" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Untitled_Diagram.drawio(4).png"><img style="width:736px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Untitled_Diagram.drawio(4).png"/></a><figcaption>Imagen: Ilustración sobre el Control de Acceso</figcaption></figure><h3 id="d147cdf0-e151-45ba-95e3-32b51f313099" class="">Ejemplos de Broken Access Control</h3><p id="c8fa2e0b-3961-4916-a955-46569010a127" class="">Un ejemplo común de &quot;Broken Access Control&quot; es el acceso no autorizado a páginas o secciones de la aplicación web que deberían estar restringidas para ciertos usuarios. Por ejemplo, supongamos que una aplicación web de ventas tiene una sección de administración que solo debería ser accesible para los usuarios con permisos de administrador. Sin embargo, si la aplicación no tiene un control adecuado de acceso y un usuario malintencionado puede acceder a esta sección, entonces podrían realizar acciones maliciosas como cambiar la información o eliminar datos importantes.</p><p id="cc638c42-b8d6-4cda-a84d-9bf04b197402" class="">Además, otra forma en que puede manifestarse esta vulnerabilidad es a través de la manipulación de parámetros en las solicitudes HTTP. Por ejemplo, supongamos que una aplicación web tiene una página que muestra la información de los usuarios, pero solo debería ser accesible por el usuario correspondiente. Si un usuario malintencionado manipula el parámetro de la solicitud HTTP, podría acceder a la información de otros usuarios.</p><p id="4674d9da-dd10-4ef1-852e-83ea35e354cd" class="">Algunos Ejemplos de &quot;Broken Access Control&quot;:</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="38f59578-7dbd-42a3-98d2-2825ea55177d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario no autorizado puede acceder a la página de administración de una aplicación web utilizando la URL &quot;https://www.example.com/admin&quot;.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bebfb2cc-8c28-4c74-908c-8fe350134551"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario malintencionado puede acceder al perfil de otro usuario en una aplicación web utilizando la URL &quot;https://www.example.com/profile?id=123&quot;.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="aa3ebda5-70ca-410f-baa3-c7956c7f4702"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario no autorizado puede acceder a una página de pago en una aplicación web utilizando la URL &quot;https://www.example.com/checkout&quot;.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b254c53a-201c-467a-8a99-ed598c715e5f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Un usuario malintencionado puede acceder a una función de eliminación en una aplicación web utilizando la URL &quot;https://www.example.com/delete?id=123&quot;.</div></figure><p id="c60e5b06-cb29-4528-bad9-95179da2b2cd" class="">
+</p><p id="09754793-11b5-4acd-961f-7a047d9df809" class="">Hablemos ahora de la Autenticación rota:</p><h2 id="94571b47-8b91-4235-b59f-6ddea3c66e51" class=""><strong>Broken Authentication:</strong></h2><p id="af752c96-2083-4d52-822c-300d85bfd8a8" class="">Broken Authentication hace referencia a la falsificación de la identidad de un usuario. Esta vulnerabilidad se produce cuando una aplicación web no implementa de manera adecuada el proceso de autenticación de usuarios, lo que permite a los atacantes acceder a cuentas de usuario sin las credenciales adecuadas. Por ejemplo, si un usuario utiliza contraseñas débiles o comparte sus credenciales con terceros no autorizados, puede permitir que un atacante acceda a su cuenta. También puede ocurrir si la aplicación web utiliza tokens de sesión que son fáciles de adivinar o que no se invalidan adecuadamente después de un período de tiempo, lo que permite a los atacantes acceder a cuentas de usuario sin tener que ingresar credenciales válidas.</p><p id="5243da49-255f-4851-a138-6cc2c442f508" class="">
+</p><figure id="7999fb37-d6c0-4cc4-a4e5-e4d26f970113" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Broken_Authentication.drawio.png"><img style="width:764px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Broken_Authentication.drawio.png"/></a><figcaption>Imagen: Autenticación Rota</figcaption></figure><h1 id="84a4edd1-9726-4e3d-8502-f624c250bf82" class="">Mecánica de explotación de Broken Access Control</h1><p id="e9359ad7-e380-4ffb-b7ae-cff16743872b" class="">La vulnerabilidad de &quot;Broken Access Control&quot; se produce cuando una aplicación web no implementa de manera adecuada el control de acceso a los recursos protegidos. Los pasos para explotar esta vulnerabilidad pueden variar según la aplicación web, pero en general, se pueden seguir los siguientes pasos:</p><p id="d12fe600-acbc-411c-9ffc-f68d9f4293b0" class="">
+</p><figure id="316919cd-7836-4fee-bffd-82f5e23325c2" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Mecanica_de_Ataque.png"><img style="width:925px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Mecanica_de_Ataque.png"/></a><figcaption>Mecánica de Ataque Broken Access Control</figcaption></figure><h2 id="58cae0ab-cb55-4040-bcd6-d55e02ab0fee" class="">Privilege Escalation (Escalación de Privilegios)</h2><p id="6f27d1d6-29c4-4d1c-ae3f-2e2890f1396d" class="">La escalación de privilegios es una técnica utilizada por los atacantes para obtener un nivel de acceso más alto del que les corresponde en un sistema o aplicación. La idea es que, si un atacante logra obtener acceso como usuario normal, pueda utilizar una vulnerabilidad para obtener un nivel de acceso superior, como el de administrador.</p><p id="8131b25e-7d15-4129-bb41-d346595eb2d3" class="">Existen dos tipos de escalación de privilegios: la escalación vertical y la escalación horizontal. </p><h3 id="68f08c54-ef5f-4585-9553-d081c849a206" class=""><strong>Escalación vertical:</strong></h3><p id="85672a04-3e8d-48fd-a497-20323a34073b" class=""><span style="border-bottom:0.05em solid">L</span><span style="border-bottom:0.05em solid">a escalación vertical</span> ocurre cuando un atacante obtiene acceso a un nivel superior, como el de administrador, mientras que<span style="border-bottom:0.05em solid"> la escalación horizontal</span> ocurre cuando un atacante obtiene acceso a otro usuario con los mismos privilegios.</p><p id="e704af02-7c75-4573-ab60-d7f885d88051" class="">Un ejemplo común de escalación vertical en una aplicación web es cuando un usuario normal intenta acceder a una sección restringida de la aplicación, pero no tiene los permisos necesarios.  </p><p id="e118a051-a4ad-47d4-a9de-e83b95420f2e" class="">Ejemplo:  Si el usuario encuentra una vulnerabilidad en la aplicación que le permite obtener acceso a la sección restringida, entonces ha realizado una escalación vertical. Por ejemplo, si un usuario malintencionado accede a la URL &quot;https://www.example.com/admin&quot;, pero no tiene permisos de administrador, puede utilizar una vulnerabilidad para obtener acceso a la sección de administración.</p><p id="fbc5d505-5a10-4d30-b35e-bc812a6b3c49" class=""> </p><figure id="9eab936f-3654-48c4-9054-530dbeb98c83" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Escalacion_Vertical.jpg"><img style="width:720px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Escalacion_Vertical.jpg"/></a><figcaption>Imagen: Escalación de Privilegios Vertical</figcaption></figure><h3 id="58a0982a-9f2c-4eff-be51-158a9166ff66" class=""><strong>Escalación horizontal:</strong></h3><p id="ee5ab7d3-c72f-48d6-9887-2a476b429be6" class="">Por otro lado, un ejemplo común de escalación horizontal en una aplicación web es cuando un atacante utiliza una vulnerabilidad para obtener acceso a las credenciales de otro usuario con los mismos privilegios. Si el atacante puede obtener las credenciales de otro usuario con los mismos privilegios, puede utilizar esa información para obtener un nivel de acceso superior. Por ejemplo, si un atacante accede a la URL &quot;<a href="https://www.example.com/profile?id=123">https://www.example.com/profile?id=123</a>&quot; y puede obtener las credenciales de otro usuario con los mismos privilegios, puede utilizar esa información para obtener acceso a información restringida.</p><p id="97b0d953-9781-462a-aa86-29b4535ed9a2" class="">Por ejemplo, un usuario malintencionado puede intentar acceder a la información de otros usuarios en una aplicación web utilizando técnicas de fuerza bruta para adivinar el identificador de otro usuario.</p><p id="3e1949bd-3111-430f-92e2-4077f7110686" class="">
+</p><figure id="1192a907-c935-40b0-a238-4973abda284c" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Escalacion_de_privilegios.drawio.png"><img style="width:672px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Escalacion_de_privilegios.drawio.png"/></a><figcaption>Imagen: Escalación de privilegios Horizontal</figcaption></figure><h2 id="341795d6-83b5-4a04-8bf4-e56c9e6b3d08" class="">IDOR (Referencia Directa Insegura a un Objeto)</h2><p id="09f51165-bbd3-44e7-afee-51acc34982b9" class="">IDOR (Insecure Direct Object Reference) es una vulnerabilidad que afecta a las aplicaciones web y que permite a un atacante acceder a recursos protegidos sin la debida autorización. Esta vulnerabilidad se produce cuando una aplicación web utiliza un identificador interno para acceder a un recurso (como un archivo o una base de datos) y este valor se puede manipular para acceder a recursos que no deberían ser accesibles.</p><p id="e1727aef-e2f0-4ea0-8e85-8e58764aed6d" class="">La vulnerabilidad IDOR es muy peligrosa, ya que los atacantes pueden acceder a información confidencial que no deberían tener acceso, como información personal de los usuarios, datos financieros, o información de productos, entre otros. Además, esta vulnerabilidad puede ser muy difícil de detectar, ya que no siempre se presentan errores en la aplicación que permitan identificarla.</p><p id="96e9e7e7-a79f-4109-a011-9701cd7ad1eb" class="">A continuación, se presentan 5 ejemplos de escenarios de explotación de IDOR:</p><ol type="1" id="cc32d74b-f8ce-4acc-b1db-6f85905cbe43" class="numbered-list" start="1"><li><strong>Acceso no autorizado a información de usuario</strong>: supongamos que una aplicación web utiliza el ID del usuario como parámetro para acceder a su información personal. Si un atacante cambia el ID en la URL a un valor diferente al suyo, podría acceder a la información personal de otro usuario.</li></ol><ol type="1" id="e2298d65-b8b1-4324-a3f2-1d3da543bbe0" class="numbered-list" start="2"><li><strong>Acceso no autorizado a archivos</strong>: si una aplicación web utiliza el nombre del archivo como parámetro para acceder a un archivo en particular y no se verifica la autorización adecuadamente, un atacante podría cambiar el nombre del archivo en la URL para acceder a archivos que no debería tener acceso.</li></ol><ol type="1" id="ec3a8142-fa90-464e-a9b5-464a5e2b8eae" class="numbered-list" start="3"><li><strong>Acceso no autorizado a recursos financieros</strong>: si una aplicación web utiliza el ID de la cuenta bancaria como parámetro para acceder a la información del cliente y no se verifica la autorización adecuadamente, un atacante podría cambiar el ID de la cuenta en la URL para acceder a información financiera que no debería tener acceso.</li></ol><ol type="1" id="28917c6d-e004-40f5-a315-0688f6712cff" class="numbered-list" start="4"><li><strong>Acceso no autorizado a información de producto</strong>: si una aplicación web utiliza el ID del producto como parámetro para acceder a la información del producto y no se verifica la autorización adecuadamente, un atacante podría cambiar el ID del producto en la URL para acceder a información de productos que no debería tener acceso.</li></ol><ol type="1" id="aeff3599-fa84-4c5d-960d-d4e707468d7a" class="numbered-list" start="5"><li><strong>Acceso no autorizado a recursos protegidos</strong>: si una aplicación web utiliza el ID de un recurso protegido como parámetro para acceder a él y no se verifica la autorización adecuadamente, un atacante podría cambiar el ID en la URL para acceder a recursos que no debería tener acceso, como por ejemplo, una página de administración de la aplicación.</li></ol><p id="4c0304ae-f2f1-4094-91c7-08d13577972e" class="">En términos más técnicos, cuando una aplicación web utiliza un identificador interno para acceder a un recurso, este identificador se convierte en un parámetro en la URL de la página. Por ejemplo, si la aplicación web utiliza el ID del usuario como parámetro para acceder a su información personal, la URL podría verse así: <code>https://www.example.com/userinfo?id=1234</code>.</p><p id="f5a38687-f1d0-442a-9370-85fa2fa7ed98" class="">Un atacante podría cambiar el valor del parámetro &quot;id&quot; en la URL para acceder a la información personal de otro usuario. Por ejemplo, podría cambiar la URL a <code>https://www.example.com/userinfo?id=5678</code> para acceder a la información personal de otro usuario. Esto significa que el atacante estaría manipulando el identificador interno de la aplicación para acceder a recursos que no debería tener acceso.</p><h2 id="9d139675-d1e9-420e-aaa0-400688dab819" class="">Tipos de IDOR</h2><h3 id="0185a591-2faa-4b9a-bc1b-1fa2037b6627" class="">IDOR Haciendo referencia a un Objeto en una Base de Datos</h3><p id="96aac6ff-931f-4fa4-946c-3111f2386cb0" class="">Un IDOR hacia una base de datos puede ocurrir cuando una aplicación web utiliza un identificador interno para acceder a una entrada específica en la base de datos. Si este identificador se puede manipular, un atacante podría cambiar el valor del identificador en la URL para acceder a entradas en la base de datos que no debería tener acceso.</p><p id="4de1ee2e-905f-4cd1-8ada-9e7fbeb1f196" class="">Por ejemplo, supongamos que una aplicación web utiliza el ID del usuario para acceder a su información personal en una base de datos. La URL podría verse así: <code>https://www.example.com/userinfo?id=1234</code>. Si un atacante cambia el valor del parámetro &quot;id&quot; en la URL a un valor diferente, como <code>https://www.example.com/userinfo?id=5678</code>, podría acceder a la información personal de otro usuario en la base de datos.</p><p id="2b363710-4b76-43f1-861e-32d615c5ef6a" class="">
+</p><h3 id="b2d986ee-56b4-4211-8573-b6a2a4b525f6" class="">IDOR Haciendo referencia a un Archivo Estático</h3><p id="d0f22dad-8b09-492e-9fd7-f9e2b8836ce7" class="">Un IDOR que hace referencia a archivos estáticos ocurre cuando una aplicación web utiliza un identificador interno para acceder a un archivo estático, como un archivo de imagen o un archivo de video. Si este identificador se puede manipular, un atacante podría cambiar el valor del identificador en la URL para acceder a archivos estáticos que no debería tener acceso.</p><p id="fb85289e-00d9-4d34-b4ab-11d6647d3b4c" class="">Por ejemplo, supongamos que una aplicación web utiliza el nombre del archivo como parámetro para acceder a un archivo en particular. La URL podría verse así: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7822274a-b14a-4bc3-9c58-a3a27a22e151" class="code"><code class="language-Shell">https://www.example.com/files?name=image.jpg </code></pre><p id="8d9d2001-6bda-4d6b-a255-fc78486a4434" class="">Si un atacante cambia el valor del parámetro &quot;name&quot; en la URL a un valor diferente, como: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d19aec8a-5b5a-4724-a118-84c5eef12902" class="code"><code class="language-Shell">https://www.example.com/files?name=secret.docx</code></pre><p id="517f58b0-b81c-4421-9caa-76ef4769de39" class=""> Y de esta forma podría acceder a un archivo estático que no debería tener acceso.</p><p id="55f1ce4d-1fba-4896-8b51-67bdfe4b5f6b" class="">Para prevenir esta vulnerabilidad, los desarrolladores web deben implementar controles de acceso adecuados en su aplicación, como verificar la autorización adecuadamente y utilizar identificadores aleatorios en lugar de identificadores secuenciales. </p><h2 id="40fe420b-b26f-4dec-982c-e9d52c5ab6d0" class="">Metodología para descubrir IDOR</h2><p id="4cc77229-3af0-4e12-ac68-2e3910229cb5" class="">Para evaluar una vulnerabilidad IDOR en una aplicación web, se pueden seguir los siguientes pasos:</p><figure id="388b3012-1b0e-40b2-83e8-4958fb720b08" class="image"><a href="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Metodologia_de_Ataque_para_IDOR.png"><img style="width:841px" src="Mo%CC%81dulo%2011%20-%20Broken%20Access%20Control%20bba79cf414264f528b2564bb1869e007/Metodologia_de_Ataque_para_IDOR.png"/></a><figcaption>Imagen: Metodologia para descubrir IDOR la tengas me la pasas; </figcaption></figure><h2 id="dc7a5942-828e-4f7d-938f-02ad43a3a21a" class="">¿Cómo detectamos IDORs?</h2><h3 id="b5609b25-d1f6-4248-883f-0de15fbeaf02" class="">Manipulación manual de identificadores en la URL</h3><p id="f59f2018-e6f3-4924-92d2-c4b778ba7d6f" class="">Es uno de los métodos más comunes para identificar vulnerabilidades IDOR. Este método implica modificar manualmente el valor del identificador en la URL para acceder a recursos que no debería tener acceso. Este método puede ser realizado de manera manual o mediante el uso de herramientas que permiten automatizar el proceso de prueba. Una de las ventajas de este método es que es fácil de realizar, y no requiere herramientas especiales o conocimientos avanzados de programación. Sin embargo, una de las desventajas es que puede ser un proceso largo y tedioso, especialmente si la aplicación web tiene muchos recursos protegidos.</p><h3 id="053f1d1a-cf80-4031-8231-9ed9d9c9332c" class="">Comparación de Usuarios</h3><p id="79d54604-5e5a-4fd5-8731-83ea6fab42fe" class="">La comparación de usuarios es una técnica que se puede utilizar para identificar vulnerabilidades IDOR. Esta técnica implica crear dos cuentas de usuario en una aplicación web, una que pertenezca al atacante y otra que haga las veces de víctima. Si la aplicación web utiliza un identificador interno para acceder a un recurso, el atacante podría manipular el identificador en la URL para acceder a recursos que no debería tener acceso.</p><p id="42cc3840-7088-44ed-8337-7d7a981df4db" class="">Por ejemplo, supongamos que una aplicación web utiliza el ID del usuario como parámetro para acceder a su información personal. La URL podría verse así: <code>https://www.example.com/userinfo?id=1234</code>.</p><p id="d2612432-4031-4a43-b788-b5c5aaced63d" class="">Si el atacante tiene acceso a su propia cuenta en el servicio y sabe que el identificador &quot;id&quot; es igual al número de la cuenta, el atacante podría cambiar el valor del parámetro &quot;id&quot; en la URL para acceder a la información personal de otro usuario. Por ejemplo, podría cambiar la URL a <code>https://www.example.com/userinfo?id=5678</code> para acceder a la información personal de otro usuario.</p><p id="22f54e12-5b84-4026-b5a5-2217ce57908a" class="">Sin embargo, si el atacante no tiene acceso a ninguna cuenta en el servicio, no podrá probar la vulnerabilidad IDOR. Por lo tanto, para probar esta vulnerabilidad, se necesitan al menos dos cuentas en el servicio: una para el atacante y otra para la víctima.</p><p id="5c88ad68-621b-43e0-be65-6c4f798f9228" class="">Para hacer esto, el atacante deberá crear una cuenta de usuario en la aplicación web y enviar una solicitud para acceder a los recursos protegidos. Luego, el atacante deberá crear una segunda cuenta de usuario y enviar una solicitud para acceder a los mismos recursos protegidos. Si la aplicación web utiliza un identificador interno para acceder a los recursos protegidos, el identificador asociado con la cuenta del atacante y el identificador asociado con la cuenta de la víctima deberían ser diferentes.</p><p id="d99edda7-6a6a-4bf0-a4a4-28e9ecd1a774" class="">Si el atacante puede manipular el identificador en la URL para acceder a los recursos protegidos asociados con la cuenta de la víctima, es posible que exista una vulnerabilidad IDOR en la aplicación web. Una vez identificada la vulnerabilidad, el equipo de desarrollo de la aplicación web puede implementar controles de acceso adecuados para corregir la vulnerabilidad y evitar futuros ataques.</p><h3 id="7b098b80-c0a0-4044-87cc-8263d5fa968b" class=""> Uso de herramientas de escaneo automatizado</h3><p id="31204231-6bd5-460c-8f6a-162f8efaa3f4" class="">Herramientas como Burp Suite, ZAP, o muchos Fuzzers  pueden enviar solicitudes HTTP manipuladas para identificar recursos protegidos que pueden ser accedidos sin autorización adecuada. Además, estas herramientas pueden automatizar la detección de vulnerabilidades IDOR, lo que puede ahorrar tiempo y esfuerzo en comparación con la manipulación manual de identificadores, sin embargo, una de las desventajas es que estas herramientas pueden generar falsos positivos y no siempre son precisas.</p><p id="03fa46cf-cfe2-4d70-8c6e-a98fd602db2b" class="">Algunas de las herramientas automatizadas recomendadas:</p><figure id="1f8ecf5c-e32d-4cf9-b48a-239a535da3fa"><a href="https://www.zaproxy.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The ZAP Homepage</div><div class="bookmark-description">Welcome to ZAP!</div></div><div class="bookmark-href"><img src="https://www.zaproxy.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.zaproxy.org/</div></div><img src="https://www.zaproxy.org/img/zap-banner.png" class="bookmark-image"/></a></figure><figure id="efd87129-8b1f-45a1-be44-69cd4bee93eb"><a href="https://github.com/ffuf/ffuf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - ffuf/ffuf: Fast web fuzzer written in Go</div><div class="bookmark-description">Fast web fuzzer written in Go. Contribute to ffuf/ffuf development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/ffuf/ffuf</div></div></a></figure><figure id="11f99987-9101-4d35-9b7d-ffbdee10790e"><a href="https://github.com/xmendez/wfuzz" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - xmendez/wfuzz: Web application fuzzer</div><div class="bookmark-description">Web application fuzzer. Contribute to xmendez/wfuzz development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/xmendez/wfuzz</div></div><img src="https://opengraph.githubassets.com/4b6c570a33db5b39493b18489e77c0df08b7545522739e644a6c57fa5b76dd9d/xmendez/wfuzz" class="bookmark-image"/></a></figure><h3 id="e16bc96b-dc8b-456f-8e44-2eccff6cbe5a" class="">Ingeniería inversa</h3><p id="e0b16c8e-9434-41f5-ad44-c5df0e59fcde" class=""> También puede ser utilizada para identificar vulnerabilidades IDOR. Un atacante podría utilizar un descompilador para examinar el código fuente de la aplicación web y buscar vulnerabilidades en la forma en que se manejan los identificadores. Este método puede ser más complejo que los otros dos, ya que requiere habilidades de programación y conocimientos de ingeniería inversa. Una de las ventajas de este método es que puede identificar de manera muy precisa las vulnerabilidades IDOR en una aplicación web. Sin embargo, una de las desventajas es que puede ser un proceso largo y complejo.</p><h3 id="9b4f0c1a-5913-429b-a4da-bc3d9fd8f38c" class="">Llamadas AJAX</h3><p id="038eccd8-1977-4a24-ad16-9ccecc95b176" class="">AJAX (Asynchronous JavaScript and XML) es una técnica de programación que permite a las aplicaciones web enviar y recibir datos de un servidor en segundo plano, sin tener que recargar la página completa. Esto significa que los usuarios pueden interactuar con la aplicación web de manera más rápida y fluida, sin tener que esperar a que se cargue cada vez que se realiza una acción.</p><p id="3536ece4-0fa8-4929-b407-d06da8b11894" class="">En cuanto a la identificación de IDORs, AJAX puede ayudar a identificar vulnerabilidades en las que se utilizan identificadores para acceder a recursos protegidos en una aplicación web. Por ejemplo, supongamos que una aplicación web utiliza el ID del usuario como parámetro para acceder a su información personal. Si un atacante modifica el valor del parámetro &quot;id&quot; en la URL, podría acceder a la información personal de otro usuario.</p><p id="945eee05-6ca3-459f-ba91-ec1210b20ade" class="">Sin embargo, si la aplicación web utiliza AJAX para enviar y recibir datos en segundo plano, el atacante no tendrá acceso directo al parámetro &quot;id&quot; en la URL. En cambio, la aplicación web podría utilizar una solicitud AJAX para enviar el ID del usuario al servidor, y el servidor devolvería la información personal del usuario en formato JSON o XML. Si el atacante intenta manipular el ID del usuario en la solicitud AJAX, es posible que la aplicación web no funcione correctamente, lo que podría ser una señal de una posible vulnerabilidad IDOR.</p><h2 id="a7ad7e00-9485-4744-b943-09b2dd227260" class="">Herramientas y Automatizacion para detectar IDOR</h2><p id="44e60e80-bbb8-4e1b-bdf6-b067f334d33a" class="">A continuación se presentan algunas herramientas que pueden ser utilizadas para detectar vulnerabilidades IDOR:</p><table id="1b0d37fd-ff28-45d1-b79a-9ceaf7b337f6" class="simple-table"><thead class="simple-table-header"><tr id="40634220-c3df-4fb2-b9b7-da625bc7e150"><th id="][U}" class="simple-table-header-color simple-table-header">Herramienta</th><th id="\FEx" class="simple-table-header-color simple-table-header" style="width:806px">Descripción</th><th id="O[ed" class="simple-table-header-color simple-table-header" style="width:238.390625px">URL</th></tr></thead><tbody><tr id="b6560d55-24b1-45a7-96e8-37d8b036c7af"><td id="][U}" class="">Burp Suite</td><td id="\FEx" class="" style="width:806px">Herramienta de prueba de penetración que se utiliza comúnmente para identificar vulnerabilidades en aplicaciones web. Cuenta con una amplia gama de herramientas que pueden ayudar a identificar vulnerabilidades IDOR, como la capacidad de manipular manualmente los identificadores en la URL.</td><td id="O[ed" class="" style="width:238.390625px"><a href="https://portswigger.net/burp">https://portswigger.net/burp</a></td></tr><tr id="9f010b2d-05ef-4bab-890a-aad372b79f4e"><td id="][U}" class="">OWASP ZAP</td><td id="\FEx" class="" style="width:806px">Herramienta de prueba de penetración de código abierto que se utiliza comúnmente para identificar vulnerabilidades en aplicaciones web. Cuenta con una amplia gama de herramientas que pueden ayudar a identificar vulnerabilidades IDOR, como la capacidad de manipular manualmente los identificadores en la URL y la capacidad de enviar solicitudes HTTP manipuladas para identificar recursos protegidos que pueden ser accedidos sin autorización adecuada.</td><td id="O[ed" class="" style="width:238.390625px"><a href="https://www.zaproxy.org/">https://www.zaproxy.org/</a></td></tr><tr id="4fa56321-38b2-4f12-93b3-2ce3f1fccfb2"><td id="][U}" class="">Invicti</td><td id="\FEx" class="" style="width:806px">Herramienta de prueba de penetración que se utiliza comúnmente para identificar vulnerabilidades en aplicaciones web. Cuenta con una amplia gama de herramientas que pueden ayudar a identificar vulnerabilidades IDOR, como la capacidad de manipular manualmente los identificadores en la URL y la capacidad de enviar solicitudes HTTP manipuladas para identificar recursos protegidos que pueden ser accedidos sin autorización adecuada.</td><td id="O[ed" class="" style="width:238.390625px"><a href="https://www.invicti.com/">https://www.invicti.com/</a></td></tr><tr id="4984e098-091f-4326-8400-19590edabac9"><td id="][U}" class="">Acunetix</td><td id="\FEx" class="" style="width:806px">Herramienta de prueba de penetración que se utiliza comúnmente para identificar vulnerabilidades en aplicaciones web. Cuenta con una amplia gama de herramientas que pueden ayudar a identificar vulnerabilidades IDOR, como la capacidad de manipular manualmente los identificadores en la URL y la capacidad de enviar solicitudes HTTP manipuladas para identificar recursos protegidos que pueden ser accedidos sin autorización adecuada.</td><td id="O[ed" class="" style="width:238.390625px"><a href="https://www.acunetix.com/">https://www.acunetix.com/</a></td></tr></tbody></table><p id="084e3e25-2a00-4c09-8939-d3cb718371b2" class="">Es importante tener en cuenta que estas herramientas pueden generar falsos positivos y no siempre son precisas. Por lo tanto, es importante utilizar estas herramientas junto con otras técnicas para identificar vulnerabilidades IDOR en una aplicación web.</p><h2 id="2f583ec4-dec2-4d7a-a6f8-d5e10858bcc4" class="">Prevención de IDOR</h2><p id="6cfc2c56-1679-4944-b8e2-aa3cf3b6dd16" class="">Para prevenir esta vulnerabilidad, es necesario que los desarrolladores web tomen medidas de seguridad en sus aplicaciones. Por ejemplo, verificar la autorización adecuadamente, utilizar identificadores aleatorios e implementar controles de acceso adecuados.</p><p id="6eceaa5e-d12d-488a-ba9a-85d9f8ed8c08" class="">Verificar la autorización adecuadamente significa que la aplicación web debería comprobar que el usuario tiene los permisos necesarios para acceder a un recurso antes de permitir el acceso. Por ejemplo, si un usuario tiene permiso para acceder a la información personal de otros usuarios, la aplicación web debería comprobar que el usuario tiene ese permiso antes de permitir el acceso.</p><p id="bd3d087a-160b-4a84-be7c-7a1edc66e2f4" class="">Utilizar identificadores aleatorios en lugar de identificadores secuenciales también es importante para prevenir esta vulnerabilidad. Si la aplicación web utiliza identificadores secuenciales, como números consecutivos, los atacantes pueden intentar adivinar los identificadores y acceder a recursos que no deberían tener acceso. Utilizar identificadores aleatorios dificulta que los atacantes intenten adivinar los identificadores y accedan a recursos que no deberían tener acceso.</p><p id="ebb3f985-390a-4133-a9e6-882069824fee" class="">Implementar controles de acceso adecuados también es importante para prevenir esta vulnerabilidad. Por ejemplo, la aplicación web debería asegurarse de que los usuarios no puedan acceder a recursos que no deberían tener acceso, incluso si conocen el identificador correcto.</p><p id="bc6bfe65-6b17-48e7-ba4b-4accb93b7a49" class="">Por último, es recomendable realizar pruebas de vulnerabilidad periódicas para detectar y corregir posibles fallos de seguridad en la aplicación. Esto ayudará a detectar posibles problemas de seguridad antes de que sean explotados por los atacantes.</p><h2 id="084fffa8-a3b7-413c-84d5-49195c3f6e26" class="">Recomendaciones preventivas para los desarrolladores</h2><p id="9720747e-37e2-419e-993b-2c99a0a6e63c" class="">La vulnerabilidad de &quot;Broken Access Control&quot; es una amenaza importante para la seguridad de las aplicaciones web. Los desarrolladores deben implementar medidas de seguridad adecuadas para prevenir esta vulnerabilidad. Algunas de las mejores prácticas para prevenir esta vulnerabilidad son:</p><ul id="a908a19c-b04c-4937-8840-8168e47d7a0d" class="bulleted-list"><li style="list-style-type:disc">Examine el código fuente de la aplicación para buscar cualquier referencia directa a objetos que esté siendo expuesta.</li></ul><ul id="a9b8c755-97ec-4ae8-899c-463ff9781b36" class="bulleted-list"><li style="list-style-type:disc">Implementar un control de acceso basado en roles, es decir, establecer qué roles de usuario tienen acceso a qué información y acciones.</li></ul><ul id="7eb695ef-80a3-4e47-ba23-354b3bdddd8a" class="bulleted-list"><li style="list-style-type:disc">Validar y verificar la identidad de los usuarios antes de permitirles el acceso a los recursos protegidos.</li></ul><ul id="86307351-6e84-424b-8fd2-3a9394d0efce" class="bulleted-list"><li style="list-style-type:disc">Utilizar tokens de autenticación para controlar el acceso a los recursos protegidos.</li></ul><ul id="e7ec09c9-eb7a-427d-b8f9-ad76965432c1" class="bulleted-list"><li style="list-style-type:disc">Evitar el uso de identificadores predecibles o fácilmente adivinables en las solicitudes HTTP para acceder a recursos protegidos.</li></ul><p id="c2a2063d-f280-4966-9007-6b0556ada3ec" class="">Además, es importante realizar pruebas de penetración regulares en la aplicación web para identificar posibles vulnerabilidades de &quot;Broken Access Control&quot;. Estas pruebas pueden incluir la manipulación de parámetros en las solicitudes HTTP, la utilización de identificadores predecibles y otras técnicas de ataque.</p><p id="f548c9b8-82d9-4678-b8c8-33856c9f594c" class="">
+</p><p id="2b32cbb3-73cc-4432-8804-8f24a2de93fe" class="">Aquí hay un ejemplo de cómo se podría implementar una sección de administración en una página web con HTML y PHP:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16edf19d-c5d8-459a-a0e4-057ed4991ff0" class="code code-wrap"><code class="language-Plain Text">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Ejemplo de sección de administración&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Encabezado de la página --&gt;
+	&lt;header&gt;
+		&lt;h1&gt;Bienvenido a la sección de administración&lt;/h1&gt;
+	&lt;/header&gt;
+
+	&lt;!-- Sección de contenido --&gt;
+	&lt;main&gt;
+		&lt;!-- Verificación de identidad --&gt;
+		&lt;?php
+			session_start();
+
+			// Verificar si el usuario está autenticado
+			if (!isset($_SESSION[&quot;usuario&quot;]) || $_SESSION[&quot;usuario&quot;] != &quot;administrador&quot;) {
+				echo &quot;&lt;p&gt;No tiene acceso a esta sección.&lt;/p&gt;&quot;;
+				exit;
+			}
+		?&gt;
+
+		&lt;!-- Resto del contenido de la sección de administración --&gt;
+		&lt;p&gt;Aquí puede actualizar la información de la página web.&lt;/p&gt;
+	&lt;/main&gt;
+
+	&lt;!-- Pie de página --&gt;
+	&lt;footer&gt;
+		&lt;p&gt;Derechos de autor © 2023&lt;/p&gt;
+	&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p id="d0886765-1eba-47a1-a80f-d4ef26361526" class="">En este ejemplo, se utiliza PHP para verificar si el usuario está autenticado y si tiene los permisos necesarios para acceder a la sección de administración. Si el usuario no está autenticado o no tiene los permisos necesarios, se muestra un mensaje de error y se impide el acceso a la sección de administración.</p><p id="ff047dfe-7931-4f07-b6ec-a55b864521e4" class="">Es importante tener en cuenta que este es solo un ejemplo y que la implementación del control de acceso puede variar según la aplicación web específica. Sin embargo, la idea general es que se deben establecer medidas que permitan controlar quién tiene acceso a qué información y qué acciones pueden realizar para prevenir la vulnerabilidad de &quot;Broken Access Control&quot;.</p><h2 id="95107b43-d7bb-4fa6-af11-edd33da72d3f" class="">Enlaces de Referencia:</h2><figure id="12075499-4f54-4b94-b87e-4f58c696186c"><a href="https://cwe.mitre.org/data/definitions/284.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">CWE -
+<br/><br/>		CWE-284: Improper Access Control (4.11)<br/></div><div class="bookmark-description">Common Weakness Enumeration (CWE) is a list of software weaknesses.</div></div><div class="bookmark-href"><img src="https://cwe.mitre.org/favicon.ico" class="icon bookmark-icon"/>https://cwe.mitre.org/data/definitions/284.html</div></div></a></figure><figure id="627b604d-37c5-4b90-95b1-47c1477a3c43"><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A01 Broken Access Control - OWASP Top 10:2021</div><div class="bookmark-description">OWASP Top 10:2021</div></div><div class="bookmark-href"><img src="https://owasp.org/Top10/assets/images/favicon.png" class="icon bookmark-icon"/>https://owasp.org/Top10/A01_2021-Broken_Access_Control/</div></div></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Resolved inline comments</summary><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 2:06 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">&quot;<a href="https://www.examplebank.com/login">https://www.examplebank.com/login</a>&quot;.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 11:50 AM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">&quot;<a href="https://www.examplestore.com/orders">https://www.examplestore.com/orders</a>&quot;</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 11:50 AM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> &quot;<a href="https://www.exampleapp.com/admin">https://www.exampleapp.com/admin</a>&quot;.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 11:50 AM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 11:59 AM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Ejemplos de Broken Access Control</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:10 PM</time></span></span></div><div style="padding:0.2em">Este título iría después de la imagen del título “Access Control</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">&quot;<a href="https://www.example.com/admin">https://www.example.com/admin</a>&quot;.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:35 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link. Tiende a confundir al lector.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><a href="https://www.example.com/profile?id=123">https://www.example.com/profile?id=123</a></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:35 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link. Tiende a confundir al lector.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><a href="https://www.example.com/checkout">https://www.example.com/checkout</a></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:34 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link. Tiende a confundir al lector.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><a href="https://www.example.com/delete?id=123">https://www.example.com/delete?id=123</a></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:34 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en formato texto. Está en formato de Link. Tiende a confundir al lector.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><strong>Broken Authentication:</strong></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:02 PM</time></span></span></div><div style="padding:0.2em">Dejarlo en título 2. Está en negrilla.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 11:59 AM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Mecánica de explotación</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:48 PM</time></span></span></div><div style="padding:0.2em">Va en título 1</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">a escalación vertical</span> ocurre cuando un atacante obtiene acceso a un nivel superior, como el de administrador, mientras que<span style="border-bottom:0.05em solid"> la escalación horizontal</span> ocurre cuando un atacante obtiene acceso a otro usuario con los mismos privilegios.<br/><br/>Un ejemplo común de escalación vertical en una aplicación web es cuando un usuario normal intenta acceder a una sección restringida de la aplicación, pero no tiene los permisos necesarios.  </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:39 PM</time></span></span></div><div style="padding:0.2em">Este texto se debe acomodar en cada tipo de escalación. Si se deja corta la lectura.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">a escalación vertical</span> ocurre cuando un atacante obtiene acceso a un nivel superior, como el de administrador, mientras que<span style="border-bottom:0.05em solid"> la escalación horizontal</span> ocurre cuando un atacante obtiene acceso a otro usuario con los mismos privilegios.<br/><br/>Un ejemplo común de escalación vertical en una aplicación web es cuando un usuario normal intenta acceder a una sección restringida de la aplicación, pero no tiene los permisos necesarios.  </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:39 PM</time></span></span></div><div style="padding:0.2em">Este texto se debe acomodar en cada tipo de escalación. Si se deja corta la lectura.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><a href="https://www.example.com/admin">https://www.example.com/admin</a></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:34 PM</time></span></span></div><div style="padding:0.2em">Cambiarlo a formato texto, para no confundir al lector</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:40 PM</time></span></span></div><div style="padding:0.2em">Incluir una imagen de escalación vertical. </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 12:00 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Fuzzers</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 1:06 PM</time></span></span></div><div style="padding:0.2em">En enlaces de referencia incidar algunas herramiemtas.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:20 PM</time></span></span></div><div style="padding:0.2em">Incluir el enlace al módulo anterior y siguiente</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>

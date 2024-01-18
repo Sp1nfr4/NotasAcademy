@@ -1,0 +1,704 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 4</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="467648f9-2e5d-48e5-acef-6b932e9330ea" class="page sans"><header><h1 class="page-title">Cybersecurity for Everyone - Module 4</h1><p class="page-description"></p></header><div class="page-body"><figure id="c4e0da23-348d-4752-8f7f-2562ab590009" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image1.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image1.jpg"/></a></figure><figure id="ad8a7e7a-6b8c-4c58-8c47-4bed9c7b2344" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image2.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image2.jpg"/></a></figure><p id="57dafd7b-c758-49a7-a5b6-2409bf567c2a" class="">Cybersecurity for Everyone - Module 4</p><h1 id="17a30b93-f9cd-42f5-9ad5-008e36c1405d" class=""><strong>How do I protect my devices?</strong></h1><figure id="ddaf75c0-f51e-4d69-90e1-65fd4e894fa7" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image3.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image3.jpg"/></a></figure><p id="bf0d4ac1-789b-438e-b99a-f5626aed57a6" class="">Protecting your devices against cybersecurity threats is crucial to keep your personal and sensitive information secure. Here are some tips to help you protect your devices:</p><h2 id="41e4acbf-7250-401a-8f57-3c154dde9482" class=""><strong>Keep your software up to date:</strong></h2><p id="83d37508-f992-41e4-89be-c7093c0e6528" class="">Make sure that you install updates for your operating system, software, and apps regularly.</p><p id="f711d61b-1583-487e-94aa-59888b0f6aed" class="">These updates often contain security patches that fix vulnerabilities that can be exploited by malicious hackers or Cybercriminals.</p><p id="82bb7c59-fde4-4de8-8d1b-441b697b9aa4" class=""><strong>Video Demostration:</strong></p><figure id="cc23d738-97e8-44b0-95b4-7f6f5090af08" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image4.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image4.jpg"/></a></figure><h2 id="3d65da04-dfbf-42d9-a349-5acbdb385fc1" class=""><strong>Use strong passwords</strong></h2><p id="a99f3345-0f72-4913-9ed5-b81c43e4164e" class="">Use complex passwords that are difficult for malicious hackers to guess.</p><p id="f81c3c1c-c24d-4e97-99dd-066e51725df4" class="">Avoid using the same password across multiple accounts, and use a password managers to keep track of your passwords in only ona place easy to access.</p><p id="b41c7169-7fe5-49c9-83c0-afeb69a6cc53" class="">Remember: To change the last character or put a symbol as last character dont make the pasword &quot;safe&quot;.</p><figure id="2f4ece5a-d743-4bc9-ba26-034b0af81675" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image6.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image6.jpg"/></a></figure><h2 id="d9bf3be1-c89b-41fe-84ce-ddbce5ee58d0" class=""><strong>Enable two-factor authentication</strong></h2><p id="9367d08f-92dd-4a77-b524-77d5435280cd" class="">Two-factor authentication (2FA), adds an extra layer of security to your accounts by requiring a second form of verification, such as a fingerprint or a code sent to your phone.</p><p id="5c191ddd-fc18-423f-b90b-3a39735d0f63" class="">Some examples can be:</p><ul id="5549020d-86c5-46f3-bcfe-f0092d352431" class="bulleted-list"><li style="list-style-type:disc">Use a Password + Code received by SMS</li></ul><ul id="1d547142-2e22-4f1d-9a63-7d944b65aefd" class="bulleted-list"><li style="list-style-type:disc">Use a Password + Code received by Email</li></ul><ul id="32b5f6e8-af07-4034-b75c-4e4133cff74f" class="bulleted-list"><li style="list-style-type:disc">Use a Password + FaceID</li></ul><p id="796f4c5c-dd0f-4c62-b585-336ee5bdcab5" class="">Some Multifactor Authentication tools:</p><ul id="978af22f-4920-4e9a-876b-287b7c813dcc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.microsoft.com/en-us/security/mobile-authenticator-app">Microsoft Authenticator</a></li></ul><ul id="00254ff0-9e86-4014-9fd3-481ed3b4bc44" class="bulleted-list"><li style="list-style-type:disc"><a href="https://googleauthenticator.net/">Google Authenticator</a></li></ul><ul id="bfd70552-4245-4a12-8dbc-b795fec96fcf" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.yubico.com/">Yubico</a></li></ul><figure id="9d45ffc5-6415-45f6-90bb-3597a35781ad" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image7.jpg"><img style="width:499px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image7.jpg"/></a></figure><h2 id="bd8bc6d7-b25f-4f46-a385-4bdd452f36c4" class=""><strong>Be cautious of suspicious emails</strong></h2><p id="d8273545-d531-4336-8e4d-f9d77bb07ec8" class="">Don&#x27;t open emails from unknown senders, and be wary of attachments and links in emails that look suspicious.</p><p id="9b36a55e-d6a8-4bff-b3b9-5bc197b23486" class="">These may contain malware that can infect your device and compromise your information.</p><p id="c90ea7cc-c540-472f-ba84-32e639bf0139" class="">Some suspicious contents:</p><ul id="3669b9d6-59dd-42e0-bb5b-e17b708b38b1" class="bulleted-list"><li style="list-style-type:disc">Spelling and Grammatical errors</li></ul><ul id="bf7c1d9a-a431-41e9-9ff4-fa5b3c481ebd" class="bulleted-list"><li style="list-style-type:disc">Ambiguous Content</li></ul><ul id="8e2e640b-7754-4b94-9826-3ac80c80705c" class="bulleted-list"><li style="list-style-type:disc">Senders that you never met</li></ul><ul id="82289546-845b-4d8d-aca7-afa7d35ec416" class="bulleted-list"><li style="list-style-type:disc">Unsolicited Requests</li></ul><ul id="5dc11b81-cc57-4cdc-b876-a4a084d85c89" class="bulleted-list"><li style="list-style-type:disc">Be wary of urgent requests</li></ul><figure id="bc5349ba-5db9-4631-b222-9c903a968bd8" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image8.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image8.jpg"/></a><h2 id="5c40c653-f51f-486d-9b8d-efd2674c4b3f" class=""><strong>Install anti-malware software</strong></h2><p id="ddf22494-4420-4ab8-b178-0c85d2f53cef" class="">Use anti-virus and anti-malware software to protect your device from malicious software that can harm your device and steal your personal information.</p><p id="a1c16947-3a3f-4926-8cd2-e38a66dc6999" class="">The most advanced technologies receive the name of EDR or XDR: Endpoint Detection and Response or Extended Endpoint Detection and Response; this tools can detect abnormal behaviors in the computer, like navigate a uncommon URL, or download files from non familiar sources.</p><figure id="dace6473-b94d-4e16-9e64-3ab26ee4bea8" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image9.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image9.jpg"/></a></figure><h2 id="f0b7a1c0-ece0-4910-b5af-12c122e07ae9" class=""><strong>Avoid public Wi-Fi</strong></h2><p id="49a9ed36-ca8d-4447-9343-775d4f2bebff" class="">Be cautious when using public Wi-Fi as these networks are often unsecured and can be easily hacked.</p><p id="6df18d5f-f092-48bd-b3ba-7fa114e9d468" class="">A malicious actor can create a fake WiFi with a similar name of a real one or even with the same name and install spy tools to monitor and capture the communications from the devices connected to the fake network and steal credentials, banking information, credit cards, etc..</p><p id="6af9c278-5b60-487e-8916-ae16e94dba77" class="">If you need to use public Wi-Fi, use a virtual private network (VPN) to encrypt your data and protect your device.</p><figure id="3feb815c-c0d4-48d6-bded-75b10e8a57d5" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image10.jpg"><img style="width:350px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image10.jpg"/></a><h2 id="70fd5ebb-8d0d-41c1-9f26-a727ad516ec3" class=""><strong>Backup your data</strong></h2><p id="be2627fe-281f-4c35-a8cb-48f5c6cfcdb2" class="">Regularly backup your data to an external hard drive or use cloud storage to ensure that you don&#x27;t lose your important data in the event of a cybersecurity incident.</p><p id="43a86694-ccee-4c69-8bf5-718882aa23dc" class="">From time to time verify your Backups to be sure that your information is safe and that the backup device is not full; you can try to restore a file to execute this verification.</p><p id="27af8f56-89ce-4d49-8ce4-7436b19f3659" class="">Remember: always validate that your backups are really working; do not expect for an catastrophic incident to discover a failure; is recommended to use different target devices to increase your redundancy.</p><p id="aee04780-78d2-4e8b-8f09-d24170634181" class="">Some Cloud services that you can use to store your BackUp are:</p><p id="d5cef938-4ac0-4a3c-840d-18df059c6db2" class="">Google Drive</p><p id="7705ba9a-b927-4a97-b2d1-5e066651b38c" class="">Microsoft One Drive</p><p id="6ae6c719-85d5-40f3-b059-61a38e745832" class="">Dropbox</p><figure id="f2ea9610-4ad3-45dd-ae3b-fe9fe683bd8a" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image11.jpg"><img style="width:300px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image11.jpg"/></a></figure><h1 id="6094d310-6ebb-4773-8b39-6474fa4b3b14" class=""><strong>What is Malware?</strong></h1><figure id="e82ac65a-e740-4c03-9669-88ecd82237dd" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image12.jpg"/></a></figure><p id="660128e1-4df3-4ee7-9217-dc0d17555299" class="">It is any type of malicious software designed for the purpose of infiltrating a computer and:</p><ul id="27b5ece7-2d61-4025-b465-f1693a2c96e4" class="bulleted-list"><li style="list-style-type:disc">Harm you</li></ul><ul id="05ba8eb5-c0a6-49a8-ac29-522bdbb9d8c7" class="bulleted-list"><li style="list-style-type:disc">Steal your information</li></ul><ul id="7c5fb585-0526-41c5-b204-796d59ee4982" class="bulleted-list"><li style="list-style-type:disc">Spy on</li></ul><ul id="b6938e4b-9cca-41e6-9f76-8afb4f632bd5" class="bulleted-list"><li style="list-style-type:disc">Prevent access to data and charge ransom</li></ul><ul id="b1e32685-95b0-47e4-9182-848ce49b94e3" class="bulleted-list"><li style="list-style-type:disc">etc.</li></ul><h1 id="bc98dc90-3df8-47cc-a0fc-eb42350c40f0" class=""><strong>How do I Infect my Computer or My Device?</strong></h1><figure id="85e04e20-459c-44d4-9b00-f80f67cbbed0" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image13.jpg"><img style="width:319px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image13.jpg"/></a></figure><ul id="948fd73a-854a-44c4-b8cb-8af5edd2cef7" class="bulleted-list"><li style="list-style-type:disc">Clicking on malicious links in an email</li></ul><ul id="b2c0c248-7165-4817-8b41-2b755dcb861f" class="bulleted-list"><li style="list-style-type:disc">Connecting unknown USB devices</li></ul><ul id="a24b7b48-634a-4942-8ffb-f014d684a2c5" class="bulleted-list"><li style="list-style-type:disc">Downloading Software &quot;disguised&quot; as other software</li></ul><ul id="8f4ef229-5891-45ba-afaf-8548e783d526" class="bulleted-list"><li style="list-style-type:disc">Surfing on dangerous sites looking for illegal Content</li></ul><ul id="84b16840-8f39-40a5-9d86-dfa961a35481" class="bulleted-list"><li style="list-style-type:disc">Looking for &quot;Explicit sites&quot;</li></ul><ul id="fef6e09b-5976-48fd-9fa6-81668c58bbe5" class="bulleted-list"><li style="list-style-type:disc">Downloading Games from malicious sites</li></ul><p id="81ec2c59-2e3e-4606-bb43-d489ddb8c208" class="">In short, acting carelessly or over confidently, With that attitude of.... That doesn&#x27;t happen to me.... I am not important to a criminal.....</p><h1 id="ab8abf54-9c3d-40a5-9c9d-96de22a27677" class=""><strong>Antimalware</strong></h1><figure id="8e7e6353-279e-45fd-9b93-87892d572491" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image14.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image14.jpg"/></a></figure><p id="d65be6d0-67bc-409b-8f27-807126721b81" class="">Antimalware is a tool that helps us to protect and detect threats on computers, smartphones, mobile devices and other devices.</p><p id="a46b208a-48cb-44fa-b589-70c304e4c924" class="">Some users tend to think that by using an antimalware they are immune to being infected, but this is not the case, a device can be infected even having an antimalware installed, we must be cautious and be wary of any event or strange site.</p><p id="0c901531-3518-4b32-9570-d97ea88bdf60" class="">There is no anti-malware against human mistakes</p><p id="b860fc1c-a1ab-43f0-821d-cd85947d2e5c" class="">Some antimalware Vendors tools:</p><ul id="dbf99ba2-6403-4e80-a062-47a5e11e4428" class="bulleted-list"><li style="list-style-type:disc"><a href="https://usa.kaspersky.com/">Kaspersky</a></li></ul><ul id="e900abfa-9e95-4608-9b52-83343c148212" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.broadcom.com/products/cybersecurity/endpoint">Symantec</a></li></ul><ul id="0367c4eb-c63a-4731-aca6-efbd78a4614c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.avast.com/lp-ppc-hp-v5?full_trSrc=mmm_ava_tst_007_402_a&amp;gclid=Cj0KCQiAgaGgBhC8ARIsAAAyLfF1e0GcVcDMzS_y9Dsk_Xzub_Hoha4FWN18bJZmLHGTDxAHUvsi6SUaAlzPEALw_wcB&amp;gclsrc=aw.ds#pc">Avast</a></li></ul><ul id="1b6f7bb4-5230-4540-ba5d-75cc5eed80cb" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.pandasecurity.com/en/homeusers/">Panda</a></li></ul><ul id="4d7b2ae3-de24-4c27-a492-8ffc893201a9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.mcafee.com/">McAfee</a></li></ul><p id="a9b75dc1-d5bf-4c33-9f45-af969ab98bd4" class="">The recommendation is to use a paid tool, basically because of the support that the manufacturer could give you in case you need it; however, many, if not most antimalware manufacturers have free versions that are good but obviously lack the advantages that the paid versions have.</p><h1 id="b9384e4a-7301-488d-9605-1f88004683d7" class=""><strong>Free Antimalware Scanners for Computers</strong></h1><figure id="c17818cf-0ba9-4f3f-bc98-c41046292935" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image15.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image15.jpg"/></a></figure><p id="6044e351-4341-4669-ae78-4e3f8c1310da" class=""><strong>Kaspersky Virus Removal Tool</strong></p><p id="6d90600e-825f-4a4c-a559-6ec2cc4f3980" class="">Simple and fast tool to remove malware in Microsoft Windows</p><p id="43b42d23-60da-4e01-8461-9c77a45c13b6" class="">Kaspersky Rescue Disk</p><p id="b65c9bbb-c41c-49f9-a2f2-283ef574b3ef" class="">It is a tool that runs before starting the computer&#x27;s operating system to scan the computer for advanced malware and perform the disinfection process.</p><p id="ade02cf6-904c-4c07-9d62-2380dd74df09" class=""><strong>ESET Free Online Scanner</strong></p><p id="fe22ddb7-c3d9-4be8-9dfb-1f64a7082cf1" class=""><strong>TrendMicro Housecall Free Online Security Scan</strong></p><p id="4f5c329e-a3df-4025-8432-fec43b619263" class=""><strong>AVG Free Virus Scan &amp; Malware Removal Tool</strong></p><h1 id="00b36ab1-7df2-4c86-ad46-96a999aa5b62" class=""><strong>Online Sites to detect threats on files (free):</strong></h1><figure id="603cf762-8282-47f5-a5ee-50cfc798412d" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image16.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image16.jpg"/></a></figure><ul id="2aaea097-a17c-48d9-999c-8c68da461afb" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.virustotal.com/gui/home/upload">VirusTotal</a></li></ul><ul id="b768ebae-1736-4cc8-9ed5-0dbe8bef47a8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.hybrid-analysis.com/">Hybrid-Analysis</a></li></ul><ul id="8bffee16-2d71-46aa-ae34-f1aa79c3f19c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://virusscan.jotti.org/en-US">Jotty.org</a></li></ul><ul id="b64a10f0-b1db-4891-8e7b-864c7a3470d9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://metadefender.opswat.com/">MetaDefender.com</a></li></ul><ul id="fe32fc70-c7c5-418b-9b8e-7b21ed9a9a25" class="bulleted-list"><li style="list-style-type:disc"><a href="https://app.any.run/">Any.Run</a></li></ul><ul id="62a56102-a68a-484e-b278-4866d4be5ae6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.totalav.com/antivirus-scanner">TotalAV.com</a></li></ul><h1 id="aaf3adb0-64d6-44a2-8594-d1610a60ea1a" class=""><strong>Antimalware For Mobile Devices</strong></h1><figure id="785a1b95-2532-416d-b45f-b6ea81a39ee2" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image12.jpg"/></a></figure><p id="e286ba59-2005-4947-9e31-faa5757f8f53" class=""><strong>Avast Mobile Security for iOS</strong></p><p id="43240c09-fa03-4206-987e-22de1573c094" class=""><strong>Bitdefender Mobile Security for Android</strong></p><p id="6b690079-73c2-439d-9552-3080323cb6e7" class="">Bitdefender Mobile Security for Android gives your mobile devices protection against viruses and malware.</p><p id="6e48ccea-142e-43a9-844d-f3bfbe8468c4" class="">Kaspersky Internet Security</p><p id="b86c031d-bf08-4dfc-b4f9-235ff697fd15" class="">Antimalware tool compatible with Android devices , manages a free version with scanning , free updates and a paid version with additional protection.</p><p id="6210ebac-35b3-42a3-9176-ba8e8c6ba243" class="">Lookout mobile</p><p id="529443f4-d1e0-46e9-a299-70cb149f2aca" class="">Antimalware tool compatible with Android &amp; iOS devices capable of providing additional services such as : backups , geolocation , equipment updates and anti-theft alerts.</p><h2 id="567eabbb-f9cb-4a05-aa88-2337f660aa4a" class="">Android</h2><h2 id="96c7a4f0-ffa7-4ed4-ad46-7fc2844f987f" class="">iOS</h2><h1 id="6093925a-ed8e-4e5f-8b0b-70432ede487a" class=""><strong>Security Tools: Firewalls</strong></h1><figure id="2b8d9cb6-382c-49c0-8638-b26a909d1174" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image17.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image17.jpg"/></a></figure><p id="4d3d34af-421a-480d-a461-4d0c88f073b7" class=""><strong>What is a Firewall?</strong></p><p id="be943be6-33c4-4b84-8305-84181a037fa0" class="">In simple terms, a firewall is a security tool that monitors and controls the traffic between a computer network and the internet. It acts as a barrier between your computer and the outside world, filtering incoming and outgoing network traffic based on a set of predefined security rules.</p><p id="6bce7e2a-a151-4e5e-9536-7f7e893c442c" class="">The firewall can either allow or block traffic based on the security policy configured by the network administrator. This helps to prevent unauthorized access to your network, protects your system from malicious attacks, and helps to keep your data safe. Firewalls are commonly used in both personal and business settings to enhance security and protect against cyber threats.</p><h2 id="ce5de2e4-6284-4373-94ca-e575a0d35d5e" class=""><strong>Free Firewalls</strong></h2><p id="05754f5f-7541-4d36-9350-a97182a37c9b" class="">Firewall: Comodo</p><p id="60f89c3a-e23b-4ae6-b74e-594f60994c01" class="">Free tool to control incoming and outgoing connections to and from your computer;</p><p id="94d1ad53-a558-43b7-a0bc-b01297105422" class="">Firewall: Zone alarm free</p><p id="868a611b-d004-47be-ba7c-155eba6c8f1f" class="">Free tool to control the incoming and outgoing connections of our equipment.</p><figure id="624ebb2e-f79f-4fd2-8b47-7b9009714431" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image18.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image18.jpg"/></a></figure><h1 id="06fd4721-b20e-445d-bb24-427b3e489d63" class=""><strong>Operating Systems and App Updates</strong></h1><figure id="dae98a72-843e-4b25-b46a-ecaba7dbc586" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image19.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image19.jpg"/></a></figure><p id="43e56eb7-2cf0-4702-9e3b-6fab8c34691e" class="">There are programs that identify if our computers need critical or security updates of the operating system, this helps us to improve the security levels in the computers because we reduce the risk of a possible infection or security breach due to lack of updates.</p><p id="2751892f-6c93-4ee8-9d88-37b6f891c1ea" class="">If you are using Windows as Operating System, there is an Specific Tool called &quot;Windows Update&quot; that detects all thew updates and fixes that your computer needs; you should review this tool in a weekly basis.</p><p id="d159d3e1-351a-4068-91d2-5017240a3bdd" class="">The problem here is: Wht happen with the apps i have installed in my computer that are not covered with the windows update?; well here some tools to help you:</p><p id="b111eddd-25c9-4695-9d02-b82f903f4a25" class="">Application patching and updating tools:</p><ul id="021f2dfe-2512-455b-baf0-886cae1377f4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://patchmypc.net/freeupdater/PatchMyPC.exe"><strong>Patch my PC</strong></a></li></ul><ul id="50287ddb-9acd-4fa7-9af6-17527e7b94f2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://kcsoftwares.com/index.php?sumo"><strong>SUMo Software Update Monitor</strong></a></li></ul><ul id="4da875e9-9c65-4fd3-8d23-73798f31e72b" class="bulleted-list"><li style="list-style-type:disc"><a href="http://www.secpod.com/spsaner/SpSanerFree.exe"><strong>Secpod</strong></a></li></ul><p id="75685d2c-2e2f-4779-9611-03aa0e9aef22" class="">Additionally, some antimalware solutions have an option to check if the programs installed on the computer and the operating system version are up to date.</p><h1 id="9f595292-1801-42e4-b43e-d0cc1d8c87f6" class=""><strong>USB flash drives and storage devices</strong></h1><figure id="7d940625-0bf0-49f5-ac53-cb8f85a39dc3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image20.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image20.jpg"/></a></figure><p id="0c2f86b8-2056-48fa-ba87-cdb5e10aeed0" class="">The first recommendation is that you do not connect indiscriminately any USB memory or storage device, since they can be infected with some type of Malware; there is no perfect defense against this type of risk, but a defense that we should ALWAYS have in our computer is an antimalware.</p><p id="06f4269a-47ec-45ae-879c-c326b41c3967" class="">Cybercriminals often use USB sticks as a means of infection; they leave them &quot;abandoned&quot; in a high traffic place such as a restaurant, the door of an office, next to the company&#x27;s printer, etc. in an attack called &quot;Baiting&quot;.</p><h2 id="107ed474-cd5e-452f-ba53-5afd1d4c809a" class=""><strong>Formatting a USB Device or Storage</strong></h2><p id="15236789-11d0-4e3f-92ec-9919744c7cad" class="">USB formatting is the process of preparing a USB flash drive or external hard drive to store data by creating a file system on it. The file system is like a structure that allows the computer to read and write data to the USB drive.</p><p id="bfe2eb83-cc86-4ec6-bc87-ef95e00192ca" class="">When you format a USB drive, the computer erases all the data on the drive and sets up the file system. This involves dividing the drive into sections called sectors, organizing them into clusters, and creating a directory structure to keep track of the files.</p><p id="cdf7eb30-3eb8-4b70-af1c-21c9b0a1d3a0" class="">You can choose different file system formats when formatting a USB drive, such as FAT32, NTFS, or exFAT. Each format has its advantages and limitations, so you need to choose the one that suits your needs.</p><p id="541eadf3-e4aa-49b2-b9ce-5b9204d00e73" class="">Formatting a USB drive is a simple process that can be done in a few steps using the built-in formatting tool in your operating system or a third-party formatting tool. Just be sure to back up any important data on the drive before formatting it, as the process will erase all the data on the drive.</p><h1 id="beea5c26-fc35-404d-86f5-6f8c6a158a19" class=""><strong>Backups</strong></h1><figure id="39af60f0-f56b-42a4-b28f-ab0c226e61b9" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image21.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image21.jpg"/></a></figure><p id="5daa9c85-6730-4508-8abc-e807db21a248" class="">A backup is a copy of important information that you create in case the original information gets lost or damaged. Think of it like making a photocopy of an important document just in case the original gets lost or destroyed. By having a backup, you can easily restore the lost or damaged information and avoid any negative consequences that could result from losing it. It&#x27;s like a safety net for your important data.</p><h2 id="c7cc998e-5078-4a6e-b570-c1b5d03a496f" class=""><strong>Backup Devices (Storage)</strong></h2><p id="b2bdc60e-e8a0-451d-b52a-62295dedf713" class="">It is a good practice to have multiple backup devices to ensure redundancy and reduce the risk of data loss. The number of backup devices you should use depends on your needs, the amount of data you need to back up, and your budget.</p><p id="a82e95d9-99fc-45b4-b223-db140c8cf193" class="">As a general rule of thumb, you should have at least two backup devices, with one device kept offsite or in a different location than the primary backup device. This way, if one backup device fails or is damaged, you can still recover your data from the other backup device.</p><p id="0d2d56e4-02aa-4a12-ba22-0ea21d86ed60" class="">Examples:</p><ul id="9b1f3aa7-b4c0-4cb1-a1ae-a206cb248114" class="bulleted-list"><li style="list-style-type:disc"><strong>USB Stick (Local) + Microsoft One Drive (Remote)</strong></li></ul><ul id="260b009a-7700-48c4-aa3b-3ad0309cbc8a" class="bulleted-list"><li style="list-style-type:disc"><strong>USB SSD External Hard Drive (Local) + Google Drive (Remote)</strong></li></ul><h2 id="b7a871b6-b3da-46ec-90e3-cb639d4244ac" class=""><strong>Backup Periodicity</strong></h2><p id="e4770bde-dfd5-421a-a031-2540c81dcc7d" class="">The backup periodicity refers to how often you should make a backup of your important data. The frequency of backups depends on how often you add or change important data and how critical that data is to you.</p><p id="c8e62e25-fadd-4fd4-adb3-e2ade5cdea0c" class="">If you frequently add or update important data, you may want to back up your data more frequently, such as every day or every week. On the other hand, if you only add or change data infrequently, you may be able to get away with backing up less often, such as every month or every few months.</p><p id="ec0fb14b-4b42-4e54-932b-9f9298c27da3" class="">The key is to find a backup schedule that works for your needs and ensures that you don&#x27;t lose any critical data in the event of a hardware failure or other disaster.</p><h1 id="59fa528c-8ef3-4780-a13c-6842fa468d30" class=""><strong>Disk Encryption</strong></h1><figure id="c7188b0c-b06a-401d-b5bf-6f348b48727c" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image22.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image22.jpg"/></a></figure><p id="eae44e1d-bc47-41ea-a015-68e70d239bdf" class="">Disk encryption is a security technique that helps protect the data on your computer or other electronic device by encoding it in a way that makes it unreadable without the correct password or key. It&#x27;s like putting a lock on a diary or a safe so that only you or people you trust can access the contents.</p><p id="f93babcc-7d0c-498f-a951-69197e599498" class="">When you encrypt a disk, all of the data on it is transformed into a scrambled code that cannot be read without the correct key or password. This makes it much harder for someone else to access your personal or sensitive information, even if they have physical access to your computer or device.</p><p id="04dcd63e-e998-4648-bab6-8cbd72f0f719" class="">Disk encryption is particularly useful for protecting sensitive information like financial records, personal identification information, or company secrets. It&#x27;s an important step to take if you want to keep your data safe from prying eyes or potential cyber criminals.</p><p id="5634c79a-e5bd-4451-950d-cee02bfbb778" class="">Tools:</p><ul id="85eac024-8edf-44a5-b90c-5468f009a8a5" class="bulleted-list"><li style="list-style-type:disc"><strong>Bitlocker (Only for Windows Professional Versions)</strong></li></ul><ul id="0bb09ee2-6109-42f2-9d46-f509810e4fe6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://support.apple.com/en-us/HT204837"><strong>FileVault</strong></a><strong> (MacOS)</strong></li></ul><ul id="7b03f414-5bc2-4e07-9118-85d4df58b1df" class="bulleted-list"><li style="list-style-type:disc"><a href="https://veracrypt.fr/en/Home.html"><strong>Veracrypt</strong></a><strong> (Any OS)</strong></li></ul><h1 id="bffded0e-9328-494e-b454-5155250b66c0" class=""><strong>Data Recovery</strong></h1><figure id="cb8077fb-0c7f-4079-9ed6-f3a30d004be8" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image23.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%204%20467648f92e5d48e5acef6b932e9330ea/image23.jpg"/></a></figure><p id="ab2f7bf9-cf49-425d-aba1-5912e43ab2d6" class="">Data recovery is the process of retrieving lost or corrupted data from various types of storage media, such as hard drives, flash drives, memory cards, and other devices.</p><p id="8c319a06-fe5a-4ff1-8fcc-cc6e64ec46bd" class="">When data is lost due to accidental deletion, formatting, virus attack, physical damage to the storage media, or other reasons, data recovery techniques are used to recover the lost data.</p><p id="d927e0ef-24a5-48b7-8efa-0c5c22b68d9b" class="">The process involves scanning the storage media for any remaining data and attempting to reconstruct it using specialized software tools and techniques. If the data is not recoverable through software, physical repairs to the storage media may be necessary.</p><p id="07b5c01f-d1d2-4eae-aa4f-d19fff3dc1c5" class="">Overall, data recovery is the process of salvaging lost or damaged data and restoring it to a usable state.</p><p id="7920e841-71f0-4753-93e2-c5b218106660" class="">Tools:</p><ul id="c442a092-af55-4f3d-88c4-5d592e592338" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.ccleaner.com/recuva/builds"><strong>Recuva</strong></a></li></ul><ul id="56796a1d-e2af-47ea-ab5e-340ecb4a6431" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.easeus.com/datarecoverywizard/free-data-recovery-software.htm"><strong>EasyUS Data Recovery</strong></a></li></ul><ul id="a9cf8e1c-7671-4698-bf71-d83bf2ef60b4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.cleverfiles.com/data-recovery-software.html"><strong>Disk Drill</strong></a></li></ul><h1 id="50d8506e-3686-4154-826e-59aaafc6e315" class=""><strong>Secure Deletion</strong></h1><p id="18c5801f-4c9d-40cc-87dd-6d9c1ab8804d" class="">Secure deletion is the process of permanently removing data from a storage device like a hard drive or USB drive in a way that makes it impossible to recover. It&#x27;s like shredding a paper document into tiny pieces so that no one can read what was written on it.</p><p id="6cfa5ab8-483c-4072-abc1-f61d057b83f0" class="">When you delete a file normally, it&#x27;s not actually erased from the storage device. Instead, the file&#x27;s space on the device is marked as available for new data to be written over it. However, until that new data is written, the deleted file can be recovered with the right tools.</p><p id="0cf4240e-c3a2-49d9-9ec2-12536c401691" class="">Secure deletion, on the other hand, uses special software or techniques to overwrite the data with random patterns of ones and zeroes, making it impossible to recover. This ensures that sensitive information, like personal identification information, financial data, or company secrets, cannot be retrieved by someone else.</p><p id="26a93baf-02da-44d0-a4db-3561d8691fe4" class="">Secure deletion is an important step to take when you&#x27;re getting rid of an old device or storage device, or when you want to ensure that sensitive information is completely and irreversibly erased.</p><p id="7ad367de-65ed-4fb9-ae53-45cfccd364a0" class="">Tools:</p><ul id="91accab9-cc59-49d5-87e9-c27e1723be47" class="bulleted-list"><li style="list-style-type:disc"><a href="https://eraser.heidi.ie/"><strong>Eraser</strong></a></li></ul><ul id="27e2b086-f78f-4fc9-ad82-c27fee2485ba" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.ascompsoftware.com/en/products/show/product/secureeraser/?ref=a142"><strong>Secure Eraser</strong></a></li></ul><ul id="88ebb827-31e6-45f7-b990-d6ea874a8fc9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.fileshredder.org/"><strong>File Shredder</strong></a></li></ul></div></article></body></html>

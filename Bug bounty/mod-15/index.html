@@ -1,0 +1,711 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Creación de Reportes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none; 
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+	user-select: none; 
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all; 
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto; 
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5f6262ad-1fc7-4488-8ba6-0949a96d0d2a" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1562564055-71e051d33c19?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 45.269999999999996%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Creación de Reportes</h1><p class="page-description"></p></header><div class="page-body"><p id="af42f61a-566f-4661-b851-e241b3cedcab" class="">Un reporte de bug bounty es un documento que describe una vulnerabilidad encontrada en un producto, servicio o aplicación de una organización que ofrece recompensas por reportar bugs, especialmente vulnerabilidades de seguridad. </p><p id="1d871bf3-6026-4f8a-9be7-845e393932a3" class="">Un buen reporte en bug bounty es importante porque permite al equipo de desarrollo solucionar la vulnerabilidad de manera más eficiente. Proporcionar una descripción clara y detallada de la vulnerabilidad, incluyendo una prueba de concepto (PoC), puede ayudar al equipo de desarrollo a entender y reproducir el problema. De esta manera, pueden solucionar la vulnerabilidad de manera más rápida y efectiva.</p><p id="8460289e-2c60-4043-a8b2-80c1dd2d3915" class="">Además, un buen reporte también puede ayudar a aumentar la recompensa en bug bounty. Si el equipo de desarrollo considera que el informe es de alta calidad y que la vulnerabilidad es grave, es más probable que aumenten la recompensa.</p><p id="95495eb2-355b-404a-b3d6-add6c12ccd68" class="">Por otro lado, un reporte mal redactado o incompleto puede retrasar la solución de la vulnerabilidad, lo que puede tener consecuencias graves para la seguridad de la aplicación web. </p><p id="3338f624-c376-4490-9e71-3a8b3c0833c0" class="">
+</p><figure id="3077f6d2-e7d5-48ef-ad17-5fb7b8ea0fde"><a href="https://secpro.co" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Inicio - SecPro Security Professionals</div><div class="bookmark-description">Adquiera el Libro “Ciberseguridad al alcance de todos” Si quieres adquirir este libro puedes comprarlo en línea en el siguiente enlace (Compra Aquí). Para mayor información,  […]</div></div><div class="bookmark-href"><img src="https://secpro.co/wp-content/uploads/2018/05/cropped-logosym-med-192x192.png" class="icon bookmark-icon"/>https://secpro.co</div></div><img src="https://secpro.co/wp-content/uploads/2020/07/Imagen1-768x627.png" class="bookmark-image"/></a></figure><h1 id="001229fa-74e8-4abb-ac12-f3ed01698dda" class="">Estructura de un Reporte de Vulnerabilidad Descubierta:</h1><p id="018693c4-912f-46af-9c0e-8ec019dc8098" class="">El contenido de un reporte puede variar, pero en general recomendamos la siguiente estructura:</p><h2 id="cdd9ee45-3ecd-4430-b2bd-0f7e30a09e15" class=""><strong>Título:</strong></h2><p id="d0997e17-891e-42af-afbe-c55a20e2948c" class="">Un título claro y conciso que resuma el problema y que facilite entender de que se trata el reporte para que el lector inicial tenga una idea clara acerca de como actuar en referencia o a quien entregar este reporte.</p><h3 id="7d03c277-4f20-4737-9cfc-ac39ea4cb74c" class="">Ejemplos de Títulos de Reportes de Bug Bounty</h3><ul id="a732b9f9-986e-42ea-894a-a926d9fcde36" class="bulleted-list"><li style="list-style-type:disc"><strong>CVE-2023-12345</strong>: Vulnerabilidad de inyección SQL en el sitio web de la organización</li></ul><ul id="74998999-e7ca-4763-8a35-654fb1292f0f" class="bulleted-list"><li style="list-style-type:disc"><strong>XSS Reflejado en la página de inicio</strong>: Vulnerabilidad de Cross-site Scripting (XSS) Reflejado en la página de inicio del sitio web</li></ul><ul id="af1b675d-19b1-4988-be4c-4469fe8142be" class="bulleted-list"><li style="list-style-type:disc"><strong>IDOR en la API de pagos</strong>: Vulnerabilidad de Insecure Direct Object Reference (IDOR) en la API de pagos de la aplicación móvil XXXXX</li></ul><ul id="fb81c68e-0da7-4009-8029-19928c6ba225" class="bulleted-list"><li style="list-style-type:disc"><strong>CVE-2023-54321</strong>: Vulnerabilidad de escalada de privilegios en la aplicación de escritorio de la organización</li></ul><ul id="6db43e0a-bd1b-4474-b17f-10901a15db1b" class="bulleted-list"><li style="list-style-type:disc"><strong>Inyección de comandos en la página de administración</strong>: Vulnerabilidad de Inyección de Comandos en la página de administración del sitio web</li></ul><h2 id="e207ca6c-457e-49b4-a88a-ba8423935953" class="">Control de Versiones:</h2><p id="cd8d1383-61f4-49f6-9e25-d24873a83e90" class="">Es útil el poder controlar los cambios en el documento de reporte para el caso de que nos pidan aclaraciones o explicaciones adicionales en nuestro reporte;</p><p id="3f9dc2a8-e99f-448c-9344-d7f67ed08244" class="">Este es un ejemplo:</p><table id="0f72fa53-6d7b-4e12-8d67-8e92718e8cba" class="simple-table"><thead class="simple-table-header"><tr id="8b945266-eb39-43f2-819c-43feb7e7248b"><th id="KHnU" class="simple-table-header-color simple-table-header">Versión</th><th id="Kfui" class="simple-table-header-color simple-table-header">Fecha</th><th id="s~jk" class="simple-table-header-color simple-table-header" style="width:363px">Descripción</th><th id="Sa=M" class="simple-table-header-color simple-table-header">Autor</th></tr></thead><tbody><tr id="eca4917a-35f0-4d25-8fb1-bee810f9a9c4"><td id="KHnU" class="">1.0</td><td id="Kfui" class="">01/01/2023</td><td id="s~jk" class="" style="width:363px">Creación del reporte</td><td id="Sa=M" class="">Juan Díaz</td></tr><tr id="ae383363-5bc6-4dec-91b8-194d873f3e02"><td id="KHnU" class="">1.1</td><td id="Kfui" class="">05/01/2023</td><td id="s~jk" class="" style="width:363px">Revisión y corrección de errores ortográficos</td><td id="Sa=M" class="">Juana Gómez</td></tr><tr id="bce12ece-32d6-4beb-8cd2-4d809bbbcdeb"><td id="KHnU" class="">1.2</td><td id="Kfui" class="">10/01/2023</td><td id="s~jk" class="" style="width:363px">Agregado de sección de impacto y mitigaciones</td><td id="Sa=M" class="">Juan Díaz</td></tr><tr id="52aeaf7b-8f86-4760-90eb-837e3469783b"><td id="KHnU" class="">1.3</td><td id="Kfui" class="">15/01/2023</td><td id="s~jk" class="" style="width:363px">Agregado de PoC y recomendaciones adicionales</td><td id="Sa=M" class="">Juana Gómez</td></tr><tr id="a0b61377-557b-4fbf-8f86-e887885eabf8"><td id="KHnU" class="">2.0</td><td id="Kfui" class="">20/01/2023</td><td id="s~jk" class="" style="width:363px">Versión final</td><td id="Sa=M" class="">Juan Díaz</td></tr></tbody></table><h2 id="ae2bb3cb-2b47-4a37-b11d-96c366f806bb" class="">Tabla de Contenido:</h2><p id="a922c292-1195-4b14-9923-4cda62d28a01" class="">La tabla de contenido es una sección del reporte de bug bounty que enumera los principales títulos y secciones del informe, así como su ubicación en el documento. Su objetivo es proporcionar una vista previa del contenido del informe y facilitar la navegación a través del mismo. La tabla de contenido suele aparecer al principio del informe, después del título y el control de versiones y antes de la sección de descripción del problema.</p><p id="bb15dcf2-74b2-4f20-b86b-17dc2749f9ac" class="">
+</p><h2 id="3406debd-f4c8-4a5c-a080-532e79ba4032" class=""><strong>Descripción:</strong></h2><p id="c13984cc-4833-494e-add7-09fb40f9fd83" class="">Una descripción del problema, incluyendo el impacto, el riesgo y la causa raíz de la situación explotada o planteada;  </p><p id="cc286f25-68a6-44cb-84a1-d18a5dfa2d08" class="">Un Ejemplo podría ser:</p><blockquote id="42c1eb99-0584-428f-9bc3-b2b0dbd4e33f" class="">He encontrado una vulnerabilidad de inyección SQL en el formulario de búsqueda de la página <a href="https://sitio-ejemplo.com/buscar.php">https://sitio-ejemplo.com/buscar.php</a>. Esta vulnerabilidad permite a un atacante ejecutar consultas SQL arbitrarias en la base de datos del sitio y acceder a información sensible como nombres de usuario, contraseñas, correos electrónicos, etc. La vulnerabilidad se debe a que el parámetro “q” del formulario no está debidamente sanitizado y acepta caracteres especiales como comillas simples o dobles. Esto permite al atacante terminar la consulta original e introducir una nueva consulta maliciosa. La vulnerabilidad tiene un alto impacto y riesgo, ya que puede comprometer la confidencialidad, integridad y disponibilidad de los datos del sitio y de sus usuarios.</blockquote><p id="f67e0db7-c3e5-4bde-b54c-9bda45393f7c" class="">
+</p><h2 id="03322b85-5549-46f9-b214-0c878cd88ec9" class="">Resumen Ejecutivo (opcional)</h2><p id="c8cbb447-270f-4416-9be6-af7c3de66703" class="">Esta es una sección que proporciona una visión general del problema de seguridad identificado. En esta sección, se debe proporcionar una descripción clara de la vulnerabilidad, incluyendo una explicación simple escrita en un lenguaje claro y conciso, utilizando ejemplos simples y fáciles de entender, que pudiera ser captada con claridad por alguien que no sea técnico.</p><p id="9f9789dc-800a-4f55-a1a8-49e66ad9533d" class="">Además de proporcionar una descripción clara de la vulnerabilidad, el resumen ejecutivo también puede incluir recomendaciones para solucionar la vulnerabilidad. Esto puede incluir información sobre posibles soluciones alternativas o formas de mitigar los riesgos mientras se soluciona el problema.</p><blockquote id="54b6c514-c4eb-42ac-a464-95cb6f6c7c08" class="">El objetivo de este reporte es informar sobre una vulnerabilidad de cross-site scripting (XSS) reflejado en el parámetro “name” de la página <a href="https://sitio-ejemplo.com/welcome.php">https://sitio-ejemplo.com/welcome.php</a>. Esta vulnerabilidad permite a un atacante inyectar código JavaScript malicioso en la respuesta del servidor y ejecutarlo en el navegador de la víctima cuando esta visita la página con el parámetro manipulado. El código JavaScript puede realizar acciones maliciosas como robar cookies, redirigir a sitios fraudulentos, mostrar contenido falso, etc. La vulnerabilidad se debe a que el parámetro “name” no está debidamente codificado y acepta caracteres especiales como “&lt;” o “&gt;”. Esto permite al atacante introducir etiquetas HTML o scripts en el parámetro y hacer que se rendericen en la página. La vulnerabilidad tiene un impacto moderado y riesgo, ya que depende de la interacción del usuario con el enlace malicioso y de las medidas de protección del navegador. Sin embargo, puede afectar a la reputación del sitio y a la confianza de los usuarios.</blockquote><p id="44a372f2-8b10-4757-8630-cf5421c3159d" class="">
+</p><h3 id="7d83a5e2-6737-405a-a0c4-eb7f2a3d3e84" class="">Herramientas Utilizadas</h3><p id="0c31e77d-7615-4c65-ac77-8be76ae8f135" class="">Si se utilizan herramientas específicas para identificar y explotar la vulnerabilidad, es importante mencionarlas en el reporte, ya que esto puede proporcionar información adicional sobre la naturaleza de la vulnerabilidad y ayudar al equipo de desarrollo a entender cómo se explotó. Además, incluir las herramientas utilizadas también puede ser útil para fines de auditoría y para garantizar la transparencia y la integridad del proceso de bug bounty.</p><p id="1ea0e940-39c4-48a5-96b8-073189b26254" class="">A continuación, se muestra una tabla de ejemplo con herramientas que podrían ser incluidas en un reporte de bug bounty:</p><table id="c85a9a3f-9579-415a-9bd8-260ce23b866a" class="simple-table"><thead class="simple-table-header"><tr id="d3e0bab0-50b5-4d32-ab5e-11f74f1efdeb"><th id="axIj" class="block-color-orange_background simple-table-header">Herramienta</th><th id="oFwu" class="block-color-orange_background simple-table-header" style="width:1142px">Descripción</th></tr></thead><tbody><tr id="0327b42a-2e01-4f64-b53c-d8f11592ca4d"><td id="axIj" class="">Burp Suite</td><td id="oFwu" class="" style="width:1142px">Una plataforma de pruebas de seguridad de aplicaciones web líder en la industria que permite a los investigadores de seguridad realizar pruebas automatizadas y manuales de vulnerabilidades de seguridad en aplicaciones web.</td></tr><tr id="7671d41f-c7f5-4aa6-a9c7-96750e436520"><td id="axIj" class="">Nmap</td><td id="oFwu" class="" style="width:1142px">Una herramienta que permite a los investigadores de seguridad escanear redes y descubrir hosts y servicios. También puede detectar vulnerabilidades en sistemas y aplicaciones.</td></tr><tr id="721ae61d-f01b-452d-b187-d278b2f49948"><td id="axIj" class="">Metasploit</td><td id="oFwu" class="" style="width:1142px">Un marco de pruebas de penetración que permite a los investigadores de seguridad probar la seguridad de los sistemas y aplicaciones. Ofrece una amplia gama de herramientas y técnicas para encontrar y explotar vulnerabilidades.</td></tr><tr id="af266cd3-1fe0-4ba4-8584-ec786d6ab2e2"><td id="axIj" class="">SQLMap</td><td id="oFwu" class="" style="width:1142px">Una herramienta de inyección de SQL automatizada que permite a los investigadores de seguridad descubrir y explotar vulnerabilidades de inyección de SQL en aplicaciones web.</td></tr><tr id="c28f6b68-4cca-4549-a36a-f64c1332c220"><td id="axIj" class="">OWASP ZAP</td><td id="oFwu" class="" style="width:1142px">Una herramienta de escaneo de seguridad de aplicaciones web gratuita y de código abierto que permite a los investigadores de seguridad detectar y explotar vulnerabilidades de seguridad en aplicaciones web.</td></tr></tbody></table><h3 id="c4f02066-0417-4b09-ad1d-bd7aad353e28" class="">Hallazgos</h3><p id="da3d0583-a1b1-4279-ae4b-aad656921dfa" class="">En este espacio de listan todos y cada uno de los hallazgos dentro del ejercicio; debe estar organizado por orden de prioridad, es decir, colocando las vulnerabilidades más críticas al principio y las menos críticas al final. También debe estar numerado y usar un formato consistente y claro para facilitar la lectura y comprensión del reporte.</p><p id="26f8a27a-bf81-444f-9153-985bc7f82d71" class="">Además, se debe incluir información sobre la ubicación de la o las vulnerabilidad(es) y los pasos detallados que se deben seguir para reproducirla. Es importante describir los posibles impactos de la vulnerabilidad, incluyendo cualquier información confidencial a la que se pueda acceder.</p><p id="5a38ae72-cf97-4d5e-9d84-60147814a94c" class="">En esta parte se debe incluir una tabla o párrafo con todos los supuestos y parámetros de la prueba y los pasos de reproducción, por ejemplo:</p><blockquote id="f5fcb5ba-59b3-4dc2-b34a-bc77b7e7bd52" class="">Para esta Prueba se crearon 2 usuarios: pentester@ejemplo.com y vicitma@ejemplo.com; se toma como usuario inicial el usuario pentester.</blockquote><p id="5c07adaa-9082-42cb-8a01-783e38ff5d46" class="">
+</p><p id="1c3f26f5-2370-4243-9b4a-fdbfdd668b6a" class="">Un Ejemplo de como pueden presentarse los hallazgos:</p><blockquote id="c657c832-f0e1-485c-844d-13852ddacd10" class="">Se encontró una vulnerabilidad de inyección SQL en el formulario de búsqueda de la página <a href="https://sitio-ejemplo.com/buscar.php">https://sitio-ejemplo.com/buscar.php</a>. Esta vulnerabilidad permite a un atacante ejecutar consultas SQL arbitrarias en la base de datos del sitio y acceder a información sensible como nombres de usuario, contraseñas, correos electrónicos, etc.</blockquote><blockquote id="3aec450f-b4d6-42d6-9dcd-e70f6452846b" class="">La vulnerabilidad se debe a que el parámetro “q” del formulario no está debidamente sanitizado y acepta caracteres especiales como comillas simples o dobles. Esto permite al atacante terminar la consulta original e introducir una nueva consulta maliciosa.</blockquote><blockquote id="4884c4da-4fd4-4850-975e-4c3cf471abd6" class="">La vulnerabilidad tiene un alto impacto y riesgo, ya que puede comprometer la confidencialidad, integridad y disponibilidad de los datos del sitio y de sus usuarios. Se recomienda solucionar la vulnerabilidad lo antes posible y notificar a los usuarios afectados.</blockquote><p id="7a844615-8bf9-4fd2-8f78-99ee4b8b83aa" class="">Para reproducir la vulnerabilidad, se puede seguir los siguientes pasos:</p><ol type="1" id="56d19244-e927-4120-a481-086d371637bb" class="numbered-list" start="1"><li>Acceder a la página de búsqueda del sitio <a href="https://sitio-ejemplo.com/buscar.php">https://sitio-ejemplo.com/buscar.php</a>.</li></ol><ol type="1" id="e8a9a598-07f8-4863-9d4c-11ccf999d7f0" class="numbered-list" start="2"><li>Introducir el siguiente texto en el formulario de búsqueda:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff595a99-bfb0-4b92-83df-c38cc9614e72" class="code code-wrap"><code class="language-Plain Text">&#x27; OR 1=1--</code></pre><ol type="1" id="b33eacb3-9923-4374-9ea8-f0c1f2937986" class="numbered-list" start="3"><li>Presionar el botón de búsqueda.</li></ol><ol type="1" id="1220d5e8-32c1-485c-a48a-b02ce72dd3ee" class="numbered-list" start="4"><li>Observar que la página muestra resultados inesperados o información confidencial.</li></ol><ol type="1" id="3267f3ed-71a9-4853-b7c8-f469dfd4824a" class="numbered-list" start="5"><li>Realizar otras consultas maliciosas para acceder a información adicional o realizar acciones maliciosas.</li></ol><blockquote id="543cc4f4-393b-43f0-8bfe-2799df466931" class="">Para solucionar la vulnerabilidad, se recomienda implementar una sanitización adecuada del parámetro “q” del formulario de búsqueda, utilizando funciones de filtrado de entrada o consultas preparadas en el servidor. También se recomienda notificar a los usuarios afectados y ofrecerles una solución o compensación adecuada.</blockquote><blockquote id="84e37f6d-538e-418a-9138-fb5988c1ea2b" class="">Se puede hacer una prueba que demuestra cómo se puede explotar la vulnerabilidad:</blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7052e25b-de49-466a-9922-90937440492a" class="code code-wrap"><code class="language-Plain Text">&lt;https://sitio-ejemplo.com/buscar.php?q=&gt;&#x27; OR 1=1--</code></pre><blockquote id="ae8ec396-b2aa-4d76-b202-91f35126562b" class="">En este caso, la consulta SQL maliciosa es “&#x27; OR 1=1--”, que permite al atacante omitir la validación del formulario y acceder a toda la información de la base de datos.</blockquote><blockquote id="2b73b8fa-b894-4291-9eae-1825a2e38d7f" class="">Se espera que este informe ayude al equipo de desarrollo a solucionar la vulnerabilidad de manera rápida y efectiva y a mejorar la seguridad del sitio y de sus usuarios.</blockquote><h2 id="3ac72a63-8921-4d39-a777-3100c846bc36" class="">Prueba de Concepto PoC - (Proof of Concept)</h2><p id="aa70df4b-ced7-45ca-a477-6dc9c4cd721f" class="">Una prueba de concepto (PoC) que demuestre cómo se puede explotar la vulnerabilidad, preferiblemente con capturas de pantalla o vídeos</p><p id="550042f7-4c88-4dc5-b5c5-9f66896005f0" class="">
+</p><p id="fa5b42bf-e6a7-404f-84a2-5ccdd493dad1" class="">
+</p><h2 id="86a2143a-fbd5-4b07-8b1f-6db0708c53ca" class="">Recomendaciones de Mitigación (Opcional)</h2><p id="ea226a66-d615-4824-bd07-61ec5f4e6609" class="">Las recomendaciones de mitigación son sugerencias para solucionar o mitigar el problema de seguridad identificado en el informe de bug bounty. Estas recomendaciones pueden incluir información sobre posibles soluciones alternativas o formas de mitigar los riesgos mientras se soluciona el problema.</p><p id="c3ed9e11-e67a-488a-a22b-9988f1694af7" class="">Por ejemplo, si el informe identifica una vulnerabilidad de inyección SQL en una página web, las recomendaciones de mitigación pueden incluir la implementación de una sanitización adecuada del parámetro afectado en el servidor. También pueden incluir recomendaciones para notificar a los usuarios afectados y ofrecerles una solución o compensación adecuada. Las recomendaciones de mitigación pueden ayudar al equipo de desarrollo a solucionar la vulnerabilidad de manera más rápida y efectiva, lo que puede mejorar la seguridad del sitio y de sus usuarios.</p><p id="ec9f03a5-92b7-4d49-84c8-685384fcf407" class="">
+</p><h2 id="2ca0a861-b568-4f3b-923e-0b72c1bfe282" class="">Valoración de Severidad</h2><p id="3b066e75-4b7a-4565-bb89-d2a975f4070a" class="">La valoración de severidad en un reporte de bug bounty es una forma de clasificar la gravedad de la vulnerabilidad descubierta. Esta clasificación se realiza con el objetivo de ayudar al equipo de desarrollo a priorizar las vulnerabilidades y corregirlas de manera oportuna.</p><p id="32a1f34e-da18-41e3-9bf9-93373adc5c24" class="">Por lo general, la valoración de severidad se compone de varios factores, como el impacto potencial de la vulnerabilidad en el sistema, la probabilidad de que un atacante la explote y el nivel de dificultad para explotarla. A partir de estos factores, se asigna una clasificación de severidad a la vulnerabilidad, que puede ser baja, media, alta o crítica, por ejemplo.</p><p id="bcb7b9de-2dba-416b-ada1-a11031b0f7a3" class="">Para entender mejor cómo funciona la valoración de severidad, podemos tomar como ejemplo una vulnerabilidad de inyección SQL en un sitio web. Si la vulnerabilidad permite al atacante acceder a información confidencial como contraseñas o datos financieros, y puede ser explotada fácilmente, se podría clasificar como una vulnerabilidad crítica. Por otro lado, si la vulnerabilidad solo permite al atacante acceder a información no crítica y es difícil de explotar, se podría clasificar como una vulnerabilidad baja.</p><p id="5d525009-321c-4aab-8b26-16abfe1c729f" class="">Es importante destacar que la valoración de severidad no siempre es una ciencia exacta y que puede haber cierto grado de subjetividad en la asignación de la clasificación. Sin embargo, es una herramienta útil para ayudar al equipo de desarrollo a priorizar las vulnerabilidades y corregirlas de manera oportuna, lo que puede mejorar la seguridad del sistema.</p><p id="1d4ce367-bd06-491c-8b14-a8d5e8fd79f6" class="">
+</p><p id="f94ec55b-c0bc-4923-b341-aa2ebd9424b0" class="">En todos los casos se recomienda hacer uso de la calculadora CVSS para determinar el Nivel de Criticidad de una vulnerabilidad:</p><figure id="7dd3ff96-6414-411b-bbbe-35a55e029d94"><a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">NVD - CVSS v3 Calculator</div></div><div class="bookmark-href"><img src="https://nvd.nist.gov/site-media/images/favicons/apple-touch-icon.png" class="icon bookmark-icon"/>https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator</div></div></a></figure><p id="d41d138f-460b-46b1-93fc-078a888c8560" class="">
+</p><h1 id="7a2fe880-47bc-47fc-9c05-c2f70d7bf182" class="">Templates de HackerOne:</h1><p id="112f4ca3-0279-442e-8cf3-bcaf166f9886" class="">
+</p><figure id="594c3c91-a331-4480-98f3-192e2f22507d"><a href="https://docs.hackerone.com/organizations/report-templates.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Report Templates | HackerOne Platform Documentation</div><div class="bookmark-description">Get instant answers to the most common questions and learn how to use HackerOne.</div></div><div class="bookmark-href"><img src="https://docs.hackerone.com/favicon.ico" class="icon bookmark-icon"/>https://docs.hackerone.com/organizations/report-templates.html</div></div></a></figure><p id="658ee3f3-b551-4269-89b5-4a45720075e0" class="">
+</p><h1 id="0898674d-5028-420c-87eb-ddd22cc5c949" class="">Ejemplos de Reportes:</h1><figure id="c01ae9cb-a0b0-4a1a-94ec-76edc7812bd1"><a href="https://github.com/EnableSecurity/reports/blob/master/bug-bounty-bout-0x01/technicalreport.pdf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">reports/technicalreport.pdf at master · EnableSecurity/reports</div><div class="bookmark-description">Reports issued by Enable Security. Contribute to EnableSecurity/reports development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/EnableSecurity/reports/blob/master/bug-bounty-bout-0x01/technicalreport.pdf</div></div><img src="https://opengraph.githubassets.com/7f2b862b63b4af7d05ef2ac8177c58facec1371edfa2e03da71c77cdbff00691/EnableSecurity/reports" class="bookmark-image"/></a></figure><figure id="a5de31fa-bc80-46d4-85c3-f22a1dd0c766"><a href="https://www.hackthebox.com/storage/press/samplereport/sample-penetration-testing-report-template.pdf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://www.hackthebox.com/storage/press/samplereport/sample-penetration-testing-report-template.pdf</div></div></a></figure><h1 id="6e9179bd-03b7-459a-8dfd-9529e1c0e85f" class="">Enlaces de Referencia:</h1><figure id="6a9655d7-92a1-465e-b2a6-b939ab45d427"><a href="https://www.bugbountyhunter.com/disclosed/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Publicly Disclosed HackerOne Bug Bounty Findings | BugBountyHunter.com</div><div class="bookmark-description">Browse public HackerOne bug bounty program statisitcs via vulnerability type. BugBountyHunter is a custom platform created by zseano designed to help you get involved in bug bounties and begin participating from the comfort of your own home.</div></div><div class="bookmark-href"><img src="https://www.bugbountyhunter.com/assets/favicons/favicon.ico" class="icon bookmark-icon"/>https://www.bugbountyhunter.com/disclosed/</div></div></a></figure><p id="aafc3de4-107d-4db2-b10a-b358c43135aa" class="">
+</p><p id="4c534a2a-9ae8-40b5-8f7e-f2956bc245aa" class="">Imagen de Apoyo</p><figure id="f2d99f20-ff9c-4c4a-98a2-bf757ef29694" class="image"><a href="Creacio%CC%81n%20de%20Reportes%205f6262ad1fc744888ba60949a96d0d2a/Untitled.png"><img style="width:2497px" src="Creacio%CC%81n%20de%20Reportes%205f6262ad1fc744888ba60949a96d0d2a/Untitled.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

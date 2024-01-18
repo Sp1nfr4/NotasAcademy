@@ -1,0 +1,1007 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+	});
+</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 2 - Creando tu Laboratorio      </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+	user-select: all;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ee5aee36-4075-4c86-8b68-474a7f35c6db" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1495954222046-2c427ecb546d?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50.92%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">👷🏻‍♂️</span></div><h1 class="page-title">Módulo 2 - Creando tu Laboratorio      </h1><p class="page-description"></p></header><div class="page-body"><p id="d3616b78-4321-4629-9519-c0bfde7e2ac9" class="">Si quieres practicar Bug Bounty de manera efectiva, es indispensable que cuentes con un buen laboratorio. Un laboratorio adecuado te permitirá explorar diferentes escenarios de vulnerabilidades y así poder mejorar tus habilidades en la búsqueda y explotación de bugs. Además, te permitirá trabajar de manera segura, ya que podrás realizar pruebas sin afectar a sistemas o aplicaciones reales; de esta manera, evitarás cualquier tipo de consecuencia negativa en caso de que cometas algún error durante tus pruebas.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="021129d7-c024-45b4-aa0a-1767207c13f7"><div style="font-size:1.5em"><span class="icon">✍🏻</span></div><div style="width:100%">El crear tu laboratorio definitivo dependerá de varias decisiones; en este módulo te guiaremos por cada una de ellas, planteándote alternativas y presentándote nuestras recomendaciones.</div></figure><h1 id="93c2e2e0-fdf2-4b46-a1b5-6d6b1c0a7fce" class="">Decisión:  Escogiendo tu Infraestructura</h1><p id="d84b34b8-521b-44aa-98ad-aefcac675d33" class="">Existen muchas alternativas que puedes utilizar para Bug Bounty; entre otras tenemos:</p><p id="10e44156-acb7-4263-a89f-790eccd921fa" class="">
+</p><figure id="0a701f2e-0e8f-4518-b338-f6493a0e4a91" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/VPS-LiveUSB-Local.png"><img style="width:842px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/VPS-LiveUSB-Local.png"/></a><figcaption>Imagen: Tipos de Infraestructura para tu Laboratorio</figcaption></figure><figure id="9a18d4a3-2998-4efc-87ec-7c71125ef204"><div class="source"><iframe src="https://player.vimeo.com/video/834167757?h=989d7486a6" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Preparación de Dispositivos y Herramientas</figcaption></figure><p id="e2abf381-ad5c-4a77-ad6b-18f4281bff2a" class=""> </p><p id="003a47d1-9cf7-4faa-8933-711c474b34d6" class="">Veamos en detalle:</p><h2 id="33fd3237-b4ab-41ce-b4c5-a9589d380e05" class="">Computador Físico: Estación de Trabajo o Portátil </h2><h3 id="28d5b004-afed-482d-b077-dac6542000bd" class="">Ventajas:</h3><div id="6f181bf7-c87b-4d01-85e0-7d361422be0d" class="column-list"><div id="b07edeec-d784-43c4-8611-2ff5feccd8d0" style="width:50%" class="column"><p id="e96a3318-050c-4a2a-9103-c800f22a9630" class="">Utilizar un computador físico puede tener ciertas ventajas en términos de rendimiento y capacidad de personalización; tú puedes incluso decidir instalar varios sistemas operativos en el mismo computador y luego al trabajar con él decides por cual sistema operativo arrancar dependiendo de lo que vayas a hacer, ejemplo: Tener instalados Windows y Linux en la misma máquina.</p><h3 id="85536465-65fc-4dc8-afe2-3bcb82bf4948" class="">Desventajas:</h3><p id="02a08a9b-7787-4cc0-8eec-2ee83bebd119" class="">El utilizar un equipo físico puede ser  menos práctico para configurar diferentes entornos de prueba. Además, utilizar un computador físico puede ser más riesgoso, ya que cualquier error que cometas durante tus pruebas podría afectar a sistemas o aplicaciones reales, lo que podría tener consecuencias negativas.</p></div><div id="ebfde3ca-3839-4ad9-93c8-27d6e655e555" style="width:50%" class="column"><figure id="5c59b0c3-a0b6-4771-8d0c-de64c12c0cee" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled.png"><img style="width:432px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled.png"/></a><figcaption>Imagen: Arranque por distintos Sistemas Operativos</figcaption></figure></div></div><h2 id="e9356433-84e2-462c-b85c-6bc496ed039b" class="">Usar Live USB Distros</h2><div id="fa724e3c-7b4b-492a-a3f6-651efd401a6d" class="column-list"><div id="c2b6be19-dddc-4549-b0e8-6780f75d8d7d" style="width:50%" class="column"><p id="f546ef39-8d6b-414a-96e9-5e09a7963886" class="">Un Live USB es una herramienta que te permite ejecutar un sistema operativo completo desde una unidad o memoria USB en lugar de instalarlo en tu computador. Es útil para probar diferentes sistemas operativos sin tener que instalarlos permanentemente en tu dispositivo. Además, puedes llevar tu sistema operativo en una unidad USB y utilizarlo en diferentes computadoras logrando aun mayor libertad de acción.</p></div><div id="10c83c5f-e6c8-44bc-a224-87fa6b07aa8e" style="width:50%" class="column"><figure id="7bce7940-2ba5-4e9e-aabd-021b8e407ea4" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled%201.png"><img style="width:432px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled%201.png"/></a><figcaption>Imagen: Live USB con disitintos S.O.</figcaption></figure></div></div><h2 id="184587c6-e0a0-4c5a-be7b-7102402356b7" class="">Usar VPS (Servidores Privados en Nube) </h2><div id="cc30a18f-e6c4-4ad8-b28b-be7d4f42d7ea" class="column-list"><div id="9efe98c1-2ee2-4cc5-9318-81ca1583b6c1" style="width:50%" class="column"><p id="dedfe5e3-8f84-4e52-81ca-63515823cc54" class="">Un VPS, o Servidor Privado Virtual, es una forma de alojamiento web que te permite tener tu propio servidor virtual en la nube. A diferencia de un servidor dedicado, un VPS no es un servidor físico, sino una porción de recursos de un servidor físico que se encuentra alojado en un centro de datos.</p><p id="4649b6e2-d661-4bc3-aac9-a326d2c2db46" class="">Al utilizar un VPS, puedes trabajar desde cualquier lugar y en cualquier momento, siempre y cuando tengas acceso a Internet. Esto te brinda mayor flexibilidad y libertad para realizar tus pruebas y trabajar en tus proyectos de Bug Bounty.</p><table id="a9b529f4-f4c1-4c3a-b09a-88ad4a03e43a" class="simple-table"><thead class="simple-table-header"><tr id="2c2222a6-8de5-4b2e-a125-519466a89ea1"><th id="}oN&lt;" class="block-color-teal_background simple-table-header" style="width:240px">Proveedor de servicios de VPS</th><th id="yFVl" class="block-color-teal_background simple-table-header" style="width:374px">URL</th></tr></thead><tbody><tr id="c151b7d0-29d8-447e-93c3-2852c8f4bebe"><td id="}oN&lt;" class="" style="width:240px">DigitalOcean</td><td id="yFVl" class="" style="width:374px"><a href="https://www.digitalocean.com/">https://www.digitalocean.com/</a></td></tr><tr id="7b0a8673-fa37-4ae1-b29d-f83edcd0d9c9"><td id="}oN&lt;" class="" style="width:240px">Linode</td><td id="yFVl" class="" style="width:374px"><a href="https://www.linode.com/">https://www.linode.com/</a></td></tr><tr id="3ae03273-11c7-4b05-96db-d988e98676bd"><td id="}oN&lt;" class="" style="width:240px">Vultr</td><td id="yFVl" class="" style="width:374px"><a href="https://www.vultr.com/">https://www.vultr.com/</a></td></tr><tr id="b0eaf8d7-3ec5-4284-a28d-849da0567fbe"><td id="}oN&lt;" class="" style="width:240px">Amazon Web Services</td><td id="yFVl" class="" style="width:374px"><a href="https://aws.amazon.com/es/">https://aws.amazon.com/es/</a></td></tr><tr id="a092a857-23b1-43ed-8171-84eda96d9260"><td id="}oN&lt;" class="" style="width:240px">Microsoft Azure</td><td id="yFVl" class="" style="width:374px"><a href="https://azure.microsoft.com/es-es/">https://azure.microsoft.com/es-es/</a></td></tr><tr id="4fc16a66-e3c0-4403-8d97-4022276be8fc"><td id="}oN&lt;" class="" style="width:240px">Google Cloud Platform</td><td id="yFVl" class="" style="width:374px"><a href="https://cloud.google.com/">https://cloud.google.com/</a></td></tr></tbody></table></div><div id="6ee6fc5c-449f-4da8-84fa-aafb29b7e8a4" style="width:50%" class="column"><figure id="44e490dc-3d69-49a0-9635-70a6beb24f50" class="image"><a href="https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"><img style="width:432px" src="https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb"/></a><figcaption>Imagen: Datacenter</figcaption></figure><p id="9beee3f6-c2ae-412c-b0f1-d1d4faa2506e" class="">
+</p></div></div><h2 id="49c4a956-14ef-43ad-9c44-b607eb32f22d" class="">Virtualización </h2><div id="9831d0fe-ea4f-4768-badf-af69fbe15b48" class="column-list"><div id="850e6b63-e382-4333-9a7a-7956c5f39e9a" style="width:50%" class="column"><p id="6813499f-e507-48c9-b059-bf1df326fad6" class="">
+</p><figure id="b3e4ea5f-7670-438e-aafe-471399e7cecc" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Maquinas_Virtuales.drawio_(1).png"><img style="width:1056px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Maquinas_Virtuales.drawio_(1).png"/></a><figcaption>Imagen: Virtualización</figcaption></figure></div><div id="da6b81be-0e52-4b39-bfb1-616d2cca9b56" style="width:50%" class="column"><h3 id="0f29d200-ebb3-4284-b1b2-55d7038ebb7e" class="">Ventajas:</h3><p id="b3c5571f-5860-46d3-ae86-82f83cdd7feb" class="">La principal ventaja de utilizar máquinas virtuales para bug bounty es que teniendo un solo computador físico, te permiten simular diferentes sistemas operativos y aplicaciones, lo que te permite practicar en diferentes entornos de la misma forma que harías teniendo varios computadores y alternar entre ellos de forma rápida y simple.</p><h3 id="fc36d461-3629-434c-b883-bd2109715509" class="">Desventajas:</h3><p id="afc44621-86b1-4d70-a127-165093c6abc1" class="">Requieres una máquina relativamente potente por lo menos en la cantidad de memoria RAM, dado que al virtualizar debes asignar recursos de tu computador físico a cada sistema operativo virtual que quieras utilizar; por ejemplo lo minimo recomendable para virtualizar un sistema es que tu computador físico tenga 8Gb de Memoria RAM y un procesador de al menos 4 núcleos (preferiblemente 8 o más) y con soporte para tecnología de virtualización (como Intel VT-x o AMD-V). </p></div></div><div id="f43b7018-d596-4e5c-b1dc-e585d5a8147a" class="column-list"><div id="87892ef9-4d80-4552-b8b0-855ea5f56905" style="width:50%" class="column"><p id="6f71677d-d4a7-4631-9f99-3d09568b1e4a" class="">Para ver la información del procesador y la memoria RAM en Windows 10, puedes seguir los siguientes pasos: </p><p id="935937ec-5c72-4b24-847f-0c009519f1d7" class="">Haz clic en el botón de Inicio en la esquina inferior izquierda de la pantalla.</p><ol type="1" id="561bc85b-1966-4b8b-91c4-d959fe04e3f8" class="numbered-list" start="1"><li>Escribe &quot;Sistema&quot; en el cuadro de búsqueda y haz clic en el resultado.</li></ol><ol type="1" id="4677b96c-489c-4348-8edb-d91916138564" class="numbered-list" start="2"><li>En la ventana de Información del Sistema, podrás ver la información del procesador y la memoria RAM. También puedes ver otra información del sistema, como el nombre del equipo, el modelo del sistema y la versión de Windows.</li></ol><p id="b19bad26-d680-49b8-8d2d-4d8f881f5568" class="">Si prefieres utilizar un atajo de teclado, puedes presionar la tecla de Windows + R Esto abrirá la ventana de ejecución  de información del sistema directamente.</p><p id="d186afc2-3be2-4012-a441-94a7a00e7971" class="">Ten en cuenta que los pasos pueden variar ligeramente dependiendo de la versión de Windows que estés utilizando.</p></div><div id="45ca894f-f673-4ddc-bb99-c5c8422fce5f" style="width:50%" class="column"><figure id="a737a461-3017-4240-b678-ca575055f946" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled%202.png"><img style="width:528px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Untitled%202.png"/></a><figcaption>Imagen: Combinación de Teclas para acceder a la info. de Sistema</figcaption></figure></div></div><h1 id="f1a4dee6-6659-46d7-b648-77a9651e2944" class="">Herramientas de Virtualización</h1><hr id="80f53b17-1318-437d-8b4a-e7330c8bde1c"/><figure id="3bbb6836-536e-4f6e-b201-dd1e86609582"><div class="source"><iframe src="https://player.vimeo.com/video/822169669?h=3aaaf5ea9d" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Herramientas de Virtualización</figcaption></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="20ad71db-adc3-4647-931f-b6f19045a8cf"><div style="font-size:1.5em"><span class="icon">👉🏻</span></div><div style="width:100%">Para efectos de este curso asumiremos que usas máquinas virtuales, pero todo el contenido aplica para cualquiera de los dos casos, es decir si usas un computador físico,  máquinas virtuales o Live USB, no va a hacer ninguna diferencia.</div></figure><table id="7d8b25ff-352e-4452-bbf6-a31942eaa629" class="simple-table"><thead class="simple-table-header"><tr id="a6754e97-ce96-4e71-82af-daece6e19a7f"><th id="@ssH" class="block-color-teal_background simple-table-header">Herramienta de Virtualización</th><th id="Nh~@" class="block-color-teal_background simple-table-header" style="width:602px">URL</th></tr></thead><tbody><tr id="e2ad732c-e8aa-48d1-8bc4-e187cdd9381d"><td id="@ssH" class="">VirtualBox</td><td id="Nh~@" class="" style="width:602px"><a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></td></tr><tr id="e861a3d6-33df-406c-9c35-53a4895f37b9"><td id="@ssH" class="">VMware Workstation</td><td id="Nh~@" class="" style="width:602px"><a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a></td></tr><tr id="ca911de2-6b1c-4eba-997b-af53c74baae3"><td id="@ssH" class="">VMware Fusion</td><td id="Nh~@" class="" style="width:602px"><a href="https://www.vmware.com/products/fusion.html">https://www.vmware.com/products/fusion.html</a></td></tr><tr id="cc3c3a57-4b05-41ad-a971-bae0ed724218"><td id="@ssH" class="">Parallels Desktop</td><td id="Nh~@" class="" style="width:602px"><a href="https://www.parallels.com/products/desktop/">https://www.parallels.com/products/desktop/</a></td></tr></tbody></table><h1 id="1e6ada0f-93ad-491e-8acb-5403e39c913c" class="">El Sistema Operativo</h1><p id="695db684-5453-4be4-bb39-771d9f2beea1" class="">En el mundo del Bug Bounty, la elección del sistema operativo que se va a utilizar es una decisión muy personal del pentester o hacker ético; no obstante en el curso utilizaremos Kali Linux.</p><p id="271e7359-0fed-4c87-93a3-d70b421879e5" class="">Cada sistema operativo tiene sus propias características, fortalezas y debilidades, y es importante que el estudiante evalúe cuál es el que mejor se adapta a sus necesidades y objetivos en el mundo del Bug Bounty. Kali Linux es una distro de Linux que viene con una gran cantidad de herramientas preinstaladas para la búsqueda de vulnerabilidades, lo que la hace una buena opción para aquellos que quieren comenzar en el mundo del Bug Bounty sin tener que configurar demasiado su sistema operativo.</p><figure id="69b65e77-791e-4127-b6ee-4a06be41d199"><a href="https://www.kali.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Kali Linux | Penetration Testing and Ethical Hacking Linux Distribution</div><div class="bookmark-description">Home of Kali Linux, an Advanced Penetration Testing Linux distribution used for Penetration Testing, Ethical Hacking and network security assessments.</div></div><div class="bookmark-href"><img src="https://www.kali.org/images/favicon.png" class="icon bookmark-icon"/>https://www.kali.org/</div></div><img src="https://www.kali.org/images/kali-logo.svg" class="bookmark-image"/></a></figure><p id="89dfe4e1-04ec-4447-9a7d-4b7cfc9e4c2d" class="">Si bien Kali Linux   es uno de los sistemas operativos más populares para la búsqueda de vulnerabilidades, existen otros sistemas operativos que también pueden ser utilizados, por ejemplo:</p><figure id="087fc063-9153-4427-8ffb-be9a4161dc62"><a href="https://www.parrotsec.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Parrot Security</div></div><div class="bookmark-href"><img src="https://www.parrotsec.org/favicon.png" class="icon bookmark-icon"/>https://www.parrotsec.org/</div></div></a></figure><figure id="1cbd9fd6-27eb-4580-a15b-19d28d96364a"><a href="https://blackarch.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">BlackArch Linux - Penetration Testing Distribution</div><div class="bookmark-description">BlackArch Linux is a lightweight expansion to Arch Linux for penetration testers.</div></div><div class="bookmark-href"><img src="https://blackarch.org/images/favicon.ico" class="icon bookmark-icon"/>https://blackarch.org/</div></div></a></figure><p id="6aa1cb36-58a5-4b4b-a02a-2e7d31156f6b" class="">Parrot OS es una distro de Linux que tiene una gran cantidad de herramientas para la búsqueda de vulnerabilidades, pero también está enfocada en la privacidad y la seguridad. Además, tiene una interfaz más amigable y fácil de usar que Kali Linux. BlackArch Linux, por su parte, es una distro de Linux que se enfoca en la seguridad y la privacidad, y cuenta con una gran cantidad de herramientas para la búsqueda de vulnerabilidades.</p><h1 id="9fbb6a63-57bb-4d24-8f5d-e23549c97456" class="">Montaje del Laboratorio</h1><h2 id="b57c3fa3-89bf-4038-9c29-34d74cb3eb7a" class="">Descarga del Kali Linux</h2><p id="e28ef69b-0385-4d33-a1b9-f85828097768" class="">Como mencionábamos anteriormente, en este curso utilizaremos Kali Ver. 2023.1</p><p id="b76fe09f-7e6d-4a2f-bfc7-f5f2f417b553" class="">Comenzaremos por descargar la máquina virtual de Kali Linux 2023.1 de este enlace:</p><figure id="279ae61c-2a32-4556-98c0-1807bb87bf0a"><a href="https://www.kali.org/get-kali/#kali-virtual-machines" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Get Kali | Kali Linux</div><div class="bookmark-description">Home of Kali Linux, an Advanced Penetration Testing Linux distribution used for Penetration Testing, Ethical Hacking and network security assessments.</div></div><div class="bookmark-href"><img src="https://www.kali.org/images/favicon.png" class="icon bookmark-icon"/>https://www.kali.org/get-kali/#kali-virtual-machines</div></div><img src="https://www.kali.org/images/kali-logo.svg" class="bookmark-image"/></a></figure><p id="b1de1454-a51e-4c23-88c6-1cffce13aa47" class="">Puedes descargarla para Virtualbox, si quieres usar una herramienta de vrtualizacion gratuita.</p><p id="2fd75b92-80c2-4577-9cec-75e4c9cb1a47" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cf2e307f-9dd0-4c83-bc65-1165f64f4c0c"><div style="font-size:1.5em"><span class="icon">🔑</span></div><div style="width:100%">Por defecto, la Máquina virtual Kali al descargarla, viene con las siguientes credenciales:<table id="b4adef04-d975-47ce-b220-3096d6357547" class="simple-table"><thead class="simple-table-header"><tr id="1378e42c-c720-4b5c-97a6-779e7ade62b1"><th id="yeRJ" class="block-color-yellow_background simple-table-header">Máquina Virtual</th><th id="wrb\" class="block-color-yellow_background simple-table-header">Nombre de Usuario</th><th id="Bdu=" class="block-color-yellow_background simple-table-header">Contraseña</th></tr></thead><tbody><tr id="6230ccf1-e978-48d7-8355-9462938e85ca"><td id="yeRJ" class="">Kali Linux</td><td id="wrb\" class="">kali</td><td id="Bdu=" class="">kali</td></tr></tbody></table></div></figure><p id="1a1c74fb-d631-4ba5-bca5-3ecd0be828c9" class="">
+</p><h2 id="5201f4d9-b941-47cd-9521-c5b5ca11cb39" class="">Instalación de VirtualBox y Kali Linux </h2><figure id="a298706f-92ea-443a-b58e-1d8720724bba"><div class="source"><iframe src="https://player.vimeo.com/video/834165640?h=667d1410cf" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: El Kali Linux</figcaption></figure><h2 id="2c693b7e-e668-47ce-8552-65be6d64e563" class="">Presentación de Kali Linux </h2><figure id="6f98764c-c1d8-4fa8-906a-0e7a0bc1c87f"><div class="source"><iframe src="https://player.vimeo.com/video/822170918?h=b6809c7f48" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Presentación del Kali Linux</figcaption></figure><h2 id="11fd6b5c-ef81-49d3-8082-8b0307190f75" class="">Actualizaciones en Kali Linux</h2><figure id="403d2487-d5c1-48f7-a1d8-cd950ea7966c"><div class="source"><iframe src="https://player.vimeo.com/video/834107541?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Como actualizar el Kali Linux</figcaption></figure><h2 id="d71e4cc6-2784-4d65-baab-85074722a26a" class="">Instalando Chrome en Kali</h2><figure id="968083b7-edc9-4e2b-858e-46aa24b9d5af"><div class="source"><iframe src="https://player.vimeo.com/video/822172423?h=024292590d" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Instalación de Google Chrome en Kali Linux</figcaption></figure><hr id="a753163d-bb73-46ce-a597-caf45d4b572c"/><h1 id="6c705240-5873-4862-8c11-4dee22c0ad4b" class="">Escenario de Entrenamiento: OWASP Juice Shop</h1><p id="359804f6-6b94-402b-b7ce-ad38c560e39f" class="">Es una aplicación web moderna, creada de forma insegura a propósito que se puede usar para entrenamientos de seguridad, demostraciones de concienciación, CTFs y como conejillo de indias para herramientas de seguridad. Juice Shop abarca vulnerabilidades de todo el OWASP Top Ten junto con muchos otros defectos de seguridad encontrados en aplicaciones reales. Juice Shop está escrita en Node.js, Express y Angular. Contiene un gran número de desafíos de hacking de diferente dificultad donde el usuario debe explotar las vulnerabilidades subyacentes.</p><figure id="3854b435-70be-4264-a4bd-e2615a50bba4"><a href="https://owasp.org/www-project-top-ten/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OWASP Top Ten | OWASP Foundation</div><div class="bookmark-description">The OWASP Top 10 is the reference standard for the most critical web application security risks. Adopting the OWASP Top 10 is perhaps the most effective first step towards changing your software development culture focused on producing secure code.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-top-ten/</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><p id="b2b9e8a0-504c-4b64-b7d2-ba872469c101" class="">
+</p><figure id="89a2dd78-f41e-4b4c-b076-984a025e1b91"><div class="source"><iframe src="https://player.vimeo.com/video/822172595?h=71312d9711" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Instalación y Uso del OWASP Juice Shop como Plataforma de Entrenamiento</figcaption></figure><hr id="ced7ec0e-0f36-47f5-a116-8fd92a770071"/><h1 id="570ddd22-4c87-4ca8-baad-cc32e2c9d9c1" class="">Herramientas de Bug Bounty</h1><p id="faad2fbc-0b52-4b81-863a-10906406bd86" class="">Existen cientos de herramientas que podemos utilizar para nuestro trabajo de Bug Bounty; dentro del curso vamos a trabajar con las más efectivas y útiles a nuestro parecer; las mismas herramientas que usamos día a día en nuestra empresa para detectar vulnerabilidades y realizar nuestro trabajo.</p><p id="3111c47f-6bd5-4931-bd5c-0874199062a5" class="">Entre otras muchas que vamos a utilizar, podemos contar:</p><table id="f4122f46-4bca-4ef8-ab32-c479f0f55a57" class="simple-table"><thead class="simple-table-header"><tr id="4fb4c5e7-64ad-4bdb-8ef7-a004d831a0e4"><th id="LLN[" class="block-color-teal_background simple-table-header"><strong>Nombre</strong></th><th id="RP\\" class="block-color-teal_background simple-table-header"><strong>Tipo o Función</strong></th><th id="y`Ei" class="block-color-teal_background simple-table-header" style="width:299px"><strong>URL</strong></th><th id="_`QP" class="block-color-teal_background simple-table-header" style="width:597.015625px"><strong>Descripción</strong></th></tr></thead><tbody><tr id="8f29faf4-d8cb-4d89-82f4-09f6c01a47f0"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Burp Suite</strong></th><td id="RP\\" class="">Intercepción de tráfico</td><td id="y`Ei" class="" style="width:299px"><a href="https://portswigger.net/burp">https://portswigger.net/burp</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta indispensable en el mundo del Bug Bounty, ya que te permitirá interceptar y modificar peticiones HTTP y HTTPS.</td></tr><tr id="59721211-8219-4b08-9267-39b9536802f6"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>OWASP ZAP</strong></th><td id="RP\\" class="">Escaneo de vulnerabilidades</td><td id="y`Ei" class="" style="width:299px"><a href="https://www.zaproxy.org/">https://www.zaproxy.org/</a></td><td id="_`QP" class="" style="width:597.015625px">Otra herramienta muy útil para la búsqueda de vulnerabilidades en aplicaciones web.</td></tr><tr id="18b6a503-c0f1-41c3-89dc-54b910265f14"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Nmap</strong></th><td id="RP\\" class="">Escaneo de puertos</td><td id="y`Ei" class="" style="width:299px"><a href="https://nmap.org/">https://nmap.org/</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta para explorar redes y descubrir hosts y servicios en una red.</td></tr><tr id="b1077db2-59a4-4466-9900-bbb2108c4db4"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Metasploit Framework</strong></th><td id="RP\\" class="">Explotación de vulnerabilidades</td><td id="y`Ei" class="" style="width:299px"><a href="https://www.metasploit.com/">https://www.metasploit.com/</a></td><td id="_`QP" class="" style="width:597.015625px">Esta herramienta te permitirá realizar pruebas de penetración y explotación de vulnerabilidades en sistemas.</td></tr><tr id="41668b86-3849-4bc0-a826-0f60129624c2"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>SQLmap</strong></th><td id="RP\\" class="">Pruebas de inyección SQL</td><td id="y`Ei" class="" style="width:299px"><a href="http://sqlmap.org/">http://sqlmap.org/</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta que te permitirá realizar pruebas de inyección SQL en aplicaciones web.</td></tr><tr id="73727bef-46c7-4bc9-b26b-812ef24d0065"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Wireshark</strong></th><td id="RP\\" class="">Análisis de tráfico</td><td id="y`Ei" class="" style="width:299px"><a href="https://www.wireshark.org/">https://www.wireshark.org/</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta para analizar el tráfico de red y capturar paquetes.</td></tr><tr id="57e3afa7-adbf-4b36-a5f6-591d9be9cd32"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Dirbuster</strong></th><td id="RP\\" class="">Descubrimiento de directorios</td><td id="y`Ei" class="" style="width:299px"><a href="https://sourceforge.net/projects/dirbuster/">https://sourceforge.net/projects/dirbuster/</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta para descubrir directorios y archivos ocultos en aplicaciones web.</td></tr><tr id="a6520c7f-0d70-4c55-ae62-7c4985f447d0"><th id="LLN[" class="simple-table-header-color simple-table-header"><strong>Sublist3r</strong></th><td id="RP\\" class="">Enumeración de subdominios</td><td id="y`Ei" class="" style="width:299px"><a href="https://github.com/aboul3la/Sublist3r">https://github.com/aboul3la/Sublist3r</a></td><td id="_`QP" class="" style="width:597.015625px">Una herramienta para enumerar subdominios de un sitio web.</td></tr></tbody></table><hr id="0bdc3c46-ebfd-4f29-89b8-ee3e370f6866"/><p id="d3b48605-368b-4fa9-9dbb-850535faef49" class="">
+</p><h2 id="4749bda5-2fe1-4c2e-9b4f-aae7e6ee82fb" class="">El Burp Suite: Proxy de Interceptación </h2><figure id="a223e5d9-2a98-46c7-a3c0-b181304444d6"><a href="https://portswigger.net/burp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Burp Suite - Application Security Testing Software</div><div class="bookmark-description">Get Burp Suite. The class-leading vulnerability scanning, penetration testing, and web app security platform. Try for free today.</div></div><div class="bookmark-href"><img src="https://portswigger.net/content/images/logos/favicon.ico" class="icon bookmark-icon"/>https://portswigger.net/burp</div></div><img src="https://portswigger.net/content/images/logos/burpsuite-twittercard.png" class="bookmark-image"/></a></figure><p id="975c9ae9-825e-46e0-996b-3d1c1bce78a5" class="">El funcionamiento de un proxy es el siguiente:</p><ol type="1" id="4d44ca70-6d97-4f3d-8e1e-0929fe0dd35c" class="numbered-list" start="1"><li>El usuario envía una petición a través de su navegador web.</li></ol><ol type="1" id="be1d0d4c-ef06-415e-a8ed-c0e763f5bddc" class="numbered-list" start="2"><li>El proxy recibe la petición y la reenvía al servidor de destino.</li></ol><ol type="1" id="d1a16590-af11-4c53-84b3-8f344855a5df" class="numbered-list" start="3"><li>El servidor de destino responde con la información solicitada.</li></ol><ol type="1" id="1d27b2ec-12ba-45ae-90e9-926b8b0b1141" class="numbered-list" start="4"><li>El proxy recibe la respuesta y la devuelve al usuario.</li></ol><p id="b6d70ebe-4ed2-4a94-b2bd-7150303cf8d5" class="">Durante este proceso, el proxy puede realizar varias funciones, como la captura del tráfico, la modificación de parámetros enviados y recibidos, entre otros.</p><p id="c6d830e9-4cd0-48c5-a992-25a995c2fc8a" class="">Precisamente el Burp Suite es un proxy de Interceptación, específicamente orientado al análisis y manipulación de la comunicación entre el cliente y el servidor de una aplicación WEB.</p><p id="c356f0ff-149a-48fe-9b37-c4d518f404f8" class="">
+</p><figure id="f9bba643-400b-45f9-9845-76c67b402e10" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Proxy_de_Interceptacion.png"><img style="width:811px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/Proxy_de_Interceptacion.png"/></a><figcaption>Imagen: Funcionamiento de un proxy de Interceptación</figcaption></figure><h2 id="5e67d49a-19b8-4b54-bc9c-304f8a9f1086" class="">Burpsuite</h2><figure id="29c7736c-a372-43d3-be4b-93f47c7be599"><div class="source"><iframe src="https://player.vimeo.com/video/823037678?h=9c2f5a4a46" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: El BurpSuite</figcaption></figure><h2 id="32ca1bdf-84f6-47d9-8953-b582324dc924" class="">Burpsuite como Proxy y Wireshark </h2><h3 id="1eb3514a-7c77-4e2b-b653-9c4344e3f1d0" class=""><strong>Wireshark</strong></h3><p id="dc047526-f0f4-47f6-abb8-0fbeaa6f4d1a" class=""> Es una herramienta de análisis de tráfico de red que te permite capturar y examinar paquetes de datos que se envían y reciben en una red. Básicamente, cuando los datos se envían a través de una red, se dividen en pequeños paquetes, que luego se envían al destino. Wireshark te permite capturar estos paquetes y examinarlos para entender cómo se está comunicando la red y detectar cualquier problema o anomalía.</p><p id="cbd8e31e-1578-432b-8c59-2f6ce1711fa9" class="">Por ejemplo, imagina que estás navegando en una página web y la página tarda mucho en cargar. Con Wireshark, puedes capturar los paquetes que se están enviando y recibir para entender por qué la página tarda tanto en cargar. También puedes ver si hay algún tipo de ataque o tráfico malicioso en la red.</p><figure id="bbcc1368-38f5-44bb-844b-9f12585cb77f"><a href="https://www.wireshark.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Wireshark · Go Deep</div><div class="bookmark-description">Wireshark: The world&#x27;s most popular network protocol analyzer</div></div><div class="bookmark-href"><img src="https://www.wireshark.org/assets/icons/favicon.ico" class="icon bookmark-icon"/>https://www.wireshark.org/</div></div><img src="https://www.wireshark.org/assets/img/wireshark-logo-big.png" class="bookmark-image"/></a></figure><figure id="1ab67156-593d-4018-bf4e-d1d0213dbe9d"><div class="source"><iframe src="https://player.vimeo.com/video/822173402?h=93d35d0e8d" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Proxy BurpSuite y Wireshark</figcaption></figure><p id="f21e66a4-71a8-48e4-b938-0a51f34c4cd5" class="">
+</p><h2 id="db827f70-e5cb-4285-ba7a-bdd6036fadf7" class="">OWASP ZAP</h2><p id="416a4324-a265-4de5-bf3d-03cf8138a12c" class="">OWASP ZAP es una herramienta de seguridad que se utiliza para el escaneo de vulnerabilidades en aplicaciones web. Utiliza una variedad de técnicas de ataque automatizadas para identificar vulnerabilidades en las aplicaciones, como inyección SQL, Cross-Site Scripting (XSS), y vulnerabilidades de seguridad en la autenticación y autorización del usuario.</p><p id="f80f069e-9777-4434-bcbe-e583d6423004" class="">Por ejemplo, si un desarrollador ha creado una aplicación web y desea asegurarse de que no existan vulnerabilidades de seguridad, puede utilizar OWASP ZAP para escanear la aplicación en busca de vulnerabilidades y corregirlas antes de que un atacante las explote.</p><p id="b00709c3-a7cf-4933-967a-a52d6c30b3bb" class="">OWASP ZAP es una herramienta gratuita y de código abierto, lo que significa que cualquier persona puede descargarla y utilizarla para proteger sus aplicaciones web. También cuenta con una interfaz gráfica de usuario fácil de usar que permite a los usuarios personalizar los escaneos y ver los resultados detallados del escaneo.</p><figure id="a6986c54-f7b6-4281-90ea-1d38088f5e7f"><a href="https://owasp.org/www-project-zap/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OWASP ZAP | OWASP Foundation</div><div class="bookmark-description">The OWASP Zed Attack Proxy (ZAP) is one of the world’s most popular free security tools and is actively maintained by a dedicated international team of volunteers. Great for pentesters, devs, QA, and CI/CD integration.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-zap/</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><h2 id="4f8d51f2-9561-47c6-a73a-34dc197062ac" class="">El Firefox y su Configuración</h2><div id="8dcc3938-dc91-4c44-b0f3-eb1c1c59fe47" class="column-list"><div id="b9944e47-bfac-41b8-a69b-0f9c4deb5c24" style="width:50%" class="column"><p id="226fe1df-c31e-4209-8449-df8989530cde" class="">Firefox es un navegador web gratuito y de código abierto que permite a los usuarios navegar por Internet y acceder a una amplia variedad de sitios web y aplicaciones en línea. Firefox es un navegador muy popular debido a su facilidad de uso y seguridad. Además, permite a los usuarios personalizar la experiencia de navegación mediante la instalación de complementos y la configuración de diversas opciones.</p><p id="ae678743-c080-4144-ae1c-393404746d9a" class="">Vamos a usar el Firefox como navegador y herramienta de Bug Bounty; para ello instalaremos varios Add-Ons y haremos algunos ajustes</p></div><div id="7b465091-1bfd-4f03-a7f1-1bcc6960e55e" style="width:50%" class="column"><figure id="cb8a5f70-42e5-4661-8c9e-f35e911500fc" class="image"><a href="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/pngwing.com(3).png"><img style="width:192px" src="Mo%CC%81dulo%202%20-%20Creando%20tu%20Laboratorio%20ee5aee3640754c868b68474a7f35c6db/pngwing.com(3).png"/></a></figure></div></div><p id="af839896-0d90-4e5c-960d-c3bf37443e67" class="">
+</p><h2 id="7b55ba2d-c842-42bc-a6f5-aea56cf8dd08" class="">Firefox Inspect</h2><figure id="aeb4a91a-85ad-4363-aedc-224142d8cd86"><div class="source"><iframe src="https://player.vimeo.com/video/822174854?h=2cea38461d" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Uso del Inspect en Firefox</figcaption></figure><h2 id="dbbef271-df0c-4c73-911c-89b340838738" class="">Nuestro primer reto!!!: Reto 1 - Scoreboard</h2><figure id="ad70ceac-127d-4eb0-ae37-688c57c88873"><div class="source"><iframe src="https://player.vimeo.com/video/822175204?h=c29d0adae9" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video del Reto 1: DEscubrir el Score Board de nuestro Juice Shop</figcaption></figure><h2 id="a221f251-c8fe-43c5-bf97-e36f5c9725c4" class="">Enlaces de Referencia</h2><figure id="2797d044-fe43-4f56-ba9c-368c2224f86a"><a href="https://youtu.be/f0UbflfCNJ0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Kali Purple - Defensivo y Ofensivo</div><div class="bookmark-description">Bienvenidos al video del día! En este video encontraras información sobre el nuevo Kali Purple. Esta nueva versión de Kali permite realizar actividades defensivas y ofensivas, entre otras nuevas características que llevan a esta versión de Linux a otro nivel. En este video realizamos la instalación desde cero en Virtualbox para que puedas probarla.
+
+👇No olvides estos recursos que mencioné en el video👇
+ -------------------------------- 
+💡 URLs: 
+https://www.kali.org/blog/kali-linux-2023-1-release/
+https://www.virtualbox.org/
+
+Sígueme en mis redes sociales:
+
+✅Twitter:https://twitter.com/davidpereiracib 
+✅LinkedIn: https://www.linkedin.com/in/davidfper...
+✅Página Web: https://secpro.co
+✅Facebook: https://www.facebook.com/people/David...
+✅Si quieres apoyarme en Patreon: https://www.patreon.com/ciberseguridad
+________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/a7d71065/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/f0UbflfCNJ0</div></div><img src="https://i.ytimg.com/vi/f0UbflfCNJ0/maxresdefault.jpg" class="bookmark-image"/></a></figure><figure id="01341c57-72c4-4cc5-8b4f-fe04e91a3ed0"><a href="https://youtu.be/wXTxdl8aQcw" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Kali 2022.3 en Linode para tu Propio Laboratorio de Ethical Hacking Gratis</div><div class="bookmark-description">En este video explicamos como usar https://www.linode.com/ gratuitamente para instalar Kali 2022.3 fácilmente. #linode 
+Este video es patrocinado por  #linode. Linode provee servidores virtuales que permiten implementar soluciones fáciles y económicas en Cloud.
+
+👇No olvides estos recursos que mencioné en el video👇
+ -------------------------------- 
+💡 URLs: 
+Obtén US$100 de Crédito en Linode!!!:
+https://glnk.io/zp1p/cybersecurity-for-everyone-david-pereira
+
+Video de como instalar LLaves SSH en Linux:
+https://youtu.be/-r0jyCeqLvs
+--------------------------------
+ Image by rawpixel.com on Freepik 
+--------------------------------
+Sígueme en mis redes sociales:
+
+✅Twitter:https://twitter.com/davidpereiracib 
+✅LinkedIn: https://www.linkedin.com/in/davidfpereira
+✅Página Web: https://secpro.co
+✅Facebook: https://www.facebook.com/people/David-Pereira/100027280057880/
+✅Si quieres apoyarme en Patreon: https://www.patreon.com/ciberseguridad
+------------------------------
+Websites: 
+SecPro en Español:
+https://secpro.co
+SecPro United States:
+https://secpro.llc
+______________
+Crédito de la Imagen:
+Image by WangXiNa on Freepik
+______________
+#Hacking de WiFi
+#hacking 
+Seguro
+Protegido
+Ciberseguridad
+Blinda
+Kali
+Hacking
+Pentesting 
+NAC
+MAC
+Aprende
+Aprender
+Practica
+Capacitacion
+Network
+Access
+Control
+WiFi
+Wireless
+Inalámbrica Ethical
+Pruebas Hackear
+Hackeo
+Ataque
+Desarrollo PyCharm VisualStudio Code
+Linux
+Windows
+MACOSx
+Script
+Scripting  Python
+Python2 Python3 Vulnerabilidad Vulnerability Exploit Backdoor Malware Ransomware
+Virus
+Seguro
+Phishing
+Ingeniería
+Social
+Ingenieria
+Engaño
+Apt
+Gusano
+Troyano
+FUD
+DNS
+Exfiltrar
+Cifrado
+Encriptado
+Descifrar
+Comptia
+Ceh
+oscp
+Forense
+Computo
+Evidencia
+IoT
+Bluetooth
+Sniffer
+Wireshark ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/a7d71065/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/wXTxdl8aQcw</div></div><img src="https://i.ytimg.com/vi/wXTxdl8aQcw/maxresdefault.jpg" class="bookmark-image"/></a></figure><figure id="ebf6e1ab-acc6-45a8-bc52-b7b42d0be5f0"><a href="https://youtube.com/playlist?list=PL1Kv5m-HTbQwNhsUYKrfljJl5saJDTPXQ" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Curso Ethical Hacking a Aplicaciones WEB</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/a7d71065/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtube.com/playlist?list=PL1Kv5m-HTbQwNhsUYKrfljJl5saJDTPXQ</div></div><img src="https://i.ytimg.com/vi/fFc0GxhSvPI/hqdefault.jpg" class="bookmark-image"/></a></figure><p id="dfa055ac-c2b4-4752-9b71-504e5a30a695" class="">
+</p><p id="126b9641-6a84-4a90-9de5-596492f1e835" class="">
+</p></div></article></body></html>

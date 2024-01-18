@@ -1,0 +1,1547 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].setAttribute('target', '_blank');
+  }
+});
+</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 5 - Metodología del Bug Bounty</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9d94cf4f-a9e9-4228-a1b9-98fa32023738" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1581574919402-5b7d733224d6?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 61.13999999999999%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🗃️</span></div><h1 class="page-title">Módulo 5 - Metodología del Bug Bounty</h1><p class="page-description"></p></header><div class="page-body"><figure id="ee5d48f4-4257-4f4d-a0d4-6bc83ba82081" class="image" style="text-align:left"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled.png"><img style="width:720px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled.png"/></a></figure><p id="2157ecf9-326a-4ba6-830e-96ad6f89ca62" class="">Esta metodología es nuestra recomendación para enfrentar los diferentes retos del Bug Bounty desde el comienzo, identificando factores en el sitio web, entendiendo su arquitectura, su composición y luego probando diferentes ataques para validar su robustez.</p><p id="bfed5ba4-f432-4575-8a94-4f286d9f5dad" class="">Aquí plasmamos un orden  y pasos sugeridos para tus actividades.</p><h1 id="042361ae-36db-4494-85b0-d61dfe3ca0b9" class="">Alista tu entorno de trabajo</h1><p id="0cd84e63-2d2b-4cf5-9e5d-2de4446186d8" class="">En el pasado ya tocamos el tema de tu laboratorio de pruebas a nivel técnico por supuesto, pero el conocimiento de las vulnerabilidades y de las herramientas para hallarlas no basta por sí solo; debes también llevar un orden metodológico que te permita de forma ágil, simple y eficiente el acceder a los datos recabados, analizar tus datos y potencialmente descubrir nuevos caminos para llegar a un fin específico.</p><p id="1f2d2a93-b0e6-4fcc-a527-f4d400861b88" class="">Aparte de las herramientas técnicas que te sirven para detectar infraestructura y vulnerabilidades, debes tener preparadas herramientas que te servirán de columna vertebral para tus labores, ya sea para facilitar la visualización de tus hallazgos o para analizar lo obtenido y definir pasos a seguir; por ello te recomendamos:</p><h3 id="9b4825d7-6c87-4d72-9115-e563225bddb7" class="">Herramientas para crear Mapas Mentales</h3><table id="3458946c-6702-438c-941e-b7211ed45ef9" class="simple-table"><thead class="simple-table-header"><tr id="daf9a3ed-2bba-49a2-8624-692d09f1d187"><th id="bg~&lt;" class="block-color-orange_background simple-table-header">Herramienta</th><th id="gHJ@" class="block-color-orange_background simple-table-header" style="width:205.75px">Tipo / Función</th><th id=":O_Y" class="block-color-orange_background simple-table-header" style="width:979px">Descripción</th></tr></thead><tbody><tr id="cb2c30f8-60b2-4e69-b1ae-aa714f7ecc08"><td id="bg~&lt;" class=""><a href="https://www.xmind.net">XMind</a></td><td id="gHJ@" class="" style="width:205.75px">Creación de Mapas Mentales</td><td id=":O_Y" class="" style="width:979px">Herramienta completa de mapeo mental y lluvia de ideas, diseñada para generar ideas, inspirar creatividad y brindar eficiencia tanto en el trabajo como en la vida.</td></tr><tr id="4bacb301-0a56-42e7-b829-833a9d37b761"><td id="bg~&lt;" class=""><a href="https://miro.com/">Miro</a></td><td id="gHJ@" class="" style="width:205.75px">Creación de Mapas Mentales</td><td id=":O_Y" class="" style="width:979px">Es una aplicación en línea para poder gestionar la información recolectada en un proceso de inteligencia a modo de mapa mental, de esta manera organizar los ítems de la investigación será un punto esencial en la minería de datos.</td></tr><tr id="b0039591-4954-47bb-887c-868726b1b456"><td id="bg~&lt;" class=""><a href="https://www.edrawmind.com/">EdrawMind</a></td><td id="gHJ@" class="" style="width:205.75px">Creación de Mapas Mentales</td><td id=":O_Y" class="" style="width:979px">Herramienta para crear mapas mentales</td></tr><tr id="73c7db75-1e57-4c08-8a1d-ba49cb7ef957"><td id="bg~&lt;" class=""><a href="https://gitmind.com/">GitMind</a></td><td id="gHJ@" class="" style="width:205.75px">Creación de Mapas Mentales</td><td id=":O_Y" class="" style="width:979px">Herramienta para crear mapas mentales</td></tr></tbody></table><h3 id="275dd5d7-cc0b-4250-b413-f1d8dd6d20f7" class="">Herramientas para tomar Notas</h3><p id="e9b1d5ba-35a9-41d1-8ae8-3ac0b8de1447" class="">Existen muchas herramientas de toma de notas que pueden ser múy útiles en nuestro trabajo; vamos a hablar de algunas de ellas; es importante resaltar que actualmente muchas herraminetas usan el lenguaje “Markdown”; expliquemos un poco de que se trata:</p><h3 id="4d866e31-8676-4d8c-b4b9-c43e2710d482" class="">Markdown</h3><p id="933ca5ea-bde7-42df-8f46-62ce21f217ca" class="">Markdown es un lenguaje de marcado ligero que se utiliza para dar formato a documentos de texto plano. Es muy útil para escribir contenido en línea como foros, blogs o documentos colaborativos porque permite dar formato al texto de una manera sencilla y rápida.</p><p id="e2d2da24-07b7-46ed-acd7-f8b6bd9934ab" class="">Algunos de los elementos que se pueden utilizar en markdown son:</p><ul id="0e6713f6-1e67-4192-9e35-17953e412365" class="bulleted-list"><li style="list-style-type:disc">Encabezados: se utilizan para organizar el contenido en secciones.</li></ul><ul id="ddc5e081-d414-4e3e-a171-4e076dcb053b" class="bulleted-list"><li style="list-style-type:disc">Listas: se pueden crear listas ordenadas o desordenadas.</li></ul><ul id="b3698840-6fe5-4f82-87bb-975ec3fa814b" class="bulleted-list"><li style="list-style-type:disc">Enlaces: se pueden incluir enlaces a otras páginas web.</li></ul><ul id="2c985a86-e5e1-426b-baae-4e84c144edbc" class="bulleted-list"><li style="list-style-type:disc">Imágenes: se pueden insertar imágenes en el documento.</li></ul><ul id="145ca311-8d66-4119-8e15-cfd88b378182" class="bulleted-list"><li style="list-style-type:disc">Énfasis: se puede agregar énfasis al texto utilizando negrita o cursiva.</li></ul><ul id="9a0fc05b-8bc2-4240-9062-a8c47ab4ff49" class="bulleted-list"><li style="list-style-type:disc">Bloques de código: se pueden incluir bloques de código para resaltar el código fuente.</li></ul><p id="e5da616e-e8d1-4c0b-a542-546a1b68b18a" class="">El formato de markdown es fácil de aprender y se puede utilizar en muchas plataformas diferentes. Además, muchos editores de texto y plataformas en línea tienen soporte nativo para markdown, lo que hace que sea muy fácil de usar.</p><p id="2f7e5911-d3ad-4577-856e-37babd4377a8" class="">Por ejemplo, para crear un encabezado en markdown, se puede utilizar el símbolo &quot;#&quot; seguido del texto del encabezado. Por ejemplo:</p><pre id="f27da94b-f614-4423-96ab-02b861a0f48c" class="code code-wrap"><code># Encabezado de nivel 1
+## Encabezado de nivel 2
+### Encabezado de nivel 3</code></pre><p id="fb6c2f77-da33-4e35-8feb-896e7030ac61" class="">Esto se veria de esta manera al ser “Renderizado”:</p><figure id="43cf5322-67b1-4367-839f-0e1524a41798" class="image"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%201.png"><img style="width:414px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%201.png"/></a></figure><p id="6c822266-e3f3-46ea-8482-c451bbc22ecc" class="">Markdown es una forma muy útil de dar formato al texto en línea y de hacer que los documentos sean más legibles y fáciles de entender.</p><p id="cb8ef0cd-21d0-4816-b789-ab4db6e27f40" class="">Si quieres entender y probar la sintaxis de Markdown, visita este enlace:</p><figure id="b624b21e-7537-4fe6-bb88-60c8a5a460a1"><a href="https://markdownlivepreview.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Markdown Live Preview</div><div class="bookmark-description">This is the online markdown editor with live preview.</div></div><div class="bookmark-href"><img src="https://markdownlivepreview.com/favicon.png" class="icon bookmark-icon"/>https://markdownlivepreview.com/</div></div></a></figure><figure id="65b3d42f-e178-40d0-beab-b742aaeb7223"><a href="https://markdown.es/sintaxis-markdown/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Sintaxis Markdown al completo - Cheatsheet en español</div><div class="bookmark-description">Tutorial en español con la sintaxis Markdown y todos los conceptos básicos que te permitirán escribir utilizando este lenguaje de marcado.</div></div><div class="bookmark-href"><img src="https://markdown.es/wp-content/uploads/2016/09/cropped-Markdown-logo-192x192.png" class="icon bookmark-icon"/>https://markdown.es/sintaxis-markdown/</div></div></a></figure><p id="9344db65-60ef-410a-a583-cda4e65a884c" class="">Aqui tienes una lista de herramientas de toma de notas recomendadas:</p><table id="a92aec41-d1a1-4d5e-b8ef-3ba620f26004" class="simple-table"><thead class="simple-table-header"><tr id="c364eeb6-1117-4c6a-ad62-19b66eadff46"><th id="&gt;KWX" class="block-color-orange_background simple-table-header">Herramienta</th><th id="xZTb" class="block-color-orange_background simple-table-header">Tipo / Función</th><th id="b=fT" class="block-color-orange_background simple-table-header" style="width:1066px">Descripción</th></tr></thead><tbody><tr id="34c8038c-f9cd-461a-a16a-e1f2972c48d6"><td id="&gt;KWX" class=""><a href="https://www.giuspen.com/cherrytree/">CherryTree</a></td><td id="xZTb" class="">Toma de Notas</td><td id="b=fT" class="" style="width:1066px">Una aplicación de toma de notas jerárquica, con texto enriquecido y resaltado de sintaxis, que almacena datos en un solo archivo xml o sqlite. Escrito por Giuseppe Penone (alias giuspen) y Evgenii Gurianov (alias txe)</td></tr><tr id="a510d4b1-6824-46f4-955b-8fac50992017"><td id="&gt;KWX" class=""><a href="https://www.onenote.com/?404&amp;public=1">OneNote</a></td><td id="xZTb" class="">Toma de Notas</td><td id="b=fT" class="" style="width:1066px">Microsoft OneNote es una herramienta para tomar notas digitalmente. Permite tomar notas en forma de texto, imágenes, audio y video, y organizarlas en &quot;cuadernos&quot; y secciones. También permite compartir notas y colaborar en tiempo real con otros usuarios. OneNote está disponible como una aplicación de escritorio, una aplicación móvil y una versión en línea, y se integra con otros productos de Microsoft, como Outlook y Teams.</td></tr><tr id="a0189ccc-2ea2-4861-a7fe-876cb6d151e5"><td id="&gt;KWX" class=""><a href="https://obsidian.md/">Obsidian</a></td><td id="xZTb" class="">Toma de Notas</td><td id="b=fT" class="" style="width:1066px">Obsidian es una aplicación para tomar notas y organizar información en una base de conocimientos personal.
+La aplicación utiliza Markdown   para formatear el texto y permite crear enlaces entre notas para establecer conexiones y relaciones entre diferentes conceptos. Obsidian también cuenta con una interfaz de usuario personalizable y una amplia gama de complementos para mejorar la funcionalidad de la aplicación.
+Es una herramienta poderosa para aquellos que desean organizar y acceder a su información de una manera más eficiente y efectiva.</td></tr><tr id="eb273a2a-1a45-492d-91ad-a097396ff14f"><td id="&gt;KWX" class=""><a href="https://www.notion.so/">Notion</a></td><td id="xZTb" class="">Toma de Notas</td><td id="b=fT" class="" style="width:1066px">Notion es una herramienta de productividad y organización que permite crear notas y documentos, bases de datos, listas de tareas y mucho más. Es muy flexible y personalizable, lo que la hace ideal para cualquier tipo de proyecto o tarea. Permite colaborar con otros usuarios en tiempo real y organizar la información de una manera intuitiva y fácil de usar. Además, cuenta con una versión gratuita y una de pago con funciones adicionales.</td></tr></tbody></table><figure id="0ef1b306-3c86-46dc-bf07-7605fd697f58"><div class="source"><iframe src="https://player.vimeo.com/video/838442037?h=35bf7026fa" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="f61f00d6-f0ee-4764-a392-de0bde17e73c" class="">Herramientas para Captura de Pantalla (Screenshot)</h3><table id="df9129da-9bc5-4865-9d3a-80e5c493f898" class="simple-table"><thead class="simple-table-header"><tr id="981ebf08-9939-41b0-9308-1d3bf0c3bcde"><th id="`]eo" class="block-color-teal_background simple-table-header" style="width:109.99999237060547px">Herramienta</th><th id="Y`;&lt;" class="block-color-teal_background simple-table-header">Tipo / Función</th><th id="yvXq" class="block-color-teal_background simple-table-header" style="width:279.99998474121094px">Descripción</th><th id="xPPd" class="block-color-teal_background simple-table-header" style="width:577.9999847412109px">Enlace</th></tr></thead><tbody><tr id="80ee6a1e-30d2-4ae9-b2d2-8bf62b75e7d6"><td id="`]eo" class="" style="width:109.99999237060547px">Snipping Tool</td><td id="Y`;&lt;" class="">Captura de Pantalla en Windows</td><td id="yvXq" class="" style="width:279.99998474121094px">Herramienta incluida en Windows para capturar áreas de la pantalla o la pantalla completa y guardar la captura como imagen.</td><td id="xPPd" class="" style="width:577.9999847412109px"><a href="https://support.microsoft.com/en-gb/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b">https://support.microsoft.com/en-gb/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b</a></td></tr><tr id="6b64c58c-3b08-4336-ba87-c47fd42e4863"><td id="`]eo" class="" style="width:109.99999237060547px">Shutter</td><td id="Y`;&lt;" class="">Captura de Pantalla en Linux</td><td id="yvXq" class="" style="width:279.99998474121094px">Herramienta de captura de pantalla para Linux que permite tomar capturas de pantalla de áreas específicas, ventanas o toda la pantalla. También permite editar y anotar las capturas de pantalla.</td><td id="xPPd" class="" style="width:577.9999847412109px"><a href="https://github.com/shutter-project/shutter">https://github.com/shutter-project/shutter</a></td></tr><tr id="36bec48a-7350-4ff1-b311-75bab02ad858"><td id="`]eo" class="" style="width:109.99999237060547px">Flameshot</td><td id="Y`;&lt;" class="">Captura de Pantalla en Linux</td><td id="yvXq" class="" style="width:279.99998474121094px">Herramienta de captura de pantalla para Linux que permite tomar capturas de pantalla de áreas específicas, ventanas o toda la pantalla. También permite editar y anotar las capturas de pantalla.</td><td id="xPPd" class="" style="width:577.9999847412109px"><a href="https://github.com/flameshot-org/flameshot">https://github.com/flameshot-org/flameshot</a></td></tr></tbody></table><h3 id="d4d78ebc-e6e1-4ee2-a323-9372e2ee6b89" class="">Herramientas para Captura de Video</h3><table id="63efb7a0-9454-4406-ba7b-3854d2ad6a71" class="simple-table"><thead class="simple-table-header"><tr id="7727439b-1155-4ec1-8b73-e5732300149d"><th id="W@ZO" class="block-color-teal_background simple-table-header">Herramienta</th><th id="tGIJ" class="block-color-teal_background simple-table-header">Tipo / Función</th><th id="l]:F" class="block-color-teal_background simple-table-header" style="width:476.99713134765625px">Descripción</th><th id="Zsyj" class="block-color-teal_background simple-table-header" style="width:381.991455078125px">Enlace</th></tr></thead><tbody><tr id="607c1602-d290-415b-94ac-f76d4098e49c"><td id="W@ZO" class="">OBS Studio</td><td id="tGIJ" class="">Captura de Pantalla</td><td id="l]:F" class="" style="width:476.99713134765625px">Free and open source software for video recording and live streaming.</td><td id="Zsyj" class="" style="width:381.991455078125px"><a href="https://obsproject.com/">https://obsproject.com/</a></td></tr><tr id="b72b545a-34d1-4deb-9ee8-6c92e9595172"><td id="W@ZO" class="">ShareX</td><td id="tGIJ" class="">Captura de Pantalla</td><td id="l]:F" class="" style="width:476.99713134765625px">Free and open source software for screen capture and recording.</td><td id="Zsyj" class="" style="width:381.991455078125px"><a href="https://getsharex.com/">https://getsharex.com/</a></td></tr><tr id="1721bb26-47b1-48e6-aa81-7f3d54eb2a5f"><td id="W@ZO" class="">SimpleScreenRecorder</td><td id="tGIJ" class="">Captura de Pantalla</td><td id="l]:F" class="" style="width:476.99713134765625px">Free and open source software for screen recording in Linux.</td><td id="Zsyj" class="" style="width:381.991455078125px"><a href="https://www.maartenbaert.be/simplescreenrecorder/">https://www.maartenbaert.be/simplescreenrecorder/</a></td></tr><tr id="afeaec86-6bc9-4dcd-bb02-fa3e8bed4288"><td id="W@ZO" class="">Kazam</td><td id="tGIJ" class="">Captura de Pantalla</td><td id="l]:F" class="" style="width:476.99713134765625px">Free and open source software for screen recording in Linux.</td><td id="Zsyj" class="" style="width:381.991455078125px"><a href="https://launchpad.net/kazam">https://launchpad.net/kazam</a></td></tr></tbody></table><hr id="829f5cd0-ad18-409b-80e2-7bdf90febddc"/><p id="647e7c36-0415-43ac-919e-c1c9b0a0c617" class="">Muy bien, repasemos; a esta altura tenemos:</p><ul id="40ed0caa-b70d-4d08-a487-ff4fab676f73" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Virtualización Instalada (VirtualBox)</span><div class="indented"></div></li></ul><ul id="d6806604-3346-46b4-bb4a-81203fd19e62" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Kali Linux Instalado y Actualizado</span><div class="indented"></div></li></ul><ul id="0e203191-eb97-4cc2-bd0e-8501210c128f" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Herramientas Mínimas de Trabajo Instaladas</span><div class="indented"></div></li></ul><ul id="c3c309fe-506c-4079-b517-1944e7310b8a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Herramientas metodológicas Instaladas</span><div class="indented"></div></li></ul><hr id="db1a361d-fded-4871-adb7-3a67e414cc92"/><p id="37cafad9-5fc4-4867-bee0-0c12f3bde5d0" class="">Ahora, si queremos continuar en nuestro camino debemos seguir con definir nuestro objetivo a evaluar; para ello puedes escoger un programa de Bug Bounty y entender en detalle sus parámetros: </p><h1 id="035170a0-b594-4588-a07b-f1c5e0cf9f80" class="">Selección del programa de Bug Bounty</h1><p id="1a794069-24b0-492a-b038-04991ca9b361" class="">Existen múltiples programas de Bug Bounty; tú puedes registrarte en el que más interesante o atractivo te parezca; a continuación una lista de algunos de los más conocidos:</p><table id="695d1547-6403-4235-b576-28519859c581" class="simple-table"><thead class="simple-table-header"><tr id="26b8849b-32c1-470b-b7b1-632b71b410af"><th id="I&gt;JL" class="block-color-teal_background simple-table-header">Programa</th><th id="hvIk" class="block-color-teal_background simple-table-header" style="width:916.88916015625px">Descripción</th><th id="U[jA" class="block-color-teal_background simple-table-header" style="width:327px">URL</th></tr></thead><tbody><tr id="5deb161d-4ea3-42e7-98e4-ca4d20098687"><td id="I&gt;JL" class="">HackerOne</td><td id="hvIk" class="" style="width:916.88916015625px">Plataforma que aloja muchos programas de Bug Bounty de diferentes empresas y organizaciones, como IBM, LinkedIn, Uber y otras.</td><td id="U[jA" class="" style="width:327px"><a href="https://hackerone.com/">https://hackerone.com/</a></td></tr><tr id="3cd3ddd6-fc4d-478e-bd89-023cd556d830"><td id="I&gt;JL" class="">Bugcrowd</td><td id="hvIk" class="" style="width:916.88916015625px">Otra plataforma que aloja muchos programas de Bug Bounty de diferentes empresas y organizaciones, como Intel, Twitter, Atlassian y otras.</td><td id="U[jA" class="" style="width:327px"><a href="https://www.bugcrowd.com/">https://www.bugcrowd.com/</a></td></tr><tr id="0e41ce0d-0dc8-4a37-b58f-8c0ea3bd57ea"><td id="I&gt;JL" class="">Apple Security Bounty</td><td id="hvIk" class="" style="width:916.88916015625px">Ofrece recompensas de hasta US $250.000 o más por encontrar y reportar vulnerabilidades críticas en los productos de Apple.</td><td id="U[jA" class="" style="width:327px"><a href="https://developer.apple.com/security-bounty/">https://developer.apple.com/security-bounty/</a></td></tr><tr id="8049d45f-9fcb-47a0-9387-291837506e67"><td id="I&gt;JL" class="">Microsoft Bug Bounty Program</td><td id="hvIk" class="" style="width:916.88916015625px">Ofrece una amplia gama de recompensas por encontrar y reportar vulnerabilidades en los productos y servicios de Microsoft, como Windows, Office, Azure, Xbox y otros.</td><td id="U[jA" class="" style="width:327px"><a href="https://www.microsoft.com/en-us/msrc/bounty">https://www.microsoft.com/en-us/msrc/bounty</a></td></tr><tr id="3519552f-7bf7-4811-befd-7904405373fc"><td id="I&gt;JL" class="">Google Bug Hunters</td><td id="hvIk" class="" style="width:916.88916015625px">Ofrece recompensas por encontrar y reportar vulnerabilidades en los productos y servicios de Google, como Chrome, Android, Gmail, YouTube y otros.</td><td id="U[jA" class="" style="width:327px"><a href="https://bughunter.withgoogle.com/">https://bughunter.withgoogle.com/</a></td></tr><tr id="57fa0153-a100-4cb1-b2de-d9c55c2c4dec"><td id="I&gt;JL" class="">Meta Bug Bounty</td><td id="hvIk" class="" style="width:916.88916015625px">Ofrece recompensas por encontrar y reportar vulnerabilidades en los productos y servicios de Meta (antes Facebook), como Instagram, WhatsApp, Oculus y otros.</td><td id="U[jA" class="" style="width:327px"><a href="https://www.facebook.com/whitehat">https://www.facebook.com/whitehat</a></td></tr><tr id="d11bcd84-bd88-4063-94fe-8488d4e1e0d7"><td id="I&gt;JL" class="">GitHub</td><td id="hvIk" class="" style="width:916.88916015625px">Ofrece recompensas por encontrar y reportar vulnerabilidades en los productos y servicios de GitHub, como GitHub Enterprise Server, GitHub Actions, GitHub Pages y otros.</td><td id="U[jA" class="" style="width:327px"><a href="https://bounty.github.com/">https://bounty.github.com/</a></td></tr></tbody></table><figure id="dd831797-e1b2-4872-959b-afc70c1014b0"><div class="source"><iframe src="https://player.vimeo.com/video/846077542?h=018d6f06d5" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h1 id="8635c258-0764-4eb8-ad06-5603a3d893fd" class="">Escoger el Target</h1><p id="78c2e3da-6366-4bff-be6a-8e8a18aef9c0" class="">Una vez escojas el programa debes determinar la o las empresas que vas a analizar como objetivo de tus pruebas de Bug Bounty:</p><p id="9ac8e43e-7a37-44db-ac80-71999700db20" class="">Ejemplo de un Programa de Bug Bounty: HackerOne. </p><figure id="a5f1a192-045e-4cfc-bedd-631173d4862d"><a href="https://hackerone.com/opportunities/all/search?bbp=&amp;vdp=&amp;private=&amp;high_response_efficiency=&amp;managed=&amp;offers_retesting=&amp;bounty_splitting=&amp;credentials=&amp;new=&amp;updated=&amp;category=&amp;active_campaign=&amp;gold_standard=&amp;tech=&amp;industries=&amp;asset_types=&amp;ordering=Newest+programs&amp;search=&amp;minimum_low_checked=&amp;minimum_medium_checked=&amp;minimum_high_checked=&amp;minimum_critical_checked=&amp;minimum_low_value=&amp;minimum_medium_value=&amp;minimum_high_value=&amp;minimum_critical_value=" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">HackerOne</div></div><div class="bookmark-href"><img src="https://hackerone.com/favicon.ico" class="icon bookmark-icon"/>https://hackerone.com/opportunities/all/search?bbp=&amp;vdp=&amp;private=&amp;high_response_efficiency=&amp;managed=&amp;offers_retesting=&amp;bounty_splitting=&amp;credentials=&amp;new=&amp;updated=&amp;category=&amp;active_campaign=&amp;gold_standard=&amp;tech=&amp;industries=&amp;asset_types=&amp;ordering=Newest+programs&amp;search=&amp;minimum_low_checked=&amp;minimum_medium_checked=&amp;minimum_high_checked=&amp;minimum_critical_checked=&amp;minimum_low_value=&amp;minimum_medium_value=&amp;minimum_high_value=&amp;minimum_critical_value=</div></div></a></figure><figure id="b12a4a13-5e5f-4173-a58e-05ea5fa639a9" class="image"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%202.png"><img style="width:912px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%202.png"/></a><figcaption>Imagen: Seleccion de Programas de HackerOne</figcaption></figure><h1 id="777f8f80-2ad6-420b-bd49-9ca765b8e829" class="">Definir el Scope que vas a analizar</h1><p id="185bca05-6af2-4ab3-8fd2-d4bae161847c" class="">Cada programa autoriza de forma independiente los objetivos que pueden ser incluidos dentro de los ejercicios de Bug Bounty y adicionalmente clarifican los tipos de ataques o vulnerabilidades viables de ser explotadas y las vulnerabilidades o ataques que <strong>NO</strong> pueden ser probados, como sería el caso de la <strong>Denegación de Servicio</strong> por ejemplo.</p><p id="7035c9a3-7ab4-4011-8737-bec229b62c94" class="">Debes leer con mucho detenimiento las condiciones de cada programa en donde quieras participar, para evitar culquier tipo de problema ya sea civil o judicial, por que recuerda, al final estamos realizando ataques, y si los realizas contra un objetivo para el cual <strong>NO</strong> estás autorizad@, pasas de ser un Bounty Hunter o Investigador o Pentester a un <strong>Ciberdelincuente</strong>; la linea es muy delgada y sólo tú eres responsable de nunca cruzarla.</p><p id="89a93457-73e4-4c73-9f78-d469b2221de9" class="">Ejemplo capturado de la Plataforma HackerOne de los diferentes alcances autorizados y no autorizados:</p><p id="1a0b6360-f544-44f6-8c2d-3246f76b85a5" class="">
+</p><figure id="9a74cc1c-f808-4aab-950c-a162642c84da"><a href="https://hackerone.com/tide/policy_scopes" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">HackerOne</div></div><div class="bookmark-href"><img src="https://hackerone.com/favicon.ico" class="icon bookmark-icon"/>https://hackerone.com/tide/policy_scopes</div></div></a></figure><figure id="b1fbc771-9c30-4e91-b6b6-90ae21c279d8" class="image"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%203.png"><img style="width:960px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%203.png"/></a></figure><h1 id="688528c0-2b5c-4155-9e69-69e994700265" class="">Entender la Metodología de evaluación en Bug Bounty</h1><p id="a73d7509-7691-47c1-83c0-768509b0f18a" class="">De acuerdo con la metodología de pruebas WEB de OWASP, existen 2 categorías de pruebas: </p><figure id="943a769c-25c8-40e0-9a3a-308232ecff60"><div class="source"><iframe src="https://player.vimeo.com/video/846077979?h=b50bafb460" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="5899b1fc-e3af-4613-99b8-d638a867d11f" class="">Pruebas pasivas:</h2><p id="f8cfcacb-b7be-4dc0-bc5e-e8c28d415408" class="">Las pruebas pasivas son aquellas que se realizan sin interactuar directamente con la aplicación web, y se realizan solo observando el comportamiento y los datos que se intercambian entre el cliente y el servidor. Estas pruebas sirven para recopilar información sobre la aplicación web, como su estructura, sus tecnologías, sus funcionalidades, sus vulnerabilidades potenciales, etc. Algunos ejemplos de pruebas pasivas son:</p><h3 id="4ffda156-ca00-4fd6-801f-5ac76a294fdf" class="">Análisis de tráfico web:</h3><p id="18eded35-5619-464e-a4ab-a1bc590d20ca" class="">Consiste en capturar y examinar las peticiones y respuestas HTTP/HTTPS que se envían entre el navegador y la aplicación web, usando herramientas como <span style="border-bottom:0.05em solid">Wireshark</span> o <span style="border-bottom:0.05em solid">Burp Suite</span>. Esto permite identificar parámetros, cookies, cabeceras, métodos, errores, etc. que puedan revelar información sensible o insegura sobre la aplicación web.</p><figure id="518f8f22-0325-4618-bf80-3226d954c8fb"><a href="https://www.wireshark.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Wireshark · Go Deep</div><div class="bookmark-description">Wireshark: The world&#x27;s most popular network protocol analyzer</div></div><div class="bookmark-href"><img src="https://www.wireshark.org/assets/icons/favicon.ico" class="icon bookmark-icon"/>https://www.wireshark.org/</div></div><img src="https://www.wireshark.org/assets/img/wireshark-logo-big.png" class="bookmark-image"/></a></figure><h3 id="aff07296-7521-4113-9ca0-4f5eb41d92fe" class="">Análisis de contenido web:</h3><p id="894f57eb-ddb3-402f-944a-c1deb530347b" class="">Consiste en analizar el código fuente HTML, CSS, JavaScript, etc. de las páginas web que se visitan, usando herramientas como el inspector de elementos del navegador; esto permite identificar comentarios, metadatos, scripts externos, formularios ocultos, campos de entrada, etc. que puedan revelar información sensible o insegura sobre la aplicación web.</p><p id="f6d81d65-560d-4ffb-b47d-409f9e4f71f5" class="">Palabras que podrian ser útiles para un Bounty Hunter, de ser encontradas dentro de una página WEB:</p><table id="7810d335-13ff-4091-9084-fddb8d32855c" class="simple-table"><tbody><tr id="8f42b238-3cf6-4b31-a785-025b4e772a3a"><td id="sr`g" class="">user</td><td id="&lt;:^^" class="">username</td><td id="HLOg" class="">sql</td><td id="noSz" class="">key</td></tr><tr id="0f2fa2dd-94e0-41cf-88a3-2c8a9eb5c8c0"><td id="sr`g" class="">hidden</td><td id="&lt;:^^" class="">clave</td><td id="HLOg" class="">contraseña</td><td id="noSz" class="">cmd</td></tr><tr id="a0f8385b-b6fd-49fd-9562-39c3f6c2d771"><td id="sr`g" class="">password</td><td id="&lt;:^^" class="">usuario</td><td id="HLOg" class="">db</td><td id="noSz" class="">os</td></tr><tr id="0365e68b-6b73-4b79-a5b1-b3c4ef1a0296"><td id="sr`g" class="">field</td><td id="&lt;:^^" class="">odbc</td><td id="HLOg" class="">passwd</td><td id="noSz" class="">campo</td></tr></tbody></table><h3 id="a6be6f5f-5c7a-4490-b69e-da96e2e16ae7" class="">Análisis de robots.txt y sitemap.xml: </h3><p id="29985269-9ef8-4379-b201-da5ed5782dfa" class="">Consiste en buscar y examinar los archivos “robots.txt” y “sitemap.xml” que se encuentran en el directorio raíz de la aplicación web, usando herramientas como el navegador o la herramienta “<span style="border-bottom:0.05em solid">curl</span><span style="border-bottom:0.05em solid">”</span>. Estos archivos indican qué páginas o recursos son accesibles o no para los motores de búsqueda, lo que puede revelar información sensible o insegura sobre la aplicación web.</p><h3 id="e5c08303-7ddd-48b2-b6bb-2978952f057c" class="">Análisis de certificados SSL/TLS: </h3><p id="f20ad18c-0370-4b16-921e-7ccddcd94269" class="">Consiste en verificar la validez y la seguridad de los certificados SSL/TLS que se usan para cifrar la comunicación entre el cliente y el servidor, usando herramientas como el navegador o SSL Labs. Esto permite identificar si la aplicación web usa un protocolo seguro y actualizado, y si el certificado es confiable y no está caducado o revocado.</p><figure id="b65c9485-fb80-4633-ac74-8a9f8841f91b"><a href="https://www.ssllabs.com/ssltest/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">SSL Server Test (Powered by Qualys SSL Labs)</div><div class="bookmark-description">A comprehensive free SSL test for your public web servers.</div></div><div class="bookmark-href"><img src="https://www.ssllabs.com/favicon.ico" class="icon bookmark-icon"/>https://www.ssllabs.com/ssltest/</div></div></a></figure><p id="3f66966e-cb56-48fa-b62f-9bbca9d2d1fc" class="">Las pruebas pasivas son una parte importante de la metodología de pruebas web de OWASP porque permiten obtener una visión general de la aplicación web y sus posibles debilidades sin alterar su funcionamiento ni generar alertas en los sistemas de detección de intrusiones.</p><h2 id="8f1dfe1d-1447-4255-929e-8b5c3c2e3709" class="">Pruebas Activas:</h2><p id="ccda6336-076f-4498-89f6-5a7edecb4e89" class="">Las pruebas activas son aquellas que se realizan interactuando directamente con la aplicación web, enviando datos o comandos específicos para provocar y observar las respuestas del servidor. Estas pruebas sirven para verificar la existencia y el impacto de las vulnerabilidades potenciales que se identificaron en las pruebas pasivas, así como para descubrir otras que no se detectaron previamente. </p><p id="7348de51-8170-4c6d-bc63-770118788364" class="">Algunos ejemplos de pruebas activas son:</p><h3 id="c2ec87aa-9f25-4772-ba54-17b8531a7eef" class="">Pruebas de Inyección y Fuzzing:</h3><p id="7587c2b3-62df-46b6-a22e-c44549e8f798" class="">Consisten en enviar datos maliciosos a la aplicación web para intentar ejecutar comandos o consultas en el servidor o en la base de datos, usando herramientas como sqlmap o ZAP. Esto permite identificar si la aplicación web es vulnerable a ataques de inyección SQL, XSS, LDAP, etc.</p><figure id="f5c51339-04ce-4975-b56d-7ca3f87cdd25"><a href="https://github.com/ffuf/ffuf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - ffuf/ffuf: Fast web fuzzer written in Go</div><div class="bookmark-description">Fast web fuzzer written in Go. Contribute to ffuf/ffuf development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/ffuf/ffuf</div></div><img src="https://opengraph.githubassets.com/246f541c8a65be3624c8c836b72d4173eadeedf12b9c7fd3a879d588c605fbff/ffuf/ffuf" class="bookmark-image"/></a></figure><figure id="06616a8a-c13a-4246-aac8-d51cdf4f7480"><a href="https://wfuzz.readthedocs.io/en/latest/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Wfuzz: The Web fuzzer — Wfuzz 2.1.4 documentation</div></div><div class="bookmark-href"><img src="https://wfuzz.readthedocs.io/favicon.ico" class="icon bookmark-icon"/>https://wfuzz.readthedocs.io/en/latest/</div></div></a></figure><p id="e50f154c-916f-4755-94e8-f3db94f2e5c5" class="">Comando necesario para que el Wfuzz funcione al dia: Julio 10/2023:</p><pre id="8c5c1653-c1c8-42c5-8c58-999572967cd3" class="code"><code>PYCURL_SSL_LIBRARY=openssl LDFLAGS=&quot;-L/opt/homebrew/Cellar/openssl@3/3.1.0/lib&quot; CPPFLAGS=&quot;-I/opt/homebrew/Cellar/openssl@3/3.1.0/include&quot; pip install --no-cache-dir pycurl</code></pre><figure id="6135affe-c7b7-4381-9c3f-95afc369dcc8"><a href="https://sqlmap.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">sqlmap: automatic SQL injection and database takeover tool</div></div><div class="bookmark-href"><img src="https://sqlmap.org/favicon.ico" class="icon bookmark-icon"/>https://sqlmap.org/</div></div></a></figure><figure id="604f0d85-e568-4001-8cb0-323f33bcb85d"><a href="https://www.zaproxy.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The ZAP Homepage</div><div class="bookmark-description">Welcome to ZAP!</div></div><div class="bookmark-href"><img src="https://www.zaproxy.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.zaproxy.org/</div></div><img src="https://www.zaproxy.org/img/zap-banner.png" class="bookmark-image"/></a></figure><p id="b99ab12c-b2a4-464f-9745-488cc24a3fb1" class=""><strong>Sitio Web de Daniel Miessler con Listas y Diccionarios que puedes utilizar para Fuzzing y Fuerza Bruta:</strong></p><figure id="d5f7f106-6458-4884-ac9e-573458c21fd4"><a href="https://github.com/danielmiessler/SecLists/tree/master" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - danielmiessler/SecLists: SecLists is the security tester&#x27;s companion. It&#x27;s a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more.</div><div class="bookmark-description">SecLists is the security tester&amp;amp;#39;s companion. It&amp;amp;#39;s a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, pas...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/danielmiessler/SecLists/tree/master</div></div><img src="https://opengraph.githubassets.com/ce091952acaca48169815c3ec9bc8c1bdcc35937c2d9aef5c03fec4644dbb852/danielmiessler/SecLists" class="bookmark-image"/></a></figure><p id="a896db2a-536d-4a54-8e4b-cd042b574434" class="">
+</p><p id="b277949c-5c4f-43f7-aa3b-8d00f1ad2325" class=""><strong>Fuzzing en Sitios Web</strong></p><p id="5c098af7-6dab-477b-b7f2-76a5abf173d7" class="">El Fuzzing consiste en enviar datos aleatorios, inválidos y no esperados mediante los formularios de entrada de una aplicación buscando errores,  comportamientos inesperados o alguna vulnerabilidad en ella. Un web fuzzer es un tipo de herramienta que permite probar qué rutas están activas y cuáles no en un sitio web, probando direcciones URL aleatorias y enviándoles parametros o pruebas para ver si estas funcionan y verificar cómo responden.</p><p id="9f124d0f-172f-42a9-a25d-85604d66177f" class="">Un ejemplo de prueba de fuzzing en un sitio web sería enviar diferentes valores en un campo de entrada, como un formulario de inicio de sesión, para ver si la aplicación responde de manera inesperada o si devuelve un error. Por ejemplo, se podría enviar una cadena de texto mal formada en lugar de un nombre de usuario, para ver si la aplicación es vulnerable a inyección de código.</p><h3 id="32105e8c-1a7d-40ae-b6b1-cfaa42659605" class="">Pruebas de autenticación y autorización:</h3><p id="c7dfbfb1-6c5a-4f9f-91d3-26eeae2f6a49" class="">Consisten en probar la robustez y la seguridad de los mecanismos de identificación, autenticación y autorización de la aplicación web, usando herramientas como Hydra o Burp Suite. Esto permite identificar si la aplicación web es vulnerable a ataques de fuerza bruta, robo de credenciales, secuestro de sesiones, escalada de privilegios, etc.</p><p id="7950d63f-cab6-450f-b014-94645d1acc61" class="">Los ataques contra claves en sitios WEB más comunes son:</p><ul id="770d3786-0f12-4d24-84d7-31d6c77e25ae" class="bulleted-list"><li style="list-style-type:disc"><strong>Ataque de fuerza bruta:</strong> Este ataque consiste en probar cada posible combinación de caracteres hasta que se encuentre la contraseña correcta. Puede ser una tarea que consume tiempo y requiere mucha potencia de procesamiento, pero puede ser efectiva si la contraseña es corta y simple.</li></ul><ul id="378f00bd-f84e-4d96-8638-ab37051bbbe0" class="bulleted-list"><li style="list-style-type:disc"><strong>Ataque de diccionario:</strong> Este ataque implica el uso de una lista de palabras o frases comúnmente utilizadas como posibles contraseñas. El atacante puede usar software para automatizar el proceso de probar cada palabra o frase hasta que se encuentre la contraseña correcta.</li></ul><p id="6266691d-f16b-4c67-b374-72f807ebbb87" class="">Si hablamos de Hacking, existen más ataques como por ejemplo:</p><ul id="ea8f7b17-d3a5-4b49-8580-502e665c3036" class="bulleted-list"><li style="list-style-type:disc"><strong>Shoulder surfing:</strong> Esto implica observar al usuario mientras ingresa su contraseña, ya sea en persona o a través de una grabación de video. Puede ser un ataque efectivo si el usuario no es cuidadoso al proteger su contraseña.</li></ul><ul id="2d039f91-55c9-4343-8421-8e3c9c63fab9" class="bulleted-list"><li style="list-style-type:disc"><strong>Keylogger:</strong> Este es un tipo de malware que monitorea las pulsaciones de teclas del usuario, incluyendo las contraseñas, y envía la información de vuelta al atacante. Puede ser difícil de detectar y puede capturar contraseñas incluso si son complejas y únicas.</li></ul><p id="e7066f21-c476-4aac-a729-10d32af5ed09" class="">Pero en Bug Bounty nos interesan los dos primeros: Fuerza Bruta y Diccionario.</p><p id="ea5e4597-2c1b-45fc-b6a5-afadaceddd92" class="">Herramienta para lanzar ataques contra claves en sitios WEB: <strong>Hydra</strong>.</p><figure id="b88981ab-f840-411e-9710-5e9677c560cd"><a href="https://github.com/vanhauser-thc/thc-hydra" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - vanhauser-thc/thc-hydra: hydra</div><div class="bookmark-description">hydra. Contribute to vanhauser-thc/thc-hydra development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/vanhauser-thc/thc-hydra</div></div><img src="https://opengraph.githubassets.com/ae9dc8f301e521dece3d95309bac5f536284cfc675d1d859d21b139ab3837a13/vanhauser-thc/thc-hydra" class="bookmark-image"/></a></figure><p id="c29d4373-482a-4623-bc35-f19e6ed25819" class="">Cómo usar BurpSuite para atacar una contraseña en un sitio WEB:</p><figure id="ab1f8045-e9c2-4b16-8afa-16ed5e528c4b"><a href="https://youtu.be/H6l-Wf8ZV1s" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Auditando Contraseñas en Sitios Web</div><div class="bookmark-description">En este video vemos el uso de Burp Suite como herramienta de auditoría a contraseñas en sitios y formularios web. ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/b6935493/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/H6l-Wf8ZV1s</div></div><img src="https://i.ytimg.com/vi/H6l-Wf8ZV1s/maxresdefault.jpg" class="bookmark-image"/></a></figure><p id="bd265478-7339-473e-bdcb-3376605e9e2c" class="">Explicacion de Portal de Login de OWASP Juice Shop:</p><figure id="225bcd55-1199-4d69-9bc1-c1a01b07778d"><div class="source"><iframe src="https://player.vimeo.com/video/838442361?h=95a7d9588f" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><p id="03240289-ce23-45cc-9663-d5248adee9ca" class="">Explicación de la opcion: Olvidé mi Contraseña de OWASP Juice Shop:</p><figure id="5789f75f-fe36-403c-bd80-d9eeee93c5a1"><div class="source"><iframe src="https://player.vimeo.com/video/838446640?h=999d1fd0c1" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="7b0f81e4-42bf-43dc-8134-856996c5a723" class="">Pruebas de configuración y gestión: </h3><p id="4bd9f1c9-100c-4c41-b6c5-d7c5326de373" class="">Consisten en verificar la correcta configuración y gestión de los componentes y recursos de la aplicación web, como el servidor, el sistema operativo, los archivos, los directorios, los certificados, etc., usando herramientas como Nmap o Nikto. Esto permite identificar si la aplicación web es vulnerable a ataques de acceso no autorizado, revelación de información sensible, explotación de componentes obsoletos o inseguros, etc.</p><p id="4e3fc4ff-17bf-47b2-864c-4b859ead1ca6" class="">Por ejemplo aqui tenemos una lista de posibles servidores WEB Sirviendo un sitio:</p><table id="8531c066-0be8-4bda-8a38-8124549aca89" class="simple-table"><thead class="simple-table-header"><tr id="3a96edc5-1c19-426a-b3d2-7121ce18dea5"><th id=";wIo" class="block-color-teal_background simple-table-header">Servidor Web</th><th id="^`N~" class="block-color-teal_background simple-table-header" style="width:766.9999847412109px">Descripción</th><th id="qsrC" class="block-color-teal_background simple-table-header" style="width:310.99998474121094px">Enlace</th></tr></thead><tbody><tr id="d664cf63-f9a9-4d6f-bad9-d095c51f5abf"><td id=";wIo" class="">Apache</td><td id="^`N~" class="" style="width:766.9999847412109px">Servidor web de código abierto utilizado por muchos sitios web populares.</td><td id="qsrC" class="" style="width:310.99998474121094px"><a href="https://httpd.apache.org/">https://httpd.apache.org</a></td></tr><tr id="0f76b5d0-59e0-449e-9690-f97d8d85fbfb"><td id=";wIo" class="">Nginx</td><td id="^`N~" class="" style="width:766.9999847412109px">Servidor web y proxy inverso de alto rendimiento utilizado para servir sitios web con alta carga de tráfico.</td><td id="qsrC" class="" style="width:310.99998474121094px"><a href="https://www.nginx.com/resources/wiki/">https://www.nginx.com/resources/wiki/</a></td></tr><tr id="31826dbc-65fb-428a-ab7c-cbb40c51dd6b"><td id=";wIo" class="">IIS</td><td id="^`N~" class="" style="width:766.9999847412109px">Servidor web de Microsoft utilizado para servir sitios web en sistemas operativos Windows.</td><td id="qsrC" class="" style="width:310.99998474121094px"><a href="https://docs.microsoft.com/es-es/iis/">https://docs.microsoft.com/es-es/iis/</a></td></tr><tr id="406ba969-7033-41a6-b450-acfef5db54f7"><td id=";wIo" class="">Lighttpd</td><td id="^`N~" class="" style="width:766.9999847412109px">Servidor web de código abierto y de alta velocidad utilizado para servir sitios web con un bajo uso de recursos.</td><td id="qsrC" class="" style="width:310.99998474121094px"><a href="https://www.lighttpd.net/">https://www.lighttpd.net/</a></td></tr><tr id="3aa23760-0ae1-4716-b6c1-2fd58edc90f0"><td id=";wIo" class="">Tomcat</td><td id="^`N~" class="" style="width:766.9999847412109px">Servidor web y contenedor de servlets de código abierto utilizado para servir aplicaciones web Java.</td><td id="qsrC" class="" style="width:310.99998474121094px"><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></td></tr></tbody></table><p id="59300c86-c1c1-40ca-906d-3956f040b6ea" class="">Aqui tenemos una lista de Servicios de Entrega de Contenidos (CDN) y Firewall de Aplicaciones WEB (WAF):</p><table id="f652546d-5677-4b0c-810a-9b37be8ad763" class="simple-table"><thead class="simple-table-header"><tr id="93559359-1038-4847-9f4c-678d416d10b8"><th id="c=Mf" class="block-color-teal_background simple-table-header">Servicio</th><th id="Cvb~" class="block-color-teal_background simple-table-header" style="width:876.9999847412109px">Descripción</th><th id="y=i?" class="block-color-teal_background simple-table-header" style="width:365.99998474121094px">Enlace</th></tr></thead><tbody><tr id="7cb79bd1-1a06-4e3a-989c-2aad4ab24eb6"><td id="c=Mf" class="">Cloudflare</td><td id="Cvb~" class="" style="width:876.9999847412109px">Servicio de CDN líder en el mercado que ofrece protección contra ataques DDoS, optimización de rendimiento y seguridad web.</td><td id="y=i?" class="" style="width:365.99998474121094px"><a href="https://www.cloudflare.com/es-es/">https://www.cloudflare.com/es-es/</a></td></tr><tr id="da4f6dd1-33fb-4990-b6a8-b9c1cd6f367b"><td id="c=Mf" class="">Akamai</td><td id="Cvb~" class="" style="width:876.9999847412109px">Servicio de CDN que ofrece soluciones de seguridad, rendimiento y disponibilidad para sitios web y aplicaciones.</td><td id="y=i?" class="" style="width:365.99998474121094px"><a href="https://www.akamai.com/es/es/">https://www.akamai.com/es/es/</a></td></tr><tr id="c20c54c9-8aef-4add-994e-65d0fa3d3d54"><td id="c=Mf" class="">Amazon CloudFront</td><td id="Cvb~" class="" style="width:876.9999847412109px">Servicio de CDN de Amazon Web Services que ofrece una red global de distribución de contenidos para sitios web y aplicaciones.</td><td id="y=i?" class="" style="width:365.99998474121094px"><a href="https://aws.amazon.com/es/cloudfront/">https://aws.amazon.com/es/cloudfront/</a></td></tr><tr id="afd60e79-e60a-4daf-a3fb-71621c46e558"><td id="c=Mf" class="">Microsoft Azure CDN</td><td id="Cvb~" class="" style="width:876.9999847412109px">Servicio de CDN de Microsoft Azure que ofrece una red global de distribución de contenidos para sitios web y aplicaciones.</td><td id="y=i?" class="" style="width:365.99998474121094px"><a href="https://azure.microsoft.com/es-es/services/cdn/">https://azure.microsoft.com/es-es/services/cdn/</a></td></tr><tr id="d8fda43f-5c57-4013-ad3d-90860a352538"><td id="c=Mf" class="">Google Cloud CDN</td><td id="Cvb~" class="" style="width:876.9999847412109px">Servicio de CDN de Google Cloud Platform que ofrece una red global de distribución de contenidos para sitios web y aplicaciones.</td><td id="y=i?" class="" style="width:365.99998474121094px"><a href="https://cloud.google.com/cdn/">https://cloud.google.com/cdn/</a></td></tr></tbody></table><p id="c0052abb-c7e7-426c-a4e4-742f400268c4" class=""><strong>Herramientas:</strong></p><figure id="4d4d821b-d85f-4c13-9905-5934e16e78cd"><a href="https://nmap.org/download" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Download the Free Nmap Security Scanner for Linux/Mac/Windows</div><div class="bookmark-description">Official Download site for the Free Nmap Security Scanner. Helps with network security, administration, and general hacking</div></div><div class="bookmark-href"><img src="https://nmap.org/shared/images/tiny-eyeicon.png" class="icon bookmark-icon"/>https://nmap.org/download</div></div></a></figure><figure id="c486e827-868d-40a0-bdc6-22e11ceda0dc"><a href="https://github.com/sullo/nikto" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - sullo/nikto: Nikto web server scanner</div><div class="bookmark-description">Nikto web server scanner. Contribute to sullo/nikto development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/sullo/nikto</div></div><img src="https://opengraph.githubassets.com/11bfc9bc0438edc04a1197bfca8c8dc540d72953056d97f0d63a25dda678b679/sullo/nikto" class="bookmark-image"/></a></figure><figure id="8e1d84c6-1ea3-4902-b66c-c1d3bbc852b4"><a href="https://github.com/urbanadventurer/WhatWeb" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - urbanadventurer/WhatWeb: Next generation web scanner</div><div class="bookmark-description">Next generation web scanner. Contribute to urbanadventurer/WhatWeb development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/urbanadventurer/WhatWeb</div></div><img src="https://opengraph.githubassets.com/070b86fd49741179d7622d134f6b4079f6c0352a26440c3b591d231f12421183/urbanadventurer/WhatWeb" class="bookmark-image"/></a></figure><figure id="60181bbb-7c5d-43d0-a795-1ee3f67d3c75"><a href="https://github.com/EnableSecurity/wafw00f" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - EnableSecurity/wafw00f: WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.</div><div class="bookmark-description">WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website. - GitHub - EnableSecurity/wafw00f: WAFW00F allows one to identify and fingerprint Web Ap...</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/EnableSecurity/wafw00f</div></div><img src="https://opengraph.githubassets.com/c81c22eab43ca1d6441b31879e1c920b72584cf5466cc07792e32d83b9aba7d3/EnableSecurity/wafw00f" class="bookmark-image"/></a></figure><h3 id="f31e1690-8e51-48e4-a9fc-0b3f127c475c" class="">Pruebas de lógica de negocio: </h3><p id="61885dd0-b623-4aa5-913a-dbe8461fd973" class="">Consisten en analizar y manipular el flujo y la funcionalidad de la aplicación web para intentar violar las reglas o restricciones establecidas por el negocio, usando herramientas como Burp Suite o ZAP. Esto permite identificar si la aplicación web es vulnerable a ataques de manipulación de parámetros, modificación de solicitudes o respuestas, abuso de funcionalidades, etc.</p><figure id="e1d0987b-ad88-4696-9c8e-cbed77e375de"><a href="https://portswigger.net/burp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Burp Suite - Application Security Testing Software</div><div class="bookmark-description">Get Burp Suite. The class-leading vulnerability scanning, penetration testing, and web app security platform. Try for free today.</div></div><div class="bookmark-href"><img src="https://portswigger.net/content/images/logos/favicon.ico" class="icon bookmark-icon"/>https://portswigger.net/burp</div></div><img src="https://portswigger.net/content/images/logos/burpsuite-twittercard.png" class="bookmark-image"/></a></figure><p id="9c1bf36f-247f-4a0e-86af-b7eee4f19b7d" class="">Ataque de Fuerza Bruta contra el Chat Bot de Soporte de OWASP Juice Shop:</p><figure id="590d283c-c1c8-4826-8100-bb293b56eea3"><div class="source"><iframe src="https://player.vimeo.com/video/838473602?h=6981c05df5" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><p id="e5263580-4abd-4b43-9013-e0efced3f58e" class="">
+Las pruebas activas son una parte esencial de la metodología de pruebas web de OWASP porque permiten confirmar y explotar las vulnerabilidades existentes en la aplicación web y evaluar su nivel de riesgo e impacto.</p><p id="2f9aaca9-2e30-4692-b949-71f8e0d11fa8" class="">
+</p><p id="6d49c4c3-1e2f-4ce3-9b8b-c46178676e62" class="">De lo anterior deducimos que para poder detectar vulnerabilidades en un sitio WEB, es indispensable conocerlo, entender su lógica y validar sus parámetros; para obtener esa información podemos aplicar una combinación de pruebas Pasivas y Activas; cada sitio WEB es diferente pero en la gráfica podemos resumir varias de estas pruebas en algunas etapas:</p><h3 id="3ebe4934-af32-414b-80d5-cee847410840" class=""><strong>Metodología de Pruebas en un sitio WEB:</strong></h3><figure id="0b80f58e-ee9a-4c7e-ab34-353587897fcf" class="image"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Metodologia_Bug_Bounty.png"><img style="width:849px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Metodologia_Bug_Bounty.png"/></a><figcaption>Imagen: Metodologia de Pruebas WEB</figcaption></figure><h1 id="21e2de91-5199-491f-88f1-81b5471c5843" class="">¿De qué lado vamos a explorar / explotar ?</h1><p id="431c532b-91d5-45a1-ad93-568e0db1c851" class="">Es muy importante tener en cuenta que no todas las vulnerabilidades que vamos a probar se encuentran del mismo lado, es decir, en algunos casos el lado vulnerable puede ser el Servidor de las aplicaciones WEB y en otros casos las vulnerabilidades se encuentran en el lado del Cliente (Usuario) que se conecta a un servicio específico.</p><p id="729452fb-a238-40b7-9a45-61724bad1c7c" class="">
+</p><figure id="35c018f4-39dd-4abf-977e-3703d54a5eb7" class="image"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Vulnerabilidades_Cliente_Servidor.png"><img style="width:1008px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Vulnerabilidades_Cliente_Servidor.png"/></a><figcaption>Imagen: Vulnerabilidades del lado del Servidor o del Cliente</figcaption></figure><p id="7823490a-a7c2-414e-97fd-6916efb98ebf" class="">Dado lo anterior, me parece prudente ofrecer este par de listas:</p><h2 id="6b9d1a2d-7f7c-484f-af72-4e1feb40535f" class="">Vulnerabilidades del Lado del Servidor</h2><figure id="28f373d0-924e-4363-abc9-aa66f3b19d15" class="image" style="text-align:left"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled.png"><img style="width:720px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled.png"/></a></figure><p id="91259e51-44e0-4aec-9167-b2ca14a761e0" class="">Las vulnerabilidades del lado del servidor son aquellas que permiten a un atacante acceder a información o funcionalidades que no debería tener acceso en un servidor. Estas vulnerabilidades pueden permitir a un atacante ejecutar código malicioso en el servidor o acceder a datos confidenciales, como contraseñas de usuarios o información de tarjetas de crédito.</p><p id="f29ae16f-7cbd-46e9-a115-5d7ee86eed1b" class="">Algunos ejemplos de vulnerabilidades del lado del servidor incluyen:</p><div id="72bd5785-a27e-43ec-8d04-9b6e40e8ea95" class="column-list"><div id="a34a289c-2ae5-4f89-b08b-c7f4238df140" style="width:93.75%" class="column"><table id="5e90e823-e149-4678-a8fe-15bf6bbb2c8c" class="simple-table"><thead class="simple-table-header"><tr id="ede3678e-84f2-47d8-9902-bfc1a11fddf6"><th id="\}&gt;E" class="block-color-red_background simple-table-header" style="width:362.99999237060547px"><strong>Vulnerabilidad</strong></th><th id="\BP{" class="block-color-red_background simple-table-header" style="width:997px"><strong>Descripción</strong></th></tr></thead><tbody><tr id="d89149a4-7749-4dc5-812e-b7baadcdf536"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Inyección SQL</strong></td><td id="\BP{" class="" style="width:997px">Permite a un atacante enviar comandos maliciosos a una base de datos para obtener información confidencial o incluso modificar los datos almacenados en la base de datos.</td></tr><tr id="f3a9cde2-b64b-4e50-9ec7-8e53faacbf4f"><td id="\}&gt;E" class="" style="width:362.99999237060547px">I<strong>nyección de código del lado del servidor (SSI)</strong></td><td id="\BP{" class="" style="width:997px">Permite a un atacante ejecutar código malicioso en el servidor de una aplicación web. Esto se logra a través de la inserción de código malicioso en las solicitudes HTTP que la aplicación web utiliza para interactuar con el servidor. El código malicioso se ejecuta en el servidor, lo que permite al atacante controlar el comportamiento de la aplicación web y acceder a información confidencial.</td></tr><tr id="e441d7cd-3386-4b75-88a1-62b957b1eb6f"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Inyección de Comandos</strong></td><td id="\BP{" class="" style="width:997px">Además de la inyección SQL, existen otros tipos de inyección, como la inyección de comandos de sistema operativo</td></tr><tr id="1b83f2d3-11b8-4bc2-8665-e67749ae7b21"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Server-side Request Forgery (SSRF)</strong></td><td id="\BP{" class="" style="width:997px">Permite a un atacante engañar a un servidor para que haga solicitudes a sistemas externos que no debería tener acceso. Básicamente, el atacante puede enviar una solicitud maliciosa al servidor que contiene una URL que apunta a un sistema externo controlado por el atacante. Si el servidor procesa la solicitud y se conecta al sistema externo, el atacante puede obtener información confidencial o incluso controlar el sistema objetivo.</td></tr><tr id="b2e6b0e8-de9c-4b73-a122-4f03ecb1cf9a"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Desbordamiento de búfer (Buffer Overflow)</strong></td><td id="\BP{" class="" style="width:997px">Permite a un atacante sobrescribir áreas de memoria RAM que no debería poder modificar, lo que puede permitir la ejecución de código malicioso.</td></tr><tr id="0817cd49-76d3-4679-908e-f99f1744ad39"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Autenticación y autorización incorrectas (Rotas)</strong></td><td id="\BP{" class="" style="width:997px">Si el servidor no usa una autenticación y autorización adecuadas, un atacante puede acceder a información confidencial o realizar acciones que no debería poder realizar.</td></tr><tr id="c49fe712-a2bd-4388-a2d4-a0a156ac3270"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Fallas Criptográficas</strong></td><td id="\BP{" class="" style="width:997px">Son vulnerabilidades en los sistemas de cifrado que permiten a un atacante acceder a información sensible que debería estar protegida. Por ejemplo, si un sitio web utiliza un cifrado débil para proteger las contraseñas de los usuarios, un atacante podría interceptar las contraseñas y descifrarlas fácilmente. Esto puede permitir al atacante acceder a información confidencial, como la información financiera o personal de los usuarios.</td></tr><tr id="2a6a38f4-6de1-4d76-be74-3dacc28c3781"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Diseño inseguro</strong></td><td id="\BP{" class="" style="width:997px">Se refiere a la creación de una aplicación sin tener en cuenta aspectos de seguridad. Esto puede llevar a una arquitectura, lógica o funcionalidad defectuosas que son vulnerables a los ataques. Por ejemplo, una aplicación que almacena las contraseñas de los usuarios en texto plano es vulnerable a la extracción de contraseñas por parte de un atacante.</td></tr><tr id="64c313c8-e6c7-49a9-9bab-d95a1e12cea1"><td id="\}&gt;E" class="" style="width:362.99999237060547px"><strong>Error de configuración de seguridad</strong></td><td id="\BP{" class="" style="width:997px">Ocurre cuando una aplicación o servidor no está configurado de manera segura, lo que lo hace vulnerable a ataques. Esto puede suceder cuando se usan configuraciones predeterminadas, servicios innecesarios o permisos mal configurados.</td></tr></tbody></table></div><div id="7737c54b-c8ba-4017-a6ad-6aae4f721809" style="width:6.25%" class="column"><p id="b1594c1b-1c5c-444e-9a25-be54ff72e180" class="">
+</p><p id="5831ea3b-9b79-4a0b-afee-8b244d0412fd" class="">
+</p></div></div><h2 id="aa3650c3-28f2-438a-a8b4-2825c5abdd04" class="">Vulnerabilidades del Lado del Cliente</h2><figure id="b4242019-318e-4728-b819-f1d383996dad" class="image" style="text-align:left"><a href="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%204.png"><img style="width:672px" src="Mo%CC%81dulo%205%20-%20Metodologi%CC%81a%20del%20Bug%20Bounty%209d94cf4fa9e94228a1b998fa32023738/Untitled%204.png"/></a></figure><p id="6224ef51-d36e-4a93-a98b-f002b5880b39" class="">Las vulnerabilidades del lado del cliente son aquellas que permiten a un atacante ejecutar código malicioso en el navegador del usuario o robar información del usuario. Estas vulnerabilidades pueden ser explotadas cuando un usuario visita un sitio web.</p><p id="2891fe0f-067d-4038-bc34-9d0d73383ed2" class="">Algunos ejemplos de vulnerabilidades del lado del cliente incluyen:</p><table id="c95eec82-32e1-473e-9a57-0d79cc68f300" class="simple-table"><thead class="simple-table-header"><tr id="ea5f55d1-ead2-49a3-be3c-ec901dec6e21"><th id="yUGE" class="block-color-red_background simple-table-header" style="width:301px"><strong>Vulnerabilidad</strong></th><th id="F|D@" class="block-color-red_background simple-table-header" style="width:875.9942626953125px"><strong>Descripción</strong></th></tr></thead><tbody><tr id="9e1ea462-d7ad-4103-ad8f-cf7d3512fd1e"><td id="yUGE" class="" style="width:301px"><strong>Control de acceso roto del lado del cliente</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Control insuficiente del acceso de JavaScript a los recursos (datos y código) del lado del cliente, filtración de datos sensibles o manipulación del DOM con fines maliciosos (para acceder a esos recursos). Al igual que <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">OWASP Top 10: A01-2021 - Control de acceso roto</a>, pero enfocado en el código del lado del cliente.</td></tr><tr id="2faaf715-1a5b-44c6-b1e2-d1afb30433db"><td id="yUGE" class="" style="width:301px"><strong>XSS basado en el DOM</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Vulnerabilidades que permiten ataques XSS a través de la manipulación o el abuso del DOM.</td></tr><tr id="adb7767d-1629-4ec4-9d3f-15b44367b1f7"><td id="yUGE" class="" style="width:301px"><strong>Fuga de datos sensibles</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Incapacidad para detectar/prevenir rastreadores y píxeles digitales en una propiedad web para garantizar el cumplimiento de las leyes de privacidad nacionales e internacionales.</td></tr><tr id="416350a3-93e9-41ad-bc68-4e67b12900b0"><td id="yUGE" class="" style="width:301px"><strong>Componentes vulnerables y anticuados</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Falta de detección y actualizaciones de bibliotecas de JavaScript que están anticuadas o contienen vulnerabilidades conocidas. Al igual que <a href="https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/">OWASP Top 10: A06-2021 - Componentes vulnerables y anticuados</a>, pero enfocado en bibliotecas del lado del cliente.</td></tr><tr id="32e294b6-091c-4a50-9af7-d5ece72f78c9"><td id="yUGE" class="" style="width:301px"><strong>Falta de control de origen de terceros</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">El control de origen permite la restricción de ciertos recursos o activos web al comparar el origen del recurso con el origen de la biblioteca de terceros. Sin aprovechar dichos controles, el riesgo de la cadena de suministro aumenta debido a la inclusión de código de terceros desconocido o no controlado que tiene acceso a datos en el origen del sitio.</td></tr><tr id="c0042993-3310-4b9a-9819-90de5f35ca82"><td id="yUGE" class="" style="width:301px"><strong>Deriva de JavaScript (JavaScript Drift)</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Incapacidad para detectar cambios en el nivel de activos y código de JavaScript utilizado en el lado del cliente. Esto incluye la incapacidad para detectar cambios de comportamiento de este código para determinar si los cambios son potencialmente maliciosos en la naturaleza. Esto es particularmente importante para las bibliotecas de terceros.</td></tr><tr id="cba456a3-9954-48d9-a3ba-ef322c7f5345"><td id="yUGE" class="" style="width:301px"><strong>Almacenamiento de datos sensibles en el lado del cliente</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Almacenamiento de datos sensibles como contraseñas, secretos criptográficos, tokens de API o datos PII en almacenamiento persistente del lado del cliente como LocalStorage, caché del navegador o almacenamiento transitorio como variables de JavaScript en una capa de datos.</td></tr><tr id="a0f9c59a-8e0c-40ab-bcc1-2e54baaaf164"><td id="yUGE" class="" style="width:301px"><strong>Fallos de registro y supervisión de seguridad del lado del cliente</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Monitorización y detección insuficientes de cambios y accesos de datos del lado del cliente, especialmente fallos y errores, en tiempo real mientras se ensambla y ejecuta cada página utilizando código de primera y tercera parte. Al igual que <a href="https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/">OWASP Top 10: A09-2021 - Fallos de registro y supervisión de seguridad</a>, pero enfocado en el comportamiento del lado del cliente.</td></tr><tr id="85e91479-16e9-47c9-85ed-f646bffda533"><td id="yUGE" class="" style="width:301px"><strong>No utilizar controles de seguridad del navegador estándar</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">No utilizar controles de seguridad comunes basados en estándares incorporados en los navegadores, como los sandboxes de iframes y los encabezados de seguridad como la Política de seguridad de contenido (CSP), la integridad de subrecursos y muchas otras características de seguridad estándar.</td></tr><tr id="5de1de50-514a-4764-925c-d15e060622a9"><td id="yUGE" class="" style="width:301px"><strong>Inclusión de información propietaria en el lado del cliente</strong></td><td id="F|D@" class="" style="width:875.9942626953125px">Presencia de lógica empresarial sensible, comentarios de desarrolladores, algoritmos propietarios o información del sistema contenida en el código o los datos almacenados en el lado del cliente.</td></tr></tbody></table><h1 id="88c532e9-7568-4032-927a-1bb190278abd" class="">URLs para practicar</h1><p id="8b107de5-0063-44b6-9c23-91db763afdce" class="">Es importante tener sitios web para practicar la detección de vulnerabilidades de forma legal por varias razones. En primer lugar, permite a los investigadores y pentesters practicar sus habilidades y mejorar sus técnicas de detección de vulnerabilidades en un entorno seguro y controlado. Esto puede ayudarles a prepararse para futuros trabajos o proyectos de seguridad.</p><p id="e1987494-0b3d-4ddb-8501-8e0e30600579" class="">Además, practicar en sitios web legales permite a los investigadores y pentesters trabajar dentro de los límites legales y éticos. Esto significa que no corren el riesgo de enfrentar consecuencias legales por sus acciones y pueden centrarse en encontrar y reportar vulnerabilidades de manera efectiva.</p><p id="7698637a-6b90-4675-893b-4bf799348e20" class="">También es importante tener en cuenta que los sitios web para practicar la detección de vulnerabilidades suelen estar diseñados específicamente para este propósito. Esto significa que pueden contener una amplia gama de vulnerabilidades comunes y avanzadas que son difíciles de encontrar en sitios web reales. Esto permite a los investigadores y pentesters mejorar sus habilidades de detección de vulnerabilidades en un entorno controlado y seguro.</p><p id="5d3e49a3-1132-47cf-bd70-5735c77ea2c5" class="">Algunos ejemplos de sitios web y Aplicaciones para practicar la detección de vulnerabilidades incluyen:</p><h2 id="69e9111b-5979-400b-aa9f-5c7d03d186ea" class="">Sitios WEB Vulnerables a propósito para practicar la detección de fallos en seguridad:</h2><figure id="7c893b07-c1be-4004-a850-c49fc75eda8b"><a href="https://www.hackthissite.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">HackThisSite</div><div class="bookmark-description">HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more.</div></div><div class="bookmark-href"><img src="https://data.htscdn.org/favicon/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.hackthissite.org/</div></div><img src="https://data.htscdn.org/images/hackthissite-meta-card.png" class="bookmark-image"/></a></figure><figure id="9663c41a-718b-4a0b-9594-da833a596e10"><a href="https://ctf.hacker101.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Hacker101 CTF</div><div class="bookmark-description">The Hacker101 CTF is a game designed to let you learn to hack in a safe, rewarding environment. Hacker101 is a free educational site for hackers, run by HackerOne.</div></div><div class="bookmark-href">https://ctf.hacker101.com/</div></div></a></figure><figure id="43dde49f-48f8-4575-80ba-79d7dfaa1f7f"><a href="https://demo.testfire.net/login.jsp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Altoro Mutual</div></div><div class="bookmark-href">https://demo.testfire.net/login.jsp</div></div></a></figure><figure id="0480cc5c-1e3b-4abf-9b98-79353622c15a"><a href="http://www.vulnweb.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Acunetix Web Vulnerability Scanner - Test websites</div></div><div class="bookmark-href">http://www.vulnweb.com/</div></div></a></figure><h2 id="3c36a726-e0f7-4d55-8715-5e18fc5c0764" class="">Aplicaciones y Máquinas Virtuales Vulnerables para practicar la detección de fallos en seguridad:</h2><figure id="8b34273b-bacd-499c-9c69-0f239d1e81cd"><a href="https://owasp.org/www-project-webgoat/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OWASP WebGoat | OWASP Foundation</div><div class="bookmark-description">OWASP WebGoat on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-webgoat/</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><figure id="d7ac2971-ca92-4bde-bd76-0d95982f51c8"><a href="https://google-gruyere.appspot.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Web Application Exploits and Defenses</div></div><div class="bookmark-href"><img src="https://google-gruyere.appspot.com/favicon.ico" class="icon bookmark-icon"/>https://google-gruyere.appspot.com/</div></div></a></figure><figure id="624f6c8f-980b-4c88-a759-475f7b5a1b2b"><a href="https://www.vulnhub.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Vulnerable By Design ~ VulnHub</div><div class="bookmark-description">VulnHub provides materials allowing anyone to gain practical hands-on experience with digital security, computer applications and network administration tasks.</div></div><div class="bookmark-href"><img src="https://www.vulnhub.com/static/img/touch-icon-ipad-retina.png" class="icon bookmark-icon"/>https://www.vulnhub.com/</div></div></a></figure><figure id="bcfd1763-5a6a-4460-8bde-68b6abb73e5c"><a href="https://github.com/digininja/DVWA" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - digininja/DVWA: Damn Vulnerable Web Application (DVWA)</div><div class="bookmark-description">Damn Vulnerable Web Application (DVWA). Contribute to digininja/DVWA development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/fluidicon.png" class="icon bookmark-icon"/>https://github.com/digininja/DVWA</div></div><img src="https://opengraph.githubassets.com/3b89253c109676fab45211ab8d9ed81d78dff403ee34ceb097ce8846a364a3e4/digininja/DVWA" class="bookmark-image"/></a></figure><h2 id="ccea0b02-2ea7-4b73-a49a-3a6c27e6e31e" class="">Enlaces de Referencia:</h2><figure id="d5629ed0-a6d3-49ae-b7c5-355e65b8f32d"><a href="https://owasp.org/www-project-web-security-testing-guide/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OWASP Web Security Testing Guide | OWASP Foundation</div><div class="bookmark-description">The Web Security Testing Guide (WSTG) Project produces the premier cybersecurity testing resource for web application developers and security professionals.</div></div><div class="bookmark-href"><img src="https://owasp.org/www--site-theme/favicon.ico" class="icon bookmark-icon"/>https://owasp.org/www-project-web-security-testing-guide/</div></div><img src="https://owasp.org/www--site-theme/favicon.ico" class="bookmark-image"/></a></figure><figure id="926e4c5c-b26e-44fd-9487-36ae7ea69b6f"><a href="https://curl.se/docs/manual.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">curl - Tutorial</div></div><div class="bookmark-href"><img src="https://curl.se/logo/curl-symbol.svg" class="icon bookmark-icon"/>https://curl.se/docs/manual.html</div></div></a></figure><figure id="f21b272c-5fbe-4d8e-859e-40e4fbbc079a"><a href="https://youtu.be/N7YEsA6HD-0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Diccionarios para auditar Contraseñas</div><div class="bookmark-description">En este video hablamos acerca de los distintos diccionarios que existen, cómo modificarlos, crear nuevos y más.
+
+👇No olvides estos recursos que mencioné en el video👇 -------------------------------- 💡 URLs: --------------------------------
+CUPP:
+https://github.com/Mebus/cupp
+
+Repositorios de Diccionarios:
+
+https://github.com/danielmiessler/SecLists/tree/master/Passwords
+https://crackstation.net/crackstation-wordlist-password-cracking-dictionary.htm
+https://github.com/kennyn510/wpa2-wordlists
+
+
+
+ Sígueme en mis redes sociales:✅Twitter:https://twitter.com/davidpereiracib ✅LinkedIn: https://www.linkedin.com/in/davidfpereira✅Página Web: https://secpro.co✅Si quieres apoyarme en Patreon: https://www.patreon.com/ciberseguridad
+
+Clave
+Diccionario
+Password
+Seguro
+Protegido
+Ciberseguridad
+Blinda
+Kali
+Hacking Pentesting 
+NAC
+MAC
+Aprende
+Aprender
+Practica
+Capacitacion
+Network
+Access
+Control
+WiFi
+Wireless
+Inalámbrica Ethical
+Pruebas Hackear
+Hackeo
+Ataque
+Desarrollo PyCharm VisualStudio Code
+Linux
+Windows
+MACOSx
+Script
+Scripting  Python
+Python2 Python3 Vulnerabilidad Vulnerability Exploit Backdoor Malware Ransomware
+Virus
+Seguro
+Phishing
+Ingeniería
+Social
+Ingenieria
+Engaño
+Apt
+Gusano
+Troyano
+FUD
+DNS
+Exfiltrar
+Cifrado
+Encriptado
+Descifrar
+Comptia
+Ceh
+oscp
+Forense
+Computo
+Evidencia
+IoT
+Bluetooth
+Sniffer
+Wireshark ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/280a3f09/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/N7YEsA6HD-0</div></div><img src="https://i.ytimg.com/vi/N7YEsA6HD-0/maxresdefault.jpg" class="bookmark-image"/></a></figure><figure id="a0c3334c-b100-43c2-bdf0-e256eabade70"><a href="https://youtu.be/SDU6uTMoR18" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Cómo se auditan Contraseñas con Hashcat</div><div class="bookmark-description">Edición del Video: Tatiana Perez
+Contacto: https://mypublicinbox.com/MasterTan0s
+Sitio Web: https://secpro.co
+Twitter: @davidpereiracib
+LinkedIn: https://www.linkedin.com/in/davidfper...
+
+Para más información sobre nuestra oferta educativa puedes ingresar a https://secpro.co/calendario-academico/ , comunicarte con nuestra asesora comercial al correo comunicaciones@secpro.com o al celular (+57)313 3509315 ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/280a3f09/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/SDU6uTMoR18</div></div><img src="https://i.ytimg.com/vi/SDU6uTMoR18/maxresdefault.jpg" class="bookmark-image"/></a></figure><figure id="357c12b8-24b5-4f5e-b7ef-2a8199afbf43"><a href="https://youtu.be/KQ30XVqPq7w" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Usar GPU para auditoria de Claves WPA2 con  HASHCAT</div><div class="bookmark-description">Video prometido!!!; Cómo usar la GPU c on Hashcata para distintas auditorias en este caso, fuerza bruta a WPA2; 
+
+👇No olvides estos recursos que mencioné en el video👇
+ -------------------------------- 
+💡 URLs: 
+https://hashcat.net/hashcat/
+--------------------------------
+
+ Sígueme en mis redes sociales:
+✅Twitter:https://twitter.com/davidpereiracib 
+✅LinkedIn: https://www.linkedin.com/in/davidfpereira
+✅Página Web: https://secpro.co
+✅Si quieres apoyarme en Patreon: https://www.patreon.com/ciberseguridad
+
+Seguro
+Protegido
+Ciberseguridad
+Blinda
+Kali
+Hacking Pentesting 
+NAC
+MAC
+Aprende
+Aprender
+Practica
+Capacitacion
+Network
+Access
+Control
+WiFi
+Wireless
+Inalámbrica Ethical
+Pruebas Hackear
+Hackeo
+Ataque
+Desarrollo PyCharm VisualStudio Code
+Linux
+Windows
+MACOSx
+Script
+Scripting  Python
+Python2 Python3 Vulnerabilidad Vulnerability Exploit Backdoor Malware Ransomware
+Virus
+Seguro
+Phishing
+Ingeniería
+Social
+Ingenieria
+Engaño
+Apt
+Gusano
+Troyano
+FUD
+DNS
+Exfiltrar
+Cifrado
+Encriptado
+Descifrar
+Comptia
+Ceh
+oscp
+Forense
+Computo
+Evidencia
+IoT
+Bluetooth
+Sniffer
+Wireshark ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/280a3f09/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/KQ30XVqPq7w</div></div><img src="https://i.ytimg.com/vi/KQ30XVqPq7w/maxresdefault.jpg" class="bookmark-image"/></a></figure><figure id="d1d53ef1-b2ee-42d3-9a39-2c605c908e6c"><a href="https://youtu.be/BjI4phufGMs" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Módulo 2 - 1 Detección de Puertos con Nmap  y Enumeracíón de Usuarios y Servicios</div><div class="bookmark-description">Hola a tod@s! El día de hoy hemos decidido en pro de la educación y de ustedes, dejar en línea y de forma gratuita nuestro curso Pentesting con Herramientas Open Source. Este es un curso que hace parte de nuestra plataforma de educación en línea, pero por motivo de actualización del pensum, contenido y vídeos del mismo, hemos dejado la versión previa a su disposición. Es una versión que no es la más actual pero les puede ayudar a complementar sus conocimientos y es contenido que aún en el presente está vigente.
+
+Esperamos que les sea de utilidad! ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/5946722d/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/BjI4phufGMs</div></div><img src="https://i.ytimg.com/vi/BjI4phufGMs/sddefault.jpg" class="bookmark-image"/></a></figure><figure id="7e3b42d2-1692-4124-b554-376d75e30940"><a href="https://youtu.be/n6r9ioTj5AI" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Módulo 2 - 3 NMAP</div><div class="bookmark-description">Hola a tod@s! El día de hoy hemos decidido en pro de la educación y de ustedes, dejar en línea y de forma gratuita nuestro curso Pentesting con Herramientas Open Source. Este es un curso que hace parte de nuestra plataforma de educación en línea, pero por motivo de actualización del pensum, contenido y vídeos del mismo, hemos dejado la versión previa a su disposición. Es una versión que no es la más actual pero les puede ayudar a complementar sus conocimientos y es contenido que aún en el presente está vigente.
+
+Esperamos que les sea de utilidad! ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/5946722d/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/n6r9ioTj5AI</div></div><img src="https://i.ytimg.com/vi/n6r9ioTj5AI/hqdefault.jpg" class="bookmark-image"/></a></figure><figure id="9a75cca8-4a10-42ab-b81a-860c04fb5a0a"><a href="https://youtu.be/qfiVigFaLR0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Detectar puertos abiertos en una máquina con el Firewall activado con Nmap</div><div class="bookmark-description">Nmap para detectar puertos abiertos aún con el firewall activo. ________________________________________
+Websites: SecPro en Español: https://secpro.co 
+SecPro United States: https://secpro.llc
+________________________________________
+
+#secpro
+#Protegido
+#Ciberseguridad
+#Blinda
+#Kali
+#Hacking Pentesting 
+#NAC
+#MAC
+#Aprende
+#Aprender
+#learn
+#Practica
+#Capacitacion
+#Network
+#Access
+#Control
+#WiFi
+#Wireless
+#Inalámbrica
+#Ethical
+#Pruebas
+#Hackear
+#Hackeo
+#Ataque
+#Desarrollo
+#PyCharm
+#VisualStudio
+#Code
+#Linux
+#Windows
+#MACOSx
+#Script
+#Scripting
+#Python
+#Python2
+#Python3
+#Vulnerabilidad
+#Vulnerability
+#Exploit
+#Backdoor
+#Malware
+#Ransomware
+#Virus
+#Seguro
+#Phishing
+#Ingeniería
+#Social
+#Engaño
+#Apt
+#Gusano
+#Troyano
+#FUD
+#DNS
+#Exfiltrar
+#Cifrado
+#exfiltration
+#Encriptado
+#Descifrar
+#Comptia
+#Ceh
+#oscp
+#Forense
+#Computo
+#Evidencia
+#IoT
+#Bluetooth
+#Sniffer
+#Wireshark
+#bug
+#bugs
+#bounty
+#hackerone
+#bugcrowd
+#bugbounty
+#hacking
+#cyber
+#security
+#cybersecurity
+#bounties
+#ethical
+#hacking
+#hunting
+#burp
+#suite
+#framework
+#burpsuite
+#etico
+#hacker
+#pentest
+#certificate
+#red
+#teaming
+#tips
+#course
+#python</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/5946722d/img/favicon_144x144.png" class="icon bookmark-icon"/>https://youtu.be/qfiVigFaLR0</div></div><img src="https://i.ytimg.com/vi/qfiVigFaLR0/maxresdefault.jpg" class="bookmark-image"/></a></figure></div></article></body></html>

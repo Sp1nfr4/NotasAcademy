@@ -1,0 +1,704 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 5</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	/* user-select: none; */
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f6354d27-3100-4d73-9ea8-bc2c747f526f" class="page sans"><header><h1 class="page-title">Cybersecurity for Everyone - Module 5</h1><p class="page-description"></p></header><div class="page-body"><figure id="0184a6ca-e4ae-4703-bfa5-e8b605b8d389" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image1.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image1.jpg"/></a></figure><figure id="caeb4a79-19cf-4f23-bc0d-6df60979f6f7" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image2.jpg"><img style="width:650px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image2.jpg"/></a></figure><p id="d62791de-bb10-4fc5-a3fc-261906f44e6e" class="">Cybersecurity for Everyone - Module 5</p><h1 id="5eef0fba-c75b-4e30-a85a-7dd6ec1ccd30" class=""><strong>What about E-mail?</strong></h1><figure id="54d0f9b0-4d19-4c06-b406-626de4948331" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image3.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image3.jpg"/></a></figure><p id="250fa053-b0d0-48ad-8917-bea284b6adfa" class="">Our email is one of the most vital and used elements today, from the work environment to the school to send us all kinds of files and information, through financial, academic, research environments, etc.</p><p id="fb7a4875-be89-4e45-b340-5095edfae76a" class="">It has been determined that email is the vector (delivery mechanism) most commonly used by cybercriminals in the world to deceive their victims; there are many types of deception, from making you believe that the mail comes from judicial or governmental entities, to ending up with former classmates or people &quot;interested&quot; in your welfare because your partner is supposedly cheating on you and they send you photos or &quot;evidence of the deception&quot;; here are some examples:</p><figure id="6d8880d5-fb20-43cf-b941-b19485a2d60a" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image4.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image4.jpg"/></a></figure><p id="192ec519-b3f3-452d-aa47-4fdcdb87b529" class="">These are just a few examples; unfortunately, the evil creativity of criminals has no limits, so you should always be alert, remembering that you will NEVER win a lottery you did not buy or a draw you did not participate in; that if you do not have a vehicle, you will not get a traffic ticket, etc.</p><p id="57d7adf4-1e25-4fbe-af84-cfbc9ac38ab2" class="">As we know that we are always exposed, let&#x27;s take a look at some security recommendations for handling your e-mail.</p><h1 id="9034994e-fe5f-4ce7-aebf-ec37acf10abb" class=""><strong>Deactivate the automatic content preview</strong></h1><figure id="de72e180-443a-41a0-a9d7-0cb7edd838eb" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image6.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image6.jpg"/></a></figure><p id="7b8b737d-7656-4d88-b1d3-07b349b63886" class="">It may sound a bit complicated, but this is very simple: have you noticed that many emails come to you with images, colors, forms, etc.; well, these contents often serve either to collect data about you, or in the worst case to infect your machine; so, it is best to only view these contents when they come from companies or people you trust.</p><p id="254565af-f2a9-4667-baee-984af69ac675" class="">The process to deactivate automated content preview in email clients may vary depending on the email client you are using. However, here are general steps that can guide you:</p><ol type="1" id="7a377594-ec72-4475-8bfa-f77eb957d9a6" class="numbered-list" start="1"><li>Open your email client and go to the settings menu.</li></ol><ol type="1" id="c910d347-5934-4149-858a-c702f33d7db4" class="numbered-list" start="2"><li>Look for the &quot;preview pane&quot; or &quot;reading pane&quot; settings.</li></ol><ol type="1" id="1c965769-3275-4874-af63-42df7f6f067b" class="numbered-list" start="3"><li>Find the option to disable or turn off the content preview feature.</li></ol><ol type="1" id="b42cfdbc-8d98-49d7-b723-7efb0394369c" class="numbered-list" start="4"><li>Save your changes and exit the settings menu.</li></ol><p id="51f537e9-805d-473c-800f-ff2fada4cbd2" class="">Note that the exact wording and location of these settings may differ depending on the email client you are using. If you&#x27;re unsure of how to turn off content preview in your email client, you can refer to the help documentation or support website for your specific email client.</p><figure id="9c873956-fb1d-462b-8e85-3f5ec288d84f" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image7.jpg"><img style="width:447px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image7.jpg"/></a></figure><h1 id="d626f895-6a60-4de7-a1de-04eca80f2620" class=""><strong>ALWAYS check the e-mail address of origin carefully</strong></h1><figure id="537d52e7-ebb6-4a41-91b6-e1d5c88ceff9" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image8.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image8.jpg"/></a></figure><p id="738966bf-3f8c-44d4-b021-cb09efd649b6" class="">It is not logical for a bank to have a Gmail, Hotmail, Yahoo account or a name different from the bank&#x27;s domain as its address.</p><p id="46a22d4c-e2c5-4a77-815e-2ff246955605" class="">So, please be aware about the source of the Emails you receive.</p><figure id="f3a85050-38d7-4fd1-8b98-35c97cf32d9b" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image9.jpg"><img style="width:690px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image9.jpg"/></a></figure><h1 id="e4aa59a2-829e-40a5-98d2-9abc7285322a" class=""><strong>Criminals buy domains that they can easily use to deceive</strong></h1><figure id="1cffcd46-c8c0-48a7-9c53-995290b7c0dd" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image10.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image10.jpg"/></a></figure><p id="df0033bf-4a98-4106-9c15-8376459a16d1" class="">For example, they buy the domain: &quot;alert.com&quot;, and then they can create e-mail addresses such as:</p><p id="85f9102e-6b24-4bd6-9b34-66c665dda2a5" class=""><strong>a. </strong>  <a href="mailto:alert@bankxxx.alert.com"><strong>alert@bankxxx.alert.com</strong></a></p><p id="44726497-7ff9-4f17-92f2-467b7b3c67a0" class=""><strong>b.   </strong><a href="mailto:attention@bankxxx.alert.com"><strong>attention@bankxxx.alert.com</strong></a></p><p id="92e3c988-403c-4f58-ad95-59e84eb6080f" class=""><strong>c.   </strong><a href="mailto:purchase@agencyxxx.alert.com"><strong>purchase@agencyxxx.alert.com</strong></a></p><p id="13e73129-1661-47d7-b0a3-7c7575e288a4" class=""><strong>d.   </strong><a href="mailto:bankxxx@alert.com"><strong>bankxxx@alert.com</strong></a></p><p id="71bbaabd-4118-4ed2-9eb4-78de0802354e" class="">Now let&#x27;s make an example with the domain &quot;information.com&quot;; they could send you mails from addresses such as:</p><p id="c235db3f-afcf-4f59-bd6d-12c8536f6426" class=""><strong>e.   </strong><a href="mailto:support@bankxxx.information.com"><strong>support@bankxxx.information.com</strong></a></p><p id="463f40e8-17ee-4a4e-a250-2cc7434a879d" class=""><strong>f.    </strong><a href="mailto:sales@bankxxx.information.com"><strong>sales@bankxxx.information.com</strong></a></p><p id="beb6417f-e77a-4899-bd03-68ec2222ddc1" class=""><strong>g.   </strong><a href="mailto:payments@agencyxxx.informati%C3%B3n.com"><strong>payments@agencyxxx.informatión.com</strong></a></p><p id="2900c1b7-0ef5-40e8-be8c-0cbd82a9b078" class="">In case the subject of Domain and Subdomain is not clear, let me go into it very slightly; a Domain is an internet name; for example: &quot;Gmail.com&quot;; criminals can acquire Domains with real sounding names and they create Subdomains to their liking from those Domains and this practice unfortunately cannot be prevented because legitimate companies do it too; a subdomain will be very clear to you in this example:</p><figure id="6cffa7de-455c-44d2-8aac-a2aad5cf8a84" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image11.jpg"><img style="width:441px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image11.jpg"/></a></figure><p id="da289992-899b-47f2-8bf1-dbc5f8e16699" class="">When we receive an email, we must validate certain data:</p><ul id="1b2b53af-88c5-4a17-923b-18868631f887" class="bulleted-list"><li style="list-style-type:disc">Sender&#x27;s Address (Who is writing to me)</li></ul><p id="baccd5ef-d94f-41b4-9f73-b604b8e7587d" class="">Is this address Logical or correct?</p><ul id="7b2a3a80-738f-47e5-9383-a0404ddf1566" class="bulleted-list"><li style="list-style-type:disc"><em><strong>police</strong></em><a href="mailto:fiscalia@gmail.com"><em><strong>@gmail.com</strong></em></a></li></ul><ul id="398af48c-bdce-4af5-9bbf-a9401e513a17" class="bulleted-list"><li style="list-style-type:disc"><em><strong>bankofamerica</strong></em><a href="mailto:multas-dian@hush.com"><em><strong>@hush.com</strong></em></a></li></ul><ul id="0277b4af-02db-49b0-b948-033c2dc538c6" class="bulleted-list"><li style="list-style-type:disc"><a href="mailto:bancolombia.com.co@hotmail.com"><em><strong>citibank.support@hotmail.com</strong></em></a></li></ul><ul id="b668cda1-5997-49f9-9750-96e0eed6944f" class="bulleted-list"><li style="list-style-type:disc"><a href="mailto:soporte.microsoft@comercial.com"><em><strong>microsoft.support@sales.com</strong></em></a></li></ul><ol type="1" id="843c6f9e-c0ff-4575-9e55-863761aff824" class="numbered-list" start="1"><li>Are there any strange symbols or misspellings?</li></ol><ol type="1" id="28bf7ced-f8ef-4054-ab72-873f044524c5" class="numbered-list" start="2"><li>Do they talk to me about something I am not familiar with?</li></ol><ol type="1" id="8ae5f2d8-f112-44eb-a2a5-5be746b882ff" class="numbered-list" start="3"><li>Do they insist that I register or update my data?</li></ol><ol type="1" id="cc9637d9-6aa0-444c-b516-3b3aebb56635" class="numbered-list" start="4"><li>Where do the links actually take me?</li></ol><p id="a3b4b8bf-8099-4462-b57b-2d2479d3f24a" class="">Demo: <a href="https://www.xudongz.com/blog/2017/idn-phishing/">Apple</a></p><h1 id="ac9b57df-ca9c-40a2-a1b0-a75b2cb501ff" class=""><strong>If the mail comes from a &quot;Supposed Bank&quot; but they address you in an impersonal way, be suspicious!</strong></h1><figure id="dc76ff97-641d-4cbb-bfcf-38df4f7ece7b" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image12.jpg"/></a></figure><p id="5796e256-e8b1-4e5f-b735-1957e4e689b9" class="">A real bank or entity where you are a customer or where they have your real data, they will address you with your own name and surname; criminals address their victims in an impersonal way like this</p><ul id="e3b665b1-07c9-4729-9c63-1ca769cd79e0" class="bulleted-list"><li style="list-style-type:disc">Client:</li></ul><ul id="275a4b7b-078e-4313-9a2b-2aba2bd79ab5" class="bulleted-list"><li style="list-style-type:disc">Dear debtor:</li></ul><ul id="621dd49c-c0df-412a-845b-885ba5057fea" class="bulleted-list"><li style="list-style-type:disc">Mr./Mrs.:</li></ul><ul id="4a53c85a-b015-4508-93a9-740117fa5bbc" class="bulleted-list"><li style="list-style-type:disc">To whom it may concern:</li></ul><p id="83209bbc-77ef-4d2d-9ae0-e8d4c2e4f9a3" class="">Also be suspicious if the person who wants to communicate with you is too affectionate and you don&#x27;t even know him/her!!</p><p id="e0762f12-e119-4a81-aa85-98ca61ba4033" class="">If the email comes with difficult to understand or illogical wording (as if it was automatically translated), spelling mistakes, etc., be wary!!!! A real bank or a real entity will take care to write a communication properly and carefully to its customers</p><h1 id="78ef8115-bf3b-4535-a7d6-b0b86de451f9" class=""><strong>When you receive an email with a link, DO NOT click on the link; Validate First!.</strong></h1><figure id="dec50b31-7b42-46b9-9ad2-a0e5e401b71b" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image13.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image13.jpg"/></a></figure><p id="434026a1-dfb1-43b1-a542-c5f27a8c844b" class=""><strong>Do not click the link</strong> without first positioning your mouse over the link and look at the bottom of the email to see where it is actually taking you; here are two very important things: if you look at the source address, you find 2 addresses; one from a corporate domain and one from Gmail.com.</p><p id="59aa92a1-7b0e-43ba-b9c4-1ef2bfa68436" class="">On the other hand, when we place the mouse pointer over the supposed file: &quot;engineering_notes.pdf&quot; we see in the bottom bar that it is not really a document but a link to a totally different web site!!!</p><h1 id="710b13f7-ebe9-4569-acc8-4e3b0b16a082" class=""><strong>Criminals may also send you mail requesting personal data!</strong></h1><figure id="26fddbd4-5a72-4cc1-b75c-3b64cc8359e3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image14.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image14.jpg"/></a></figure><p id="59001ad3-6247-4904-a651-0b0e418aceeb" class="">NEVER provide data if you are not absolutely sure of the origin of the request; here is an example:</p><figure id="f29682b1-f784-4c83-8c45-cfe87f019731" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image15.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image15.jpg"/></a></figure><h1 id="19ad65e0-bb33-4428-886e-4d0c4be7e631" class="">Mail Encryption</h1><figure id="97701222-34b8-4c8a-9c2c-48adc2ffc870" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image16.jpg"><img style="width:500px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image16.jpg"/></a></figure><p id="ea500de4-e381-44bd-a16c-ce4a3627f0e7" class="">So far, we have talked about precautions you should take when you receive an email, but what if you want to improve the security of the email you send? If someone manages to intercept it, they cannot see or understand its content, in other words: ENCRYPT it.</p><h2 id="373075c9-d6f8-4b96-8238-881463b9e25e" class="">PGP - Pretty Good Privacy</h2><p id="0c125c1f-b3d2-4d80-ac45-3ee6234de827" class="">PGP stands for &quot;Pretty Good Privacy,&quot; and it is a computer program used for secure communication. PGP provides encryption and decryption of electronic messages, including email, text messages, and files, to protect the confidentiality and integrity of the information being transmitted. It uses a combination of symmetric and asymmetric encryption methods to protect the message contents and ensure that only the intended recipient can decrypt and read the message. PGP is widely used for secure communication in sensitive fields such as business, politics, and journalism.</p><p id="c0022ddb-c8a7-4f6f-8e7a-109325558b4d" class="">Is possible that your Company use some specific Encryption tool, but here we have some Online tools if you want to try;</p><ul id="ddbb27f4-ce10-4ff2-a6d4-d01fea3ad211" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pgptool.org/#sign"><strong>PGP Tool</strong></a></li></ul><ul id="dfe31a9e-79e9-41dd-b5b9-5b55400730af" class="bulleted-list"><li style="list-style-type:disc"><a href="https://8gwifi.org/pgpencdec.jsp"><strong>PGP Encryption / Decryption</strong></a></li></ul><ul id="2a351e9d-6c5b-4240-8bb4-a2ce2bbb6f31" class="bulleted-list"><li style="list-style-type:disc"><a href="https://webencrypt.org/openpgpjs/"><strong>Online PGP WebEncrypt</strong></a></li></ul><figure id="1bc4171d-56d7-4383-a434-23f0f0558efc" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image17.jpg"><img style="width:320px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image17.jpg"/></a></figure><h1 id="b583b64c-178c-4899-8c6b-7f6d8ea76af8" class="">Email Attacks</h1><figure id="888c88a2-c12d-44f5-86da-284d09e37eb7" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image18.jpg"><img style="width:320px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image18.jpg"/></a></figure><h1 id="a2abc0bd-9198-4104-bb98-cb0dd73c215d" class="">Phishing</h1><figure id="66abf6ba-cda4-40c2-9411-2a8d2a1e96c9" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image19.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image19.jpg"/></a></figure><p id="1cc5ac31-6658-423c-8e21-ab747aed32fa" class="">Phishing attacks are a type of social engineering attack that involve sending fraudulent communications; the most used channel are Emails.</p><p id="25ed43bd-1b66-40ac-ad40-bebd9337144d" class="">A Phishing email is designed to trick recipients into providing sensitive information, such as login credentials, credit card details, or other personal information. Phishing emails often appear to be from a trusted source, such as a bank or an employer.</p><h1 id="9ce3776b-832d-485f-823e-08ae15295598" class="">Spear Phishing</h1><figure id="8e031862-7350-4478-a9b0-5dd98a478da3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image20.jpg"><img style="width:300px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image20.jpg"/></a></figure><p id="a2dba391-2da1-4bc0-b6bb-30cd3b4a3d57" class="">Spear phishing is a type of cyber attack where a malicious actor sends a personalized, highly targeted email or message to an individual in order to trick them into divulging sensitive information or performing an action that is harmful to the individual or their organization.</p><p id="dda09572-97f9-492a-b776-732843b09369" class="">Unlike regular phishing attacks that are mass-mailed to many people, spear phishing is highly customized to the individual and often uses information gleaned from social media or other online sources to make the message appear legitimate. The attacker may pose as a trusted authority figure or a colleague in order to gain the target&#x27;s trust.</p><p id="8091afa9-e4db-4d1f-9711-2b7ec8cd50a8" class="">Spear phishing can take many forms, including email, instant messages, or even phone calls. It is often used as a way to gain access to corporate networks or steal sensitive information such as usernames, passwords, and financial data.</p><p id="2961d7d3-b5c7-4f70-9964-c786811d631e" class="">To protect against spear phishing, it&#x27;s important to be wary of unsolicited messages, verify the identity of the sender, and avoid clicking on links or downloading attachments unless you&#x27;re absolutely sure they&#x27;re safe. Additionally, using strong passwords and two-factor authentication can help prevent unauthorized access to your accounts.</p><h1 id="9fdb0200-7903-4542-b351-879c5db349c5" class="">Whaling</h1><figure id="e48484cb-1f64-4827-8ba2-4f20271763e4" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image21.jpg"><img style="width:377px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image21.jpg"/></a></figure><p id="8a5008c6-c3ac-410c-94ff-6cf91f2eaebf" class="">Whaling is a specific type of phishing attack that targets high-level executives or individuals with access to sensitive information or financial resources within an organization.</p><p id="2fb87abc-e4b2-4b8e-9bb1-cfb2c5d25a1e" class="">Whaling attacks are similar to other types of phishing attacks in that they involve the use of fraudulent emails or messages designed to trick the recipient into divulging sensitive information, such as login credentials or financial data. However, what distinguishes whaling attacks from other phishing attacks is their focus on high-value targets, such as CEOs, CFOs, and other high-ranking executives.</p><p id="587f626f-acfe-41bb-89aa-23ddfe2f70bb" class="">Whaling attacks often involve a great deal of research and planning by the attacker, who may use social engineering techniques to create a sense of urgency or authority in their message. For example, the attacker may pose as a trusted authority figure or use spoofed email addresses to make the message appear more legitimate.</p><p id="df02ae29-4414-4a63-8735-1e5611db5700" class="">To protect against whaling attacks, it&#x27;s important to be vigilant and skeptical of unsolicited messages, especially if they request sensitive information or require urgent action. Verifying the identity of the sender and using two-factor authentication can also help prevent unauthorized access to sensitive information or accounts. Additionally, organizations can implement security protocols and provide training to employees to help prevent and detect whaling attacks.</p><h1 id="877da4b7-d4f9-448e-929d-30d8cd6379f7" class="">Laser Phishing</h1><figure id="1be56980-d79a-484a-85c4-5ba06f469d00" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image22.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image22.jpg"/></a></figure><p id="e77981e1-a1d8-401a-8b79-99e8cbe178cc" class="">Laser Phishing is a phishing technique that uses Artificial Intelligence.</p><p id="4c914f0a-7c92-4365-8c57-ac0c6f00a3c0" class="">In this way each fake email is created customized and configured according to the information that is collected automatically by the attacker.</p><p id="fd3e256b-c4f5-4fd1-a798-1814713fbb74" class="">It considers factors such as:</p><ul id="2c440a0b-5b6e-42eb-96eb-3bc421ccb496" class="bulleted-list"><li style="list-style-type:disc">Interests</li></ul><ul id="bfb279fe-76ac-46a3-a099-b706f82ad6fa" class="bulleted-list"><li style="list-style-type:disc">Attitudes</li></ul><ul id="ba7f50b5-bd41-43d4-b3bb-db3b529e2868" class="bulleted-list"><li style="list-style-type:disc">Preferences</li></ul><h1 id="2e05487b-51a3-4e94-90ca-5bc70a31b94c" class="">BEC Attack</h1><figure id="1928d574-521e-4dbe-8684-9a1f033513fb" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image23.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image23.jpg"/></a></figure><p id="5646f19c-3286-424a-b88a-e8ec1a1a5ab4" class="">BEC stands for Business Email Compromise, which is a type of cyber attack that involves the use of social engineering and deception to gain unauthorized access to business email accounts. BEC attacks are also known as CEO fraud or whaling attacks, as they often target high-level executives or individuals with access to financial resources within an organization.</p><p id="a57a7f28-91f9-4e45-aeb2-354e21909a0f" class="">In a BEC attack, the attacker typically poses as a trusted authority figure, such as a CEO, CFO, or vendor, and sends a fraudulent email or message to an employee within the organization. The message may ask the employee to perform a certain task, such as making a payment or sharing sensitive information, or may contain a link or attachment that installs malware on the victim&#x27;s computer.</p><p id="d496ccc1-b0ba-4afe-a1f8-afe917d014ff" class="">BEC attacks can be highly sophisticated and often involve a great deal of research and planning by the attacker. They may use social engineering techniques to create a sense of urgency or authority in their message, such as posing as a vendor who needs payment immediately or a CEO who needs to keep information confidential.</p><p id="e3018720-7d8f-4551-8fd9-525663eb37eb" class="">To protect against BEC attacks, it&#x27;s important to be vigilant and skeptical of unsolicited messages, especially if they request sensitive information or require urgent action. Verifying the identity of the sender and using two-factor authentication can also help prevent unauthorized access to sensitive information or accounts. Additionally, organizations can implement security protocols and provide training to employees to help prevent and detect BEC attacks.</p><h1 id="728ae677-6c3e-4e3f-bcb2-5188bf190255" class="">Spam</h1><figure id="37ee0d8b-f41e-49ea-a4ea-91f284f39eda" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image24.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image24.jpg"/></a></figure><p id="2a4d99a3-318a-4f2e-a565-041422ab1bb9" class="">Spam attacks are a type of unsolicited mass email or message that are sent to a large number of people in order to advertise a product or service, distribute malware, or obtain sensitive information. Spam attacks can be delivered through email, instant messaging, social media, or other online communication channels.</p><p id="9bff6256-c598-410f-8052-bb333c351ee8" class="">Spam attacks are often annoying and disruptive to recipients, and can also pose a security threat if they contain malicious links or attachments. Spam filters are commonly used by email providers and other online platforms to automatically detect and block spam messages, but some spam messages may still make it through.</p><p id="b3e0178d-9d6e-4ec8-8ff1-dee1282fb88f" class="">Spammers often obtain email addresses and other contact information through various means, including scraping web pages, purchasing lists, or using malware to harvest contact information from infected devices.</p><p id="5258b6c2-e67b-4815-bdca-60d9f2057284" class="">To protect against spam attacks, it&#x27;s important to be cautious of unsolicited messages and avoid clicking on links or downloading attachments from unknown or suspicious sources. Using strong spam filters and anti-malware software can also help prevent spam messages from reaching your inbox and protect your device from malicious software. Additionally, being careful about sharing personal information online can help prevent spammers from obtaining your contact information in the first place.</p><h1 id="68892300-61ee-4552-9003-10f0704a137c" class="">Email Bombing</h1><figure id="b98cf4af-2805-457b-9627-9d4f481a74f1" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image25.jpg"><img style="width:384px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image25.jpg"/></a></figure><p id="eb4427cc-c83d-4af9-820e-e2ff2f03e39a" class="">Email bombing is a type of cyber attack where an individual or group sends a large number of emails or messages to a specific email address or domain in order to overwhelm the recipient&#x27;s inbox or server.</p><p id="b6bfb1c4-be94-4e64-8997-cdfef5f7deb0" class="">The purpose of email bombing may vary depending on the attacker&#x27;s goals. In some cases, email bombing may be used as a form of harassment or to disrupt the normal functioning of a website or email server. In other cases, email bombing may be used as a form of extortion or to demand a ransom in exchange for stopping the attack.</p><p id="ca57dbb4-eac7-4413-bf01-33a68d68a87f" class="">Email bombing can be carried out using automated tools or scripts that send large volumes of emails at once. Attackers may also use botnets, which are networks of infected computers that can be controlled remotely to carry out coordinated attacks.</p><p id="5ba50725-62d5-4284-92c0-7f45301e1b85" class="">To protect against email bombing attacks, it&#x27;s important to use strong spam filters and anti-malware software that can detect and block suspicious activity. It&#x27;s also a good idea to use email services that provide protection against email bombing attacks and to avoid sharing your email address with unknown or untrusted sources. If you are the victim of an email bombing attack, it&#x27;s important to report the incident to your email provider or IT department as soon as possible.</p><h1 id="2924ac4b-d7bf-4777-9126-98fcb96650e8" class=""><strong>Ok, I feel super technical, what else can I do?</strong></h1><figure id="a27422c9-9d6b-45b5-93ac-c1c45b1103fd" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image26.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%205%20f6354d2731004d739ea8bc2c747f526f/image26.jpg"/></a></figure><p id="7a298551-cd28-4fc0-b5f6-672ea90935cc" class="">A mail header is like an envelope for your email. It contains information about who the email is from, who it is going to, the subject of the email, and other technical details that help the email get delivered correctly. Think of it like a label on a package that tells the postal service where to send it and who it&#x27;s from. The mail header is usually hidden from view but can be accessed by looking at the email&#x27;s properties or settings.</p><p id="464883eb-3fc5-4edd-b43c-04457e2f12ce" class="">To access the mail header in an email, you can follow the steps below depending on the email client or service you are using:</p><p id="a0f0e3ee-b97c-4631-8c1a-4e0b79f1d755" class="">Gmail:</p><ul id="9f7ed937-74b8-4651-854d-f729e450ce8a" class="bulleted-list"><li style="list-style-type:disc">Open the email message.</li></ul><ul id="8fabdfce-8492-4491-8905-9ca2d899f199" class="bulleted-list"><li style="list-style-type:disc">Click on the three vertical dots in the upper-right corner.</li></ul><ul id="266b6c24-7d3e-4a5d-b13f-757fc5daf82c" class="bulleted-list"><li style="list-style-type:disc">Select &quot;Show original&quot; from the dropdown menu.</li></ul><ul id="1a490d83-409a-4c30-a089-4acf0c9006d0" class="bulleted-list"><li style="list-style-type:disc">The full message header will appear in a new window.</li></ul><p id="ec84c199-91ff-4a96-8060-6205ba4cc097" class="">Outlook:</p><ul id="09fb7569-02e6-4b8d-a1f1-bcc2f72f681b" class="bulleted-list"><li style="list-style-type:disc">Open the email message.</li></ul><ul id="6aeb8b0b-9066-4ec1-ba3f-745645c0a043" class="bulleted-list"><li style="list-style-type:disc">Click on the three horizontal dots in the upper-right corner.</li></ul><ul id="43a62eb1-8542-4d8f-90a1-92cdaea92384" class="bulleted-list"><li style="list-style-type:disc">Select &quot;View message details&quot; from the dropdown menu.</li></ul><ul id="df8bc5a8-c7da-445e-9e97-3874c26d5a1e" class="bulleted-list"><li style="list-style-type:disc">The full message header will appear in a new window.</li></ul><p id="e2ce99b8-b85d-437f-8208-484f11828696" class="">Apple Mail:</p><ul id="08046f95-b4fa-4683-9f4f-bb85b9e67a13" class="bulleted-list"><li style="list-style-type:disc">Open the email message.</li></ul><ul id="50899318-3b3b-4ab8-bc1d-41e141d0179a" class="bulleted-list"><li style="list-style-type:disc">Click on &quot;View&quot; in the menu bar at the top of the screen.</li></ul><ul id="105b9210-61bb-45d6-baa1-4e0c29adaecb" class="bulleted-list"><li style="list-style-type:disc">Select &quot;Message&quot; from the dropdown menu.</li></ul><ul id="6d399fc0-78ad-43a9-91a1-573ca68367c0" class="bulleted-list"><li style="list-style-type:disc">Select &quot;All Headers&quot; to view the full message header.</li></ul><p id="77c97e0e-14fa-43a8-b7cd-01eabb8a7087" class="">Yahoo Mail:</p><ul id="c0b734fd-4929-4db8-acd6-d6c917fe7101" class="bulleted-list"><li style="list-style-type:disc">Open the email message.</li></ul><ul id="07bc1fee-8950-40f9-9e61-cf955dd2a097" class="bulleted-list"><li style="list-style-type:disc">Click on the three horizontal dots in the upper-right corner.</li></ul><ul id="76703f22-ac67-49b5-af64-57b3260be2cb" class="bulleted-list"><li style="list-style-type:disc">Select &quot;View raw message&quot; from the dropdown menu.</li></ul><ul id="03148f89-dac8-41ee-aa94-d2b6b8f6bfc2" class="bulleted-list"><li style="list-style-type:disc">The full message header will appear in a new window.</li></ul><p id="9872ab44-ddd2-4c95-bd42-31df644a202e" class="">Once you have accessed the message header, you can view information such as the sender, recipient, subject, date and time sent, and the path the email took to reach its destination.</p><p id="470c2733-993e-4796-a4d9-c55e6560ab98" class="">Tools to review and analyze email headers:</p><ul id="468801d4-7231-45f9-846a-3fb537124c79" class="bulleted-list"><li style="list-style-type:disc"><a href="https://mxtoolbox.com/EmailHeaders.aspx"><strong>Mxtoolbox</strong></a></li></ul><ul id="ebbb0414-9c16-4090-8d38-f015afdc2466" class="bulleted-list"><li style="list-style-type:disc"><a href="https://toolbox.googleapps.com/apps/messageheader/?lang=en"><strong>Tool Box</strong></a></li></ul></div></article></body></html>

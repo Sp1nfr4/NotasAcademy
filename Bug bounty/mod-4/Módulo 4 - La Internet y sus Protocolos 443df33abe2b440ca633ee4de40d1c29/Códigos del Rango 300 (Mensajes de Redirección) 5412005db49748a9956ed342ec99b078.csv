@@ -1,0 +1,10 @@
+﻿Title,"Nombre en Inglés ","Nombre en Español ","Definición "
+Código 300,Multiple Choices,Múltiples opciones,"El servidor tiene varias opciones para el recurso solicitado, cada una con su propio URI y quizás diferentes respuestas."
+Código 301,Moved Permanently,Movido permanentemente,El recurso solicitado ha sido movido permanentemente a una nueva ubicación.
+Código 302,Found,Encontrado,El recurso solicitado ha sido encontrado temporalmente en una nueva ubicación.
+Código 303,See Other,Ver otro,El servidor ha recibido la solicitud y se requiere que el cliente realice otra solicitud a una nueva ubicación.
+Código 304,Not Modified,No modificado,El recurso solicitado no ha sido modificado desde la última vez que el cliente lo solicitó.
+Código 305,Use Proxy,Usar proxy,"El recurso solicitado solo está disponible a través de un proxy, y el cliente debe usar el proxy especificado."
+Código 306,Unused,Sin usar,"Este código se solía utilizar en versiones anteriores del protocolo HTTP, pero ya no se utiliza."
+Código 307,Temporary Redirect,Redirección temporal,"El recurso solicitado ha sido encontrado temporalmente en una nueva ubicación, pero el cliente debe continuar utilizando la ubicación original en futuras solicitudes."
+Código 308,Permanent Redirect,Redirección permanente,"El recurso solicitado ha sido movido permanentemente a una nueva ubicación, y todas las solicitudes futuras deben utilizar la nueva ubicación."

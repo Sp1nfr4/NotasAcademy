@@ -1,0 +1,704 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 8</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	/* user-select: none; */
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7509358d-2c4b-4fcf-8bd0-2ac7ba730a56" class="page sans"><header><h1 class="page-title">Cybersecurity for Everyone - Module 8</h1><p class="page-description"></p></header><div class="page-body"><figure id="22edf489-9e18-48d6-9c6e-3fa1736ca247" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image1.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image1.jpg"/></a></figure><figure id="098fd2da-de8b-4c35-ae6f-6c88012fbb38" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image2.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image2.jpg"/></a></figure><p id="33a6b360-dcc4-4e78-83aa-41e27d130f4b" class="">Cybersecurity for Everyone - Module 8</p><h1 id="3f9c4b65-a989-43af-a34e-d75c7f0fef8f" class=""><strong>Social Engineering</strong></h1><figure id="f7e26772-e14f-43a6-8abb-3d3bd07733ac" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image3.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image3.jpg"/></a></figure><p id="8136f1a6-2eb0-4d35-995f-ca2161ad128f" class="">The techniques of deception...</p><p id="89e59614-0b62-4b83-86e5-4fcf242e1af1" class="">They consist of various ruses to trick people into giving out information they should not have or performing actions they do not understand.</p><p id="af706d13-8939-4eb0-949f-cc1c566ca9f3" class="">Examples:</p><ul id="2cab2a46-67be-4592-86b6-6b7eb22b6ec5" class="bulleted-list"><li style="list-style-type:disc">Phone call from the Bank with pre-approved credit, but they need to validate your credit card information.</li></ul><ul id="01896d10-8ae0-4f39-bfc3-011dcdce1dcf" class="bulleted-list"><li style="list-style-type:disc">Phone call from the mobile operator to update data and upgrade your cellular plan.</li></ul><ul id="c9c3c258-6dde-4161-af70-adcff5b1052a" class="bulleted-list"><li style="list-style-type:disc">A person greets you on the street and asks you for George..... and you are embarrassed to tell him that you don&#x27;t know who he is..... And you talk for 10 minutes.</li></ul><ul id="ecaf1fb7-e407-4d54-b7be-7fc0e6b8027e" class="bulleted-list"><li style="list-style-type:disc">Text message to your cell phone congratulating you for winning a car and asking you to send a message to No. xxxx.</li></ul><h2 id="61eadf02-9938-4b2d-b116-50c583a5da8b" class="">This could be the &quot;Call Center&quot; where they are calling you from….</h2><figure id="13a6a9be-53f8-429c-9654-8351bc8f5750" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image5.jpg"><img style="width:446px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image5.jpg"/></a></figure><p id="9c7c1156-c1b1-41b8-879b-0dcbc844dae6" class="">So, let&#x27;s talk a little about the different types of deception, and their technical names so that you can be forewarned of a risky situation.</p><h1 id="68e80cf9-cc22-458c-9eb5-f897bdd0ef32" class="">Phishing</h1><figure id="736f12f8-9b83-4859-bae7-e1da8437cc90" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image6.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image6.jpg"/></a></figure><p id="a8f28fbe-3abf-45dd-a98d-ebfd9daf7933" class="">Deception by communication channels, however, the most common channel is the use of Fake Email, combined with Fake Websites waiting for you to click on the link in the fake email to enter personal information on a website, accept images or files, etc.</p><h1 id="ff67b32d-3921-4033-9a6b-113f957cf823" class="">Spearphishing</h1><p id="b300ba5d-361d-4efd-9974-3619b7d15fc6" class="">Phishing directed against a specific person or group of people, as opposed to the common phishing that is directed against any victim; for example, a fake e-mail sent to the financial or treasury area of a specific entity, etc.). When the mail is specifically addressed to the directors or managers of a company, then this attack is called &quot;whaling&quot;</p><figure id="d5893fc8-9f67-4b93-945e-8fcf7f3cd1d3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image7.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image7.jpg"/></a></figure><h1 id="5c8ee79c-fa4b-4b5c-8387-dde493acf7b1" class="">Vishing</h1><figure id="827841cf-8159-452a-8428-38b13449b740" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image8.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image8.jpg"/></a></figure><p id="7547695b-a273-458f-a169-666abb7af2e5" class="">Deception in phone calls... &quot;This is Rachel Reed from XXX Bank, since you are on a list of preferential clients .... blah, blah&quot; and then they ask you for information about your products with the bank, or with other banks, etc.</p><figure id="66dc1473-afe3-4e0e-b809-787c11cfd5b6" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image9.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image9.jpg"/></a></figure><figure id="b6f22480-34f3-47e5-ad3b-71e40023c801" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image10.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image10.jpg"/></a></figure><h1 id="805696d6-7b44-4493-a82e-7515857de0fd" class="">Smishing</h1><figure id="a260144e-8f3e-4f63-a051-3b9109f3be9e" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image11.jpg"><img style="width:360px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image11.jpg"/></a></figure><p id="5a4e3622-0faa-4f2c-aaf5-4bc26c384e54" class="">Deception through SMS text messages on cell phones: &quot;Congratulations!!!! You have won the draw No. 34565 of xxxxx; you are the happy owner of a brand new vehicle; to claim your prize send a text message to No. 65435...&quot; and you send the message, then they ask you for money for the transfer procedures, etc. and they scam you.</p><figure id="e8da2133-a399-4c88-a120-ae9541a81e8a" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image12.jpg"/></a></figure><h1 id="129f7152-218c-494d-af9b-3e7b14c81c3f" class="">Impersonation of Persons or Officials</h1><figure id="4c30fe7c-2125-429f-a423-6f036837a381" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image13.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image13.jpg"/></a></figure><p id="14759e67-3e7e-43f5-b195-d0cd87cd9c32" class="">Someone arrives with a helmet, a vest and a form and says he comes from the internet operator to check a fault or a complaint, or someone very well dressed in a jacket and tie arrives and says he is an inspector, auditor or some kind of state authority, official or police to be allowed to enter to inspect or a search or because he has an arrest warrant against someone who lives in the building or works in the company.</p><figure id="ce1b437e-05a4-444c-af60-a34ab2a266e3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image14.jpg"><img style="width:320px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image14.jpg"/></a></figure><figure id="a9c9306f-9c68-40c9-bae4-641c7cf3d9c4" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image15.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image15.jpg"/></a></figure><h2 id="1e91f5b3-720a-4800-a10c-ac07181d2a7f" class=""><strong>Be aware with your children with the impersonation of Persons or Officials</strong></h2><p id="ed033500-53d5-449e-b3f5-688beb176a99" class="">A very common way is that they come to your house and say that your daddy or mommy suffered an accident or that they were caught in jail and the police have them and that they need you to accompany them; or that they came to talk to your parents, that they agreed to meet them at your house and that they will wait for them inside, or that your mom or dad sent them to pick up the computer, TV, jewelry, etc.; in this case you must be clear about the following:</p><p id="e42ce725-5b75-44fa-b962-a3f4da6ea4d1" class="">Never open the door to strangers or little-known people who are not your family; talk through the door without opening it, if you have a way to see who you are talking to, try to identify signs that will help the authorities such as tattoos, scars, height, skin color, accent, etc.</p><p id="d62c58c6-4ebe-48a5-b0e0-a2b8c54305c3" class="">If they try to scare you by telling you that they are the police or that they are going to take you to jail, or that they took your parents to jail, DO NOT believe them and call the police immediately.</p><p id="8fc63708-aaea-4bcc-9306-f58a9d9445e0" class="">You should memorize some information to be more secure: your home address, your home phone number, your parents&#x27; phone numbers; this information will be useful for you and for the authorities to come to your aid quickly.</p><p id="e4f1fcf5-8806-417b-9bc7-90b9eee82a6b" class="">If they phone your home and ask where I am calling or where they answer from, your answer should ALWAYS be: &quot;who do you need?&quot;; if they are looking for one of your relatives and you are alone, ask them to leave the message with you; if they refuse or ask if you are alone, say as if you were calling a person: &quot;Uncle, they are looking for my mom or dad&quot; and hang up and call one of your parents immediately so they can come to your house as soon as possible. If it is impossible for your parents to come as soon as possible, call the police, explain what happened and ask the nearest police officer to make patrols around your house.</p><figure id="682a34d6-178b-410b-8cdb-b2a6476fdc12" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image16.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image16.jpg"/></a></figure><h1 id="8c483baa-1e04-4359-bc90-6de12dd581c6" class="">Baiting</h1><figure id="56da3b56-f58e-45d3-b776-c6cad4934a5c" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image17.jpg"><img style="width:640px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image17.jpg"/></a></figure><p id="5875a33d-c952-448f-8801-6f9b0c4e219d" class="">They take advantage of a person&#x27;s innate curiosity; for example, they leave an abandoned USB flash drive for the victim to pick it up and plug it into his or her computer, thus infecting him or her with some type of malware.</p><h2 id="97159a2a-7dce-4eec-b040-9d465ba91a5f" class=""><strong>Lucky you!!! A USB drive lying on the floor!!!</strong></h2><p id="cce7c81c-348b-4cff-bec0-af1d00a7dad5" class="">I&#x27;ve never understood why USB Flash Drives cause so much excitement in people.....</p><p id="45dd5c07-2f52-4b41-bec9-77e8a43e44c8" class="">People see them as: &quot;Oh, for mp3 players; this one goes in the car... etc.&quot;.</p><p id="ec6f9df0-44ad-441c-9fb6-0f0d14b81828" class="">For a cybercriminal they are an ideal mechanism to infect a computer and even gain access to a company without the need to physically risk …</p><p id="09fa0158-0433-42ec-aa90-ffc7448cd351" class="">Don&#x27;t believe me?</p><figure id="e424738f-b448-4784-b94a-1db9c626d2bf" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image18.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image18.jpg"/></a></figure><h1 id="a224e178-8b41-494c-99a8-dfeab19bae32" class="">Synthetic Click</h1><figure id="bcd84bcd-98ad-448e-9107-3fde297ccb93" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image19.jpg"><img style="width:580px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image19.jpg"/></a></figure><p id="1cfe6514-fbd6-428d-b8bd-fdf793548222" class="">The attacker executes a code on a website in order to force the mouse to click somewhere specific without the user&#x27;s intervention.</p><p id="35f04180-ac97-462d-90fb-73ec0ec5c591" class="">Used to disable alerts, accept installations, etc.</p><figure id="f47bf9dc-53e1-4810-843c-063312e68360" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image20.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image20.jpg"/></a></figure><h1 id="47dab980-31ec-4020-8f69-58b485b0ac24" class="">QRishing (QR Phishing)</h1><figure id="13bca665-628a-4cee-a391-46d2afc2df97" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image21.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image21.jpg"/></a></figure><p id="9887d8b0-394d-4cf3-b618-eac9d8df6c55" class="">QRishing is a type of phishing attack that uses QR codes to trick people into visiting fake websites or downloading malicious software onto their devices. QR codes are those square-shaped codes that can be scanned using a smartphone camera to quickly and easily access information or websites. In QRishing attacks, cybercriminals create fake QR codes that, when scanned, redirect users to fraudulent websites or download malware onto their devices. Once on the fake website, users may be prompted to enter sensitive information such as login credentials, credit card details, or personal information, which can be used by the attacker for fraudulent activities. QRishing attacks can be used to steal personal information or money from unsuspecting victims.</p><figure id="347d15de-e412-423b-af2c-1c08f9d26615" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image22.jpg"><img style="width:450px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image22.jpg"/></a></figure><h1 id="ec805671-bb90-4907-be36-38a60bfa6c72" class=""><strong>Scareware</strong></h1><figure id="cc4495c6-d9a0-4fc5-95bd-dec0ef86f041" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image23.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image23.jpg"/></a></figure><p id="28d17271-72ec-4c63-bc6a-094c4341df6e" class="">Scareware is a type of malicious software or virus that tricks people into believing that their computer has been infected with a virus or other security threat. The scareware typically displays false or exaggerated messages that urge the user to take action, such as purchasing a fake anti-virus software or calling a fake tech support number to fix the supposed issue. The goal of scareware is to scare the user into taking an action that benefits the attacker, such as giving them money or personal information, or downloading more malware onto their computer. It is important to be cautious and verify any security warnings before taking any action on your computer.</p><figure id="2a682213-4efa-42bf-a0b9-1db209df5e80" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image24.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image24.jpg"/></a></figure><h1 id="4b43125c-6f33-4692-a773-38e6ba2ea5ac" class="">Pretexting</h1><figure id="d2c31512-4706-457c-8c4e-f646fe980e1e" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image25.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image25.jpg"/></a></figure><p id="1e6650d9-0fdf-4036-917b-1391b2eda1bc" class="">Pretexting is a type of social engineering attack where an attacker creates a fake scenario or identity to trick someone into giving up sensitive information or access to a system. The attacker may pretend to be a trustworthy person, such as a co-worker or IT support personnel, and use this pretext to request sensitive information from the victim, such as passwords, bank account numbers, or other personal information. The attacker may also use pretexting to gain access to secure systems, by pretending to have a legitimate reason for requesting access, such as conducting an audit or performing maintenance.</p><p id="ea436939-66cb-47bf-b18d-683c77b5f172" class="">Use lies or scenarios that facilitate obtaining information; for example, a phone call with background noise from an office, or a baby crying to generate anxiety in the listener and a sense of haste, so that he/she delivers information quickly.</p><figure id="b6253853-2114-419f-b228-c07333d57ca3" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image26.jpg"><img style="width:640px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image26.jpg"/></a></figure><h1 id="e6a9b1a6-5da0-4b13-9be2-1c0ee31b640f" class=""><strong>Reverse Social Engineering</strong></h1><figure id="c277e926-21ed-4463-b95c-a59d9fa0c475" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image27.jpg"><img style="width:400px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image27.jpg"/></a></figure><p id="42472062-c475-4996-a976-5592877bb244" class="">The Attacker creates a malfunction or simulates one and then appears to provide &quot;help&quot;</p><ul id="e9a0a305-687d-458d-a264-6141bfca4400" class="bulleted-list"><li style="list-style-type:disc">For example: Uniformed person with a form in his hand, saying that he is coming to &quot;repair&quot; the Internet.</li></ul><ul id="821c616c-67ac-4653-98b0-60eb89f604f2" class="bulleted-list"><li style="list-style-type:disc">Or the phone call from &quot;Support&quot; saying that they detected a virus on your device or offering to improve the speed of our computer.</li></ul><ul id="ea62e329-3955-4523-b820-51b99f3eb42f" class="bulleted-list"><li style="list-style-type:disc"><em>Among Others.</em></li></ul><p id="929af6f5-0a64-474c-b16b-edd35dec3376" class="">As you can see unfortunately there are no technical tools to avoid falling into a scam, but we have something much better: COMMON SENSE and your level of awareness of the potential risk; it is not a matter of being paranoid all the time, but to be alert to the potential risks and more importantly: that you become a multiplier of this information with your family, your children, your friends, acquaintances and work team; always remember this phrase:</p><p id="8b766849-7179-44f1-93b2-f05ce6a76d92" class="">“People are the first line of cyber defense for their families and the companies where they work.”</p><p id="74b41e79-a2ab-47b6-84e1-d7c1a0bfc9f5" class="">So, it is the responsibility of all of us to take care of our cybersecurity.</p><figure id="ab2b602a-456d-46f9-9cde-46cd5aa40a2c" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image28.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image28.jpg"/></a></figure><h1 id="b2c1a619-470f-439c-afda-ff2b8340e47f" class=""><strong>Tailgating / Piggybacking</strong></h1><figure id="0cea7608-70a3-40c3-9045-dadfbd607ecd" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image29.jpg"><img style="width:220px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image29.jpg"/></a></figure><p id="1ebfceb4-453f-42fe-8b88-37717a63cf8c" class="">Tailgating, also known as piggybacking, is a type of physical security attack where an attacker gains unauthorized entry to a secured area by following closely behind an authorized person. The attacker may wait for someone with a key or access card to open a door or gate, and then slip in behind them before the door or gate closes. The attacker may also pretend to be an authorized person or act as though they are in a hurry to enter, in order to avoid suspicion.</p><p id="bd976a5a-16b3-43f9-b3cd-93bf00c729a8" class="">Tailgating attacks are a common way for attackers to gain access to secure areas, such as data centers, server rooms, or other areas that contain sensitive information or valuable assets. To prevent tailgating attacks, it is important to have clear security policies and procedures in place, such as requiring all employees and visitors to use their own access cards or keys to enter secure areas. It is also important to train employees to be vigilant and report any suspicious activity, and to regularly review and update security measures to ensure they remain effective.</p><figure id="d096e88f-efd0-4f23-8b83-0305a659d2ed" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image30.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%208%207509358d2c4b4fcf8bd02ac7ba730a56/image30.jpg"/></a></figure></div></article></body></html>

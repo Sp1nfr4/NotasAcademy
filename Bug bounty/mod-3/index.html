@@ -1,0 +1,752 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+	});
+	</script>
+<html oncontextmenu="return false"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Módulo 3 - Introducción al Linux</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+	user-select: all;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cd2e5ffe-548c-43e5-aea7-b3c0839cd2d1" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1640552435388-a54879e72b28?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 35.89%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💻</span></div><h1 class="page-title">Módulo 3 - Introducción al Linux</h1><p class="page-description"></p></header><div class="page-body"><p id="4e729738-f4df-4e0e-93e9-20dcc09e78b4" class="">
+</p><p id="74127e50-d7f7-4132-85d7-08e3dec65080" class="">Linux es un sistema operativo, es decir, un programa que se encarga de manejar los recursos de una computadora y administrar las aplicaciones que se ejecutan en ella. Es similar a otros sistemas operativos como Windows o macOS, pero con algunas diferencias importantes.</p><p id="4ad55f41-36f6-446e-bcbb-c2db134eaf77" class="">Linux es un sistema operativo de código abierto, lo que significa que su código fuente está disponible para cualquier persona que quiera usarlo o modificarlo. Fue creado por Linus Torvalds en 1991 y desde entonces ha sido utilizado por millones de personas en todo el mundo.</p><p id="caaebf23-a2c0-4ef5-a0cd-87a45178751a" class="">Una de las principales ventajas de Linux es su estabilidad y seguridad. Ya que es de código abierto, los usuarios pueden revisar y corregir cualquier error o vulnerabilidad que encuentren. Además, Linux es altamente personalizable y puede ser adaptado para satisfacer las necesidades específicas de cada usuario.</p><p id="c799b08e-2fac-47c9-8dff-7a877820770a" class="">Otra gran ventaja de Linux es su amplia variedad de distribuciones. Cada distribución de Linux tiene su propio conjunto de características y herramientas, lo que permite a los usuarios elegir la que mejor se adapte a sus necesidades.</p><p id="b11cc86c-9972-4d24-a53b-6b03066594ff" class="">En Linux, el núcleo o “kernel” es el corazón del sistema operativo y es responsable de controlar los recursos de la computadora. </p><h1 id="17bb3335-5b64-403f-a628-59bff6b1ec73" class="">Estructura del Linux</h1><p id="b15c1b2a-90e5-4494-bb7a-c18d02f2be8f" class="">Linux usa una estructura de árbol y se organiza en una jerarquía de directorios, donde cada directorio tiene un propósito específico. El directorio raíz, representado por el símbolo &quot;/&quot;, es el nivel superior de la jerarquía.</p><p id="3500cadf-a08d-402a-9be6-ff390721b886" class="">
+</p><figure id="70fec196-43ae-423f-ad94-7b1c04f2b340" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled.png"><img style="width:580px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled.png"/></a><figcaption>Imagen: Estructura de Directorios del Linux</figcaption></figure><p id="02f6f60e-7234-4db0-8d54-8816400b5dac" class="">
+</p><p id="f6140850-b674-4d23-9e8c-e1d8db7fd8e9" class="">Algunos de los directorios más comunes en la jerarquía de Linux incluyen:</p><table id="dc06130e-99cc-4678-ad7c-3ddacfea1d3e" class="simple-table"><thead class="simple-table-header"><tr id="5a3b4015-48ea-42d1-b3b7-a274dd01e4a8"><th id="cWLT" class="block-color-orange_background simple-table-header">Directorio</th><th id="`&gt;A{" class="block-color-orange_background simple-table-header" style="width:987px">Descripción</th></tr></thead><tbody><tr id="3e5e8078-f7e0-4a1c-b98d-21b671b92c08"><td id="cWLT" class=""><strong>/bin</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los archivos binarios esenciales del sistema, como los comandos básicos utilizados para el arranque y la operación del sistema.</td></tr><tr id="0723568f-60d0-4ac6-843d-480277c5ca5d"><td id="cWLT" class=""><strong>/boot</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los archivos necesarios para el arranque del sistema, como el kernel y los archivos de configuración.</td></tr><tr id="c4d8d4ae-3c39-4785-94e4-b288f7aaf592"><td id="cWLT" class=""><strong>/dev</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los archivos de dispositivo para los dispositivos conectados al sistema.</td></tr><tr id="df90a156-53fb-4fa3-b7e5-124a24c789d2"><td id="cWLT" class=""><strong>/etc</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los archivos de configuración del sistema para aplicaciones y servicios.</td></tr><tr id="ebe0fe3e-2cd8-4347-a5bc-f3b6fff6ed7e"><td id="cWLT" class=""><strong>/home</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los directorios de inicio de los usuarios.</td></tr><tr id="8e6e6047-8a20-4b0c-8ff9-b072793a90e0"><td id="cWLT" class=""><strong>/lib</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene las bibliotecas compartidas utilizadas por los programas del sistema.</td></tr><tr id="fb2ce3ab-5d86-48c2-a4af-0c07fb0ee802"><td id="cWLT" class=""><strong>/media</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los puntos de montaje para dispositivos extraíbles, como unidades USB y discos duros externos.</td></tr><tr id="c5c04e5c-3f28-4ce0-a0ee-2b12bd80fe31"><td id="cWLT" class=""><strong>/mnt</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los puntos de montaje para sistemas de archivos temporales.</td></tr><tr id="d31753fa-c95b-48ad-a088-4f6043288d3b"><td id="cWLT" class=""><strong>/opt</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los paquetes de software adicionales que no están incluidos en la distribución principal de Linux.</td></tr><tr id="92f50df9-878f-45e0-b905-76da7883c56c"><td id="cWLT" class=""><strong>/proc</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene información del sistema, como procesos en ejecución y estadísticas del sistema.</td></tr><tr id="b76b1829-e26a-496c-8c21-8d5b2caf320e"><td id="cWLT" class=""><strong>/root</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene el directorio de inicio del usuario &quot;root&quot;.</td></tr><tr id="284a5cba-d513-4898-ab4f-eb0e5629cfae"><td id="cWLT" class=""><strong>/run</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene archivos de sistema que deben estar disponibles durante el arranque del sistema y se utilizan para la comunicación entre procesos.</td></tr><tr id="b6753c24-2c24-41ae-a2a5-b6db6a3f27a6"><td id="cWLT" class=""><strong>/sbin</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los comandos que solo se pueden utilizar por el usuario &quot;root&quot;.</td></tr><tr id="33290dd8-9172-4c9a-84bc-db40966f7f19"><td id="cWLT" class=""><strong>/srv</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los datos de servicios proporcionados por el sistema.</td></tr><tr id="b254e3ee-cb6a-451e-a4bf-0043cce8e513"><td id="cWLT" class=""><strong>/sys</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene archivos de sistema que representan dispositivos y otros objetos del sistema.</td></tr><tr id="67a492ee-bca2-46c6-b758-0c95dbe3ca1c"><td id="cWLT" class=""><strong>/tmp</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene archivos temporales creados por el sistema y los usuarios.</td></tr><tr id="640911d0-3977-4e2f-a550-98ad307d0a25"><td id="cWLT" class=""><strong>/usr</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene los archivos y programas de usuario, incluyendo aplicaciones y bibliotecas compartidas.</td></tr><tr id="25050db2-919e-4935-878a-e646b74c5811"><td id="cWLT" class=""><strong>/var</strong></td><td id="`&gt;A{" class="" style="width:987px">Contiene archivos variables, como archivos de registro y archivos de correo electrónico.</td></tr></tbody></table><p id="fa19f845-86da-4ca9-964e-ba45f3a00ed0" class="">Cada uno de estos directorios tiene un propósito específico y se utiliza para organizar el sistema de archivos de Linux de manera lógica y coherente.</p><figure id="fcfc74c7-ef82-441c-8748-b43433c2ca97"><div class="source"><iframe src="https://player.vimeo.com/video/842499099?h=735c3af315" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="0e8808ac-7a16-429e-8684-91a6bf530255" class="">Linux Shell</h2><p id="e4b645fe-d552-4a0c-8f60-923124e3ee58" class="">El &quot;Shell&quot; es una interfaz de línea de comandos que permite a los usuarios interactuar con el sistema operativo. Es una herramienta poderosa que permite a los usuarios realizar diversas tareas, como crear y eliminar archivos, navegar por el sistema de archivos y cambiar la configuración del sistema. En lugar de hacer clic en los iconos y menús de una interfaz gráfica de usuario, el shell permite a los usuarios escribir comandos directamente en una terminal.</p><p id="2a7aa9aa-0265-488b-ba59-0fc6235e12c7" class="">Por ejemplo, para crear un archivo en Linux, se puede utilizar el comando &quot;touch&quot; seguido del nombre del archivo:</p><pre id="122ea3f1-f507-4429-9109-d911fc72da19" class="code code-wrap"><code>$ touch archivo.txt</code></pre><p id="e4359f12-bd23-4ea1-b0e5-75c73652956e" class="">El shell es altamente personalizable y permite a los usuarios crear scripts y automatizar tareas. Por ejemplo, se puede crear un script que realice automáticamente una copia de seguridad de los archivos importantes del sistema.</p><p id="23d148af-38e1-42c0-9df6-f5c0be7340b1" class="">El shell también proporciona una gran cantidad de herramientas y utilidades, como &quot;grep&quot; para buscar patrones en archivos, &quot;sed&quot; para editar texto y &quot;awk&quot; para procesar datos.</p><p id="ac7e559c-aefc-4d3c-98b0-81be0b113262" class="">
+</p><figure id="5bb93386-f5a3-4e03-b1e2-73a960fbb82e" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%201.png"><img style="width:816px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%201.png"/></a></figure><p id="872d0441-1e84-4e19-827a-81bc42e89066" class="">Si quieres saber que shell estás usando, puedes usar estos comandos:</p><pre id="d79a8428-9e07-4cde-a649-82d86c5223cf" class="code"><code>$ echo &quot;$SHELL&quot;
+
+o puedes usar:
+
+$ ps -p $$</code></pre><p id="86f929cd-b7ac-4edf-9625-05e83af20b9f" class="">
+</p><h3 id="6316a66f-b491-458b-940d-31f85b61cbbe" class="">Algunos de los Shell mas Conocidos de Linux</h3><table id="3765e46a-d592-4842-9f68-d5b34187de30" class="simple-table"><thead class="simple-table-header"><tr id="fc6f5ef4-caa5-4fb5-96f4-1b262489032a"><th id="|oTZ" class="block-color-orange_background simple-table-header">Shell</th><th id="[ssz" class="block-color-orange_background simple-table-header">Nombre Conocido</th><th id="O@^x" class="block-color-orange_background simple-table-header" style="width:975.99853515625px">Descripción</th></tr></thead><tbody><tr id="ffd5cc60-6be5-4542-86fc-f06710494d34"><td id="|oTZ" class="">Bash</td><td id="[ssz" class="">Bourne-Again shell (Bash)</td><td id="O@^x" class="" style="width:975.99853515625px">Es el shell predeterminado en la mayoría de las distribuciones de Linux. Es una versión mejorada del shell Bourne original y es altamente personalizable.</td></tr><tr id="9baa2044-604e-4453-8275-7a9e37aca82e"><td id="|oTZ" class="">Zsh</td><td id="[ssz" class="">Z shell (Zsh)</td><td id="O@^x" class="" style="width:975.99853515625px">Es un shell de Unix avanzado que ofrece características avanzadas de administración de archivos, como la corrección ortográfica de comandos y la autocompletación avanzada.</td></tr><tr id="ba3875cd-c11c-4b4f-a124-ef1593cf6f78"><td id="|oTZ" class="">Fish</td><td id="[ssz" class="">Friendly Interactive shell (Fish)</td><td id="O@^x" class="" style="width:975.99853515625px">Es un shell de Unix amigable con el usuario que ofrece una interfaz de usuario gráfica y una autocompletación avanzada.</td></tr><tr id="19454611-458d-4d57-908e-e1f49aafd8e0"><td id="|oTZ" class="">Ksh</td><td id="[ssz" class="">Korn shell (Ksh)</td><td id="O@^x" class="" style="width:975.99853515625px">Es un shell avanzado para Unix que ofrece una amplia gama de características avanzadas, como la programación de shell, la administración de procesos y la gestión de archivos.</td></tr><tr id="8a1176d7-2c95-4878-891c-3572baa33202"><td id="|oTZ" class="">Tcsh</td><td id="[ssz" class="">TENEX C shell (Tcsh)</td><td id="O@^x" class="" style="width:975.99853515625px">Es un shell de Unix que es muy similar a Csh, pero ofrece características adicionales como la autocompletación avanzada y la administración de procesos.</td></tr></tbody></table><figure id="b396403f-0c38-487b-919c-3875722368d2"><div class="source"><iframe src="https://player.vimeo.com/video/834171141?h=d94d236379" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: El Shell de Linux</figcaption></figure><h1 id="ea6ca06f-7b09-406d-a58a-c9e1fb43138e" class="">El Kali Linux</h1><p id="374e8e03-76e4-43b8-a44c-646e3399d2d2" class="">Kali Linux es una distribución de Linux basada en Debian que se utiliza principalmente para pruebas de penetración y auditorías de seguridad. Esta distribución incluye una gran cantidad de herramientas de seguridad y hacking que pueden ser utilizadas para evaluar la seguridad de sistemas y redes; es mi distro preferida para Pentesting y Ethical Hacking y es la que vamos a usar a lo largo del Curso.</p><p id="ed9e311f-4cd1-4f4c-a711-46562151b098" class="">Sitio WEB de descarga:</p><figure id="7633a964-983e-49ac-aee2-1813ff715ff6"><a href="https://www.kali.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Kali Linux | Penetration Testing and Ethical Hacking Linux Distribution</div><div class="bookmark-description">Home of Kali Linux, an Advanced Penetration Testing Linux distribution used for Penetration Testing, Ethical Hacking and network security assessments.</div></div><div class="bookmark-href"><img src="https://www.kali.org/images/favicon.png" class="icon bookmark-icon"/>https://www.kali.org/</div></div><img src="https://www.kali.org/images/kali-logo.svg" class="bookmark-image"/></a></figure><p id="fa3b9a85-ffe4-4cf9-92e4-4221bcdcd02c" class="">Por ejemplo, si quieres ver la distro de Kali en detalle y saber que versión de Debian estás usando, puedes ejecutar el comando:</p><pre id="eea1db60-49bc-4632-b41c-8ccba0ace249" class="code"><code>$ uname -a</code></pre><p id="02f9a2e8-7072-40af-8b6f-71025d8df517" class="">Y recibirás un resultado similar a este:</p><figure id="7b1acb1d-4038-45db-95f0-147e0cc55b5e" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%202.png"><img style="width:1152px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%202.png"/></a></figure><p id="b2b555ee-da0d-419a-99cb-46d1680382b9" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e2aba170-1c55-412b-82ad-51fc9c1972ac"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">En nuestro curso, el Kali Linux usa el Shell por defecto “zsh” así que el Prompt del sistema lo vamos a representar asi: &quot;<strong>$</strong>&quot; o <strong>kali@kali:~$</strong>  entonces los comandos los vas a ver de esta forma:</div></figure><pre id="061d7fd6-8efa-496a-994b-f31127c265a0" class="code"><code>$ sudo reboot -f
+
+o de esta forma: 
+
+kali@kali:~$ sudo reboot -f</code></pre><p id="b3576373-f543-4db7-bef2-028fdfb445f2" class="">Así ya sabrías que NO tienes que escribir “$” por que suponemos que ya te encuentras en una terminal:</p><figure id="622637b7-7d02-4661-a7e3-85fff1cc2702" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%203.png"><img style="width:432px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%203.png"/></a></figure><p id="d3dfc6e3-55fb-414b-80b8-a6a81e78c3d9" class="">
+</p><p id="6670aaad-e624-45ad-8aa4-59519973b552" class="">Y el comando que mencionamos lo veríamos asi:</p><figure id="0de1f420-318d-4a0f-b9c6-2fdd40c1eb39" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%204.png"><img style="width:432px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Untitled%204.png"/></a></figure><p id="238444e3-3d9f-417a-b33e-6a2db8ada2a5" class="">
+</p><figure id="08cf8abb-6e95-47be-80d4-96f7792076bd"><div class="source"><iframe src="https://player.vimeo.com/video/835796038?h=7c38c1adf9" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video:  El Kali Linux</figcaption></figure><h2 id="482dd04d-c611-47b2-bd07-801ce6d13843" class="">Instalando Complementos de las herramientas de Virtualización</h2><h3 id="f92a8f24-550a-4b27-aaed-bec5733e2ebc" class="">VirtualBox</h3><figure id="52994647-c61f-4c56-9bd2-f2e88a00c7f7"><a href="https://www.virtualbox.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Oracle VM VirtualBox</div></div><div class="bookmark-href"><img src="https://www.virtualbox.org/graphics/VirtualBox.ico" class="icon bookmark-icon"/>https://www.virtualbox.org/</div></div></a></figure><p id="2c34a071-76c0-4f77-9557-ad653526d38f" class="">Si vas a utilizar VirtualBox como herramienta de virtualización (Es la que vamos a usar en el curso), entonces debes instalar el complemento Guest Additions, para facilitar tu trabajo en la máquina virtual.</p><p id="592b49b8-4327-458d-9983-cb923e1b7a81" class="">Cómo instalar Guest Additions:</p><figure id="c7eda9ae-753c-4a71-a33f-2fc5ea50bc4f"><div class="source"><iframe src="https://player.vimeo.com/video/835796170?h=0356510c66" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><figcaption>Video: Instalar Guest Additions de Virtualbox en Kali Linux</figcaption></figure><h3 id="2792e59e-7655-48d7-988a-5e760b9eb4f4" class="">VMware Workstation Player</h3><figure id="ebfd79dd-9393-4347-8af6-2135ec72f959"><a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Download VMware Workstation Player | VMware</div><div class="bookmark-description">Download VMware Workstation Player for free today to run a single virtual machine on a Windows or Linux PC, and experience the multi-functional capabilities.</div></div><div class="bookmark-href"><img src="https://www.vmware.com/favicon.ico" class="icon bookmark-icon"/>https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html</div></div><img src="https://www.vmware.com/content/dam/digitalmarketing/vmware/en/images/icons/vmw-avatar-corporate.png" class="bookmark-image"/></a></figure><p id="6ff0b1d4-c498-46a3-87cc-f71290e282d2" class="">Comandos de instalación de VMware Tools:</p><table id="e4f61c8d-b392-48ee-a07d-7eb382d25055" class="simple-table"><tbody><tr id="98352e72-5680-4170-9e31-2e816ee0e9d2"><td id="oBgr" class="">Paso 1:</td><td id="?utA" class="" style="width:592px"><strong>kali@kali:~$  </strong>sudo apt install -y --install open-vm-tools-desktop fuse</td></tr><tr id="dcb44970-bd81-40c9-b85f-7f15ca3533fa"><td id="oBgr" class="">Paso 2:</td><td id="?utA" class="" style="width:592px"><strong>kali@kali:~$ </strong>sudo reboot-f</td></tr></tbody></table><pre id="128cca28-9bb9-4e5e-9f2a-7eb54ae9ffb8" class="code"><code>kali@kali:~$  sudo apt install -y --reinstall open-vm-tools-desktop fuse</code></pre><h3 id="af3f1722-e8fb-4ad9-8b14-219bfd857885" class="">Herramientas adicionales que recomendamos instalar:</h3><table id="f3e10dd9-c8a1-48ae-b7aa-a7710dd461b0" class="simple-table"><tbody><tr id="2c034664-a379-4d7d-ac94-7e3563bb2554"><td id="NV`Q" class="">Terminator:</td><td id="MHS@" class="" style="width:325px"><strong>kali@kali:~$ </strong>sudo apt install   terminator</td></tr><tr id="5796ebe3-f49e-4bdc-8519-88a14341deb3"><td id="NV`Q" class="">Git:</td><td id="MHS@" class="" style="width:325px"><strong>kali@kali:~$ </strong>sudo apt install  git</td></tr><tr id="d47543a2-f469-4c73-9fbf-834c16946d31"><td id="NV`Q" class="">Htop:</td><td id="MHS@" class="" style="width:325px"><strong>kali@kali:~$ </strong>sudo apt install -y htop</td></tr></tbody></table><figure id="1f4e12cb-508b-4667-8924-9e872e8759cb"><div class="source"><iframe src="https://player.vimeo.com/video/836176761?h=cc69ad2856" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="7fdfc8f9-78e8-42df-8c65-1d97da0daff6" class="">Comandos de Actualización y Mantenimiento de Kali Linux</h3><p id="838258ae-077d-4e2f-a7d9-378462202851" class="">Es muy importante verificar actualizaciones y actualizar el sistema si están disponibles. La forma más fácil de hacerlo es mediante la terminal con una sola línea de código:</p><table id="5796abda-452f-42fb-b3c5-5fcfe93f5520" class="simple-table"><thead class="simple-table-header"><tr id="d0466eed-e131-496c-885e-7c4bdc767629"><th id="XQbx" class="block-color-orange_background simple-table-header" style="width:332px">Acción </th><th id="Q_&gt;L" class="block-color-orange_background simple-table-header" style="width:512px">Comando</th></tr></thead><tbody><tr id="903523a9-a713-4bb0-88ab-e3e98356a4de"><td id="XQbx" class="" style="width:332px">Actualizar herramientas de Kali:</td><td id="Q_&gt;L" class="" style="width:512px">kali@kali:~$ sudo apt update  &amp;&amp; sudo apt upgrade -y</td></tr><tr id="5cb7ebc8-aee3-4f84-9b18-a464bec11b15"><td id="XQbx" class="" style="width:332px">Actualizar la distribución de Kali:</td><td id="Q_&gt;L" class="" style="width:512px">kali@kali:~$ sudo apt update  &amp;&amp; sudo apt dist-upgrade -y</td></tr><tr id="5a7a97ab-5525-45c4-af1e-168d274acdd4"><td id="XQbx" class="" style="width:332px">Eliminar herramientas que ya no son necesarias:</td><td id="Q_&gt;L" class="" style="width:512px">kali@kali:~$ sudo apt  autoremove</td></tr></tbody></table><h2 id="ebf66000-7005-4ccb-8a29-87533ddddae2" class="">Comandos de Ayuda en Linux</h2><p id="ce3c9834-0088-4a55-8977-e40b2885fe1e" class="">Los comandos de ayuda en Linux son herramientas que nos permiten obtener información sobre otros comandos, servicios y herramientas del sistema operativo. Estos comandos son muy útiles para aquellos que están aprendiendo a usar Linux, ya que proporcionan información valiosa sobre el uso y la sintaxis de los comandos.</p><p id="808d8ea6-8b35-4181-8af0-99bc9d1963af" class="">A continuación, se presentan los comandos de ayuda más comunes en Linux:</p><table id="e7fb1876-fd8d-4687-b2ef-21c7521c969e" class="simple-table"><thead class="simple-table-header"><tr id="b9e6ee93-be4d-48cd-8ed0-64c5e6760139"><th id="FNsv" class="block-color-orange_background simple-table-header">Comando</th><th id="eXIL" class="block-color-orange_background simple-table-header" style="width:940.9970703125px">Descripción</th><th id="x&lt;i}" class="block-color-orange_background simple-table-header" style="width:136.99999237060547px">Ejemplo</th></tr></thead><tbody><tr id="1acaccdd-c41b-47d2-9ba3-de7ab904c1a3"><td id="FNsv" class=""><code>man</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muestra el manual de cualquier comando o herramienta en Linux</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>man ls</code></td></tr><tr id="5080f84e-7456-4d01-a73e-1a346feceef2"><td id="FNsv" class=""><code>info</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muestra información sobre un comando o herramienta, pero a menudo proporciona información adicional en comparación con <code>man</code></td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>info tar</code></td></tr><tr id="93e4ea07-ea28-4ed3-be42-dc777152aa2c"><td id="FNsv" class=""><code>-help</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muchos comandos en Linux tienen una opción <code>-help</code> que muestra información de ayuda sobre el uso del comando</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>cat --help</code></td></tr><tr id="88b342d2-4f8c-49e8-90f6-96f27761ccbb"><td id="FNsv" class=""><code>apropos</code></td><td id="eXIL" class="" style="width:940.9970703125px">Se utiliza para buscar comandos y herramientas en Linux que estén relacionados con una palabra clave específica</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>apropos network</code></td></tr><tr id="e4edce09-d3a4-4060-9f6a-1ca01d6955a2"><td id="FNsv" class=""><code>whatis</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muestra una breve descripción de lo que hace un comando o herramienta en Linux</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>whatis ls</code></td></tr><tr id="7f64f24b-5966-4f63-a4eb-1a89985ee57e"><td id="FNsv" class=""><code>type</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muestra información sobre un comando específico, como su ubicación en el sistema de archivos o si es un comando interno o externo</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>type ls</code></td></tr><tr id="8dd74d7c-4cb8-4438-a0c7-dabde15afd6f"><td id="FNsv" class=""><code>alias</code></td><td id="eXIL" class="" style="width:940.9970703125px">Se utiliza para crear atajos para comandos o secuencias de comandos complejas</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>alias ll=&#x27;ls -alh&#x27;</code></td></tr><tr id="e2a34e6e-8cb9-47f3-8efe-200ac3e71509"><td id="FNsv" class=""><code>history</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muestra una lista de los comandos que hemos introducido previamente en la terminal. También podemos utilizar la opción <code>!n</code>, donde <code>n</code> es el número de un comando específico en la lista, para volver a ejecutar ese comando</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>history</code></td></tr><tr id="59892f04-86ca-4e8b-9ad5-21aaebd88531"><td id="FNsv" class=""><code>help</code></td><td id="eXIL" class="" style="width:940.9970703125px">Proporciona información de ayuda sobre los comandos internos de la terminal de Linux</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>help cd</code></td></tr><tr id="4e838910-6d66-4ec0-b6b0-9f2e3e755da0"><td id="FNsv" class=""><code>-version</code></td><td id="eXIL" class="" style="width:940.9970703125px">Muchos comandos en Linux tienen una opción <code>-version</code> que muestra la versión del comando</td><td id="x&lt;i}" class="" style="width:136.99999237060547px"><code>grep --version</code></td></tr></tbody></table><figure id="85d4eea9-e6ce-4b2c-8484-ba214b700981"><div class="source"></div><iframe src="https://player.vimeo.com/video/836199531?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></figure><h2 id="5aef7eec-7a90-458c-96d7-112f648c0922" class="">Manejo de archivos en Linux</h2><p id="c794ff50-5400-488b-9656-dcc484320c71" class="">En Linux, los archivos se organizan en una estructura de árbol de directorios, donde cada archivo se encuentra en un directorio determinado. Para acceder y manipular archivos en Linux, se utilizan comandos de la terminal. A continuación se presentan algunos de los comandos más comunes:</p><table id="cde07882-1bed-4e20-a31c-34b18bb68e8c" class="simple-table"><thead class="simple-table-header"><tr id="cfc55929-9018-4373-b49b-b0237d40f1ce"><th id="Oapm" class="block-color-orange_background simple-table-header">Comando</th><th id="B;;S" class="block-color-orange_background simple-table-header" style="width:358px">Descripción</th><th id="kneU" class="block-color-orange_background simple-table-header">Ejemplo</th></tr></thead><tbody><tr id="e64a1594-8b74-4851-b852-62f9c031edbb"><td id="Oapm" class="">ls</td><td id="B;;S" class="" style="width:358px">Lista los archivos en un directorio</td><td id="kneU" class="">ls</td></tr><tr id="bd4797de-02cf-45f1-b189-0b45f2f7ccb2"><td id="Oapm" class="">cd</td><td id="B;;S" class="" style="width:358px">Cambia el directorio actual</td><td id="kneU" class="">cd /home</td></tr><tr id="d3d28c56-9d46-4485-bcf9-8bd62f854e8f"><td id="Oapm" class="">pwd</td><td id="B;;S" class="" style="width:358px">Muestra la ruta del directorio actual</td><td id="kneU" class="">pwd</td></tr><tr id="901a0149-d977-4edb-8f5c-741cb22eb316"><td id="Oapm" class="">mkdir</td><td id="B;;S" class="" style="width:358px">Crea un nuevo directorio</td><td id="kneU" class="">mkdir mydir</td></tr><tr id="946e2c55-04d8-44d0-8d25-395dbca24e05"><td id="Oapm" class="">rm</td><td id="B;;S" class="" style="width:358px">Elimina un archivo</td><td id="kneU" class="">rm myfile</td></tr><tr id="b38c0340-ebf3-422d-b6d2-32de11a0e6bf"><td id="Oapm" class="">cp</td><td id="B;;S" class="" style="width:358px">Copia un archivo</td><td id="kneU" class="">cp myfile mydir/</td></tr><tr id="eb9f3cb7-ae92-4e08-bc6f-2be6ba9aa9b5"><td id="Oapm" class="">mv</td><td id="B;;S" class="" style="width:358px">Mueve un archivo de un directorio a otro</td><td id="kneU" class="">mv myfile mydir/</td></tr><tr id="a5424275-7670-48ba-a630-afc984fe9cfb"><td id="Oapm" class="">touch</td><td id="B;;S" class="" style="width:358px">Crea un nuevo archivo</td><td id="kneU" class="">touch newfile</td></tr><tr id="78e74962-d277-448f-8d34-d4c480939711"><td id="Oapm" class="">cat</td><td id="B;;S" class="" style="width:358px">Muestra el contenido de un archivo</td><td id="kneU" class="">cat myfile</td></tr><tr id="eb28cad0-c361-4bae-b323-c1792c5ba5c8"><td id="Oapm" class="">nano</td><td id="B;;S" class="" style="width:358px">Editor de texto en la terminal</td><td id="kneU" class="">nano myfile</td></tr></tbody></table><figure id="8ba24e82-c49e-4ba6-b2e1-351e484a7e6b"><div class="source"><iframe src="https://player.vimeo.com/video/836218290?h=5f08f6ff62" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="1022b27f-8313-4dbf-83c9-f38dfb676d19" class="">Permisos de archivos en Linux</h2><p id="3d20c838-560a-43fd-bd2e-349843d7ac65" class="">En Linux, cada archivo y directorio tiene tres tipos de permisos: lectura, escritura y ejecución: </p><p id="eab4292e-d736-4d7c-8635-29107d0371fc" class="">
+</p><figure id="feffcc9e-5994-43d2-a97e-a65ec3f9adc6" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Permisos_Linux_2.png"><img style="width:912px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Permisos_Linux_2.png"/></a><figcaption>Imagen: Permisos de Archivos en Linux</figcaption></figure><p id="1132d784-4436-4ba4-8ea7-6e8aaab64a66" class="">Estos permisos pueden ser otorgados a tres tipos de usuarios: el propietario del archivo, los miembros del grupo al que pertenece el archivo y otros usuarios.</p><p id="96da1624-3d44-4562-9956-b9858b7418f2" class="">La estructura es asi:</p><p id="48aeb4e5-9f42-4617-9b24-338d85bf6411" class="">
+</p><figure id="43ddd132-199d-4518-9482-3aefbcb52c9d" class="image"><a href="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Permisos_Linux_1.png"><img style="width:858px" src="Mo%CC%81dulo%203%20-%20Introduccio%CC%81n%20al%20Linux%20cd2e5ffe548c43e5aea7b3c0839cd2d1/Permisos_Linux_1.png"/></a><figcaption>Imagen: Estructura de Permisos e información de Archivos y Directorios en Linux</figcaption></figure><p id="306b2a2b-6e90-4370-8cae-dabbb1ff7b95" class="">Para ver los permisos de un archivo o directorio, se utiliza el comando &quot;ls -l&quot;. El resultado incluirá una serie de caracteres que indican los permisos para cada tipo de usuario. Por ejemplo, la siguiente salida indica que el archivo &quot;myfile&quot; es propiedad del usuario &quot;user1&quot; y tiene permisos de lectura y escritura para el usuario, pero solo permisos de lectura para los miembros del grupo y otros usuarios:</p><pre id="a5027312-c4bb-4c88-977f-7ef1eb82366e" class="code code-wrap"><code>-rw-r--r-- 1 user1 user1 1234 Aug 31 14:23 myfile</code></pre><p id="ca5359a0-29c3-4761-a85f-d6e77a10dca3" class="">Los permisos se indican con una serie de caracteres: &quot;r&quot; para lectura, &quot;w&quot; para escritura y &quot;x&quot; para ejecución. Además, se utilizan otros caracteres especiales para indicar si el archivo es un directorio, un archivo especial o un enlace simbólico.</p><p id="7a032683-76b3-40b5-8902-db77e5eac17c" class="">
+</p><p id="16de4ced-f2ac-4b27-a498-048ea9e071f8" class="">Para cambiar los permisos de un archivo o directorio, se utiliza el comando &quot;chmod&quot;. Por ejemplo, para dar permisos de escritura y ejecución a todos los usuarios en el archivo &quot;myfile&quot;, se puede utilizar el siguiente comando:</p><pre id="6f415abf-fc16-4e0c-9a8e-cb74d8e19cfa" class="code code-wrap"><code>chmod a+wx myfile</code></pre><p id="b05d6b65-fc26-4f60-a4d9-3b18e5f13ad8" class="">En este caso, &quot;a&quot; indica que se están cambiando los permisos para todos los usuarios, &quot;+&quot; indica que se están agregando permisos y &quot;wx&quot; indica que se están agregando permisos de escritura y ejecución.</p><p id="1b52bb97-3a97-4071-9450-8a80d62a3a83" class="">Los permisos también se pueden especificar utilizando números en lugar de caracteres. Cada permiso tiene un valor numérico asociado: 4 para lectura, 2 para escritura y 1 para ejecución.</p><p id="c24a7809-a3b2-46ef-b58c-7e4ad6e697fd" class="">
+</p><figure id="d72b3261-fa7a-4f97-8045-9c682e61f896"><div class="source"><iframe src="https://player.vimeo.com/video/836246395?h=8b485f6966" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="61fd50be-eab4-479e-bce8-36abfcdaf303" class="">Tabla de valores decimales de Permisos de Linux</h3><div id="3cc0612d-053a-458f-818f-ecfae74b749e" class="column-list"><div id="83425553-bbdb-4452-b41c-bbff2673064f" style="width:50%" class="column"><table id="ee65b8f7-0f77-4e7f-bd30-8f5b05879d79" class="simple-table"><thead class="simple-table-header"><tr id="66669be8-5828-4d2a-9ad2-053487d51138"><th id="]FNM" class="block-color-orange_background simple-table-header">Número</th><th id="|d_B" class="block-color-orange_background simple-table-header">Permiso</th><th id="{RUI" class="block-color-orange_background simple-table-header">Letras</th></tr></thead><tbody><tr id="8d99387e-1e61-44c0-8e1f-ad17648c1448"><td id="]FNM" class="">0</td><td id="|d_B" class="">Ningún permiso</td><td id="{RUI" class="">---</td></tr><tr id="add81549-cdca-4bf7-a8ca-01dd6b3f89e5"><td id="]FNM" class="">1</td><td id="|d_B" class="">Ejecución</td><td id="{RUI" class="">--x</td></tr><tr id="01b80485-e03f-4a82-9399-7a05f7b4fe48"><td id="]FNM" class="">2</td><td id="|d_B" class="">Escritura</td><td id="{RUI" class="">-w-</td></tr><tr id="73e37fc6-09f5-47bd-a71c-cb7d29041c03"><td id="]FNM" class="">3</td><td id="|d_B" class="">Escritura y ejecución</td><td id="{RUI" class="">-wx</td></tr><tr id="28393cfc-c064-4b44-9c0e-99b7babae182"><td id="]FNM" class="">4</td><td id="|d_B" class="">Lectura</td><td id="{RUI" class="">r--</td></tr><tr id="aaa6a5f2-5442-4273-8d98-9aa2e3977859"><td id="]FNM" class="">5</td><td id="|d_B" class="">Lectura y ejecución</td><td id="{RUI" class="">r-x</td></tr><tr id="230a0f5e-367c-4408-9a16-46c7bf8429cb"><td id="]FNM" class="">6</td><td id="|d_B" class="">Lectura y escritura</td><td id="{RUI" class="">rw-</td></tr><tr id="357c1a21-754b-411d-9170-800012b41f28"><td id="]FNM" class="">7</td><td id="|d_B" class="">Lectura, escritura y ejecución</td><td id="{RUI" class="">rwx</td></tr></tbody></table></div><div id="9d8437e8-54cd-4130-9ce6-aa329112df62" style="width:50%" class="column"><p id="f1b5e133-c401-47d0-b148-f25de17e6eb4" class="">
+</p></div></div><p id="5c94262f-62dc-4eb2-8bfd-8cb9f0f039dc" class=""> Por ejemplo, para dar permisos de lectura y escritura al usuario y permisos de ejecución a todos los usuarios en el archivo &quot;myfile&quot;, se puede utilizar el siguiente comando:</p><pre id="894b637f-8e13-425a-80e9-4df29316555e" class="code code-wrap"><code>chmod 754 myfile</code></pre><p id="ee41508e-3ea7-4a6e-bcc5-50ae57888117" class="">En este caso, el primer dígito &quot;7&quot; indica los permisos para el propietario del archivo (lectura, escritura y ejecución), el segundo dígito &quot;5&quot; indica los permisos para los miembros del grupo (lectura y ejecución) y el tercer dígito &quot;4&quot; indica los permisos para otros usuarios (lectura).</p><h3 id="b22eb55d-8b94-47a6-bb59-b92d113dd30b" class="">Cambiar el Propietario de un Archivo</h3><p id="c7c322ce-1537-4607-9ad5-f5d1e85a3290" class="">Para cambiar el propietario de un archivo en Linux, se utiliza el comando &quot;chown&quot; seguido del nombre del nuevo propietario y el nombre del archivo. Por ejemplo, si queremos cambiar el propietario del archivo &quot;myfile&quot; a &quot;user2&quot;, podemos utilizar el siguiente comando:</p><pre id="24aeae18-67d5-4c4d-8d4d-c1395d5eb88e" class="code code-wrap"><code>sudo chown user2 myfile</code></pre><p id="0bd7cf16-90e8-498a-9dd4-ebee416b555f" class="">En este caso, &quot;sudo&quot; es necesario para obtener los permisos de superusuario necesarios para cambiar el propietario del archivo; &quot;user2&quot; es el nombre del nuevo propietario y &quot;myfile&quot; es el nombre del archivo que deseamos cambiar.</p><p id="7aed6f7a-8158-4ece-bb76-d5874d2b6164" class="">También es posible cambiar el grupo al que pertenece el archivo utilizando el mismo comando. Para hacer esto, se utiliza la opción &quot;-R&quot; seguida del nombre del nuevo propietario y el nombre del archivo. Por ejemplo, si queremos cambiar el propietario del archivo &quot;myfile&quot; y todos los archivos y directorios dentro de él a &quot;user2&quot; y al grupo &quot;group2&quot;, podemos utilizar el siguiente comando:</p><pre id="c869cf0d-8bfd-4330-8f81-b723e9def804" class="code code-wrap"><code>sudo chown -R user2:group2 myfile</code></pre><p id="b496ceeb-b49d-404a-8445-8daae0d95185" class="">Es importante tener en cuenta que solo los usuarios con permisos de superusuario pueden cambiar el propietario de un archivo o directorio. Además, cambiar el propietario de un archivo puede afectar la accesibilidad y la funcionalidad del archivo, por lo que se recomienda tener cuidado al realizar estos cambios.</p><figure id="c2d2e5de-eff1-476c-bfd6-e0203de1110e"><div class="source"><iframe src="https://player.vimeo.com/video/836324115?h=0fb7fc0876" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="4c33ebe6-b973-46d8-bf94-48d0092f8b4b" class="">Configuración de la Red en Linux</h3><table id="a3f250a8-9bbf-4b07-a72e-46984f271857" class="simple-table"><thead class="simple-table-header"><tr id="67287a81-d9b5-4c9d-b408-49204b1943ae"><th id="eC\p" class="block-color-orange_background simple-table-header" style="width:510px">Comando</th><th id="}&gt;nE" class="block-color-orange_background simple-table-header" style="width:352px">Acción</th></tr></thead><tbody><tr id="9af189d6-687e-4467-968d-1ffc2fde2814"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo ifconfig
+<strong>kali@kali:~$ </strong>sudo ifconfig –a
+<strong>kali@kali:~$ </strong>ip a</td><td id="}&gt;nE" class="" style="width:352px">Mostrar la configuración de red</td></tr><tr id="0de4a561-bc11-43fa-80b2-ae2983bb26b3"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo ifconfig eth0 up</td><td id="}&gt;nE" class="" style="width:352px">Habilitar la interfaz</td></tr><tr id="ce88bcef-ac78-470c-9bec-69e17021c8b2"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo ifconfig eth0 down</td><td id="}&gt;nE" class="" style="width:352px">Deshabilitar la Interfase</td></tr><tr id="104003f1-2763-4a46-8c7f-33e3668c164f"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo ifconfig eth0 192.168.1.10
+<strong>kali@kali:~$ </strong>sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0</td><td id="}&gt;nE" class="" style="width:352px">Asignar una dirección IP para la red (eth0 o wlan0)</td></tr><tr id="669f52b7-c6ba-43b2-ad1e-de4cebf745f0"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo route add default gw 192.168.1.1</td><td id="}&gt;nE" class="" style="width:352px">Configurar la puerta de enlace predeterminada</td></tr><tr id="07aff62d-89b6-4143-b2bf-3666e259d7db"><td id="eC\p" class="" style="width:510px">Como <strong>root</strong> : <strong>root@kali:~$ </strong> echo nameserver 8.8.8.8 &gt; /etc/resolv.conf</td><td id="}&gt;nE" class="" style="width:352px">Configurar DNS</td></tr><tr id="5454fd71-d8ab-4824-b7a1-053389a65206"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo gedit /etc/network/interfaces</td><td id="}&gt;nE" class="" style="width:352px">Modificar el archivo de configuración de red</td></tr><tr id="62c4675f-4de2-4f85-a205-c6ee18da9ad3"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>sudo systemctl restart networking.service</td><td id="}&gt;nE" class="" style="width:352px">Reiniciar el servicio de red</td></tr><tr id="7b09df6c-395f-44fb-9172-fd9e96d6761b"><td id="eC\p" class="" style="width:510px"><strong>kali@kali:~$ </strong>netstat -alnp | grep LISTEN</td><td id="}&gt;nE" class="" style="width:352px">Detectar puertos abiertos en Linux</td></tr></tbody></table><figure id="77fddc8a-a50a-4171-9c26-0baf50f8b4c0"><div class="source"><iframe src="https://player.vimeo.com/video/836338303?h=309418825e" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h3 id="848bf28c-e1d8-4c87-a085-ec48e9a6dc88" class="">Comandos que debemos conocer en Linux:</h3><table id="17fd9c6d-8a84-4021-8fae-6fd18efe0423" class="simple-table"><thead class="simple-table-header"><tr id="6ee2fcb6-2cd0-402e-af16-b40b5928d0ea"><th id="|UKY" class="block-color-orange_background simple-table-header" style="width:262px">Comando</th><th id="fb[c" class="block-color-orange_background simple-table-header" style="width:375px">Descripción</th><th id="&lt;~Zl" class="block-color-orange_background simple-table-header" style="width:321.9971466064453px">Ejemplo</th></tr></thead><tbody><tr id="c2c489aa-96fc-4f6b-ba24-cdc26e97c012"><td id="|UKY" class="" style="width:262px"><code>sudo uname -a</code></td><td id="fb[c" class="" style="width:375px">Muestra información del sistema operativo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sudo uname -a</code></td></tr><tr id="43cb0a76-6d8f-4974-981f-0c5e81ea0dad"><td id="|UKY" class="" style="width:262px"><code>sudo &lt;command&gt;</code></td><td id="fb[c" class="" style="width:375px">Ejecuta un comando con permisos de superusuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sudo apt-get update</code></td></tr><tr id="d7b6b9f5-2acc-4ed7-a6f6-454da5932fbe"><td id="|UKY" class="" style="width:262px"><code>man &lt;tool&gt;</code></td><td id="fb[c" class="" style="width:375px">Muestra el manual de una herramienta</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>man ls</code></td></tr><tr id="cbafddfb-2300-4331-9169-27794e1261dd"><td id="|UKY" class="" style="width:262px"><code>&lt;tool&gt; -h</code></td><td id="fb[c" class="" style="width:375px">Muestra la ayuda de una herramienta</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ls -h</code></td></tr><tr id="197619c0-11e0-4db7-9f33-1f26e42ce9b5"><td id="|UKY" class="" style="width:262px"><code>apropos &lt;keyword&gt;</code></td><td id="fb[c" class="" style="width:375px">Busca herramientas relacionadas con una palabra clave</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>apropos text editor</code></td></tr><tr id="f0734bd7-62ea-42c3-8d29-2f79724e8202"><td id="|UKY" class="" style="width:262px"><code>cat</code></td><td id="fb[c" class="" style="width:375px">Muestra el contenido de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>cat file.txt</code></td></tr><tr id="15e1e9d6-af91-47ce-bdc9-7e22c267f493"><td id="|UKY" class="" style="width:262px"><code>whoami</code></td><td id="fb[c" class="" style="width:375px">Muestra el nombre de usuario actual</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>whoami</code></td></tr><tr id="0566d312-13fa-4977-91c6-6a16672766b6"><td id="|UKY" class="" style="width:262px"><code>id</code></td><td id="fb[c" class="" style="width:375px">Muestra información del usuario actual</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>id</code></td></tr><tr id="e563ffeb-27f4-400a-9ae0-f727a2241a1c"><td id="|UKY" class="" style="width:262px"><code>hostname</code></td><td id="fb[c" class="" style="width:375px">Muestra el nombre del equipo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>hostname</code></td></tr><tr id="19af0e3f-b771-4a89-a231-7258f5c68ffc"><td id="|UKY" class="" style="width:262px"><code>pwd</code></td><td id="fb[c" class="" style="width:375px">Muestra la ruta actual</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>pwd</code></td></tr><tr id="f508fc25-589c-4c4c-a7e8-d019ccc601af"><td id="|UKY" class="" style="width:262px"><code>ifconfig</code></td><td id="fb[c" class="" style="width:375px">Muestra información de la red</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ifconfig</code></td></tr><tr id="0a8a061e-9fc3-4cc7-bb63-d823a98f7f64"><td id="|UKY" class="" style="width:262px"><code>ip</code></td><td id="fb[c" class="" style="width:375px">Muestra información de la red</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ip addr show</code></td></tr><tr id="b94c5d43-bef4-4837-9a3c-4cfe42e1044d"><td id="|UKY" class="" style="width:262px"><code>netstat</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los puertos de red</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>netstat -tuln</code></td></tr><tr id="cfd5da27-8b70-4ee5-be27-baff3ceeeaa5"><td id="|UKY" class="" style="width:262px"><code>ss</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los puertos de red</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ss -tuln</code></td></tr><tr id="a139193d-626e-4ff6-af4e-8b55df4d4e8b"><td id="|UKY" class="" style="width:262px"><code>ps</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los procesos en ejecución</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ps aux</code></td></tr><tr id="665b5682-9c62-4aa5-acbd-37c92c0c6321"><td id="|UKY" class="" style="width:262px"><code>who</code></td><td id="fb[c" class="" style="width:375px">Muestra los usuarios conectados</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>who</code></td></tr><tr id="eb9eec1a-2a05-4d40-b4d0-ada49766096f"><td id="|UKY" class="" style="width:262px"><code>env</code></td><td id="fb[c" class="" style="width:375px">Muestra las variables de entorno</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>env</code></td></tr><tr id="15d6cc6f-d675-43a2-af44-b8ac1c3cd088"><td id="|UKY" class="" style="width:262px"><code>lsblk</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los dispositivos de almacenamiento</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>lsblk</code></td></tr><tr id="b0d1d8fb-f57e-4db9-8a27-8585230a5d97"><td id="|UKY" class="" style="width:262px"><code>lsusb</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los dispositivos USB</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>lsusb</code></td></tr><tr id="68a21cd3-4f8f-46ba-b391-8dd2dc569cbe"><td id="|UKY" class="" style="width:262px"><code>lsof</code></td><td id="fb[c" class="" style="width:375px">Muestra los archivos abiertos por procesos</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>lsof /path/to/file</code></td></tr><tr id="4cf25bb8-9209-4b1b-8e50-c337f1bf1768"><td id="|UKY" class="" style="width:262px"><code>lspci</code></td><td id="fb[c" class="" style="width:375px">Muestra información de los dispositivos PCI</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>lspci</code></td></tr><tr id="342650ea-78eb-4012-b024-7aae72c622eb"><td id="|UKY" class="" style="width:262px"><code>sudo</code></td><td id="fb[c" class="" style="width:375px">Ejecuta un comando con permisos de superusuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sudo apt-get install package</code></td></tr><tr id="6f9bbea2-e672-4682-934d-a0b9cdcc62e0"><td id="|UKY" class="" style="width:262px"><code>su</code></td><td id="fb[c" class="" style="width:375px">Cambia al usuario superusuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>su</code></td></tr><tr id="443b2fb2-437d-423b-875a-d890596910f7"><td id="|UKY" class="" style="width:262px"><code>useradd</code></td><td id="fb[c" class="" style="width:375px">Crea un nuevo usuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>useradd username</code></td></tr><tr id="3bd55619-ab5a-4ab7-9bd1-3603a9bde781"><td id="|UKY" class="" style="width:262px"><code>userdel</code></td><td id="fb[c" class="" style="width:375px">Elimina un usuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>userdel username</code></td></tr><tr id="a94d528a-ff00-4da9-8749-5eef5462c4c5"><td id="|UKY" class="" style="width:262px"><code>usermod</code></td><td id="fb[c" class="" style="width:375px">Modifica un usuario</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>usermod -aG groupname username</code></td></tr><tr id="78a0d79f-5ccb-4fdd-aa81-2a408ffe4abe"><td id="|UKY" class="" style="width:262px"><code>addgroup</code></td><td id="fb[c" class="" style="width:375px">Crea un nuevo grupo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>addgroup groupname</code></td></tr><tr id="76cff9a6-530f-40a7-949a-6e1fc5065876"><td id="|UKY" class="" style="width:262px"><code>sudo usermod -aG sudo Username</code></td><td id="fb[c" class="" style="width:375px">Agrega un usuario al grupo sudo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sudo usermod -aG sudo username</code></td></tr><tr id="a3b78466-c7f8-4d66-9f42-9cf62d8a85b9"><td id="|UKY" class="" style="width:262px"><code>delgroup</code></td><td id="fb[c" class="" style="width:375px">Elimina un grupo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>delgroup groupname</code></td></tr><tr id="fc22985e-d4a3-4b57-aa78-7cf612086282"><td id="|UKY" class="" style="width:262px"><code>passwd</code></td><td id="fb[c" class="" style="width:375px">Cambia la contraseña del usuario actual</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>passwd</code></td></tr><tr id="3133aba0-2bed-4d9a-a257-95c3a1f8a7b4"><td id="|UKY" class="" style="width:262px"><code>dpkg</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes DEB</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>dpkg -i package.deb</code></td></tr><tr id="9fdf6fee-3027-4eda-85be-dc9c800a2bf2"><td id="|UKY" class="" style="width:262px"><code>apt</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes APT</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>apt-get install package</code></td></tr><tr id="2f9f0727-e3f6-4ab3-b954-a006988bd0d3"><td id="|UKY" class="" style="width:262px"><code>aptitude</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes APT</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>aptitude install package</code></td></tr><tr id="3c8e1d96-4ac2-4529-a720-f301645fd1cb"><td id="|UKY" class="" style="width:262px"><code>snap</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes snap</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>snap install package</code></td></tr><tr id="5c4a1e42-8c7b-4b2e-a276-fd01d6e50e4b"><td id="|UKY" class="" style="width:262px"><code>gem</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes Ruby</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>gem install package</code></td></tr><tr id="8356159c-6df7-4f22-ba36-79fe06517172"><td id="|UKY" class="" style="width:262px"><code>pip</code></td><td id="fb[c" class="" style="width:375px">Gestiona paquetes Python</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>pip install package</code></td></tr><tr id="b48fbf2e-ebe0-4cd2-86b2-80fedd723fac"><td id="|UKY" class="" style="width:262px"><code>git</code></td><td id="fb[c" class="" style="width:375px">Gestiona repositorios Git</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>git clone repository</code></td></tr><tr id="2aa6d00e-2059-4430-b395-0c65156591cd"><td id="|UKY" class="" style="width:262px"><code>systemctl</code></td><td id="fb[c" class="" style="width:375px">Gestiona servicios del sistema</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>systemctl start service</code></td></tr><tr id="ab5a0958-d936-49b4-877d-5e9a45a7c9c7"><td id="|UKY" class="" style="width:262px"><code>journalctl</code></td><td id="fb[c" class="" style="width:375px">Muestra los registros del sistema</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>journalctl -u service</code></td></tr><tr id="192e5c55-4840-4436-b4ae-4dbb63d80488"><td id="|UKY" class="" style="width:262px"><code>kill</code></td><td id="fb[c" class="" style="width:375px">Detiene un proceso en ejecución</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>kill PID</code></td></tr><tr id="50fe887c-4daa-4fb3-96ee-9b89bf0f8587"><td id="|UKY" class="" style="width:262px"><code>bg</code></td><td id="fb[c" class="" style="width:375px">Ejecuta un proceso en segundo plano</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>bg</code></td></tr><tr id="de6d74a0-4e5a-4c93-b1d5-6585c5c33fa7"><td id="|UKY" class="" style="width:262px"><code>jobs</code></td><td id="fb[c" class="" style="width:375px">Muestra los trabajos en segundo plano</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>jobs</code></td></tr><tr id="384eea84-b473-479b-8c59-42338b801d65"><td id="|UKY" class="" style="width:262px"><code>fg</code></td><td id="fb[c" class="" style="width:375px">Ejecuta un trabajo en primer plano</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>fg %1</code></td></tr><tr id="2c2ff5a5-170b-4fb0-9485-68ed2a07bca3"><td id="|UKY" class="" style="width:262px"><code>curl</code></td><td id="fb[c" class="" style="width:375px">Descarga un archivo desde una URL</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>curl -O &lt;https://example.com/file</code>&gt;</td></tr><tr id="7bb637d4-2f7b-48a4-a980-466d678c00c1"><td id="|UKY" class="" style="width:262px"><code>wget</code></td><td id="fb[c" class="" style="width:375px">Descarga un archivo desde una URL</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>wget &lt;https://example.com/file</code>&gt;</td></tr><tr id="10b7e79c-346f-45c1-a581-4284dd279e56"><td id="|UKY" class="" style="width:262px"><code>ls</code></td><td id="fb[c" class="" style="width:375px">Muestra los archivos en un directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>ls</code></td></tr><tr id="a09c83c6-99c7-4bf5-9ba7-bd05f41c6baa"><td id="|UKY" class="" style="width:262px"><code>cd</code></td><td id="fb[c" class="" style="width:375px">Cambia de directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>cd /path/to/directory</code></td></tr><tr id="3883b5a4-8dfb-4690-b908-ad800608015e"><td id="|UKY" class="" style="width:262px"><code>clear</code></td><td id="fb[c" class="" style="width:375px">Limpia la pantalla</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>clear</code></td></tr><tr id="11809cd3-fa38-4896-a3e4-3fb2955cfb53"><td id="|UKY" class="" style="width:262px"><code>touch</code></td><td id="fb[c" class="" style="width:375px">Crea un archivo vacío</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>touch file.txt</code></td></tr><tr id="3985f4a9-73a1-4c59-a0b7-e04056f2ccc4"><td id="|UKY" class="" style="width:262px"><code>mkdir</code></td><td id="fb[c" class="" style="width:375px">Crea un nuevo directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>mkdir directory</code></td></tr><tr id="d90bfa6c-0633-42c6-8245-4b5467ac382b"><td id="|UKY" class="" style="width:262px"><code>tree</code></td><td id="fb[c" class="" style="width:375px">Muestra la estructura de un directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>tree directory</code></td></tr><tr id="bf7eb5d2-068f-4723-ba3c-75e3c542b93a"><td id="|UKY" class="" style="width:262px"><code>mv</code></td><td id="fb[c" class="" style="width:375px">Mueve o renombra un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>mv file.txt newfile.txt</code></td></tr><tr id="55a20301-de0f-45ed-9562-8a098f7a1b8c"><td id="|UKY" class="" style="width:262px"><code>cp</code></td><td id="fb[c" class="" style="width:375px">Copia un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>cp file.txt backup/file.txt</code></td></tr><tr id="0c68cf77-29ab-42dc-be22-2f572a4dcd6e"><td id="|UKY" class="" style="width:262px"><code>nano</code></td><td id="fb[c" class="" style="width:375px">Editor de texto en línea de comandos</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>nano file.txt</code></td></tr><tr id="f65675fd-95be-46f1-a31d-079af38e863e"><td id="|UKY" class="" style="width:262px"><code>which</code></td><td id="fb[c" class="" style="width:375px">Muestra la ubicación de un comando</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>which command</code></td></tr><tr id="3b774cb5-6653-4311-86ab-769d92e6f953"><td id="|UKY" class="" style="width:262px"><code>find</code></td><td id="fb[c" class="" style="width:375px">Busca archivos en el sistema</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>find /path/to/search -name &quot;file.txt&quot;</code></td></tr><tr id="b4b9f5a8-6fc5-4d25-befa-fbd8ff11665d"><td id="|UKY" class="" style="width:262px"><code>updatedb</code></td><td id="fb[c" class="" style="width:375px">Actualiza la base de datos de búsqueda</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>updatedb</code></td></tr><tr id="23904f08-006a-4c27-b166-9fd572e86e2e"><td id="|UKY" class="" style="width:262px"><code>locate</code></td><td id="fb[c" class="" style="width:375px">Busca archivos en la base de datos de búsqueda</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>locate file.txt</code></td></tr><tr id="a29d3c86-b265-4045-a18d-cdad16dcde37"><td id="|UKY" class="" style="width:262px"><code>more</code></td><td id="fb[c" class="" style="width:375px">Muestra un archivo de texto página por página</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>more file.txt</code></td></tr><tr id="b76d1f84-ee32-407c-bc54-8ff7bbbdd50e"><td id="|UKY" class="" style="width:262px"><code>less</code></td><td id="fb[c" class="" style="width:375px">Muestra un archivo de texto página por página</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>less file.txt</code></td></tr><tr id="3c95e904-847e-4df9-848c-b381fc6b97f4"><td id="|UKY" class="" style="width:262px"><code>head</code></td><td id="fb[c" class="" style="width:375px">Muestra las primeras 10 líneas de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>head file.txt</code></td></tr><tr id="2d7af4d8-c08a-461f-8284-8556258505e4"><td id="|UKY" class="" style="width:262px"><code>tail</code></td><td id="fb[c" class="" style="width:375px">Muestra las últimas líneas de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>tail file.txt</code></td></tr><tr id="2144b0ae-7d38-40ab-9660-2097597ee47b"><td id="|UKY" class="" style="width:262px"><code>sort</code></td><td id="fb[c" class="" style="width:375px">Ordena las líneas de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sort file.txt</code></td></tr><tr id="5be9d9ca-fd76-46b8-8f86-90990554254a"><td id="|UKY" class="" style="width:262px"><code>grep</code></td><td id="fb[c" class="" style="width:375px">Busca una cadena de texto en un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>grep &quot;search term&quot; file.txt</code></td></tr><tr id="9989378e-c561-4ed5-90e7-b13cfef8346d"><td id="|UKY" class="" style="width:262px"><code>cut</code></td><td id="fb[c" class="" style="width:375px">Extrae una sección de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>cut -d &quot;,&quot; -f 1 file.csv</code></td></tr><tr id="fae39f18-d1b9-4bcd-9c59-9460956038b5"><td id="|UKY" class="" style="width:262px"><code>tr</code></td><td id="fb[c" class="" style="width:375px">Reemplaza caracteres en un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>tr &quot;A-Z&quot; &quot;a-z&quot; &lt; file.txt</code></td></tr><tr id="d1bb76bb-0177-4f88-8b2a-2ecbcb7b913a"><td id="|UKY" class="" style="width:262px"><code>column</code></td><td id="fb[c" class="" style="width:375px">Formatea la salida en columnas</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>column -t file.txt</code></td></tr><tr id="866bc08e-0d8b-43e7-b254-9bf97ab2f1c2"><td id="|UKY" class="" style="width:262px"><code>awk</code></td><td id="fb[c" class="" style="width:375px">Procesa y manipula texto</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>awk &#x27;{print $1}&#x27; file.txt</code></td></tr><tr id="cb568b64-2a46-480c-9b71-5585fef2725a"><td id="|UKY" class="" style="width:262px"><code>sed</code></td><td id="fb[c" class="" style="width:375px">Procesa y manipula texto</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>sed &#x27;s/search/replace/g&#x27; file.txt</code></td></tr><tr id="a527b93b-2aa8-4467-8ecb-3f62f5ee45da"><td id="|UKY" class="" style="width:262px"><code>wc</code></td><td id="fb[c" class="" style="width:375px">Cuenta las líneas, palabras y caracteres de un archivo</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>wc file.txt</code></td></tr><tr id="68c513cd-f854-4128-9c90-65e85527e710"><td id="|UKY" class="" style="width:262px"><code>chmod</code></td><td id="fb[c" class="" style="width:375px">Cambia los permisos de un archivo o directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>chmod 755 file.txt</code></td></tr><tr id="8db6c727-48ad-45f4-9c6d-c655b0ad801c"><td id="|UKY" class="" style="width:262px"><code>chown</code></td><td id="fb[c" class="" style="width:375px">Cambia el propietario de un archivo o directorio</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>chown user:group file.txt</code></td></tr><tr id="b2e8e9b8-45df-4abe-ab16-6cf8e72c4fd2"><td id="|UKY" class="" style="width:262px"><code>python3 -m http.server 80</code></td><td id="fb[c" class="" style="width:375px">Inicia un servidor HTTP en el puerto 80</td><td id="&lt;~Zl" class="" style="width:321.9971466064453px"><code>python3 -m http.server 80</code></td></tr></tbody></table><h2 id="939bbf50-2779-4871-89be-cfbfe080a15d" class="">El Scripting en BASH</h2><p id="1f9fd56f-db94-4ff5-948c-0632e54acd42" class="">La creación de scripts de Bash será muy útil en cualquier entorno; en Kali, podemos automatizar tareas.</p><p id="984a5441-b92b-456b-8541-c8ae5f6cb0cd" class="">El Shell Bourne-Again de GNU (<a href="https://es.wikipedia.org/wiki/Bash">Bash</a>) es una herramienta poderosa y un motor de scripting. Podemos automatizar muchas tareas en la línea de comandos.</p><p id="1a018cfe-f320-4ffb-8450-3b51b43e9544" class="">Hay varios tipos de scripts de Shell como &quot;zsh&quot; y &quot;C Shell script&quot;, etc.</p><p id="f75185ca-43f1-4628-a1ec-d48218e48413" class="">
+</p><table id="3611ea2c-efd5-4cd4-9421-39b54e2799b8" class="simple-table"><tbody><tr id="f5ca7d65-cc40-4f5c-b334-d158afb188fe"><td id="eL@r" class="block-color-orange_background" style="width:275px"><strong>Script</strong></td><td id="mWiL" class="block-color-orange_background" style="width:894px"><strong>Descripción</strong></td></tr><tr id="22eb633d-c217-4793-b558-d79c8a7fb876"><td id="eL@r" class="" style="width:275px"><code>#!/bin/bash</code></td><td id="mWiL" class="" style="width:894px">Línea shebang que indica que el script debe ser ejecutado por el Shell Bash y normalmente se coloca en la primera línea del script</td></tr><tr id="9134f57c-a694-4d1f-aec3-b806c1dc7ab1"><td id="eL@r" class="" style="width:275px"><code>OS=Kali</code></td><td id="mWiL" class="" style="width:894px">Asigna el valor Kali a la variable OS</td></tr><tr id="faa8e107-ea03-4cf2-a93f-cd9cc3b2e921"><td id="eL@r" class="" style="width:275px"><code>echo $OS</code></td><td id="mWiL" class="" style="width:894px">Imprime el valor de OS</td></tr><tr id="5c4efba2-f123-4175-8d18-72a8c735b0e6"><td id="eL@r" class="" style="width:275px"><code>user=$(whoami)</code></td><td id="mWiL" class="" style="width:894px">Asigna la salida de whoami a la variable user</td></tr><tr id="da63fff9-9ff4-4c00-99c2-9f4374a8e56d"><td id="eL@r" class="" style="width:275px"><code>echo $user</code></td><td id="mWiL" class="" style="width:894px">Imprime el valor de user</td></tr><tr id="4cc34cf8-9acc-4e26-9ba6-821c7eebc60a"><td id="eL@r" class="" style="width:275px"><code>echo &quot;Los argumentos son $1 y $2&quot;</code></td><td id="mWiL" class="" style="width:894px">Imprime una cadena con los valores del primer y segundo parámetro posicional</td></tr><tr id="524304c6-154a-41db-b307-d0b80d4c7d7f"><td id="eL@r" class="" style="width:275px">#</td><td id="mWiL" class="" style="width:894px">Al inicio de una línea sirve para comentar el contenido, invalidando su ejecución</td></tr></tbody></table><figure id="2ec1eefe-ccfb-42dc-91dd-0f7cef55e4ad"><div class="source"><iframe src="https://player.vimeo.com/video/836593111?h=8f1ed946d0" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><p id="1da8cb0e-86e9-4c2e-bcd4-165d4b151940" class=""><strong>Existen algunas Variables que son especiales:</strong></p><table id="d16c05c5-de5f-4a20-8957-1061b3bb2ead" class="simple-table"><thead class="simple-table-header"><tr id="8ddbf65d-8c0e-4188-82e3-8883fb6de532"><th id="~avY" class="block-color-orange_background simple-table-header">Variable</th><th id="XlGO" class="block-color-orange_background simple-table-header" style="width:458px">Descripción</th></tr></thead><tbody><tr id="5ba655ec-4521-4f73-9240-73cad8ba34d4"><td id="~avY" class=""><code>$0</code></td><td id="XlGO" class="" style="width:458px">El nombre del script de Bash</td></tr><tr id="4aa2997d-0c34-47f2-b64a-621b1eaab3a8"><td id="~avY" class=""><code>$1 - $9</code></td><td id="XlGO" class="" style="width:458px">Los primeros 9 argumentos del script de Bash</td></tr><tr id="10923f7e-621a-4828-91b5-634a9d27666a"><td id="~avY" class=""><code>$#</code></td><td id="XlGO" class="" style="width:458px">El número de argumentos pasados al script de Bash</td></tr><tr id="1f4fab6f-020c-43b3-b1fc-0518ac02b4b0"><td id="~avY" class=""><code>$@</code></td><td id="XlGO" class="" style="width:458px">Todos los argumentos pasados al script de Bash</td></tr><tr id="2bbdbf0e-2610-48ef-b4de-21c7c491cd47"><td id="~avY" class=""><code>$?</code></td><td id="XlGO" class="" style="width:458px">El estado de salida del proceso más recientemente ejecutado</td></tr><tr id="d1d36f67-81c6-4480-8069-0d2107f38556"><td id="~avY" class=""><code>$$</code></td><td id="XlGO" class="" style="width:458px">El ID de proceso del script actual</td></tr><tr id="50018c16-9a81-4e23-a9ba-8c8d2d039c13"><td id="~avY" class=""><code>$USER</code></td><td id="XlGO" class="" style="width:458px">El nombre de usuario del usuario que ejecuta el script</td></tr><tr id="e143fa66-e96b-4976-aee9-76a9410befa0"><td id="~avY" class=""><code>$HOSTNAME</code></td><td id="XlGO" class="" style="width:458px">El nombre del equipo</td></tr><tr id="53c8ce3b-3779-4193-902c-085a97dbf1f6"><td id="~avY" class=""><code>$RANDOM</code></td><td id="XlGO" class="" style="width:458px">Un número aleatorio</td></tr><tr id="dfe8565e-249d-4c95-9d8c-ffd2cd4da67f"><td id="~avY" class=""><code>$LINENO</code></td><td id="XlGO" class="" style="width:458px">El número de línea actual en el script</td></tr></tbody></table><h2 id="6ad78564-a43f-417f-9279-ddc565ab3a84" class="">Creando nuestro Primer Script:</h2><p id="2ab7216e-e1a1-46c5-a9cd-f33dec83000e" class="">Vamos a crear el archivo hello_world.sh (La extensión “.sh” indica shell);  usando <strong>Gedit</strong>, que es un editor de texto muy conocido:</p><pre id="59809741-be87-40c3-913a-a17166053422" class="code"><code>kali@kali:~$ gedit hello_word.sh</code></pre><p id="fbf91a6d-ce36-4949-a230-be71802d651a" class="">El contenido del archivo será:</p><pre id="675ebade-3129-43e4-827a-21f92efa8278" class="code"><code>#!/bin/bash
+
+# Este es un comentario en mi primer script en BASH
+echo &quot;Hola BugBounty!&quot;</code></pre><p id="9ed2b2f1-2b40-4a25-8e32-cae1bae805df" class="">Graba el archivo con “Save”</p><p id="7518f354-1bf7-425a-a182-357a46429f0f" class="">
+</p><p id="a0706c64-9dda-4659-bb99-b92ff4a5c99a" class="">Ahora lo vamos a convertir en un archivo ejecutable:</p><pre id="163d7ae9-a93f-43b6-83c2-e6d36e1ec59a" class="code"><code>kali@kali:~$ chmod +x hello_world.sh</code></pre><p id="4b482078-1607-4afb-ab9c-6c892e739301" class="">Ahora lo puedes ejecutar:</p><pre id="d6834a2b-e259-4c92-91a2-7d5face62bb2" class="code"><code>kali@kali:~$ bash hello-world.sh</code></pre><h2 id="3588fea4-3087-4cb6-9385-5ab7f58c5a6d" class="">Algunos Scripts de Automatización en Linux</h2><h3 id="a0b21568-5848-4eb1-9d97-f93040318775" class="">S<strong>cript para obtener información sobre múltiples parámetros del Sistema Operativo</strong></h3><p id="72f05172-aff1-46af-8213-c44985646654" class="">Creamos un archivo llamado os.sh y lo salvamos.</p><pre id="dbe95fbb-c2c9-488c-8d2b-f0cbe77874a2" class="code"><code>#!/bin/bash
+echo &quot; System information &quot;
+echo &quot;Operating System : $(uname -a)&quot;
+echo &quot;More Info: $(cat /etc/issue)&quot;
+echo &quot;Hostname : $(hostname -s)&quot;
+echo &quot;DNS domain : $(hostname -d)&quot;
+echo &quot;Fully qualified domain name : $(hostname -f)&quot;
+echo &quot;Looopback Network address (IP) : $(hostname -i)&quot;
+echo &quot;DNS name servers (DNS IP) : ${dnsips}&quot;
+echo &quot;IP Information: $(ip a)&quot;
+echo &quot;Routing information: $(netstat -nr)&quot;
+echo &quot;Interface Traffic: $(netstat -i)&quot;
+echo &quot;Who Is Logged: $(who)&quot;
+echo &quot;Last Logged In users: $(who -H)&quot;
+echo &quot;Ram memory stats: $(free -m)&quot;
+echo &quot;Virtual memory stats: $(vmstat)&quot;</code></pre><p id="0f328e81-45b1-4624-8ad5-34c752216657" class="">Recuerda que lo debes convertir en ejecutable con chmod:</p><pre id="e1ed2083-2dbd-44fa-8b20-4be9122f717c" class="code"><code>kali@kali:~$ chmod +x os.sh</code></pre><p id="9e28d612-dd0b-4929-84d5-bc4661d3a0ce" class="">Se ejecuta:</p><pre id="30abfd1b-ca18-4fda-bfb0-60e2ce553fe7" class="code"><code>kali@kali:~$ ./os.sh</code></pre><h3 id="6452b04b-f4f7-4190-bb1e-632fe4887f22" class="">Script para Conectarse por SSH a un servidor remoto:</h3><pre id="5cdb8b44-930c-4620-960c-c848531b23f6" class="code"><code>#!/bin/bash
+set -x #Print a trace of commands
+read -p &quot;Server_IP &quot; server_name
+read -p &quot;User_name &quot; user_name
+ssh ${user_name}@$server_name</code></pre><h3 id="cc6cd95c-e62f-4a3d-8f48-78114514c1dc" class="">Script para obtener la IP de un Dominio:</h3><pre id="73b9ea4b-a260-40b9-8065-222c38cd193c" class="code"><code>#!/bin/bash
+for name in $(cat $1);
+   do
+       host $name.$2 | grep &quot;has address&quot;
+   done
+ exit</code></pre><figure id="97db006e-dee0-4d68-a65f-615b1ca5c0ce"><div class="source"><iframe src="https://player.vimeo.com/video/836599581?h=0793111569" width="100%" height="70%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></figure><h2 id="f7989871-18d2-4576-8321-a7f73c527c69" class="">Enlaces de Referencia</h2><figure id="e8e1cadb-2a44-4e1b-949e-8ef69f931801"><a href="https://www.techrepublic.com/article/how-to-use-a-bash-script-for-loop-for-system-administration-in-linux/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">How to use a Bash script for-loop for system administration in Linux</div><div class="bookmark-description">Bash scripting is every Linux administrator&#x27;s Swiss Army knife. Learn how using a for-loop in conjunction with Bash scripts can produce powerful results.</div></div><div class="bookmark-href"><img src="https://www.techrepublic.com/wp-content/themes/techrepublic/inc/images/app-icons/logo-192x192.png" class="icon bookmark-icon"/>https://www.techrepublic.com/article/how-to-use-a-bash-script-for-loop-for-system-administration-in-linux/</div></div><img src="https://www.techrepublic.com/wp-content/uploads/2021/06/bash-script.jpg" class="bookmark-image"/></a></figure><p id="d43e2cb0-282c-43df-ae7a-473e1c453cc0" class="">
+</p><p id="f626beb6-1d5b-4236-b851-2ca55cf11a75" class="">
+</p><p id="440b39e7-bfe5-4da3-9098-3c88a365456a" class="">
+</p></div></article></body></html>

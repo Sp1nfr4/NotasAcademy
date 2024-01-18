@@ -1,0 +1,705 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+	
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone-Module1 </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0dba4765-4300-4809-8c9d-5dc3615b2439" class="page sans"><header><h1 class="page-title">Cybersecurity for Everyone-Module1 </h1><p class="page-description"></p></header><div class="page-body"><figure id="416e4569-bf45-46d3-9e2c-d16522418645" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image2.jpg"><img style="width:1392px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image2.jpg"/></a></figure><p id="9dc44dea-6095-4095-8b03-689179be4ab4" class="">Cybersecurity for Everyone - Module 1</p><h1 id="448aba15-fe3e-4c45-8d4d-063888ef3561" class=""><strong>Glossary</strong></h1><h2 id="65165ac4-5610-42a3-828e-d11336aee1d0" class=""><strong>Software</strong></h2><p id="16ddfcd4-9e3c-4cca-b772-0f388327ec88" class="">Program used in computers, mobile devices, among others. For example: WhatsApp is a software.</p><figure id="9f7c5caf-647c-4b05-b4c0-984a13d6b7f7" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image3.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image3.jpg"/></a></figure><h2 id="f67630cb-4ef2-4ac3-bf98-498c94ab6b0c" class=""><strong>Default Options / Default Settings</strong></h2><p id="48d91730-3b5f-4b23-b004-c9b74a86892c" class="">These are the characteristics and parameters with which an application or software is originally installed, for example, if you buy your computer in United States, your keyboard is set to English by default.</p><figure id="085b30d8-7335-4bff-a1f9-d62e0c9b022d" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image4.jpg"><img style="width:117px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image4.jpg"/></a></figure><h2 id="0a50e56b-eb8a-4af1-99da-e3a156dee78d" class=""><strong>IP Address</strong></h2><p id="6caf2181-bf02-4d54-9668-3346d456763f" class="">An IP (Internet Protocol) address is like a phone number for your computer or other device that connects to the internet. Just like you need a phone number to make a call, your computer needs an IP address to send and receive information over the internet.</p><p id="d7da51b8-0c25-4a6e-b174-5265e659a015" class="">Think of it like your home address. Every house has a unique address that helps people find it. Similarly, every device that connects to the internet has a unique IP address that helps other devices find it.</p><p id="3a35dae5-1c3e-4c34-99d9-93840f7ae3ab" class="">These IP addresses are made up of a series of numbers separated by dots, such as 192.168.1.1. This is kind of like a street address, but for the internet. When you type in a website address, your computer looks up that website&#x27;s IP address to connect to it and load the page.</p><p id="71eab9e0-bec3-4dbe-b557-140b91467a0b" class="">There are different types of IP addresses, and some change more often than others. But the important thing to remember is that an IP address is a unique identifier that helps your device communicate with other devices over the internet.</p><figure id="d244c9e6-8e30-48e4-8d36-ed99dd6840fb" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image5.jpg"><img style="width:671px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image5.jpg"/></a></figure><h2 id="0a05c658-34d6-45c8-9c84-c16b6b05b3a8" class=""><strong>Hacker (The most Stigmatized, attacked and misunderstood word of all time)</strong></h2><p id="2d1cc4b1-79e2-4b86-8fd6-797b185dfb88" class="">Hacker in principle refers to a creative person who in an ingenious way manages to find unusual solutions to common problems, a person with the following characteristics:</p><p id="54fa72f2-ecda-4e77-9d13-3d097943d7bd" class="">Creativity, Ingenuity, Learning Capacity, Imagination, Perseverance, Patience, etc.</p><p id="46ded5e8-beb3-4b18-991b-8133ccaa1091" class="">In other words, a person worth having around when we need to solve a complex or difficult situation. For those romantics a bit older like me, the MacGyver of the neighborhood.</p><p id="c5d2955b-81d0-4bc6-8526-f22df6e90a1f" class="">Thanks to some or many &quot;uninformative&quot; media, the word hacker gives us a feeling of threat, fear, of a criminal looking to steal from us, and this is not correct; first, let&#x27;s clarify that there are several types of hackers:</p><figure id="a7c56b04-df58-43d2-b902-3ebb295d3600" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image6.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image6.jpg"/></a></figure><h2 id="544b0422-07e1-4601-bb90-5c5ba88e54df" class=""><strong>White hat Hacker</strong></h2><p id="10e4d6c6-6a44-46cd-860e-2c36f140d5d9" class="">We are those who are dedicated to protecting the information of individuals and companies to prevent cybercriminals from stealing or misusing it.</p><figure id="0c58ca63-563e-4ae4-b7a8-dac566d99885" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image7.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image7.jpg"/></a></figure><h2 id="39bac8d5-10d5-450f-a1c9-9154e04841cc" class=""><strong>Gray Hat Hacker</strong></h2><p id="cd57eb66-ba0b-42ad-a3fb-818a37bc1220" class="">They are those that can act defensively and offensively at the same time, meaning that they protect someone&#x27;s information and attack the one who is trying to steal it.</p><figure id="6fa9471a-a830-4acc-94c2-647a89146cf4" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image8.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image8.jpg"/></a></figure><h2 id="bdf82aaf-25af-4ccf-88e6-4b4b0408111c" class=""><strong>Cracker o Black Hat Hacker</strong></h2><p id="c4b5fb1c-d0a1-413a-b2a5-07173eb3dad4" class="">This IS the <strong>bad guy</strong>, the cybercriminal, the thief, the one who wants to take your data, encrypt it, and then charge a ransom to return it to you; this is the one we should be worried about, not necessarily to be afraid of, but to keep at bay and away from our data.</p><p id="3fece930-5805-4968-979d-d711711f9555" class="">Returning to the &quot;misinformative&quot; media, some people unfairly give the term &quot;<strong>hacker</strong>&quot; to any cybercriminal who misuses technologies and tools with the aim of stealing or harming us; This is a huge mistake, since the word &quot;hacker&quot; is too big for those bandits who are mostly technological ignorant people who commit their crimes with YouTube tutorials or similar, but who are nothing more than simple criminals using technologies they do not understand, but that does not make them any less dangerous; in other words, out of the 100% of cybercrime actors, I would dare to say that these are more than 95%, meaning that these are the ones you are going to face the most in the daily use of your devices.</p><p id="4c07a047-6060-4e6d-865c-a3b20ecc1fd6" class="">There are other categories of hackers, but for simple purposes, the other categories can be framed in the 3 above.</p><figure id="3c89fac1-8c7a-494f-8087-3d5e6644d573" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image9.jpg"><img style="width:418px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image9.jpg"/></a></figure><h2 id="cdcdaaf4-6b85-430f-99b9-f6907940088c" class=""><strong>Internet</strong></h2><p id="7eaf5592-3125-4365-b88c-f1fe2e7de471" class="">The internet is a worldwide network of computers, where we can share and access all kinds of information, from libraries, news, videos, sports, and an almost infinite etcetera.</p><p id="8b104c0d-67c3-4b42-843c-9edb042f5b62" class="">It is important that when you use the internet, and you manage to reach content and information in countries and places of which it may even be difficult to pronounce their names, also the whole world can access your computer in case it is not protected, and I emphasize that we understand that the internet is bidirectional.</p><p id="39d35ee8-ef98-4716-8158-106959cfc340" class="">The Internet is divided into 3 parts:</p><figure id="67eea7f9-5090-4fb0-8992-da838cedcf1e" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image10.jpg"><img style="width:586px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image10.jpg"/></a></figure><h2 id="5807c982-1162-41b5-9235-83c94ffc0706" class=""><strong>Clear Web (Equivalent to about 10% of the Internet; this is an estimate; it’s impossible to be precise about this percentage.)</strong></h2><p id="c17bc126-78a3-4889-948e-07f459c2f774" class="">This is the area you normally use; you find the information using search engines such as Google (www.google.com) or Bing (www.bing.com) among many others, or by typing in any URL (Universal Resource Locator) address such as: https://secpro.llc.</p><figure id="719035a6-be0f-41d7-8792-444934133f9a" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image11.jpg"><img style="width:620px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image11.jpg"/></a></figure><h2 id="e0e53456-ffaf-4a43-92e7-71cd914fa97e" class=""><strong>Deep Web (Equivalent to about 80% of the Internet; this is an estimate; it’s impossible to be precise about this percentage.)</strong></h2><p id="2b171fde-5563-4593-9504-03ebb946ddde" class="">This area is the largest area of the Internet, it contains a lot of information, which you will not be able to find by common means such as the search engines we mentioned before (Google, Bing), but you would have to use other tools to find information, such as metasearch engines, because these contents do not have indexes to be able to sort them.</p><p id="7bf8b65a-6b87-4ca7-a6e5-973cc70629a3" class="">Some metasearch engines you can try:</p><ul id="c3b32b36-9b32-4e86-ad3b-e717bfd62ebc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://duckduckgo.com/"><strong>DuckDuckGo</strong></a></li></ul><ul id="8dd9b6b7-accb-4b02-aec7-37aa6746567a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://search.carrot2.org/#/search/web"><strong>Carrot 2</strong></a></li></ul><ul id="cd17c12c-28a2-4695-b253-e6d5d217de24" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.dogpile.com/"><strong>Dogpile</strong></a></li></ul><figure id="995f5567-20d3-48e8-8a0a-02555f172302" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image12.jpg"/></a></figure><h2 id="509bcaa4-bd5c-4b6f-b133-4c7efad6bd2c" class="">Dark Web</h2><p id="46932390-9b34-42e4-bde0-fa4e393f6807" class="">The dark web is a part of the internet that is not indexed by traditional search engines and is only accessible using special software or configurations, such as the Tor browser or a virtual private network (VPN).</p><p id="70a08337-b356-43d5-a2cf-871f89d0c626" class="">The dark web is often associated with illegal activities, such as the sale of drugs, weapons, stolen data, and other illicit goods and services. It is also known for hosting websites and forums that promote extremist ideologies, hate speech, and other forms of illegal or harmful content.</p><p id="b273974e-eb37-4ca9-b49e-cb3896103976" class="">While not all activities on the dark web are illegal, its lack of regulation and anonymity make it a popular destination for criminals and other individuals seeking to engage in illegal or unethical activities. As such, it is important for internet users to exercise caution and use appropriate security measures when accessing the dark web or any other parts of the internet where their privacy and security may be at risk.</p><figure id="ac28ef1a-5d40-4853-beae-3a8265c0e6ca" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image13.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image13.jpg"/></a></figure><h2 id="8ce10ac0-c6f0-48c9-ba3d-3ac9e519b60d" class="">TOR Network (The Onion Routing)</h2><p id="dda090a5-b101-438e-91a7-66d19a2588da" class="">The Tor network, or simply &quot;Tor,&quot; is a free and open-source software designed to protect users&#x27; online privacy and anonymity. It works by routing internet traffic through a network of servers operated by volunteers around the world, making it difficult for anyone to trace a user&#x27;s online activities back to their physical location.</p><p id="9c939c81-57a8-4603-9036-ea5b49b639d3" class="">When a user accesses the internet through the Tor network, their traffic is encrypted and routed through several different servers, or &quot;nodes,&quot; before reaching its destination. Each node only knows the identity of the previous node and the next node in the chain, making it difficult for any one node to track the user&#x27;s traffic.</p><p id="2ee81b98-eec4-44cd-9a4e-a76781624d8d" class="">Tor is often used by individuals who want to access the internet without revealing their location or identity, such as journalists, activists, and whistleblowers. However, it is also sometimes used by individuals engaging in illegal activities, such as drug trafficking or hacking, who want to hide their online activities from law enforcement.</p><p id="c89bc1d5-2d40-4e8c-bbb6-ae6592b67c74" class="">Overall, Tor is a tool for online privacy and anonymity that can help protect users&#x27; online activities from surveillance and tracking.</p><figure id="2a55617d-4a05-4b61-a168-0ad2f55459e2" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image14.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image14.jpg"/></a></figure><h2 id="3178f0e6-26d9-430e-9498-984e2975ba47" class=""><strong>Vulnerability</strong></h2><p id="ac80cdee-0556-43a7-993a-68933485a9ef" class="">A vulnerability is a weakness or flaw found in a computer, server or software that can be exploited for a future attack.</p><figure id="1e06e932-8acc-4dbd-afd4-919e1a4ee04e" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image15.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image15.jpg"/></a></figure><h2 id="6b146d7f-4701-4a00-b1df-e172c6a19886" class=""><strong>APT (Advance Persistent Threat)</strong></h2><p id="29cfc070-0a5e-4f57-8bdc-17c0bd68539c" class="">is a very advanced type of malware specially designed for a specific target.</p><figure id="32254a94-65f5-4295-824f-15643104d6cf" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image16.jpg"><img style="width:180px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image16.jpg"/></a></figure><h2 id="61c2f51f-e9c2-49dc-b675-ad2f7c7c5bd2" class=""><strong>Malware</strong></h2><p id="c69d40d8-97a9-4061-85b4-7801f9b947e6" class="">It is any type of malicious software designed to infiltrate a computer and perform harmful activities.</p><figure id="166b819f-048e-4329-bfc2-2cd998809977" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image17.jpg"><img style="width:500px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image17.jpg"/></a></figure><h2 id="d334907f-5a40-4a52-bfa0-89e40d812cb5" class=""><strong>Backdoor</strong></h2><p id="c38f0279-2b51-46a7-b959-b7b07954a4f2" class="">Malicious code that allows an attacker to remotely access and control an infected machine.</p><figure id="889b9782-3e78-484f-8fec-86478452ac1e" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image18.jpg"><img style="width:319px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image18.jpg"/></a></figure><h2 id="047d552c-f0b8-4a84-b65b-2316486100d1" class=""><strong>Drive by Download / Malware</strong></h2><p id="cdd85e70-edbe-454c-95e7-6fa5df32b896" class="">is a type of malicious software or code which is obtained by visiting a website, viewing an email or downloading.</p><figure id="1ee0d702-2b05-4b0b-84fd-4d43db461ca8" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image19.jpg"><img style="width:447px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image19.jpg"/></a></figure><h2 id="9dc92858-8639-4c11-8f93-487f07dce325" class=""><strong>Infected Applications or Content</strong></h2><p id="0467f58c-e5a2-4b6d-a426-3ef15e760733" class="">When downloading a pirated program or downloading content from an infected portal, the possibility of encountering malware when you open the downloaded file is very high; it happens with Movies, Video, Games, Applications sites, etc. Do not worry, later we explain defense mechanisms that allow us to reduce the risk; but keep in mind that having CYBER HYGIENE is more effective than any technological mechanism.</p><figure id="b8316d07-15e0-4d53-972c-41dc7b9209e1" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image20.jpg"><img style="width:658px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image20.jpg"/></a></figure><h2 id="f0bd7265-b893-43d6-9e3b-a56281d48f94" class=""><strong>USB Devices or Similar</strong></h2><p id="dfe3483d-064f-49f8-99c2-3a259054e922" class="">Few things give more joy to a person than finding or being given a USB flash drive; I don&#x27;t know what neurons or rather what endorphin-like hormones (Pleasure Hormones) are activated every time we receive this type of gift... and guess what: it is another of the preferred means by cybercriminals to access our data; from the USB that we receive as a gift at a conference or event, to the one we find &quot;abandoned&quot; at the entrance of our company, school, university, etc. The question now arises: should I deprive myself of the joy of having new USB drives in my possession? The answer is NO; you can receive as many as you want but in this book, we will explain what to do with them to be sure that they will not cause us any harm.</p><figure id="f0e92c2a-7b48-4927-9809-04a13c606b0e" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image21.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image21.jpg"/></a></figure><h2 id="3306dc37-b50f-4107-8277-e3261dcba3f1" class=""><strong>Images, Emojis, Etc.</strong></h2><p id="9023885c-7086-4dc5-b7c6-069c3ee3e8da" class="">Who can see anything wrong with receiving a picture in a chat?; in fact, surely some of my readers have requested pictures in a chat on a social network to who they think is a beautiful lady on the other side of the screen, or a nice gentleman... And the person on the other side of the chat sends them a &quot;picture&quot; that you often must unzip or run to view it, in other words, double click on it, and bang!!, you are infected.</p><figure id="bc44fcd1-0fc1-4137-b63f-4405362ee5ab" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image22.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image22.jpg"/></a></figure><h2 id="029b3137-ce42-47a4-8f67-e095dea1a0d0" class=""><strong>Worms</strong></h2><p id="4bcb6a97-31d4-4b21-9ef7-7c2d1af76cc0" class="">Malicious software that does not need to be attached to any file to do harm; highly oriented to information theft or file encryption; they take advantage of network resources to infect all the machines connected to each other, for example infecting all the computers connected to your wireless network.</p><figure id="6576ca0f-f055-4994-8135-35b007df9f30" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image23.jpg"><img style="width:635px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image23.jpg"/></a></figure><h2 id="795adf11-a434-4d01-a6cb-50231b86d16f" class=""><strong>Denial of Service DoS Attack / DDoS</strong></h2><p id="2976acdb-ff37-4ca1-8dda-50d84f7d10db" class="">This attack seeks to prevent access to a service, saturating it with false requests by the attackers, and additionally taking advantage of the requests from legitimate users to increase the overload of the servers or systems in charge of providing a certain service; for example, when companies receive this type of attack, their website may show an error when visiting it, or load the content very slow; some examples are:</p><ul id="c58bac88-6402-4044-afe3-9eee979a7efc" class="bulleted-list"><li style="list-style-type:disc">An movie streaming service may not show any content</li></ul><ul id="b1a22b47-60d5-4d25-a50c-62fff2784711" class="bulleted-list"><li style="list-style-type:disc">A banking portal may not show the field to enter our access credentials, or you may simply not be able to connect to the website at all or you may be able to connect, but only intermittently.</li></ul><p id="13d7505d-c386-4f30-8c0e-a7f86d0f0d84" class="">There are many techniques that cybercriminals use to achieve this type of attacks; usually most involve something called flooding of packets or requests; the analogy is simple: a mother of a family with 3 small children in a store; the one asks her for chocolate, the other for ice cream, and the baby cries at the same time; the poor lady does not know what to attend first and gets desperate and 2 things can happen: she does not attend to any request or she attends to only one at a time, leaving aside the others; and here with this analogy comes an additional explanation; the issue of DoS and DDoS; the explanation is very simple: DoS means Denial of Service, where normally the origin of the attack would be only one; that is the lady only with the crying baby and she stops doing her shopping to attend the crying child, and the DDoS (Distributed Deny of Service) where the lady has the 3 children at the same time claiming her attention, that is the attack has multiple origins...</p><p id="bbaa2118-3e95-49a5-8aff-0c9336f5cf9a" class="">In the technological world these attacks are carried out with very powerful servers or with groups of machines called zombies, which we will talk about in the following definition; other types of DoS attacks are carried out thanks to weaknesses in websites (vulnerabilities) often related to programming errors or errors in the configuration of services.</p><figure id="66dbaab8-6cc8-41da-bf9b-b25d32763180" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image24.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image24.jpg"/></a></figure><h2 id="cfc2b0b9-4c91-443a-8898-a6705ad65bae" class=""><strong>Botnet</strong></h2><p id="12a8958d-61b6-4f71-9418-9e565a08feb9" class="">This is the name we give to networks of machines that a cybercriminal controls through a mechanism called &quot;Command and Control&quot;; an attacker simply instructs his Zombies (machines infected with a type of malware that gives control to the criminal) to attack the target website and thus the website could collapse if it is not adequately protected or robust enough.</p><figure id="b0829089-fb77-4c11-8cc8-e3516e20ae4f" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image25.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image25.jpg"/></a></figure><h2 id="5d953c1d-8148-435f-b5c7-040ffd2b87a3" class=""><strong>Trojan</strong></h2><p id="72889a5f-2ae2-40e3-8735-8745036e4ce0" class="">is a program that appears to be &quot;legitimate&quot; but when executed, executes the malicious code on the victim computer such as: downloaded a program to download songs from YouTube and appeared programs to improve the &quot;performance&quot; on the computer.</p><figure id="7243e027-b186-437b-9089-bb6f7ed02cf4" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image26.jpg"><img style="width:652px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image26.jpg"/></a></figure><h2 id="c57c7fa1-0dc5-49f3-98ec-5ad3136e73ca" class=""><strong>Ransomware</strong></h2><p id="7a718efa-7b12-42b6-affa-ea50c223c142" class="">Malware that encrypts computer files in order to demand a &quot;ransom&quot; for the information.</p><figure id="edc9d5d3-28c7-4c6d-8b2d-8190a7ea6ddf" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image27.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image27.jpg"/></a></figure><h2 id="354945b0-125f-425d-b043-69a53939e86d" class=""><strong>Spoofing</strong></h2><p id="b078cc8f-3525-4b53-8297-5b47a3f90ad7" class="">These are a series of techniques by which an ethical hacker or malicious attacker impersonates someone who is not the victim.</p><figure id="752afce4-dc35-4445-9fc4-a2f1880f1b06" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image28.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image28.jpg"/></a></figure><h2 id="85d1b5c6-b761-436a-b3b1-d6d4c40c8fc3" class=""><strong>Spam</strong></h2><p id="44e344e7-7fa6-4472-aa7c-720a1ef3f076" class="">It usually refers to unwanted mail, that is to say, mail that fills our inbox with junk mail from different and mostly common scam sources, like: Packages arrived with your name and you need to provide some “information” to claim them; Travel Agencies, love letters from Europe or Russia from people we have never met, lottery prizes we have not bought, lawyers&#x27; offices telling us that they have an inheritance of several million dollars or euros waiting for us and that we only have to contact them to claim it (Nigerian scam and its variants) and so on; normally you should be aware about thing too good to be true; remember the malicious actors try to convince you to fall in their traps.</p><figure id="5622e6e5-89b9-4ebf-8c95-b233eaf2e352" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image29.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image29.jpg"/></a></figure><h2 id="579828ed-5de1-46c8-a2db-9920d59c0cf0" class=""><strong>Wipers</strong></h2><p id="883844cd-8e9a-4696-8bab-063b1b7e170f" class="">Malware that erases all the information from the hard disk, a new variant was detected in 2017 which pretended to be a Ransomware, but its main objective was to erase the information from infected computers (not Petya).</p><figure id="b724cb50-c6fd-4e89-8b80-1bb61dd614e8" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image30.jpg"><img style="width:330px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image30.jpg"/></a></figure><h2 id="683af283-55d2-4c05-9fc1-7ec66c690bb1" class=""><strong>IoT (Internet of Things)</strong></h2><p id="32b9169f-dde5-4678-8f8a-ed4ef122998e" class="">Internet of things devices are everyday devices that provide access to the Internet, e.g., televisions, refrigerators, thermostats, sensors, among others (9.9 billion devices).</p><figure id="7b8e1ec4-b01d-4a51-957a-e24395958c8f" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image31.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image31.jpg"/></a></figure><h2 id="64412197-ef65-4f59-8154-a586d9e48b89" class=""><strong>Zero Day</strong></h2><p id="3d82e00c-7dd6-4fee-8653-e739c6ce0c46" class="">An attack in which an unknown vulnerability is exploited and for which there is no remediation mechanism.</p><figure id="07465fab-5467-4f9e-8256-7714895e92fa" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image32.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image32.jpg"/></a></figure><h2 id="a9fc088c-32a2-4e75-9b46-61585b500ae5" class=""><strong>Cryptocurrencies and Crypto mining</strong></h2><p id="dc36845d-aa48-4aff-a006-0bb07dd79fbd" class="">Cryptocurrencies are virtual currencies, in other words digital money, which consists of something like a very long number that results from performing many very complex mathematical operations, which are usually achieved using a lot of computing power. There are several cryptocurrencies, you have probably heard the term Bitcoin, but there are also Minecoins and Dogecoins among others; this digital money can be used to buy things on the normal internet (Clear Web) and on the dark internet (Darknet); Some Companies like Twitch accept bitcoins as a payment mechanism thru different services like <a href="https://bitpay.com/">https://bitpay.com</a>; if you want to see a list of companies that receive bitcoins as payment thru them here you can see the list: <a href="https://bitpay.com/directory">https://bitpay.com/directory</a></p><p id="b0341955-3512-4632-931a-5945b921c06b" class="">That is why cybercriminals seek to create these currencies and this creation process is called “mining” and it is called so, as if you were extracting an ore from a mine.</p><p id="d25d86e9-6f35-46a7-bfe1-7a7c913a467c" class="">Therefore, cybercriminals seek to &quot;mine&quot; these digital currencies, hijacking your computer&#x27;s resources and that is where the following definition comes in:</p><figure id="cedfcf92-c372-4a03-8d4b-94781af55445" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image33.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image33.jpg"/></a></figure><h2 id="61e7bb9b-b2af-4017-8c94-b2c5d5a20cb7" class=""><strong>Cryptojacking</strong></h2><p id="75fec5e8-c6c7-4d88-8f94-3d48495aaffc" class="">Is the unauthorized use of computers to generate cryptocurrencies, generally the infection is done through fake emails or websites infected with malicious code.</p><figure id="da1e4f06-6445-48e0-ab48-3f5fa69737b6" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image34.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image34.jpg"/></a></figure><h2 id="3434c672-d87e-42a6-905d-9de94e4fb762" class=""><strong>Phishing</strong></h2><p id="303b0af0-1681-42ee-bc94-c56919f66dd9" class="">It is known as phishing the impersonation of a person, company, among others. The attacks can be made by mail, calls and fake sites. The objective is to collect information from the victims.</p><figure id="ea63d203-58cc-4427-820c-3d49050f7e68" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image35.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image35.jpg"/></a></figure><h2 id="4b310bc5-b392-4b0d-af01-19c054baac3c" class=""><strong>Catphish</strong></h2><p id="92681a07-c438-4d09-8b70-649af21c7f24" class="">In the world of cybersecurity, a &quot;catfish&quot; or &quot;catfishing&quot; refers to a type of online deception where someone creates a fake persona or identity, often on social media or dating websites, in order to trick and manipulate other people into giving them personal information or money.</p><p id="180c512f-3aae-48c1-a406-52dc51aaa144" class="">Catfishing is a form of online fraud where the attacker pretends to be someone they are not, using fake profile pictures, fake names, and other misleading information to gain the trust of their victims. They may use these fake identities to trick people into providing sensitive information like passwords or financial data, or to lure them into a romantic relationship or other type of scam.</p><p id="6092f3d4-c882-416b-bb26-ff161ffb2713" class="">Catfishing can be very harmful, as it can lead to financial losses, identity theft, and emotional distress for the victims. To protect yourself from catfishing, it&#x27;s important to be cautious when interacting with people online, especially if they seem too good to be true. Always be wary of requests for personal information or money, and take steps to verify the identity of the people you meet online before sharing any sensitive information with them.</p><figure id="67e2a3dc-b256-46f8-9918-8eecb636e0a2" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image36.jpg"><img style="width:539px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image36.jpg"/></a></figure><h1 id="f786ea90-566c-4d7c-aa0b-4b6789bf77bf" class="">Technological Landscape</h1><figure id="fa766d1f-3e1f-4b1e-aa72-5c8bfa296ad7" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image37.jpg"><img style="width:624px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image37.jpg"/></a></figure><ul id="6f2bf55c-a4f0-43da-9e4b-562c9e2bad0c" class="bulleted-list"><li style="list-style-type:disc">Currently the use of technology in our daily lives is on the rise, from smart watches to smart cars and smart homes;</li></ul><ul id="a3436e5e-69c7-4ca1-8ace-af201f60c920" class="bulleted-list"><li style="list-style-type:disc">We already talked about the concept: IoE: Internet of Everything.</li></ul><ul id="448f1917-6278-4dab-8f38-25fb97dc9d2c" class="bulleted-list"><li style="list-style-type:disc">Globally in industries everyday improvements and solutions are implemented in technology which replace human labor.</li></ul><ul id="db431faf-7e4d-4f71-b195-9bab74d61039" class="bulleted-list"><li style="list-style-type:disc">Artificial intelligence is being implemented in many programs (software) to make decisions and improve response times.</li></ul><ul id="deed2079-df17-4ed1-881f-a2a33e335619" class="bulleted-list"><li style="list-style-type:disc">Artificial intelligence and technological solutions are expected to increase in all fields of industry in the future.</li></ul><ul id="2712db6c-2fd8-4d12-bcd4-0e8deeb6abea" class="bulleted-list"><li style="list-style-type:disc">If controls and security mechanisms for new technologies are not implemented, there is a very high risk of receiving computer attacks which would not only affect the material level (damage of devices, loss of information) but also the human level (human lives at risk).</li></ul><ul id="d7588c0c-1a40-4ca9-8b7d-7b0c94474317" class="bulleted-list"><li style="list-style-type:disc">Risk in: Vehicles, ICU, Oil, Gas, etc.</li></ul><h1 id="e35fd227-1fe2-4feb-9886-3e35eacf1df7" class="">What should we be concerned about?</h1><h2 id="f1ca7e03-8d99-4a17-99c8-c434250396a9" class=""><strong>Past Threats</strong></h2><ul id="1c8328b5-1214-47fa-bf14-b3edd31deb03" class="bulleted-list"><li style="list-style-type:disc">Worms.</li></ul><ul id="f53417b2-6c42-4e36-847b-d09e950ff451" class="bulleted-list"><li style="list-style-type:disc">Troyans.</li></ul><ul id="844ed702-749d-4ab4-bd64-0a39a2280075" class="bulleted-list"><li style="list-style-type:disc">Backdoors.</li></ul><ul id="1415ac29-5308-4df0-84ad-22268b77f939" class="bulleted-list"><li style="list-style-type:disc">False E-mails</li></ul><ul id="9272a9d9-7fa9-4741-915b-8964127fd110" class="bulleted-list"><li style="list-style-type:disc">DoS Attack.</li></ul><figure id="b17ccc38-5abd-434b-894e-6e9c464e28bc" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image38.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image38.jpg"/></a></figure><h2 id="5cdfd822-04ba-4ad9-ac48-e4d15e467940" class=""><strong>Present Threats</strong></h2><ul id="71984747-95dc-4592-adb4-01108fccbfad" class="bulleted-list"><li style="list-style-type:disc">Malware in general.</li></ul><ul id="b0ab0f95-5098-4b3b-91ca-fe6587fba893" class="bulleted-list"><li style="list-style-type:disc">Large-scale attacks (DDoS).</li></ul><ul id="6c718ca6-fb93-41f4-8ad0-ba7ff6a64198" class="bulleted-list"><li style="list-style-type:disc">Artificial Intelligence used with nefarious purposes.</li></ul><ul id="8b6deef0-fe69-460e-86b9-ba4ab5101919" class="bulleted-list"><li style="list-style-type:disc">Attacks on wireless networks (wi-fi).</li></ul><ul id="50c264fc-d035-45e1-8695-5a52c1638497" class="bulleted-list"><li style="list-style-type:disc">Ransomware.</li></ul><ul id="4b9eb8e5-5e12-4079-b22f-2c3d1202fed4" class="bulleted-list"><li style="list-style-type:disc">Wipers.</li></ul><ul id="4f9d1c11-d814-424d-83c6-3baa07d9d7c6" class="bulleted-list"><li style="list-style-type:disc">Attacks on mobile devices.</li></ul><ul id="7086b1da-2da0-4133-b5ed-c458b3693d78" class="bulleted-list"><li style="list-style-type:disc">Attacks on IoT devices.</li></ul><ul id="ec6dec8b-f9d3-428f-98f0-3dbb8ed49acb" class="bulleted-list"><li style="list-style-type:disc">APT.</li></ul><ul id="9d241f26-a453-4947-b0af-c4e67ac4bfff" class="bulleted-list"><li style="list-style-type:disc">Zero-day Attacks.</li></ul><ul id="56043518-9c3e-47de-85e4-7269eb2d813e" class="bulleted-list"><li style="list-style-type:disc">False E-mails (malicious links, combined with, malicious files).</li></ul><ul id="f0abdb5b-f3c6-4c3d-9f1b-5539c46cd1a1" class="bulleted-list"><li style="list-style-type:disc">Among Others.</li></ul><ul id="5acdc478-9409-442c-bf36-9a357bef58cb" class="bulleted-list"><li style="list-style-type:disc">Attacks on cloud infrastructures.</li></ul><figure id="fa2d69e1-a383-4081-850b-fc05627712f8" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image39.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image39.jpg"/></a></figure><h2 id="1e686486-eda0-4229-9926-0da5bf308904" class=""><strong>Future threats:</strong></h2><ul id="5dab4e58-820d-4afb-aa05-7ae93f731856" class="bulleted-list"><li style="list-style-type:disc">More Advanced malware.</li></ul><ul id="8d5956e6-e053-4335-92d9-75ba38e2f367" class="bulleted-list"><li style="list-style-type:disc">Large-scale attacks (DDoS) , new variants.</li></ul><ul id="31653a27-732c-4fcd-84d0-68598631d03a" class="bulleted-list"><li style="list-style-type:disc">Advanced Ransomware and Wipers variants.</li></ul><ul id="ca2e1380-66bf-496e-bbbb-5c28e6a0ab32" class="bulleted-list"><li style="list-style-type:disc">Increased cyber warfare between nations (We are currently in cyber warfare).</li></ul><ul id="6f8c51c6-75d3-4b32-961e-fbca49e8c574" class="bulleted-list"><li style="list-style-type:disc">Increased Attacks on critical SCADA infrastructures (thermoelectric, hydroelectric, process plants, gas pipelines, among others).</li></ul><ul id="0bef6597-d880-4cd2-b3bf-acfe855c67b6" class="bulleted-list"><li style="list-style-type:disc">Use of artificial intelligence to generate more advanced attacks.</li></ul><figure id="7e2eb8fa-7df2-42f7-8922-aea4d040a2e5" class="image"><a href="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image40.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone-Module1%200dba4765430048098c9d5dc3615b2439/image40.jpg"/></a></figure></div></article></body></html>

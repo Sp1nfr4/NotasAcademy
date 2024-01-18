@@ -1,0 +1,704 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity for Everyone - Module 3</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	user-select: none;
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="327a42ce-3412-4ff6-903a-84b9453c42a1" class="page sans"><header><h1 class="page-title">Cybersecurity for Everyone - Module 3</h1><p class="page-description"></p></header><div class="page-body"><figure id="829a980b-6825-413a-a165-3238416ddf1a" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image1.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image1.jpg"/></a></figure><figure id="b91a2202-c80d-4071-86e5-40a6cdb9915f" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image2.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image2.jpg"/></a></figure><p id="2a1701a9-07ed-42b9-afc5-54ce7ecdf9e4" class="">Cybersecurity for Everyone - Module 3</p><h1 id="2ec2ab21-e021-47e1-80c1-12357fec2228" class=""><strong>My</strong> <strong>Passwords</strong></h1><figure id="74e47e66-1724-4de2-9cf4-01324c42ffa5" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image3.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image3.jpg"/></a></figure><h2 id="a03d0d9e-d24f-439e-afee-517c678720cf" class=""><strong>How do I Choose a Secure Password?</strong></h2><p id="2c0d66e1-5214-4c5f-86c8-fccbdb1a9a12" class="">For many users, passwords are more of a nuisance than a security mechanism, and therefore, they use passwords that can be easily remembered i.e. easily guessed, such as:</p><ul id="8ec8aa63-5368-42b2-bc5b-7f7f884cbdf7" class="bulleted-list"><li style="list-style-type:disc">The word &quot;password&quot;</li></ul><ul id="8ff87415-bc1e-49fc-97d0-5c73d254236d" class="bulleted-list"><li style="list-style-type:disc">The same as the username</li></ul><ul id="96bf0603-20f6-4ff9-a40a-16377f298093" class="bulleted-list"><li style="list-style-type:disc">Birthdays or places of birth</li></ul><ul id="4787b22e-6273-493e-97eb-928a70564815" class="bulleted-list"><li style="list-style-type:disc">Family members</li></ul><ul id="4d7b0196-0dcd-43b6-a9e0-23da606a8951" class="bulleted-list"><li style="list-style-type:disc">Pets</li></ul><ul id="1c1cafe7-9671-4c1e-89d2-651b418046c0" class="bulleted-list"><li style="list-style-type:disc">Colors, foods, favorite places, etc.</li></ul><h1 id="8bdf52a7-5528-4df7-b8b9-848470247c43" class=""><strong>Common errors creating passwords</strong></h1><figure id="1816014f-4408-433e-85c2-b3495b919628" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image5.jpg"><img style="width:599px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image5.jpg"/></a></figure><h2 id="a503ece5-405b-45f4-8e47-dc17f73b39f2" class=""><strong>Error 1: Use Personal Information</strong></h2><p id="8ef71ab1-c776-43bb-ac4a-067be7fb6ce2" class="">Many people use personal info to create easy to remember passwords, for example, birth dates, ID number, name of husband, wife, children, relatives, pets, place of birth, and all the potential combinations; and because of this practice criminals steal our data!!!; it is relatively easy for the criminal to find this data on your Facebook page! or social networks, i.e.:</p><ul id="77400d53-7e88-4592-b5ef-bbc50cb2dc1f" class="bulleted-list"><li style="list-style-type:disc">Amelia0910</li></ul><ul id="fe4aed29-7caa-48aa-be5d-16cd19497737" class="bulleted-list"><li style="list-style-type:disc">Robert0414</li></ul><figure id="9c56fb09-f4da-4eeb-b0a4-ff69eb498475" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image6.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image6.jpg"/></a></figure><h2 id="8b09e582-ee62-45b4-9753-a15304ad9d2c" class=""><strong>Error 2: Passwords so Easy to guess</strong></h2><p id="82ee480a-f826-4a00-a3e5-7aefff9adfd6" class="">Create passwords that are too simple not to be forgotten; using words easily to find in a Dictionary; some of the most common passwords used by people are:</p><ul id="670f5cee-2c15-4228-b337-94daa2a6a868" class="bulleted-list"><li style="list-style-type:disc">123456</li></ul><ul id="7695e08d-0b3a-42ce-86a7-ee30a862ef2c" class="bulleted-list"><li style="list-style-type:disc">Password</li></ul><ul id="ce956d14-ab12-4bbb-b9d0-6f7b98290a9b" class="bulleted-list"><li style="list-style-type:disc">12345678</li></ul><ul id="b5b48a93-425b-4b79-9443-e2cd33431eb4" class="bulleted-list"><li style="list-style-type:disc">Qwerty</li></ul><ul id="ef708b57-0e7e-4134-8625-b4abb751d836" class="bulleted-list"><li style="list-style-type:disc">12345</li></ul><ul id="393bdf6b-088d-45ad-985c-3aba5b20174f" class="bulleted-list"><li style="list-style-type:disc">Abc123</li></ul><ul id="ba1d9f88-848e-4092-8805-c140a64f0589" class="bulleted-list"><li style="list-style-type:disc">Passw0rd</li></ul><p id="aeee94ba-e41b-4fa5-abff-14f19fd728b3" class="">They also combine City, Country and year or month and year:</p><ul id="2710761d-9cf1-42d4-959c-ee81715a5f5c" class="bulleted-list"><li style="list-style-type:disc">USA2023</li></ul><ul id="3308bbf2-70d0-4f13-bcd6-ea1e46d998a1" class="bulleted-list"><li style="list-style-type:disc">Alabama2023</li></ul><ul id="b3af01f2-92b3-409f-929d-7ecb6fc1f8d2" class="bulleted-list"><li style="list-style-type:disc">VirginiaUSA2023</li></ul><figure id="7cd9db55-1f12-49fa-ba08-5c8fe114a787" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image7.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image7.jpg"/></a></figure><h2 id="c01a554a-12c9-46da-ab5a-6c2c2839a6d6" class=""><strong>Error 3: Reuse of Passwords</strong></h2><p id="2601f70f-e64c-4873-b9aa-bb3dc067cf0d" class="">They use the same password for many services, so if the criminal manages to find it, much of your information will be compromised or a t risk.</p><figure id="ee07f03b-d186-4ab0-b959-0ad750e60f6e" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image8.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image8.jpg"/></a></figure><h2 id="eb98c85f-dc84-4bfa-9190-a1a3b09c0dba" class=""><strong>Error 4: Reusing passwords with slight differences</strong></h2><p id="85e0f994-e1af-47da-9b2c-f2526392fcc9" class="">In other words, they have 2 or three passwords and they change only one letter or symbol and with that they think they are secure or that the password is different; For example:</p><ul id="25ae8f9f-b4d4-4263-ae0a-f7aa7dddd9a5" class="bulleted-list"><li style="list-style-type:disc">Virginia2023</li></ul><ul id="01725db2-89de-433f-a9d2-79157369e52c" class="bulleted-list"><li style="list-style-type:disc">Then… Virginia2023*</li></ul><ul id="64af6cc0-370d-43b4-b630-65d4253381a8" class="bulleted-list"><li style="list-style-type:disc">Then… Virginia2023-</li></ul><ul id="f6c59b9d-c501-4e26-998c-bdae5966a446" class="bulleted-list"><li style="list-style-type:disc">Then… Virginia2023.</li></ul><figure id="fe9bbc43-ff57-4301-b84f-f19d39156e32" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image9.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image9.jpg"/></a></figure><h2 id="b97a7509-9b3c-433c-896e-a8e774ad2cd8" class=""><strong>Error 5: Not changing passwords periodically</strong></h2><p id="62d3dbe9-9c4b-44c8-87cd-fa9db6589a5d" class="">Changing passwords periodically can help prevent the use of stolen or compromised passwords obtained through data breaches or other means. If a user&#x27;s password is stolen or compromised, changing it can help prevent unauthorized access to their accounts.</p><p id="d4aa7c2d-6c21-421f-b386-6f4369e4b201" class="">Overall, changing passwords periodically is a simple but effective security measure that can help protect against unauthorized access to personal or sensitive information. It is generally recommended to change passwords at least every six months, and to use strong, unique passwords for each account.</p><figure id="61811ed1-6ea3-4358-8bd2-b99416edeadc" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image10.jpg"><img style="width:320px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image10.jpg"/></a></figure><h1 id="f25b52bd-75a1-43dc-b7e8-76448b0ebef5" class=""><strong>How does a Cybercriminal Crack My Password?</strong></h1><figure id="2d0e5e12-625b-4876-85dd-90b7f5b36c98" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image11.jpg"><img style="width:500px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image11.jpg"/></a></figure><p id="5b057620-72bc-4970-a10e-5c04635ec88c" class=""><strong>Passwords are generally cracked using one or more of the following methods:</strong></p><p id="65e09aa4-ba91-4f56-819e-b76ff76b6314" class=""><strong>Guessing:</strong> The offender based on the knowledge and research done on the person, tests words or values related to the victim manually.</p><p id="1151c21a-b54f-4bd9-875f-31af1731325c" class=""><strong>Dictionary Attack:</strong> The offender makes a list of possible passwords (dictionary) and tries them one by one.</p><p id="ec2f6f31-0f1d-4e07-802e-424c795de2cb" class=""><strong>Brute Force:</strong> The offender uses tools that try all possible combinations of letters, numbers and symbols until the password is found.</p><figure id="7cd2384e-0da8-432d-83e2-d53bda88e00a" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image12.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image12.jpg"/></a></figure><h1 id="3e06e01a-870a-424d-a3c9-e161ff67a0f3" class=""><strong>How to create a secure password…and not forget it…</strong></h1><figure id="036aa3bf-eff0-4d68-ab72-19bb95a2c855" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image13.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image13.jpg"/></a></figure><p id="83af2221-e0b4-4d35-8a69-01830cc73fba" class="">So Starting today we are going to change our passwords in this way:</p><p id="401a2963-cc02-4d5d-8cf5-3848dac72770" class="">Put several words together and mix in some symbols and numbers, for example:</p><p id="7ff6c3e7-c2d0-4ab3-8679-0996afbb1e3a" class="">Original Words</p><p id="f580a2b5-7057-4427-99fd-c712bbb01ba5" class="">Possible Password</p><p id="8bfcb8de-7f3c-4ede-968c-911df4217903" class=""><strong>Virginia Is for Lovers</strong></p><p id="58806a7e-e6b4-4d8d-92e1-6f6e52c95112" class=""><strong>V1rginiaisf0rLov3r$</strong></p><p id="66fb9313-c72e-47e1-9f23-f785459ddc9e" class=""><strong>Virginia Is for Lovers</strong></p><p id="b5ec51dd-67e1-4b78-a9e3-69ddca82b5f7" class=""><strong>Virgini@isforL0ver$</strong></p><p id="a71efece-36e2-4af1-a3c9-47ce0a7acff9" class=""><strong>Virginia Is for Lovers</strong></p><p id="3562fe19-90de-4d7d-bd39-d1b3517d65af" class=""><strong>V1rginiai&amp;f0rL0v3r$</strong></p><p id="7ddff633-eee1-447b-a235-4ad960b37fa5" class=""><strong>Florida Sunny State</strong></p><p id="ffbeca38-8fd4-43b1-b75d-ce618e8bb87b" class=""><em><strong>Fl0rida$unnySt@te</strong></em></p><p id="5a67e2d8-fefd-423b-82aa-858df1dc545a" class=""><strong>Paris-Spain-Germany</strong></p><p id="fa0bffb2-269a-4eca-b937-acbb8f2d3896" class=""><em><strong>Par1s-Sp@in-G3rman&amp;</strong></em></p><p id="f1c9879c-1115-4ffa-b248-2402fa9ec153" class="">As you can see, you can replace the 1st , 2nd  or last character in each word with a symbol, and put all of them together; we need to keep in mind that the recommended amount of characters for a password is at minimum 12 characters.</p><p id="0deebd4e-01f9-4c5c-8fb3-e87806d534f5" class="">It is useful to use spaces as well, but some portals do not allow them.</p><p id="77148155-0633-466e-911e-7f08e4e922cf" class="">You can join names of cities, books, fictional characters, whatever you want; the more personal, the better; in other words, it can be the cities you have visited since your youth, the names of the pets you have had in their order, interspersed with symbols, etc.</p><p id="886395e3-c4d4-424b-86e7-293046eb368d" class="">Main recommendations:</p><ol type="1" id="229063f9-ac47-4c86-b592-d36de7c8defa" class="numbered-list" start="1"><li><strong>The word used should not be in a dictionary</strong></li></ol><ol type="1" id="6315234c-bdae-4495-90c0-0a605acdaa9c" class="numbered-list" start="2"><li><strong>It must be long (14 characters or more)</strong></li></ol><ol type="1" id="49c81c09-aad3-4358-88ad-cf87d6fc36cd" class="numbered-list" start="3"><li><strong>Combine letters, numbers and symbols</strong></li></ol><ol type="1" id="9d1dd4a2-489f-43a8-86e5-fed664c68785" class="numbered-list" start="4"><li><strong>The simplest way to achieve this is: join several words and change some letters for numbers or symbols; for example:</strong></li></ol><p id="af08b4f6-57e9-457a-9ed4-253080fc58ed" class=""><strong>Examples:</strong></p><ul id="ee924517-5dfc-4bff-9eaa-20bb0a1a783a" class="bulleted-list"><li style="list-style-type:disc">U&amp;AH0meoftheBr4v3!</li></ul><ul id="d611a683-d29f-4055-b145-a9a790fc1a16" class="bulleted-list"><li style="list-style-type:disc">U$AL@nd0fth3Fr33&amp;</li></ul><h1 id="d502cbec-c27d-480e-97be-1a70bf8cf400" class=""><strong>How Strong Is My Password?</strong></h1><figure id="37689e7d-beb9-44f7-96fa-9d19af3e13e5" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image14.jpg"><img style="width:600px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image14.jpg"/></a></figure><p id="fe22a74e-9f27-4160-9606-5c22648e9f61" class="">ATTENTION: Do not type your password as you use it; you type something similar to your password and see the result; we are not interested in the site storing your real passwords…right?</p><p id="476aebad-6927-4b2f-8a18-2ae856979e16" class=""><strong>How Secure Is My Password</strong></p><p id="636ea1bf-8908-4f0f-a010-9142ff356c23" class="">Kaspersky Secure Password Check</p><h1 id="979425ce-3251-4ba2-8c05-2fbddbeeb3c4" class=""><strong>I have a lot of passwords, what do I do?</strong></h1><figure id="8a51551b-185b-4450-af1a-aacd113cade5" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image15.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image15.jpg"/></a></figure><p id="9145cb4b-0376-4458-bdef-07e1a25ddccc" class="">There are specialized and relatively secure tools available called Password Managers. These are tools that allow us to store multiple passwords and manage them securely:</p><p id="8ce33e91-bc63-4274-bae9-ad5322db85a8" class="">For Example:</p><ul id="08499ff1-c8a8-451f-882d-d64c2023fef8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://lastpass.com/"><strong>Lastpass</strong></a></li></ul><ul id="b856314b-3a47-45c4-87f6-b94a8e78b249" class="bulleted-list"><li style="list-style-type:disc"><a href="https://keepass.info/"><strong>Keepass</strong></a></li></ul><p id="07e48d1f-af4a-44d3-92c5-b4facbb8af76" class="">Recommendations:</p><ul id="0ff741a9-1aac-4ced-bc41-c28af6c470b1" class="bulleted-list"><li style="list-style-type:disc">Your LastPass master password must be sufficiently robust.</li></ul><ul id="245f067f-dbdd-4631-939f-27d0a2b2b3a6" class="bulleted-list"><li style="list-style-type:disc">When you are finished using your computer, log out of LastPass, so that no one else can access your passwords; if you leave the session open, anyone with access to your computer could access your services.</li></ul><p id="2b1b88f8-95a7-4af8-95e4-f55ff7ed1446" class="">There are other similar Passwords Managers such as:</p><ul id="8e8b1f02-137f-4149-ae7c-2b88bd20e6bc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://https//1password.com/es/"><strong>1password</strong></a></li></ul><h1 id="534eef5d-075b-4bd9-a2d1-e5da75a09144" class=""><strong>Security Questions...</strong></h1><figure id="8cde6f1d-5dd3-4cdd-957a-a58976d77689" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image16.jpg"><img style="width:500px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image16.jpg"/></a></figure><p id="59ccc354-a55c-4988-9654-d2af2acb46e8" class="">If we forget our passwords, we always have the alternative of security questions.</p><p id="8188d229-5972-4f71-80bd-156aa0267fc4" class="">When creating them we must put an answer that is not easy to find when checking our social networks or our online information.</p><p id="0108371a-2737-408e-b8df-274a8cacee42" class="">Otherwise, we make life very easy for the offender.</p><h1 id="4616761e-3758-4e83-bb56-c31fec27e4ed" class=""><strong>Multifactor Authentication</strong></h1><figure id="85ab9346-ed5b-42a1-966c-907326245f37" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image17.jpg"><img style="width:700px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image17.jpg"/></a></figure><p id="3ec82025-fc55-41b1-91a5-d94856747e56" class="">A final recommendation about passwords and authentication in different portals or services is that you activate what is technically called &quot;Multi Factor Authentication&quot;; This means that to enter a service, not only the key is needed, but something additional, for example something you have (A Verification Number sent by message to your cell phone) or something you are (Biometric identification, for example, your fingerprint or the pupil of your eye, like in the movies or your face like in some cell phones); it&#x27;s much more secure than just having a password.</p><p id="0e9e352e-2937-4169-8976-109fd40f1425" class="">Multifactor authentication is a security mechanism that uses several types of credentials to validate that a user is legitimate, usually combined using these factors.:</p><ul id="c563a4f1-f75b-41d0-8adb-a0887aaea8ee" class="bulleted-list"><li style="list-style-type:disc">A physical object: (what we have) Card , token , USB , credential , among others</li></ul><ul id="328aa9e4-b519-480d-8fe9-1386417d512b" class="bulleted-list"><li style="list-style-type:disc">A knowledge factor: (what we know) credential, password, pin, among others</li></ul><ul id="40bdc876-a396-4eb2-a17a-f2ba1441f81d" class="bulleted-list"><li style="list-style-type:disc">A biometric identifier: (what we are) fingerprint, iris, voice command, handwriting, among others</li></ul><p id="46634e13-c962-49ec-88e2-c76912dc08e2" class="">If one of the above factors does not match, access is blocked.</p><p id="7b8f2cb3-6369-44f9-8f76-6d94e455a2ff" class="">It is recommended to enable this mechanism to protect all our accounts.</p><h1 id="8b9c7a4f-647a-4225-8d59-724cac79813e" class=""><strong>Am I Already Hacked?</strong></h1><figure id="7d8e9ecf-65c4-4993-aeb5-e8f39ed462a6" class="image"><a href="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image18.jpg"><img style="width:650px" src="Cybersecurity%20for%20Everyone%20-%20Module%203%20327a42ce34124ff6903a84b9453c42a1/image18.jpg"/></a></figure><p id="b1e09f05-b9b3-4ea2-b3a5-53aa9c38ad0d" class="">One of the main concerns we have in this world of Internet, communications, etc. is to know: Am I already hacked? Has my data already been leaked somewhere? Has it already been sold to someone?...</p><p id="192f1a1c-b425-47c4-b9be-8fbac4be30ae" class="">This question is difficult to answer; normally the recommendation is that you carefully review your credit card and bank account statements, pay attention to your bank emails and periodically check your balances; but here we are going to show you a couple of sites that you can consult to determine if your email or portal passwords have been compromised by someone.</p><p id="a5f1037e-4c92-43dc-93b1-0285f25f6909" class="">&#x27;;--have i been pwned?</p><p id="d803072a-ffb0-4de2-9c4f-77bc8b2f712d" class="">In this site you enter your email account that you normally use to register in portals, websites, etc. and it shows you if any of the sites where you used your account and created a password was hacked.</p><p id="706566f7-6c95-4dcc-8f97-137650ec39e3" class="">There are several sites similar to this one, where you can perform a similar check:</p><ul id="13aa92d4-5d4a-4c94-88bf-f3b8a0027e08" class="bulleted-list"><li style="list-style-type:disc"><a href="https://intelx.io/">I</a><a href="https://intelx.io/"><strong>ntelx</strong></a></li></ul><ul id="01c2b153-d2e4-45b9-a35c-15e58cfcd335" class="bulleted-list"><li style="list-style-type:disc"><a href="https://spycloud.com/"><strong>Spycloud</strong></a></li></ul><ul id="d0dd32f5-c0de-44a2-b507-0b3037e1c0b5" class="bulleted-list"><li style="list-style-type:disc"><a href="https://ghostproject.fr/"><strong>Ghostproject</strong></a></li></ul><ul id="e02a5487-7022-473a-afc1-5b83803e3f27" class="bulleted-list"><li style="list-style-type:disc"><a href="https://haveibeensold.app/"><strong>Have I Been Sold</strong></a></li></ul><ul id="658dd433-b5c9-40dc-a512-f8a9c0b7f2e8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.dehashed.com/"><strong>Dehashed</strong></a></li></ul></div></article></body></html>

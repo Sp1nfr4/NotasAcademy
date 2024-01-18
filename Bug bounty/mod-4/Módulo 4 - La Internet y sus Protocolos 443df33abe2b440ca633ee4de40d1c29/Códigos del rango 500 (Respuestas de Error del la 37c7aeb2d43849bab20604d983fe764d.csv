@@ -1,0 +1,12 @@
+﻿Title,Nombre en Inglés,Nombre en Español,Definición,Ejemplo
+Código 500,Internal Server Error,Error interno del servidor,El servidor encontró un error interno o una excepción que lo impidió de procesar la solicitud del cliente.,GET /index.html HTTP/1.1 Host: http://example.com/
+Código 501,Not Implemented,No implementado,"El servidor no es capaz de manejar la solicitud del cliente, ya que el método de solicitud no está soportado o el servidor no tiene la capacidad necesaria para manejarlo.",PUT /index.html HTTP/1.1 Host: http://example.com/
+Código 502,Bad Gateway,Puerta de enlace incorrecta,El servidor actuó como una puerta de enlace o proxy y recibió una respuesta inválida del servidor ascendente.,GET /index.html HTTP/1.1 Host: http://example.com/
+Código 503,Service Unavailable,Servicio no disponible,El servidor no está disponible temporalmente debido a mantenimiento o sobrecarga.,GET /index.html HTTP/1.1 Host: http://example.com/
+Código 504,Gateway Timeout,Tiempo de espera de la puerta de enlace,El servidor actuó como puerta de enlace o proxy y no recibió una respuesta oportuna del servidor ascendente.,GET /index.html HTTP/1.1 Host: http://example.com/
+Código 505,HTTP Version Not Supported,Versión HTTP no soportada,El servidor no admite la versión HTTP utilizada en la solicitud del cliente.,GET /index.html HTTP/2.0 Host: http://example.com/
+Código 506,Variant Also Negotiates,Variante también negocia,El servidor ha detectado una referencia circular en la lista de variantes negociables para el recurso solicitado.,GET /index.html HTTP/1.1 Host: http://example.com/
+Código 507,Insufficient Storage,Espacio de almacenamiento insuficiente,El servidor no puede crear o modificar el recurso solicitado porque no hay suficiente espacio de almacenamiento libre.,PUT /large-file.mp4 HTTP/1.1 Host: http://example.com/ Content-Type: video/mp4 Content-Length: 1000000000
+Código 508,Loop Detected,Bucle detectado,El servidor ha detectado una referencia circular en la solicitud del cliente.,"GET /resource1 HTTP/1.1 Host: http://example.com/ If-None-Match: ""123"" If-Match: ""456"""
+Código 510,Not Extended,No extendido,La solicitud del cliente incluyó una extensión que el servidor no soporta.,GET /index.html HTTP/1.1 Host: http://example.com/ X-Custom-Header: value
+Código 511,Network Authentication Required,Se requiere autenticación de red,El cliente debe autenticarse con la red antes de poder acceder al recurso solicitado.,GET /secure-page.html HTTP/1.1 Host: http://example.com/ Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==

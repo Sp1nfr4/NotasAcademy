@@ -1,0 +1,11 @@
+﻿Title,Nombre en Inglés,Nombre en Español,Definición
+Código 200,OK,Correcto,La solicitud se ha completado correctamente y el servidor ha enviado una respuesta.
+Código 201,Created,Creado,El recurso se ha creado correctamente en el servidor.
+Código 202,Accepted,Aceptado,"El servidor ha aceptado la solicitud, pero aún no la ha procesado por completo."
+Código 203,Non-Authoritative Information,Información no autorizada,La respuesta del servidor no es la fuente de autoridad para el recurso solicitado.
+Código 204,No Content,Sin contenido,"El servidor ha completado con éxito la solicitud, pero no hay contenido para enviar en la respuesta."
+Código 205,Reset Content,Contenido restablecido,El servidor ha completado con éxito la solicitud y el cliente debe restablecer su vista.
+Código 206,Partial Content,Contenido parcial,El servidor ha cumplido parcialmente la solicitud GET del cliente.
+Código 207,Multi-Status,Estado múltiple,La respuesta del servidor es una respuesta XML que contiene información sobre varios recursos o estados HTTP.
+Código 208,Already Reported,Ya reportado,La respuesta del servidor ya fue reportada en una respuesta anterior y no se enviará de nuevo.
+Código 226,IM Used,IM utilizado,El servidor ha completado con éxito la solicitud y la respuesta es una representación de los recursos resultantes.

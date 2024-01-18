@@ -1,0 +1,704 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var links = document.querySelectorAll('a');
+	  for (var i = 0; i < links.length; i++) {
+		links[i].setAttribute('target', '_blank');
+	  }
+
+		const elementosConClaseImage = document.querySelectorAll('.image');
+
+		// Recorre los elementos y quita la propiedad "href" de las etiquetas <a> dentro de ellos
+		elementosConClaseImage.forEach(elemento => {
+		const etiquetasA = elemento.querySelectorAll('a');
+		etiquetasA.forEach(etiqueta => {
+			etiqueta.removeAttribute('href');
+		});
+		});
+	});
+</script>
+<html oncontextmenu="return false" ><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Cybersecurity For Everyone - Module 2 </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+	/* user-select: none; */
+}
+
+img {
+	pointer-events: none;
+}
+
+figure > a {
+	pointer-events: none;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+	user-select: all;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="81183718-a929-468e-8608-0ac8fe1d652e" class="page sans"><header><h1 class="page-title">Cybersecurity For Everyone - Module 2 </h1><p class="page-description"></p></header><div class="page-body"><figure id="4a462330-d45a-4080-af04-8dd8198ef51e" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image1.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image1.jpg"/></a></figure><figure id="8ef6c830-e260-4184-8d44-65b7ab2822c5" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image2.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image2.jpg"/></a></figure><p id="a9fa4f4c-af0c-4d48-8860-6301a826e945" class="">Cybersecurity For Everyone - Module 2</p><h1 id="926b394c-2274-4dd1-9257-7c0a122ff2df" class=""><strong>How do I protect Myself Online?</strong></h1><figure id="d795401f-0985-4189-a1dd-41a7c7bbf73a" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image3.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image3.jpg"/></a></figure><h1 id="cfbd5b27-7320-4968-80c3-d5d6fe9abec7" class=""><strong>What Does the Internet Knows About Me? (And What a Criminal Could Use)</strong></h1><figure id="2824373d-aac2-4673-b056-c19ec4ceb775" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image5.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image5.jpg"/></a></figure><p id="8e33c475-b356-41b1-b64a-a689ce105910" class="">A frequently asked question is: how much does the internet know about me; the answer is: a lot!, as we are going to see in the travel of this course, we are going to analyze our “Digital Footprint”; remember, each interaction you execute in internet, leaves different traces; don&#x27;t worry, let&#x27;s find out together; let&#x27;s start by instance with our photos or images with our face on them.</p><h1 id="f2bfd6ca-9af3-4935-9a1e-438b34781b6e" class=""><strong>Your Pictures on The Internet and Hunting Catphish (Fake profiles)</strong></h1><figure id="1e279ac3-4334-4cca-8023-f38dd2dc16b9" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image6.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image6.jpg"/></a></figure><p id="a3749b02-3e5c-4d90-8bd4-550df9d52435" class="">If you want to know which websites are showing your photos, or images with your face, or if your photos are being used fraudulently by someone, like in a fake Social Network Profile, we have many useful tools to find out easily and quickly; let&#x27;s start with an example that will help us to illustrate each.</p><p id="15a2fd5f-0eb4-4fcd-af9f-fd85037901fb" class="">Tools:</p><ul id="e60653ef-6870-41b1-8057-0f7d63162c24" class="bulleted-list"><li style="list-style-type:disc"><a href="https://google.com/"><strong>Google</strong></a></li></ul><ul id="3f172179-f7b4-499c-9c7b-751cd4044c08" class="bulleted-list"><li style="list-style-type:disc"><a href="https://tineye.com/"><strong>TinEye</strong></a></li></ul><ul id="0e7d966a-01c7-41fb-aa45-1f29235324df" class="bulleted-list"><li style="list-style-type:disc"><a href="https://yandex.com/"><strong>Yandex</strong></a></li></ul><ul id="9e1f28ad-1423-457c-9871-d495ba3feb4f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pimeyes.com/en"><strong>PimEyes</strong></a></li></ul><h1 id="9824c420-9b2f-4156-b4d8-a6fef0607961" class=""><strong>Metadata</strong></h1><figure id="15644ded-75c6-45ab-8889-00bb0728b473" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image7.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image7.jpg"/></a></figure><p id="05c369eb-badd-4759-97d4-c08bd452a7e5" class="">Now let&#x27;s talk about a topic that is very interesting and important; technically we call them METADATA, but don&#x27;t worry the concept is extremely simple: metadata is: data about data, just as it sounds; let&#x27;s illustrate it with an example: if we take any book, on its cover we will see the title of the book and maybe its author (that information would be the equivalent of the file name), but if we want to know what chapters it contains, date of publication, edition, etc. we would have to take the book, open it and look for that data <strong>inside</strong> the book. That is the equivalent to the METADATA; not the content of the book itself but is information related to the book contained in the same book.</p><p id="736e4144-67fd-411d-b733-aec33869e007" class="">The issue we are interested in, is the data contained within a file, which we normally do not see, but which become very useful to an attacker; for example, what device a photo was taken with, its geolocation at the time it was taken, the author or creator of the file, the Operating System of the device on which the file was created or last edited, etc.</p><p id="a5c9cd20-f7d8-4048-8208-b3f3fdbe6dee" class="">Having said the above, I want you to think about all the files, images, videos, that you have sent by mail, uploaded to web pages, or shared by any other means; how much of your information did you deliver along with the files?</p><p id="f601d59b-b829-4e9e-9080-075b7a37f62d" class="">We can&#x27;t do anything with the past, but we can with the present and the future, so if you want to know what data your files have inside, let’s find out!</p><p id="18a050f9-e287-4b57-ad3e-3c12effc736d" class="">We are going to explain that graphic files, in other words, photos have different metadata than other files; photos usually reveal much more information, especially if you took them with your cell phone; to practice the Lab, we are going to use an online tool called:</p><ul id="a2dc1ee4-7509-44f3-8dc2-cbd34321bda4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://jimpl.com/"><strong>Jimpl</strong></a></li></ul><p id="05e749de-2779-4401-bf90-f4d187f89ca9" class="">If you don&#x27;t want to try with your files first, you can use a couple of sample photographs:</p><p id="b4e7cbc2-86d1-419a-944a-763044036d9c" class=""><a href="https://github.com/ianare/exif-samples/tree/master/jpg/gps"><strong>Sample Images</strong></a></p><h2 id="5e631e34-1fce-4279-8975-3101e89f21a7" class="">Metadata in Documents</h2><p id="aec2b1bb-3439-49cb-a2a3-81dd236cd901" class="">Metadata in a document refers to information about the document itself, such as its author, date of creation, file size, format, and keywords. It can also include information about the document&#x27;s content, such as the title, subject, and summary.</p><p id="60257d95-f553-4b30-9060-358be6340201" class="">Metadata is often hidden from the user and can be accessed and viewed by software applications that can read and interpret it. This information can be useful for organizing and searching for documents, as well as for understanding the context and history of the document.</p><p id="d1b3f60c-184c-40a8-9abf-2eac27f6ec83" class="">For example, if you create a Word document, the metadata might include the document title, author name, date of creation, and keywords that describe the content. This information can help you locate the document later by searching for specific keywords or by sorting the files by date or author.</p><p id="f08351c7-c321-4398-930b-84acac003832" class="">In summary, metadata is information that provides context and details about a document and its content, and it can be used to help organize, search, and manage documents.</p><p id="75117159-3ca5-4731-9282-e85ac294bacd" class="">Tools:</p><ul id="3db863ab-ddf3-4b85-b207-4e449679b1cd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.extractmetadata.com/"><strong>ExtractMetadata</strong></a></li></ul><figure id="adcc598f-e1b3-40ea-8c76-f2bcd278bd8a" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image8.jpg"><img style="width:500px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image8.jpg"/></a></figure><h1 id="97d31d3a-25af-4205-867f-58b05c999ae5" class=""><strong>Removing the metadata</strong></h1><figure id="c8426a93-65cb-4e2f-81a6-2c17de20f169" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image9.jpg"><img style="width:500px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image9.jpg"/></a></figure><p id="ab3eb7e3-9090-43cb-9718-37dda1f319fa" class="">It&#x27;s very simple; if you use windows for example, you can go to file explorer, select the photo, image, or document you want to delete its metadata and right click, properties.</p><figure id="a7a905b9-9aed-4d0b-aacf-4e58cbaf8ef8" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image10.jpg"><img style="width:361px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image10.jpg"/></a></figure><h1 id="afa8bdc6-9152-4448-a307-9ece7a078b1c" class=""><strong>Cellphone Number Search</strong></h1><figure id="2579d805-7877-49bc-97fb-8f4a93398479" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image11.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image11.jpg"/></a></figure><p id="50a10d1c-4982-4074-aa87-74edf6fd47c8" class="">Is very common to receive unsolicited, potentially malicious calls or SMS ; and is important to know how to search the true origin of the communication.</p><p id="40c40bfa-b2c6-4c5c-aeec-c8f3df3e6c8a" class="">There could be several reasons why you may need to search for an unknown cell phone number. Here are a few possible scenarios:</p><ol type="1" id="22138429-503a-4158-81c6-fc876bf65eb4" class="numbered-list" start="1"><li>Missed call or text message: If you receive a call or text message from an unknown number, you may want to find out who it is so that you can decide whether to respond or not.</li></ol><ol type="1" id="3d5b8833-94d9-4212-beaa-b1349273362d" class="numbered-list" start="2"><li>Harassing or spam calls: If you are receiving repeated calls from an unknown number and suspect that it might be a spam or harassing call, you may want to identify the caller so that you can take appropriate action.</li></ol><ol type="1" id="65868ed9-f8f4-4cd7-8125-17a6f2009b5b" class="numbered-list" start="3"><li>Business purposes: If you are in business, you may need to search for the contact details of potential clients or partners, and sometimes, all you may have is their phone number.</li></ol><ol type="1" id="cad01e9c-7008-4dae-b5f9-f88132932637" class="numbered-list" start="4"><li>Reconnecting with someone: If you have lost touch with someone and only have their phone number, you may want to find out if it is still active and if they are reachable.</li></ol><ol type="1" id="bde0c05c-f533-4a14-8d72-949f76a38b26" class="numbered-list" start="5"><li>Safety concerns: If you have a concern for your safety, you may want to identify the person behind an unknown number before you decide whether to answer their call or not.</li></ol><p id="7ce58534-351f-43c1-927b-3d22f332ddf3" class="">There are many tools that allow us to find out who owns the number we have doubts about or want to check; for this we can use:</p><ul id="e791a6b0-548b-489e-93c5-16177991cc21" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.truecaller.com/"><strong>True Caller</strong></a></li></ul><ul id="63bf3fe2-c7c2-4f49-a609-16103489c9bc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.revealname.com/reverse-phone-detective"><strong>Reveal Name</strong></a></li></ul><h1 id="817e065d-3b73-4d9a-b6df-9f040d90fd11" class=""><strong>Google yourself</strong></h1><figure id="f5815228-ce1f-48ab-b481-21d5697f8f81" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image12.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image12.jpg"/></a></figure><p id="665a97ca-b59f-4aa1-9bb0-4aad9f122a51" class="">Search engines help us find information about many things including people; we can use different search engines and complement our search with something called operators that are simply words that help us refine the results obtained; let&#x27;s see an example:</p><p id="11bbc0e4-e1ec-4d12-9e07-45d45df27002" class="">Search engine: <strong>Google.com</strong></p><p id="c8ce3bc9-1f96-4106-b907-2cb7af016826" class="">Operator: site</p><p id="f7a86f74-dac6-4fd5-b0dc-3b127e2aa9b4" class="">There are many more operators for each search engine; if you wish to learn more about this topic, you can visit:</p><p id="33d13701-aef0-4215-af52-2e0b203a0c9c" class="">Sites explaining Google Operators:</p><ul id="3ad23869-bb0d-4348-bb56-20877c0b06f3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://support.google.com/websearch/answer/2466433?hl=en"><strong>Google Support</strong></a></li></ul><ul id="ad4861c8-fef1-48fc-9a52-9bfe1abcf713" class="bulleted-list"><li style="list-style-type:disc"><a href="https://ahrefs.com/blog/google-advanced-search-operators/"><strong>Ahrefs</strong></a></li></ul><ul id="843fe788-912d-4d06-b911-26f713baf2ed" class="bulleted-list"><li style="list-style-type:disc"><a href="https://kinsta.com/blog/google-search-operators/"><strong>Kinsta</strong></a></li></ul><p id="56deaf9a-061f-4cec-9b6b-7692d71cff0d" class="">Bing Operators:</p><ul id="847b547e-93ff-46b9-8bb0-836db693e9c2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://seosly.com/blog/bing-search-operators/"><strong>Seosly</strong></a></li></ul><ul id="a667cdf5-217e-4389-ad5e-1255593ac698" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.lifewire.com/bing-advanced-search-3482817"><strong>Lifewire</strong></a></li></ul><h1 id="8ee4b300-412f-4472-90be-8381fa2d1c61" class=""><strong>My Username</strong></h1><figure id="162accbc-099c-4994-85c2-edc10403b810" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image13.jpg"><img style="width:365px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image13.jpg"/></a></figure><p id="15b6b074-1ddf-429a-b6b2-4f9f15a4adc1" class="">Something very normal for everyone is to use the same user name for each portal or site in which we register; for example, if I use robert.smith@gmail.com, it is likely that I also use robert.smith@hotmail or @robert.smith as my twitter user;</p><p id="9f17ae32-2889-47b9-b149-b4ab481772d1" class="">Then it would be interesting to know if someone else uses that same username or validate if we have created profiles on sites we don&#x27;t even remember and maybe we would prefer to close those open accounts.</p><p id="87b6b1ed-372a-4f35-a0ce-b8387f04ad55" class="">There are several tools that allow us to search in multiple places for our username:</p><ul id="511ef35f-3aca-4644-ac08-45d79ec63bc9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://knowem.com/"><strong>Knowem</strong></a></li></ul><ul id="f280d615-1669-4435-87b5-b204b3459b2a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://namechk.com/"><strong>namechk</strong></a></li></ul><h1 id="66b1e71a-f705-4a03-937b-edc7e9dd17e9" class=""><strong>How do I request to cancel or remove my account in different portals?</strong></h1><figure id="7b36b01e-b8be-4356-93c1-6ca05fa5d65f" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image14.jpg"><img style="width:316px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image14.jpg"/></a></figure><p id="120f769d-6e6d-4d8d-a9b4-7d64a504a0a7" class="">Remove your account from some specific portals, sometimes is not an easy process because companies doesn’t like to see you go, but there are different sites that help us or give us indications and instructions about how we can remove ourselves from different places; In these  sites you can find out the process for suppliers to remove your data from different portals, they give you the contact emails, etc.</p><ul id="ad96261a-15b9-4179-af7b-d4c565046c22" class="bulleted-list"><li style="list-style-type:disc"><a href="https://justdeleteme.xyz/"><strong>Just Delete Me</strong></a></li></ul><p id="b0c6129c-4890-4769-9dbc-65068f326d09" class="">And these other sites offer similar instructions:</p><ul id="56e3d9bc-415b-4ba3-97fc-ab9089deb540" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.accountkiller.com/en/home"><strong>Account Killer</strong></a></li></ul><ul id="e0827c43-47ff-4f87-a8d0-57182ee6801e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.justdeleteaccount.com/"><strong>Just Delete My Account</strong></a></li></ul><h1 id="e7f821b4-e9bb-48b1-9c88-4dfaf1e1375e" class=""><strong>Managing your Privacy (Tips)</strong></h1><figure id="ed90439a-f28d-4b78-9bcb-5db053843f7b" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image15.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image15.jpg"/></a></figure><ul id="a46b8ab6-a0b0-47c5-a74f-84e2049c32ce" class="bulleted-list"><li style="list-style-type:disc"><strong>In social networks there are privacy settings in which you can manage access to your posts and content.</strong></li></ul><ul id="ad7e42e5-8815-4e9a-b29d-4fd3fca7f5ae" class="bulleted-list"><li style="list-style-type:disc"><strong>Do not accept requests from unknown people or fake accounts on social networks.</strong></li></ul><ul id="bd98c19a-2264-4951-8c25-62837386d823" class="bulleted-list"><li style="list-style-type:disc"><strong>Control the number of posts you make, it is not necessary for your friends and followers to know everything you do during the day.</strong></li></ul><ul id="c3f7a7b5-beed-4ef8-9aeb-0803aa23498d" class="bulleted-list"><li style="list-style-type:disc"><strong>It is recommended not to use geolocation in the photos and / or publications that are made in social networks.</strong></li></ul><ul id="69ffe9b6-3244-4c06-b12c-09e12f2a5111" class="bulleted-list"><li style="list-style-type:disc"><strong>Disable the option to display social network profiles in search engines (Facebook).</strong></li></ul><figure id="b59703bf-920c-4761-80a5-2caaa12ffa22" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image16.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image16.jpg"/></a></figure><figure id="2588ebbc-5bac-4a66-b93c-60dd4b2b26eb" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image17.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image17.jpg"/></a></figure><h1 id="a09c30c9-51c4-42bc-a40e-011c86467965" class=""><strong>Testing your Privacy</strong></h1><figure id="3038f831-31ad-4389-891d-0fe723783333" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image18.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image18.jpg"/></a></figure><p id="20046582-ca23-4865-a702-8f1dd1118f00" class="">Tools to know how anonymous we are on the Internet:</p><ul id="e32965fd-1e3c-4f5b-b1b5-2607ff4561d1" class="bulleted-list"><li style="list-style-type:disc"><a href="http://centralops.net/"><strong>Centralops</strong></a></li></ul><ul id="8ec42a7f-081e-41f7-a7ff-ff7563251093" class="bulleted-list"><li style="list-style-type:disc"><a href="https://panopticlick.eff.org/"><strong>Panopticlick</strong></a></li></ul><ul id="ae1ef35c-936c-40c4-82a4-336f290bad4f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.privacytools.io/"><strong>Privacytools.io</strong></a></li></ul><figure id="004f76eb-9e71-44d0-92fb-4bd17e9b643f" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image19.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image19.jpg"/></a></figure><h1 id="38c750a8-9555-4dda-acf0-23e483a8de49" class=""><strong>Privacy Oriented Internet Browsers</strong></h1><figure id="5338e1b8-47ee-4db0-a3ef-d4d53d2717d2" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image20.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image20.jpg"/></a></figure><p id="6b712b53-d67d-48dc-87ff-a2a649335725" class="">Privacy browsers, are web browsers designed to protect users&#x27; online privacy and security. These browsers incorporate various features and technologies to help users surf the internet with greater privacy and security.</p><p id="27f7bc4b-3035-4f31-97f8-a570cb605c18" class="">Some of the key features of privacy browsers include:</p><ol type="1" id="b7e94f61-0883-4add-8b5e-ecc103bb008f" class="numbered-list" start="1"><li>Ad blocking - Privacy browsers can block ads and trackers, preventing them from collecting users&#x27; data and following their online activities.</li></ol><ol type="1" id="d5dca0a2-f441-41c6-a194-9a93f8b30491" class="numbered-list" start="2"><li>Fingerprinting protection - Privacy browsers can prevent websites from collecting unique information about users&#x27; devices, such as browser type, fonts, screen size, and more.</li></ol><ol type="1" id="16c59ac3-68ad-4502-bc8c-c87ca2c3fc86" class="numbered-list" start="3"><li>HTTPS upgrades - Privacy browsers can automatically upgrade insecure HTTP connections to secure HTTPS connections, ensuring that users&#x27; data is encrypted and protected.</li></ol><ol type="1" id="335f620c-4e40-4124-95a0-a92e7449b94e" class="numbered-list" start="4"><li>Private browsing mode - Privacy browsers offer a private browsing mode that doesn&#x27;t store users&#x27; browsing history, cookies, or other data.</li></ol><ol type="1" id="5ba1975c-c67a-4c78-ab54-b77500f1c15c" class="numbered-list" start="5"><li>Tor integration - Some privacy browsers offer integration with the Tor network, which can help users further anonymize their online activities.</li></ol><p id="6377699b-8340-4ca5-831c-7d25dc93541f" class="">Overall, privacy browsers are designed to give users greater control over their online privacy and security, helping to protect them from unwanted tracking, surveillance, and data collection.</p><p id="998c05e3-acad-4d1c-8b00-1254920fccb5" class="">Privacy Oriented Browsers:</p><ul id="2d85895d-c991-4d36-97f4-6e42736d526a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://brave.com/"><strong>Brave</strong></a></li></ul><ul id="aaa8fc20-07c1-47d7-a5f0-dbf02d625b96" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.epicbrowser.com/"><strong>Epic Browser</strong></a></li></ul><h2 id="80c4b833-5380-4391-94e0-5042508c2bf9" class=""><strong>Brave</strong></h2><h2 id="f6e3c497-98b8-4ee8-9518-5cc28d62c8f1" class=""><strong>Epic Browser</strong></h2><h1 id="9a92fd86-4a94-4457-badb-648a8a68addc" class=""><strong>How do I browse safely?</strong></h1><figure id="3f3141bc-3192-4c01-bea1-95cf86322d9d" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image21.jpg"><img style="width:601px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image21.jpg"/></a></figure><p id="805c9b90-2394-49dc-b0b1-06d1c661ae59" class="">If you don&#x27;t want to use a Privacy Oriented Browser, you can install some tools (Add-Ons) in your regular browser (Firefox, Chrome, etc) to increase you Security and privacy; Some of the recommended tools are:</p><p id="b806d939-4363-4a49-8a84-93a5dc59b77e" class=""><strong>Addon:</strong> Netcraft</p><p id="50ef389c-5e29-4250-9518-26e80fc287bd" class="">This extension compatible with Firefox, opera and chrome helps us to detect sites with bad reputation or that are impersonating a legitimate site (Phishing).</p><figure id="15b624d2-048c-44f2-a69f-1fc90449d784" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image22.jpg"><img style="width:559px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image22.jpg"/></a></figure><p id="bac6eb90-8fa4-46cb-9514-994c4294483e" class=""><strong>Addon:</strong> <strong>Ghostery</strong></p><p id="642712ba-f175-4a09-883f-7ed951fb301c" class="">Ghostery is a solution that helps us to detect and block ads, tags and trackers. It can be installed as a Firefox and chrome browser add-on for computers (Linux, Mac OSX and Windows).</p><p id="eef96fb1-359f-4c6a-a6e2-bdf4388a0c31" class="">On mobile devices (Android, iOS) Ghostery can be installed as a browser.</p><figure id="95c44b5e-e0a9-46bb-87bc-9f099f7f4e27" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image23.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image23.jpg"/></a></figure><p id="2b3e5545-2bca-44fa-9c6e-6265b299ca89" class=""><strong>Addon:</strong> Adblock Plus</p><p id="4534b634-3fcd-4fbf-b0e3-726d4dd8f1a0" class="">It is a blocker of pop-up windows and advertising, this add-on is available for all major browsers (Chrome, Firefox, Opera, Safari and Internet Explorer), it is also compatible with Android (Adblock browser).</p><p id="a3deff49-addc-4973-911f-7fe9458ac882" class=""><strong>Addon:</strong> No Script</p><p id="33ef1155-0d72-4b27-aa6c-6d2326334dcb" class="">No Script is an extension for Firefox and Firefox based browsers such as monkey, among others. This extension allows us to restrict the execution of code (java, JavaScript, flash) and plugins on websites.</p><figure id="5678ccc0-a1ca-474c-a45b-7e1384e503bd" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image24.jpg"><img style="width:128px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image24.jpg"/></a></figure><p id="c69da5b8-0d44-434f-8c17-0a23818d234f" class=""><strong>Addon:</strong> Ublock Origin</p><p id="199a2279-f5f7-46df-a907-40863b9f80a6" class="">Ublock Origin that allows us to filter content and advertising on the Internet, this extension is compatible with Firefox, Safari, Chrome, Chromium, Opera and Microsoft edge browsers.</p><figure id="135683db-2547-4f1f-afba-54eb44d314fe" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image25.jpg"><img style="width:640px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image25.jpg"/></a></figure><p id="d28156e9-3306-47b4-8a88-9856db7233c3" class=""><strong>Addon:</strong> <strong>Https Everywhere</strong></p><p id="96a1b7ca-865b-449e-a8db-e99378c10c6c" class="">It is an extension compatible with all major browsers that requires the use of encrypted connections when browsing websites.</p><h1 id="0ecd93b4-5a2b-4e67-b0c0-e56c10fe9837" class=""><strong>VPN (Virtual Private Network)</strong></h1><figure id="ed18c5ee-1bb8-4d6a-aaea-c5d54f642585" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image26.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image26.jpg"/></a></figure><p id="b1ffb1db-8aea-462c-a144-7d013e1d4e5a" class="">If you want even more anonymity and protection about your communications, you can always use a VPN; but first: What is a VPN?</p><p id="774d9b21-d76c-4f02-ab41-5bcb7e4cb161" class="">It&#x27;s very simple; let&#x27;s think of our internet connection as a highway; then we build a tunnel where cars, trucks, etc. are going to travel over that same highway; if someone looks at the tunnel from the outside, they only see the construction, but have no idea how many cars, trucks or what kind of vehicles are traveling through the tunnel; that&#x27;s what a VPN does; it creates an encrypted channel within your normal connection so you have a higher level of privacy.</p><p id="97c78650-c0a9-4d86-bee4-89dd423a1f62" class="">In other words, a VPN creates a secure tunnel between your device and the internet, which keeps your online activity hidden and your personal information safe. It also allows you to access the internet as if you were in a different location, which can be helpful if you need to access content that is restricted in your country.</p><figure id="97d6f6d5-bc4c-45d9-94f0-a939cad15f71" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image27.jpg"><img style="width:700px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image27.jpg"/></a></figure><p id="4c440ed5-79a2-40f7-a992-668a0f0388b0" class="">There are many VPN services, some free, others paid; the recommendation is that if you are interested in a VPN you should look for an affordable but paid VPN; remember that when a product is free.... YOU are the product, in other words, NOTHING is really free.</p><p id="86840ef7-d354-4fb0-8bf2-397f74ff0626" class="">If you want to select a VPN service, you can take into account factors such as privacy, anonymity, price, features, etc.</p><p id="89576d4e-c488-4812-9f55-fcd90155e59d" class="">I personally use a couple of VPN services that works fine for my needs, I mean, good speed and bandwidth and by other hand price:</p><ul id="4154201a-cf41-4ce6-88e2-6a2612ffebc5" class="bulleted-list"><li style="list-style-type:disc"><a href="https://nordvpn.com/"><strong>NordVPN</strong></a></li></ul><ul id="6abafd62-638b-418a-9733-74d3971f8111" class="bulleted-list"><li style="list-style-type:disc"><a href="https://surfshark.com/">SurfShark</a></li></ul><h1 id="5caab716-56a2-47c7-a477-dd408935c9ff" class=""><strong>Is This Website Legit?</strong></h1><figure id="fc338f33-84ba-433a-b712-48a242e0136b" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image28.jpg"><img style="width:640px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image28.jpg"/></a></figure><p id="34595d7a-57dc-430c-942d-ab6887faf04f" class="">This site.... It&#x27;s kind of weird, better validate...</p><p id="53737aa7-d6cc-4bc8-9659-07e253bc13d9" class="">Sites to detect threats in web pages:</p><ul id="6bc421c0-6281-43fb-ac5a-cb21572ecb6c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://sitecheck.sucuri.net/"><strong>Sitecheck</strong></a></li></ul><ul id="ce99f6f9-21f7-458b-98ca-8989f0732a0c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://webscan.foregenix.com/"><strong>Webscan</strong></a></li></ul><ul id="fe866ccb-75a4-4442-a502-0bc9ee6db2d6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.virustotal.com/#/home/url"><strong>VirusTotal</strong></a></li></ul><ul id="1b38bbbd-d72e-41d5-9f1a-1f62512ab03b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://transparencyreport.google.com/safe-browsing/search"><strong>Transparency Report</strong></a></li></ul><ul id="ed5bf21b-2954-4af2-bf6a-d28a49aab02f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://urlscan.io/"><strong>urlscan.io</strong></a></li></ul><figure id="8c40be0d-9234-4b27-8827-c050287e978f" class="image"><a href="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image29.jpg"><img style="width:566px" src="Cybersecurity%20For%20Everyone%20-%20Module%202%2081183718a929468e86080ac8fe1d652e/image29.jpg"/></a></figure></div></article></body></html>
